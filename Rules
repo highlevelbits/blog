@@ -30,6 +30,10 @@ route '/stylesheet/' do
   '/style.css'
 end
 
+route '/favicon/' do
+  '/favicon.ico'
+end
+
 route '/' do
   '/index.html'
 end
