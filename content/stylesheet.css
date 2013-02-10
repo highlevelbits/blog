@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
 
-  font-family: Georgia, Palatino, Times, 'Times New Roman', sans-serif;
+  font-family: Volkhov, 'Times New Roman', sans-serif;
 }
 
 body {
@@ -22,7 +22,7 @@ a:hover {
   color: #f90;
 }
 
-#main {
+.main {
   position: absolute;
 
   top: 40px;
@@ -31,8 +31,9 @@ a:hover {
   width: 500px;
 }
 
-#main h1 {
-  font-size: 40px;
+.main h1 {
+  font-family: Iceland, sans-serif;
+  font-size: 30px;
   font-weight: normal;
 
   line-height: 40px;
@@ -40,7 +41,15 @@ a:hover {
   letter-spacing: -1px;
 }
 
-#main p {
+.header h1 {
+  font-size: 60px;
+  color: lightgrey;
+  border-bottom: dashed ;
+  border-bottom-color: lightgrey;
+  margin-bottom: 20px;
+}
+
+.main p {
   margin: 20px 0;
 
   font-size: 15px;
@@ -48,54 +57,26 @@ a:hover {
   line-height: 20px;
 }
 
-#main ul, #main ol {
+.main ul, .main ol {
   margin: 20px;
 }
 
-#main li {
+.main li {
   font-size: 15px;
 
   line-height: 20px;
 }
 
-#main ul li {
+.main ul li {
   list-style-type: square;
 }
 
-#sidebar {
-  position: absolute;
-
-  top: 40px;
-  left: 20px;
-  width: 200px;
-
-  padding: 20px 20px 0 0;
-
-  border-right: 1px solid #ccc;
-
-  text-align: right;
+.footer {
+  border-top: dashed;
+  border-top-color: lightgrey;
+  margin-top: 20px;
+  padding-top: 5px;
+  font-size: smaller;
+  color: lightgrey;
 }
 
-#sidebar h2 {
-  text-transform: uppercase;
-
-  font-size: 13px;
-
-  color: #333;
-
-  letter-spacing: 1px;
-
-  line-height: 20px;
-}
-
-#sidebar ul {
-  list-style-type: none;
-
-  margin: 20px 0;
-}
-
-#sidebar li {
-  font-size: 14px;
-
-  line-height: 20px;
-}
