@@ -41,10 +41,16 @@ a:hover {
   letter-spacing: -1px;
 }
 
+.content h2 {
+  font-family: Iceland, sans-serif;
+  font-size: 30px;
+  border-bottom: solid;
+}
+
 .header h1 {
   font-size: 60px;
   color: lightgrey;
-  border-bottom: dashed ;
+  border-bottom: dashed;
   border-bottom-color: lightgrey;
   margin-bottom: 20px;
 }

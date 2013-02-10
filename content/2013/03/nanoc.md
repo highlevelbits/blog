@@ -1,5 +1,7 @@
 ---
 title: moving from drupal to nanoc
+kind: article
+created_at: 2013-02-10
 ---
 
 Time to move on to the bright (old) new world of static sites. We were not
