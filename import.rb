@@ -15,13 +15,14 @@ def path_from_node id
   result = DB["select alias from url_alias where source = 'node/#{id}'"]
   path = "content/#{result[:alias][:alias]}"
   parts = path.split('/')
-  if path.split('/').size == 5
-    parts = [path[0], path[1], path[2], path[4]]
+  if parts.size == 5
+    parts = [parts[0], parts[1], parts[2], parts[4]]
     path = parts.join '/'
   end
   unless path =~ /\.html$/
     path << '.html'
   end
+  path
 end
 
 def post_content node
@@ -37,7 +38,7 @@ def meta node
   author = 'hardy' if node[:uid] == 12
   author = 'fredrik' if node[:uid] == 13
   """---
-title: #{node[:title]}
+title: \"#{node[:title]}\"
 kind: article
 created_at: #{timestamp(node).strftime "%Y-%m-%d %T"}
 author: #{author}
