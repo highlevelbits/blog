@@ -5,7 +5,7 @@ require 'fileutils'
 DB = Sequel.connect 'do:mysql://admin:MHEeng9_a1RW@127.0.0.1/blog'
 
 node_sql = """
-select n.title, n.created, n.nid, b.body_format, b.body_value
+select n.title, n.created, n.nid, n.uid, b.body_format, b.body_value
 from node n, field_data_body b
 where type = 'article' and n.nid = b.entity_id
 """
@@ -13,7 +13,15 @@ where type = 'article' and n.nid = b.entity_id
 
 def path_from_node id
   result = DB["select alias from url_alias where source = 'node/#{id}'"]
-  result[:alias][:alias]
+  path = "content/#{result[:alias][:alias]}"
+  parts = path.split('/')
+  if path.split('/').size == 5
+    parts = [path[0], path[1], path[2], path[4]]
+    path = parts.join '/'
+  end
+  unless path =~ /\.html$/
+    path << '.html'
+  end
 end
 
 def post_content node
@@ -26,11 +34,13 @@ def timestamp hash
 end
 
 def meta node
-  """
----
+  author = 'hardy' if node[:uid] == 12
+  author = 'fredrik' if node[:uid] == 13
+  """---
 title: #{node[:title]}
 kind: article
 created_at: #{timestamp(node).strftime "%Y-%m-%d %T"}
+author: #{author}
 ---
   """
 end
