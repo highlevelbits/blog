@@ -1,5 +1,6 @@
 require 'sequel'
 require 'kramdown'
+require 'fileutils'
 
 DB = Sequel.connect 'do:mysql://admin:MHEeng9_a1RW@127.0.0.1/blog'
 
@@ -11,7 +12,8 @@ where type = 'article' and n.nid = b.entity_id
 
 
 def path_from_node id
-  DB["select alias from url_alias where source = 'node/#{id}'"]
+  result = DB["select alias from url_alias where source = 'node/#{id}'"]
+  result[:alias][:alias]
 end
 
 def post_content node
@@ -45,13 +47,13 @@ def post_comment node
   select c.name, c.created, fc.comment_body_value
   from comment c, field_data_comment_body fc
   where c.nid = #{node[:nid]} and fc.entity_id = c.cid
+  order by c.created
   """
   comments = DB[comment_sql]
 
-  if comments.size == 0
+  if comments.count == 0
     nil
   else
-    comments.sort_by! { |x| x[:created] }
     results = '<div class="old-comments"><h2>Old comments</h2>'
     comments.each do |one_comment|
       results << '<div class="one-old-comment">'
