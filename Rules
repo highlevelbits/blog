@@ -29,6 +29,8 @@ compile '*' do
       filter :kramdown
     when 'haml'
       filter :haml
+    when 'sass'
+      filter :sass
     end
     layout 'default'
   end
