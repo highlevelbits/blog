@@ -52,7 +52,7 @@ a:hover {
 }
 
 .header h1 {
-  font-size: 60px;
+  font-size: 70px;
   color: #a0a0a0;
   border-bottom: dashed;
   border-bottom-color: #a0a0a0;
@@ -107,3 +107,7 @@ a:hover {
   margin-top: 5px;
 }
 
+.byline {
+  font-size: smaller;
+  color: #a0a0a0;
+}
