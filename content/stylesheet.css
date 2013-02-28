@@ -25,13 +25,19 @@ a:hover {
   color: #f90;
 }
 
+.menu {
+  padding-bottom: 1em;
+  text-align: center;
+  color: #a0a0a0;
+}
+
 .main {
   position: absolute;
 
   top: 40px;
   left: 280px;
 
-  width: 500px;
+  width: 600px;
 
   padding-bottom: 20px;
 }
@@ -49,6 +55,11 @@ a:hover {
 .content h2 {
   font-family: Iceland, sans-serif;
   font-size: 30px;
+}
+
+.article-header {
+  margin-bottom: 0.25em;
+  margin-top: 2em;
 }
 
 .header h1 {
@@ -89,6 +100,14 @@ a:hover {
   padding-top: 5px;
 }
 
+.start-page .old-comments {
+  display: none;
+}
+
+.old-comments h2 {
+  font-size: 25px;
+}
+
 .one-old-comment {
   margin-bottom: 20px;
 }
@@ -110,4 +129,5 @@ a:hover {
 .byline {
   font-size: smaller;
   color: #a0a0a0;
+  margin-left: 4em;
 }

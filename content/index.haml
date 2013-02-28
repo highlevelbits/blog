@@ -2,6 +2,13 @@
 title:
 ---
 
-- sorted_articles.each do |one_article|
-  .one_article_item
-    = link_to one_article[:title], one_article
+.start-page
+  - sorted_articles[0..2].each do |article|
+    %h2.article-header
+      = article[:title]
+    .byline
+      by
+      = article[:author]
+      on
+      = article[:created_at].strftime '%F'
+    = article.compiled_content
