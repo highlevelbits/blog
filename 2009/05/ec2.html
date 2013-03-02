@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>high level bits - EC2</title>
-    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.1">
@@ -15,12 +16,12 @@
         <h1>h1ghlevelb1ts</h1>
       </div>
       <div class="menu">
-        <a href="/reversedchronologically.html">all</a>
-        &middot;
+        <a href="../../reversedchronologically.html">all</a>
+        ·
         archive
-        &middot;
+        ·
         hardy
-        &middot;
+        ·
         fredrik
       </div>
       <div class="content">
@@ -28,7 +29,7 @@
 <div class="byline">
   by hardy on 2009-05-10
 </div>
-<p>It is time to get more technical again. This time I want to write about cloud computing or more specifically about <a href="http://aws.amazon.com/ec2/">Amazon&#39;s EC2</a>. Given the hype around the very hard to define term of cloud computing, it was for a long time on my todo list to check EC2 out. However, I wanted to have a use case. &quot;Luckily&quot; I had to fix a Hibernate Search <a href="http://opensource.atlassian.com/projects/hibernate/browse/HSEARCH-248">bug</a> which would only manifest itself against a certain set of databases, including SQLServer. Since I did not have a SQLServer running locally, I decided this might be the opportunity I was looking for. Surely, there must be a virtual machine in EC2 with SQLServer installed.<br /><br />Turns out there are heaps and it is a piece of cake to get started. All you need is an amazon account. If you ever ordered a book from Amazon chances are you have one. It felt a little wrong to use it though. I still have to associate Amazon to more than just a bookstore. Anyways, logging in worked fine and after answering some initial setup questions, generating a certificate for authentication and watching a 3 minutes tutorial video, you are ready to proceed to the EC2 console. Just press the Launch Instance button, select a virtual machine configuration and off you go. It is all very intuitive and easy to understand (meaning no need for reading any more documentation:). The actual starting up time for the virtual machine was longer than I expected and I started to think something went wrong, but in the end the console reported the machine ready to use. Once running, you have a public DNS name for the machine which you can use to connect to it via ssh or remote desktop. Again very simple.<br />In my case I just used remote desktop to log onto the machine, create a new SQLServer database to use for running my tests and then I was back debugging my problem. Sweet.<br /><br />I haven&#39;t tried yet any of the other EC2 services like volumes and snapshots, but I will be back. Well done, Amazon!<br /><br />--Hardy</p>
+<p>It is time to get more technical again. This time I want to write about cloud computing or more specifically about <a href="http://aws.amazon.com/ec2/">Amazon's EC2</a>. Given the hype around the very hard to define term of cloud computing, it was for a long time on my todo list to check EC2 out. However, I wanted to have a use case. "Luckily" I had to fix a Hibernate Search <a href="http://opensource.atlassian.com/projects/hibernate/browse/HSEARCH-248">bug</a> which would only manifest itself against a certain set of databases, including SQLServer. Since I did not have a SQLServer running locally, I decided this might be the opportunity I was looking for. Surely, there must be a virtual machine in EC2 with SQLServer installed.<br><br>Turns out there are heaps and it is a piece of cake to get started. All you need is an amazon account. If you ever ordered a book from Amazon chances are you have one. It felt a little wrong to use it though. I still have to associate Amazon to more than just a bookstore. Anyways, logging in worked fine and after answering some initial setup questions, generating a certificate for authentication and watching a 3 minutes tutorial video, you are ready to proceed to the EC2 console. Just press the Launch Instance button, select a virtual machine configuration and off you go. It is all very intuitive and easy to understand (meaning no need for reading any more documentation:). The actual starting up time for the virtual machine was longer than I expected and I started to think something went wrong, but in the end the console reported the machine ready to use. Once running, you have a public DNS name for the machine which you can use to connect to it via ssh or remote desktop. Again very simple.<br>In my case I just used remote desktop to log onto the machine, create a new SQLServer database to use for running my tests and then I was back debugging my problem. Sweet.<br><br>I haven't tried yet any of the other EC2 services like volumes and snapshots, but I will be back. Well done, Amazon!<br><br>--Hardy</p>
 
       </div>
       <div class="footer">

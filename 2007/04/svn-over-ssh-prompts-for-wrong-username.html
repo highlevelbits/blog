@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>high level bits - svn over ssh prompts for the wrong username</title>
-    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.1">
@@ -15,12 +16,12 @@
         <h1>h1ghlevelb1ts</h1>
       </div>
       <div class="menu">
-        <a href="/reversedchronologically.html">all</a>
-        &middot;
+        <a href="../../reversedchronologically.html">all</a>
+        ·
         archive
-        &middot;
+        ·
         hardy
-        &middot;
+        ·
         fredrik
       </div>
       <div class="content">
@@ -28,21 +29,64 @@
 <div class="byline">
   by hardy on 2007-04-01
 </div>
-<p>It is time again for one of these rather low level bits :)<br />The company I am currently working for uses subversion as version control system. The server is setup to use <span style="font-style: italic;">svn+ssh</span> protocol only. Initially I tried to access the source code like this:</p>
+<p>It is time again for one of these rather low level bits :)<br>The company I am currently working for uses subversion as version control system. The server is setup to use <span style="font-style: italic;">svn+ssh</span> protocol only. Initially I tried to access the source code like this:</p>
 <pre>
 svn --username hardy.ferentschik checkout svn+ssh://servername/projectname/trunk
 </pre>
 <p>For some reason svn would then always prompt me for a password for</p>
 <pre>
 hardy@servername</pre>
-<p>, where hardy is my user name on the local machine. I couldn&#39;t really figure out what was going on. It seemed that the user name specified via <span style="font-style: italic;">--username</span> was not getting passed to the ssh client. I then tried:</p>
+<p>, where hardy is my user name on the local machine. I couldn't really figure out what was going on. It seemed that the user name specified via <span style="font-style: italic;">--username</span> was not getting passed to the ssh client. I then tried:</p>
 <pre>
 svn checkout svn+ssh://hardy.ferentschik@servername/projectname/trunk</pre>
-<p><span>which worked fine. I completely forgot about this problem for a while. Until yesterday that is. I wanted to configure a <a href="http://svnbook.red-bean.com/en/1.0/ch07s03.html">svn:external</a> link from one project to another in order to be able to check them out into the same directory. svn:external works similar to <a href="http://ximbiot.com/cvs/wiki/index.php?title=CVS--Concurrent_Versions_System_v1.12.12.1:_Reference_manual_for_Administrative_files#Ampersand_modules">cvs ampersand modules</a> and can be a very useful feature.<br /><br />For the svn:external property I couldn&#39;t use the url with my username in it, </span><span style="font-style: italic;"> </span><span>since then everyone checking out the project would have to authenticate with my credentials. Not really a solution. I had to use </span><span style="font-style: italic;">svn+ssh://servername/projectname/trunk</span><span>. But now of course my problem re-appeared.<br /><br />First I tried to find a solution in the svn documentation and on the svn forums, but there is really only the <span style="font-style: italic;">--username</span> option. I was already close to giving up when I thought that if I just could tell ssh which user to use. That was the right path and after a little more search I found out about the <a href="http://www.die.net/doc/linux/man/man5/ssh_config.5.html">config</a> file in the <span style="font-style: italic;">.ssh </span>directory. I&#39;ve never used it before so I did not even know that it existed. Anyway, the simple solution to my problem was to create a <span style="font-style: italic;">config</span> file in my <span style="font-style: italic;">.ssh</span> directory and putting the following in:
+<p><span>which worked fine. I completely forgot about this problem for a while. Until yesterday that is. I wanted to configure a <a href="http://svnbook.red-bean.com/en/1.0/ch07s03.html">svn:external</a> link from one project to another in order to be able to check them out into the same directory. svn:external works similar to <a href="http://ximbiot.com/cvs/wiki/index.php?title=CVS--Concurrent_Versions_System_v1.12.12.1:_Reference_manual_for_Administrative_files#Ampersand_modules">cvs ampersand modules</a> and can be a very useful feature.<br><br>For the svn:external property I couldn't use the url with my username in it, </span><span style="font-style: italic;"> </span><span>since then everyone checking out the project would have to authenticate with my credentials. Not really a solution. I had to use </span><span style="font-style: italic;">svn+ssh://servername/projectname/trunk</span><span>. But now of course my problem re-appeared.<br><br>First I tried to find a solution in the svn documentation and on the svn forums, but there is really only the <span style="font-style: italic;">--username</span> option. I was already close to giving up when I thought that if I just could tell ssh which user to use. That was the right path and after a little more search I found out about the <a href="http://www.die.net/doc/linux/man/man5/ssh_config.5.html">config</a> file in the <span style="font-style: italic;">.ssh </span>directory. I've never used it before so I did not even know that it existed. Anyway, the simple solution to my problem was to create a <span style="font-style: italic;">config</span> file in my <span style="font-style: italic;">.ssh</span> directory and putting the following in:
 <pre>Host servername
 User hardy.ferentschik
 </pre>
-<br />That fixed the problem :) I still would claim that there must be a bug in the svn client implementation when using <span style="font-style: italic;">--username</span> together with <span style="font-style: italic;">svn+ssh</span>. Surely it should pass the user name on to ssh.<br /><br />I hope this might help someone with similar problems.<br /><br />Cheers,<br />Hardy</span></p><p>&nbsp;</p><div class="old-comments"><h2>Old comments</h2><div class="one-old-comment"><span class="comment-date">2008-05-01</span><span class="commenter-name">Anonymous</span><div class="comment-body">Thanks a lot hardy.  It was indeed a very useful blog. I had a similar problem and I could solve it following your solution.<BR/><BR/>Thanks once again!!<BR/>Niraj</div></div><div class="one-old-comment"><span class="comment-date">2008-06-11</span><span class="commenter-name">Craig Knox</span><div class="comment-body">Thanks Hardy - this worked like a charm - I was about to start trying to change my short user name on OSX which is a nightmare, but this was much easier!</div></div><div class="one-old-comment"><span class="comment-date">2008-09-12</span><span class="commenter-name">Daniel</span><div class="comment-body">thank you very much Hardy.  I already wasted most of a day on this problem and your article helped me fix it in 2 minutes!</div></div><div class="one-old-comment"><span class="comment-date">2008-12-04</span><span class="commenter-name">Anonymous</span><div class="comment-body">This is the greatest blog posting ever.  I've been trying to figure out this problem for hours!</div></div><div class="one-old-comment"><span class="comment-date">2008-12-29</span><span class="commenter-name">Jochen</span><div class="comment-body">Thank you.</div></div><div class="one-old-comment"><span class="comment-date">2009-08-21</span><span class="commenter-name">Maascamp</span><div class="comment-body">Thank you! Been having this issue and using an ugly workaround for a while. Finally decided enough is enough. This was incredibly helpful.</div></div><div class="one-old-comment"><span class="comment-date">2010-06-28</span><span class="commenter-name">SoulGrocery</span><div class="comment-body">Thank you very much!  Would have taken me ages to figure out otherwise...</div></div><div class="one-old-comment"><span class="comment-date">2010-09-30</span><span class="commenter-name">Anonymous</span><div class="comment-body">Just wanted to pipe in with a "Metoo!" thanks for the fix! spent ages googling for a solution to this!</div></div><div class="one-old-comment"><span class="comment-date">2011-03-08</span><span class="commenter-name">Nick</span><div class="comment-body">Wow.  THANK YOU.  Such a clean solution.</div></div><div class="one-old-comment"><span class="comment-date">2011-06-03</span><span class="commenter-name">Kervin Ramen</span><div class="comment-body">Very nice!</div></div><div class="one-old-comment"><span class="comment-date">2011-10-18</span><span class="commenter-name">Michael</span><div class="comment-body">Great post worked for me. Thanks for posting.</div></div><div class="one-old-comment"><span class="comment-date">2011-11-30</span><span class="commenter-name">Anonymous</span><div class="comment-body">Great, it worked! Note to make sure to chmod og-rwx ~/.ssh/config !</div></div><div class="one-old-comment"><span class="comment-date">2013-01-03</span><span class="commenter-name">Sam Cook</span><div class="comment-body">Just wanted to say 'thanks' for this! Saved my bacon facing exactly the same problem and will hopefully make a lot of other things easier in the future.</div></div></div>
+<br>That fixed the problem :) I still would claim that there must be a bug in the svn client implementation when using <span style="font-style: italic;">--username</span> together with <span style="font-style: italic;">svn+ssh</span>. Surely it should pass the user name on to ssh.<br><br>I hope this might help someone with similar problems.<br><br>Cheers,<br>Hardy</span></p>
+<p> </p>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2008-05-01</span><span class="commenter-name">Anonymous</span><div class="comment-body">Thanks a lot hardy.  It was indeed a very useful blog. I had a similar problem and I could solve it following your solution.<br><br>Thanks once again!!<br>Niraj</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2008-06-11</span><span class="commenter-name">Craig Knox</span><div class="comment-body">Thanks Hardy - this worked like a charm - I was about to start trying to change my short user name on OSX which is a nightmare, but this was much easier!</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2008-09-12</span><span class="commenter-name">Daniel</span><div class="comment-body">thank you very much Hardy.  I already wasted most of a day on this problem and your article helped me fix it in 2 minutes!</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2008-12-04</span><span class="commenter-name">Anonymous</span><div class="comment-body">This is the greatest blog posting ever.  I've been trying to figure out this problem for hours!</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2008-12-29</span><span class="commenter-name">Jochen</span><div class="comment-body">Thank you.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2009-08-21</span><span class="commenter-name">Maascamp</span><div class="comment-body">Thank you! Been having this issue and using an ugly workaround for a while. Finally decided enough is enough. This was incredibly helpful.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2010-06-28</span><span class="commenter-name">SoulGrocery</span><div class="comment-body">Thank you very much!  Would have taken me ages to figure out otherwise...</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2010-09-30</span><span class="commenter-name">Anonymous</span><div class="comment-body">Just wanted to pipe in with a "Metoo!" thanks for the fix! spent ages googling for a solution to this!</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2011-03-08</span><span class="commenter-name">Nick</span><div class="comment-body">Wow.  THANK YOU.  Such a clean solution.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2011-06-03</span><span class="commenter-name">Kervin Ramen</span><div class="comment-body">Very nice!</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2011-10-18</span><span class="commenter-name">Michael</span><div class="comment-body">Great post worked for me. Thanks for posting.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2011-11-30</span><span class="commenter-name">Anonymous</span><div class="comment-body">Great, it worked! Note to make sure to chmod og-rwx ~/.ssh/config !</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2013-01-03</span><span class="commenter-name">Sam Cook</span><div class="comment-body">Just wanted to say 'thanks' for this! Saved my bacon facing exactly the same problem and will hopefully make a lot of other things easier in the future.</div>
+</div>
+</div>
 
       </div>
       <div class="footer">

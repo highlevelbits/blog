@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>high level bits - Mylar - the solution to information overload</title>
-    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.1">
@@ -15,12 +16,12 @@
         <h1>h1ghlevelb1ts</h1>
       </div>
       <div class="menu">
-        <a href="/reversedchronologically.html">all</a>
-        &middot;
+        <a href="../../reversedchronologically.html">all</a>
+        ·
         archive
-        &middot;
+        ·
         hardy
-        &middot;
+        ·
         fredrik
       </div>
       <div class="content">
@@ -28,7 +29,7 @@
 <div class="byline">
   by hardy on 2007-02-20
 </div>
-<p>Hi again,<br /><br />one of the recent topics on this blog was information overload. Until recently I experienced this daily within Eclipse IDE. Once your project reaches a moderate size the eclipse package explorer becomes virtually useless since you get completely lost in all the information it displays. Classes, methods, jar dependencies, project file, ... - finding something in this amount of information ended up in hour long scrolling session. I basically got to the point where I completely ignored the package explorer and just relied on the <span style="font-style: italic;">CTRL-R </span>and <span style="font-style: italic;">CTRL-T</span> keyboard shortcuts which let you search for resources respectively classes in the whole workspace.<br /><br />Admittedly my problems with Eclipse might not be relevant in the grand scheme of things, but I was still happy when I came across <a href="http://www.eclipse.org/mylar/">Mylar</a> and its solution to this type information overload. Mylar is based on tasks/activities and the idea is that each task starts with an empty package explorer. While you work on the task and continue opening files Mylar will build up a list of <span style="font-style: italic;">task relevant</span> files. Given that you normally only work on a small set of files at a time you end up with a very compact list in the package explorer. You can manually add <span style="font-style: italic;">landmarks</span> to files you want to show in the package explorer or you can remove <span style="font-style: italic;">landmarks</span> mylar created automatically. Last but not least, Mylar also integrates with many bug/task tracking solutions like for example <a href="http://www.atlassian.com/software/jira/">Jira</a>. Mylar Eclipse tasks and your currently assigned tasks from the bug tracker become one and the same thing. I call this true Agile Development :)<br /><br />I recommend everyone working with Eclipse to install Mylar. Hopefully it becomes soon the default package explorer in Eclipse.<br /><br />In case you are experiencing problems with Eclipse hanging / locking up after installing Mylar it might help to edit <span style="font-style: italic;">eclipse.ini</span> and add the following:<br /><br />-vmargs<br />-server<br />-Xms40m<br />-Xmx768m<br />-XX:MaxPermSize=128m<br />-XX:+UseParallelGC<br />-XX:+UseParallelOldGC<br /><br />I work with <a href="http://www.exadel.com/web/portal/home">Exadel</a> and <a href="http://www.eclipse.org/mylar/">Mylar</a> and noticed that without these settings that Eclipse would just hang, especially when changing editors. The only way out was to kill Eclipse. The above settings fixed this problem ( it seems to be related to the PermGen size and there are a lot of theories about this - just Google for it ;-)<br /><br />--Hardy</p>
+<p>Hi again,<br><br>one of the recent topics on this blog was information overload. Until recently I experienced this daily within Eclipse IDE. Once your project reaches a moderate size the eclipse package explorer becomes virtually useless since you get completely lost in all the information it displays. Classes, methods, jar dependencies, project file, ... - finding something in this amount of information ended up in hour long scrolling session. I basically got to the point where I completely ignored the package explorer and just relied on the <span style="font-style: italic;">CTRL-R </span>and <span style="font-style: italic;">CTRL-T</span> keyboard shortcuts which let you search for resources respectively classes in the whole workspace.<br><br>Admittedly my problems with Eclipse might not be relevant in the grand scheme of things, but I was still happy when I came across <a href="http://www.eclipse.org/mylar/">Mylar</a> and its solution to this type information overload. Mylar is based on tasks/activities and the idea is that each task starts with an empty package explorer. While you work on the task and continue opening files Mylar will build up a list of <span style="font-style: italic;">task relevant</span> files. Given that you normally only work on a small set of files at a time you end up with a very compact list in the package explorer. You can manually add <span style="font-style: italic;">landmarks</span> to files you want to show in the package explorer or you can remove <span style="font-style: italic;">landmarks</span> mylar created automatically. Last but not least, Mylar also integrates with many bug/task tracking solutions like for example <a href="http://www.atlassian.com/software/jira/">Jira</a>. Mylar Eclipse tasks and your currently assigned tasks from the bug tracker become one and the same thing. I call this true Agile Development :)<br><br>I recommend everyone working with Eclipse to install Mylar. Hopefully it becomes soon the default package explorer in Eclipse.<br><br>In case you are experiencing problems with Eclipse hanging / locking up after installing Mylar it might help to edit <span style="font-style: italic;">eclipse.ini</span> and add the following:<br><br>-vmargs<br>-server<br>-Xms40m<br>-Xmx768m<br>-XX:MaxPermSize=128m<br>-XX:+UseParallelGC<br>-XX:+UseParallelOldGC<br><br>I work with <a href="http://www.exadel.com/web/portal/home">Exadel</a> and <a href="http://www.eclipse.org/mylar/">Mylar</a> and noticed that without these settings that Eclipse would just hang, especially when changing editors. The only way out was to kill Eclipse. The above settings fixed this problem ( it seems to be related to the PermGen size and there are a lot of theories about this - just Google for it ;-)<br><br>--Hardy</p>
 
       </div>
       <div class="footer">

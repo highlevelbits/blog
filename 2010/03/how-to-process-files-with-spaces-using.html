@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>high level bits - How to process files with spaces using bash</title>
-    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.1">
@@ -15,12 +16,12 @@
         <h1>h1ghlevelb1ts</h1>
       </div>
       <div class="menu">
-        <a href="/reversedchronologically.html">all</a>
-        &middot;
+        <a href="../../reversedchronologically.html">all</a>
+        ·
         archive
-        &middot;
+        ·
         hardy
-        &middot;
+        ·
         fredrik
       </div>
       <div class="content">
@@ -28,15 +29,27 @@
 <div class="byline">
   by hardy on 2010-03-08
 </div>
-<p>The other day I wanted to rename a whole bunch of images with spaces and brackets in them. I had files of the form <i>filename1 (1).JPG</i>, <i>filename1 (2).JPG</i>, ..., <i>filename2 (1).JPG</i>, ...<br />In case you are wondering, these file came from a windows box where copies of files get saved in the format filename<space>(<index>).xyz. I know that from a OS point of view spaces in file names are no problem, but hell are spaces a pita if you have to process the files in a script. So what I wanted to do was to remove the space with a &#39;_&#39;, replace the brackets and while on it lowercase the filenames (I really just don&#39;t like JPG, I want jpg). For these kind of problems I would normally try a for loop. Here is my first attempt:</index></space><br />&nbsp;</p>
+<p>The other day I wanted to rename a whole bunch of images with spaces and brackets in them. I had files of the form <i>filename1 (1).JPG</i>, <i>filename1 (2).JPG</i>, ..., <i>filename2 (1).JPG</i>, ...<br>In case you are wondering, these file came from a windows box where copies of files get saved in the format filename<space>(<index>).xyz. I know that from a OS point of view spaces in file names are no problem, but hell are spaces a pita if you have to process the files in a script. So what I wanted to do was to remove the space with a '_', replace the brackets and while on it lowercase the filenames (I really just don't like JPG, I want jpg). For these kind of problems I would normally try a for loop. Here is my first attempt:</index></space><br> </p>
 <pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;">
-<code>for i in `ls -1 *.JPG`; do j=`echo $i | tr -d &quot;[:blank:]&quot; | tr &quot;[:upper:]&quot; &quot;[:lower:]&quot; | tr &quot;(&quot; &quot;_&quot; | tr -d &quot;)&quot;`; mv &quot;$i&quot; &quot;$j&quot;; done
+<code>for i in `ls -1 *.JPG`; do j=`echo $i | tr -d "[:blank:]" | tr "[:upper:]" "[:lower:]" | tr "(" "_" | tr -d ")"`; mv "$i" "$j"; done
 </code></pre>
-<br /><p>The idea is to process each file name in a loop, transform the filename with a a set of <i>tr</i> calls and then do a final rename of the files using <i>mv</i>. <i>tr</i> takes its input from standard in and writes to standard out, hence the trick of first echoing the current value of the iteration, passing it through several <i>tr</i> calls and then assigning it to a temporary variable. Note the use of the character classes for the transformation via <i>tr</i>.<br /><br />This one liner works fine for file names without spaces, but as soon as there are spaces in the file names you are getting into trouble. The default field separator of a for loop is the space character which means file names with spaces are causing two iterations of the loop. One solution to the problem is to set the $IFS variable prior to executing the for loop. The value of this variable determines the field separator. However, in this case you also have to remember to reset the variable afterward.<br /><br />Another approach is to&nbsp; use a completely different construct which you don&#39;t see so often. Let&#39;s use <i>find</i> together with a <i>while</i> loop.<br />&nbsp;</p>
+<br><p>The idea is to process each file name in a loop, transform the filename with a a set of <i>tr</i> calls and then do a final rename of the files using <i>mv</i>. <i>tr</i> takes its input from standard in and writes to standard out, hence the trick of first echoing the current value of the iteration, passing it through several <i>tr</i> calls and then assigning it to a temporary variable. Note the use of the character classes for the transformation via <i>tr</i>.<br><br>This one liner works fine for file names without spaces, but as soon as there are spaces in the file names you are getting into trouble. The default field separator of a for loop is the space character which means file names with spaces are causing two iterations of the loop. One solution to the problem is to set the $IFS variable prior to executing the for loop. The value of this variable determines the field separator. However, in this case you also have to remember to reset the variable afterward.<br><br>Another approach is to  use a completely different construct which you don't see so often. Let's use <i>find</i> together with a <i>while</i> loop.<br> </p>
 <pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;">
-<code>find . -name &quot;*.JPG&quot; -print0 | while read -d $&#39;\0&#39; file; do j=`echo $file | tr -d &quot;[:blank:]&quot; | tr &quot;[:upper:]&quot; &quot;[:lower:]&quot; | tr &quot;(&quot; &quot;_&quot; | tr -d &quot;)&quot;`; mv &quot;$file&quot; $j; done
+<code>find . -name "*.JPG" -print0 | while read -d $'\0' file; do j=`echo $file | tr -d "[:blank:]" | tr "[:upper:]" "[:lower:]" | tr "(" "_" | tr -d ")"`; mv "$file" $j; done
 </code></pre>
-<br /><p>We use <i>find</i> together with the <i>-print0</i> option to print all file names into one line separated by a ASCII NUL character. In the loop we use <i>read </i>together with the <i>-d</i> option which determines the delimiter for <i>read</i>. The rest is the same as in the <i>for</i> loop solution.<br /><br />Hope this helps some people, but maybe its just me who gets frustrated with spaces in file names ;-)<br /><br />Enjoy,<br />Hardy</p><div class="old-comments"><h2>Old comments</h2><div class="one-old-comment"><span class="comment-date">2010-03-08</span><span class="commenter-name">http://abebedorespgondufo.blogs.sapo.pt/</span><div class="comment-body">Good.</div></div><div class="one-old-comment"><span class="comment-date">2010-03-13</span><span class="commenter-name">Anonymous</span><div class="comment-body">Hi Hardy,<br /><br />another great way to proccess filenames having spaces in name is the Unix-command <i>xargs</i>. When using it with options -l -i each filename can be processed in a very simple way.<br /><br />Greating from Germany!<br /><br />Thomas (a new toastmaster)</div></div><div class="one-old-comment"><span class="comment-date">2010-03-14</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">ahh, nice one. I've never used any arguments to <i>xargs</i>. I use it a lot, but I never checked for any options. I guess its a good practice to read the manpages for the tools you are using.<br />P.S. Have fun with Toastmasters :)</div></div></div>
+<br><p>We use <i>find</i> together with the <i>-print0</i> option to print all file names into one line separated by a ASCII NUL character. In the loop we use <i>read </i>together with the <i>-d</i> option which determines the delimiter for <i>read</i>. The rest is the same as in the <i>for</i> loop solution.<br><br>Hope this helps some people, but maybe its just me who gets frustrated with spaces in file names ;-)<br><br>Enjoy,<br>Hardy</p>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2010-03-08</span><span class="commenter-name">http://abebedorespgondufo.blogs.sapo.pt/</span><div class="comment-body">Good.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2010-03-13</span><span class="commenter-name">Anonymous</span><div class="comment-body">Hi Hardy,<br><br>another great way to proccess filenames having spaces in name is the Unix-command <i>xargs</i>. When using it with options -l -i each filename can be processed in a very simple way.<br><br>Greating from Germany!<br><br>Thomas (a new toastmaster)</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2010-03-14</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">ahh, nice one. I've never used any arguments to <i>xargs</i>. I use it a lot, but I never checked for any options. I guess its a good practice to read the manpages for the tools you are using.<br>P.S. Have fun with Toastmasters :)</div>
+</div>
+</div>
 
       </div>
       <div class="footer">

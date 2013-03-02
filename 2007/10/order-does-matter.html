@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>high level bits - Order does matter</title>
-    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.1">
@@ -15,12 +16,12 @@
         <h1>h1ghlevelb1ts</h1>
       </div>
       <div class="menu">
-        <a href="/reversedchronologically.html">all</a>
-        &middot;
+        <a href="../../reversedchronologically.html">all</a>
+        ·
         archive
-        &middot;
+        ·
         hardy
-        &middot;
+        ·
         fredrik
       </div>
       <div class="content">
@@ -28,7 +29,7 @@
 <div class="byline">
   by hardy on 2007-10-07
 </div>
-<p>Ever used <a href="http://maven.apache.org/guides/introduction/introduction-to-profiles.html" id="qa.l" title="profiles">profiles</a> in <a href="http://maven.apache.org/" id="w263" title="maven">maven</a>? Great stuff. Ever tried to trigger multiple profiles? Great in theory, but unfortunately in this case maven is not delivering what one would expect - especially when you have the the same properties in multiple profiles and you want the values of the &#39;last&#39; profile activated to be the effective ones. This is exactly how <i>settings.xml </i>works. If a profile in <i>settings.xml</i> is activated and it defines a property which was already set by another profile it overrides its value. Not so with multiple profiles defined in <i>pom.xml</i>. Say we have to two profiles default and override defined as follows in <i>pom.xml</i>:</p>
+<p>Ever used <a href="http://maven.apache.org/guides/introduction/introduction-to-profiles.html" id="qa.l" title="profiles">profiles</a> in <a href="http://maven.apache.org/" id="w263" title="maven">maven</a>? Great stuff. Ever tried to trigger multiple profiles? Great in theory, but unfortunately in this case maven is not delivering what one would expect - especially when you have the the same properties in multiple profiles and you want the values of the 'last' profile activated to be the effective ones. This is exactly how <i>settings.xml </i>works. If a profile in <i>settings.xml</i> is activated and it defines a property which was already set by another profile it overrides its value. Not so with multiple profiles defined in <i>pom.xml</i>. Say we have to two profiles default and override defined as follows in <i>pom.xml</i>:</p>
 <pre>
 &lt;profile&gt;
   &lt;id&gt;default&lt;/id&gt;
@@ -48,7 +49,9 @@
 <pre>
 &gt; mvn install -P default,override
 </pre>
-<p>one would expect that the value for property test is &#39;OVERRIDE&#39;, but it is not :( It turns out there is a <a href="http://jira.codehaus.org/browse/MNG-2309" id="wolv" title="bug in maven">bug in maven</a> which causes the order of the profile activation to be undetermined. The good news is that this particular problem is solved - in version 2.1-alpha! This means until maven 2.1 is available watch out when trying to use profile overriding. It can save you a few hours of tearing at your hair trying to figure out why the build is not behaving the way you want it to behave.</p><p>&nbsp;</p><p>&nbsp;</p>
+<p>one would expect that the value for property test is 'OVERRIDE', but it is not :( It turns out there is a <a href="http://jira.codehaus.org/browse/MNG-2309" id="wolv" title="bug in maven">bug in maven</a> which causes the order of the profile activation to be undetermined. The good news is that this particular problem is solved - in version 2.1-alpha! This means until maven 2.1 is available watch out when trying to use profile overriding. It can save you a few hours of tearing at your hair trying to figure out why the build is not behaving the way you want it to behave.</p>
+<p> </p>
+<p> </p>
 
       </div>
       <div class="footer">

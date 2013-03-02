@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>high level bits - JPA not so good after all?</title>
-    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.1">
@@ -15,12 +16,12 @@
         <h1>h1ghlevelb1ts</h1>
       </div>
       <div class="menu">
-        <a href="/reversedchronologically.html">all</a>
-        &middot;
+        <a href="../../reversedchronologically.html">all</a>
+        ·
         archive
-        &middot;
+        ·
         hardy
-        &middot;
+        ·
         fredrik
       </div>
       <div class="content">
@@ -28,7 +29,17 @@
 <div class="byline">
   by fredrik on 2009-02-05
 </div>
-<p>At <a href="http://www.highlevelbits.com/2009/01/jfokus-summary.html" id="f.2y" title="jfokus">jfokus</a> I listened to a guy from Oracle talking about JPA 2.0. I guess JPA makes sense from a database perspective. Today I stumbled over <a href="http://www.devwebsphere.com/devwebsphere/2009/02/the-problem-with-jpa-and-java-persistence-in-general.html" id="bek4" title="this interesting article on the subject">this interesting article on the subject</a>. Billy Newport points out that JPA only cares for parts of our needs for persistence. Data stored in web server sessions or in caches are typically put in simple hash tables. JPA could be split into one part that cares for persistence anywhere and another part that cares specifically for persistence into a relational database. Interesting thoughts indeed. On the other hand - what is it that is so bad about SQL?</p><p>&nbsp;</p><div class="old-comments"><h2>Old comments</h2><div class="one-old-comment"><span class="comment-date">2009-02-13</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Wanted to comment on this one for days, but just kept forgetting. Just read the original post and must say that I am actually not quite following. What is really his solution here? One thing to say that the spec should be split, but how? And in my world I can use normal POJOs for a long time in frontend. <BR/>I agree however, that JPA2 really offer nothing really new. It seems just to plug some holes and seems to target especially people having to integrate with legacy databases. Often these databases are so screwed up that you wonder whether you should allow them to use JPA against them or not ;-)</div></div><div class="one-old-comment"><span class="comment-date">2009-02-14</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">I think his point is that there should be a standard for persisting POJOs anywhere but he never really get into how. For a cache or a session - a normal POJO object structure is probably fine all the time. Serializing to XML (a kind of persistence perhaps?) has its own standard (JAXB) and so has serializing to a web page (JSF). A POJO that is used in many situations will turn out to have loads of annotations. My point is (although I never stated it....) that Java is heading for more and more complexity whereas it should go the opposite way. For some reason the industry seems to think that XML is a good thing and real code is a bad thing. It should be the other way around... Whoa - got a bit carried away there. Back to JPA. I think JPA probably is great for new databases but rather unusable for legacy databases. But I would prefer to use SQL with Spring for any solution - new or old.</div></div></div>
+<p>At <a href="http://www.highlevelbits.com/2009/01/jfokus-summary.html" id="f.2y" title="jfokus">jfokus</a> I listened to a guy from Oracle talking about JPA 2.0. I guess JPA makes sense from a database perspective. Today I stumbled over <a href="http://www.devwebsphere.com/devwebsphere/2009/02/the-problem-with-jpa-and-java-persistence-in-general.html" id="bek4" title="this interesting article on the subject">this interesting article on the subject</a>. Billy Newport points out that JPA only cares for parts of our needs for persistence. Data stored in web server sessions or in caches are typically put in simple hash tables. JPA could be split into one part that cares for persistence anywhere and another part that cares specifically for persistence into a relational database. Interesting thoughts indeed. On the other hand - what is it that is so bad about SQL?</p>
+<p> </p>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2009-02-13</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Wanted to comment on this one for days, but just kept forgetting. Just read the original post and must say that I am actually not quite following. What is really his solution here? One thing to say that the spec should be split, but how? And in my world I can use normal POJOs for a long time in frontend. <br>I agree however, that JPA2 really offer nothing really new. It seems just to plug some holes and seems to target especially people having to integrate with legacy databases. Often these databases are so screwed up that you wonder whether you should allow them to use JPA against them or not ;-)</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2009-02-14</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">I think his point is that there should be a standard for persisting POJOs anywhere but he never really get into how. For a cache or a session - a normal POJO object structure is probably fine all the time. Serializing to XML (a kind of persistence perhaps?) has its own standard (JAXB) and so has serializing to a web page (JSF). A POJO that is used in many situations will turn out to have loads of annotations. My point is (although I never stated it....) that Java is heading for more and more complexity whereas it should go the opposite way. For some reason the industry seems to think that XML is a good thing and real code is a bad thing. It should be the other way around... Whoa - got a bit carried away there. Back to JPA. I think JPA probably is great for new databases but rather unusable for legacy databases. But I would prefer to use SQL with Spring for any solution - new or old.</div>
+</div>
+</div>
 
       </div>
       <div class="footer">

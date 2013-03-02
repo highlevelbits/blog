@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>high level bits - The bright future of parallel computing</title>
-    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.1">
@@ -15,12 +16,12 @@
         <h1>h1ghlevelb1ts</h1>
       </div>
       <div class="menu">
-        <a href="/reversedchronologically.html">all</a>
-        &middot;
+        <a href="../../reversedchronologically.html">all</a>
+        ·
         archive
-        &middot;
+        ·
         hardy
-        &middot;
+        ·
         fredrik
       </div>
       <div class="content">
@@ -28,7 +29,9 @@
 <div class="byline">
   by fredrik on 2007-02-22
 </div>
-<p>Parallel is a hard word to spell for a native swede. In swedish it comes with 4 l as in parallell so when doing some searches I only got swedish hits.... I started thinking a bit about parallel computing after reading <a href="http://radar.oreilly.com/archives/2007/02/a_fast_waitfree_1.html">these interesting fragments</a> of an internal O&#39;Reilly conversation on the matter. The point is that processors are not gonna get much faster in the future so our hope for faster computing lies in making them run in parallel. This is a prospect worth thinking about for a while. Will this new hardware architecture imply a change in how we construct software? Probably. Java, for example, doesn&#39;t have built-in support for massive parallelism. Java has threads but they have to be created by the programmer. EJB application servers might be able to use many processors effectively since the EJB container is responsible for threading of beans. In this case a single request will always be linearly executed and the possible advantage of many processors will be wasted. The use of JMS could possibly solve this but a message that you let go doesn&#39;t report back.<br /><br />Java is not the language to use with this new harware then. Without really knowing I suspect that this is about the same for C#. We need languages that support code to may run concurrently without no hard work placed on the programmer. There are probably a number of candidates for this. Nat Torkington - also for O&#39;Reilly Radar - <a href="http://radar.oreilly.com/archives/2007/01/threads_conside.html">mentions</a> Erlang, Haskell and E as potential languages. Wikipedia says about Erlang that:</p><blockquote>Erlang&#39;s main strength is support for <a href="http://en.wikipedia.org/wiki/Concurrency_%28computer_science%29" title="Concurrency (computer science)">concurrency</a>. It has a small but powerful set of primitives to create processes and communicate between them. Processes are the primary means to structure an Erlang application. Erlang processes are neither OS processes nor OS threads, but lightweight threads somewhat similar to <a href="http://en.wikipedia.org/wiki/Java" title="Java">Java</a>&#39;s &quot;green threads&quot;.</blockquote><p>Interesting! The years to come will definitley see some new players challenging the dominance of Java and C# for the enterprise. The Web 2.0 toolset will be likely to get some new tools. Ajax is kind of a parallel way of writing web pages so this shift in technology may be a natural continuation of the Web 2.0 thingie.</p>
+<p>Parallel is a hard word to spell for a native swede. In swedish it comes with 4 l as in parallell so when doing some searches I only got swedish hits.... I started thinking a bit about parallel computing after reading <a href="http://radar.oreilly.com/archives/2007/02/a_fast_waitfree_1.html">these interesting fragments</a> of an internal O'Reilly conversation on the matter. The point is that processors are not gonna get much faster in the future so our hope for faster computing lies in making them run in parallel. This is a prospect worth thinking about for a while. Will this new hardware architecture imply a change in how we construct software? Probably. Java, for example, doesn't have built-in support for massive parallelism. Java has threads but they have to be created by the programmer. EJB application servers might be able to use many processors effectively since the EJB container is responsible for threading of beans. In this case a single request will always be linearly executed and the possible advantage of many processors will be wasted. The use of JMS could possibly solve this but a message that you let go doesn't report back.<br><br>Java is not the language to use with this new harware then. Without really knowing I suspect that this is about the same for C#. We need languages that support code to may run concurrently without no hard work placed on the programmer. There are probably a number of candidates for this. Nat Torkington - also for O'Reilly Radar - <a href="http://radar.oreilly.com/archives/2007/01/threads_conside.html">mentions</a> Erlang, Haskell and E as potential languages. Wikipedia says about Erlang that:</p>
+<blockquote>Erlang's main strength is support for <a href="http://en.wikipedia.org/wiki/Concurrency_%28computer_science%29" title="Concurrency (computer science)">concurrency</a>. It has a small but powerful set of primitives to create processes and communicate between them. Processes are the primary means to structure an Erlang application. Erlang processes are neither OS processes nor OS threads, but lightweight threads somewhat similar to <a href="http://en.wikipedia.org/wiki/Java" title="Java">Java</a>'s "green threads".</blockquote>
+<p>Interesting! The years to come will definitley see some new players challenging the dominance of Java and C# for the enterprise. The Web 2.0 toolset will be likely to get some new tools. Ajax is kind of a parallel way of writing web pages so this shift in technology may be a natural continuation of the Web 2.0 thingie.</p>
 
       </div>
       <div class="footer">

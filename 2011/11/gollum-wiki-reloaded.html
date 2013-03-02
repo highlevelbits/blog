@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>high level bits - Gollum wiki reloaded</title>
-    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.1">
@@ -15,12 +16,12 @@
         <h1>h1ghlevelb1ts</h1>
       </div>
       <div class="menu">
-        <a href="/reversedchronologically.html">all</a>
-        &middot;
+        <a href="../../reversedchronologically.html">all</a>
+        ·
         archive
-        &middot;
+        ·
         hardy
-        &middot;
+        ·
         fredrik
       </div>
       <div class="content">
@@ -28,7 +29,7 @@
 <div class="byline">
   by hardy on 2011-11-17
 </div>
-In my <a href="http://www.highlevelbits.com/2011/11/my-precious-wiki.html">last post</a> I described how to setup a <a href="https://github.com/github/gollum/">gollum</a> wiki on <a href="https://openshift.redhat.com/app">OpenShift</a>. I realized that there was quite some editing involved and especially the need to deploy twice in order to determine the git repo location bugged me. I decided to improve on this. The outcome is the GitHub repo <a href="https://github.com/hferentschik/gollum-openshifted">gollum-openshifted</a>. All required files are checked in and all you have to do is follow the simple instructions in the <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/README.md">README</a>.<br /><br />The key for not having to manually edit <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/config.ru">config.ru</a> is a little perl magic in <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/.openshift/action_hooks/build">.openshift/action_hooks/build</a> and some regular expression replacement with some OpenShift variables.<br /><br />Let me know how it goes,<br />Hardy<br /><br /><br /><br /><br />
+In my <a href="http://www.highlevelbits.com/2011/11/my-precious-wiki.html">last post</a> I described how to setup a <a href="https://github.com/github/gollum/">gollum</a> wiki on <a href="https://openshift.redhat.com/app">OpenShift</a>. I realized that there was quite some editing involved and especially the need to deploy twice in order to determine the git repo location bugged me. I decided to improve on this. The outcome is the GitHub repo <a href="https://github.com/hferentschik/gollum-openshifted">gollum-openshifted</a>. All required files are checked in and all you have to do is follow the simple instructions in the <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/README.md">README</a>.<br><br>The key for not having to manually edit <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/config.ru">config.ru</a> is a little perl magic in <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/.openshift/action_hooks/build">.openshift/action_hooks/build</a> and some regular expression replacement with some OpenShift variables.<br><br>Let me know how it goes,<br>Hardy<br><br><br><br><br>
 
       </div>
       <div class="footer">
