@@ -10,7 +10,7 @@ Dir.mktmpdir { |dir|
   target_branch = 'gh-pages'
   if system( "git checkout #{target_branch}" )
     `rm -rf *`
-    `cp -r #{dir}/output/* .`
+    `cp -r #{dir}/* .`
     `git add .`
     `git commit -m "high level bits automatic deploy"`
     `git push git@github.com:highlevelbits/blog.git #{target_branch}`
