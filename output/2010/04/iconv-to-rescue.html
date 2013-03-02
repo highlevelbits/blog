@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>high level bits - iconv to the rescue</title>
+    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.6.1">
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="/reversedchronologically.html">all</a>
+        &middot;
+        archive
+        &middot;
+        hardy
+        &middot;
+        fredrik
+      </div>
+      <div class="content">
+        <h2 class="article-header">iconv to the rescue</h2>
+<div class="byline">
+  by hardy on 2010-04-18
+</div>
+<p>Inspired by this Rand&#39;s <a href="http://www.randsinrepose.com/archives/2009/12/24/a_creative_soundtrack.html">blog</a> I gave <a href="http://www.ommwriter.com/">Ommwriter</a> a go. Opening an existing text file I was surprised though to be greeted by something like this:</p><p style="text-align: center;">[[{"type":"media","view_mode":"media_large","fid":"89","attributes":{"alt":"","class":"media-image","typeof":"foaf:Image"}}]]</p><p>Unfortunately, I must have accidentally saved the file before I was able to exit the Ommwriter, because when I tried to reopen the file in TextEdit I got the same result. I was pretty sure I was encountering an encoding problem. Time for <span style="font-style: italic;">iconv</span>. The default encoding on my Mac is UTF-8 so I tried something like:</p>
+<pre style="font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; color: rgb(0, 0, 0); background-color: rgb(238, 238, 238); font-size: 12px; border: 1px dashed rgb(153, 153, 153); line-height: 14px; padding: 5px; overflow: auto; width: 100%;">
+<code>iconv -f UTF-8 -t UTF-16 foo.txt
+</code></pre>
+<p>And lo and behold I got my text back. After investigating the problem for a little bit I found out that the problem occurs when the text contains characters outside the <span style="font-style: italic;">[A-Z]</span> and <span style="font-style: italic;">[a-z]</span> range, for example an ö.<br /><br />Anyways, after this initial hiccup, I have to admit I am positively surprised about Ommwriter. The fact that all distractions are removed from the screen really helps focusing on the actual task of writing. I also like that there is <span style="font-weight: bold;">no</span> spell checker. You are actually focusing on writing and not proof reading. Most surprised I was, however, by the fact that audible keyboard strokes actually really help the writing process.</p><div class="old-comments"><h2>Old comments</h2><div class="one-old-comment"><span class="comment-date">2010-04-18</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Cool editor. Download in progress!</div></div><div class="one-old-comment"><span class="comment-date">2011-07-21</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Just for reference. I found a paid for editor (via signal vs noise) with a little bit of markdown in it. <a href="http://www.iawriter.com/" rel="nofollow">iA Writer</a> looks really sweet!</div></div><div class="one-old-comment"><span class="comment-date">2011-07-21</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Looks nice indeed. I might give it a go, but I am a Ommwriter by now. Even shelled out the money for the IPad version. It really helps me when I want to focus on the actual writing.</div></div></div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>
