@@ -29,6 +29,7 @@ compile '*' do
       layout 'article'
     end
     layout 'default'
+    filter( :relativize_paths, :type => :html )
   end
 end
 
