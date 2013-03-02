@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>high level bits - My precious wiki</title>
+    <link href='http://fonts.googleapis.com/css?family=Iceland|Volkhov' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.6.1">
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="/reversedchronologically.html">all</a>
+        &middot;
+        archive
+        &middot;
+        hardy
+        &middot;
+        fredrik
+      </div>
+      <div class="content">
+        <h2 class="article-header">My precious wiki</h2>
+<div class="byline">
+  by hardy on 2011-11-04
+</div>
+<p>Ever wanted a simple wiki, which you can edit on- or offline? A wiki which is easy to back up<br />and does versioning. And what&#39;s about some free hosting as well?<br /><br />I am a big proponent of running a personal wiki to capture and organize thoughts. In case you don&#39;t agree, I recommend you read Any Hunt&#39;s &quot;<a href="http://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050">Pragmatic Thinking and Learning</a>&quot;.<br /><br />Self I have been running <a href="http://info.tiki.org/Tiki+Wiki+CMS+Groupware">Tiki Wiki</a> for a long time, but it is quite heavy weight, requires a database and constant upgrading. I was always looking for something more lightweight and now I found it - <a href="https://github.com/github/gollum">gollum</a>. A lightweight racks app which works either via a webinterface or by simple text file editing on the file system.<br /><br />Running gollum locally is as easy as:</p>
+<pre class="code">
+$ gem install gollum
+$ gollum</pre>
+<p>However, how can I host this without spending any money. One way might be <a href="http://www.heroku.com/">Heroku</a>, but I recently became a fan of RedHat&#39;s <a href="https://openshift.redhat.com/app">OpenShift</a>. The Express version is free and offers a range of different hosting catridges, including a racks one. Let&#39;s see how easy it is to get your wiki hosted on OpenShift.<br /><br />First you need to sign up for an account. Once that is done you install the command line tools for OpenShift Express via:</p>
+<pre>
+$ gem install rhc
+</pre>
+<p>Now let&#39;s create a domain and app for your wiki:</p>
+<pre class="code">
+$ rhc-create-domain -n <your-domain> -l <email>
+$ rhc-create-app -a wiki -t rack-1.1 -l <email>
+</email></email></your-domain></pre>
+<p>Once you ran this commands you should have a local git checkout in the directory wiki and a running application under http://wiki-<your-domain>-rhcloud.com.<br /><br />Next we need to install gollum. Let&#39;s change into the <i>wiki</i> directory. First open <i>.openshift/action_hooks/build</i> and just add the line</your-domain></p>
+<pre class="code">
+export </pre>
+<p>Now commit this change and push the change to origin:</p>
+<pre class="code">
+git commit -a -m &quot;Adding &#39;export&#39; in order to display environment settings&quot;
+git push origin master&nbsp; </pre>
+<p>You will see that on top of the usual git commit messages there are several OpenShift things happening.The export command will be run after <a href="http://gembundler.com/">bundler</a> and dump a whole bunch of settings.We will need some to complete the gollum configuration.Next create a Gemfile and add the following:</p>
+<pre class="code">
+source &#39;http://rubygems.org&#39;
+
+gem &#39;rack&#39;, &#39;1.1.0&#39;
+gem &#39;gollum&#39; </pre>
+<p>Then open config.ru and change to this (delete the current content):</p>
+<pre class="code">
+require &quot;rubygems&quot;
+Bundler.require(:default)
+
+require &quot;gollum/frontend/app&quot;
+
+use Rack::Auth::Basic, &quot;My wiki - authenticate!&quot; do |username, password|
+  [username, password] == [&#39;wiki&#39;, &#39;wiki&#39;]
+end
+
+Precious::App.set(:gollum_path, &#39;<full git="" path="" repo="" to="">&#39;)
+Precious::App.set(:wiki_options, {})
+run Precious::App
+</full></pre>
+<p>You need to replace <full git="" path="" repo="" to=""> with the actual path you see in the environment dump.<br />Currently it the line you are after looks like this:</full></p>
+<pre class="code">
+remote: declare -x PWD=&quot;/var/lib/whatever/whatever/git/wiki.git&quot;
+</pre>
+<p><i>/var/lib/whatever/whatever/git/wiki.git</i> is the part you are after. As you can see I am using Rack::Auth::Basic for basic authentication, but you can plug something elsein if you like.Now lets lock the gems using bundler and also package them:&nbsp;</p>
+<pre class="code">
+bundle install
+bundle package
+</pre>
+<p>Add everything to the repo, commit and push.<br />Enjoy your wiki,<br />Hardy</p><p>&nbsp;</p><div class="old-comments"><h2>Old comments</h2><div class="one-old-comment"><span class="comment-date">2011-11-06</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Sweet! (Ruby got lots of nice things!) I never felt I needed my own wiki. What do you put in it?</div></div><div class="one-old-comment"><span class="comment-date">2011-11-09</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Well, I keep a page for one liners or other work arounds. This way I can find things easily and once in a while there is enough material for a blog. Also other general blog/presentation ideas are kept in the wiki initially where they are refined until released into the wild :-)</div></div><div class="one-old-comment"><span class="comment-date">2011-11-09</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Sweet. Oneliners can be handy - I should do that too. The other stuff I keep in a basecamp project nowadays.</div></div><div class="one-old-comment"><span class="comment-date">2013-02-06</span><span class="commenter-name">SweetyHeadvi</span><div class="comment-body">Howdy! I'm at work surfing around your blog from my new iphone 4! Just wanted to say I love reading your blog and look forward to all your posts! Keep up the fantastic work! 
+ 
+http://google.cox</div></div></div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>
