@@ -46,7 +46,11 @@ route '/' do
 end
 
 route '/*/' do
-  item.identifier.chop + '.html'
+  extension = 'html'
+  if item.binary?
+    extension = item[:extension]
+  end
+  "#{item.identifier.chop}.#{extension}"
 end
 
 layout '*', :erb
