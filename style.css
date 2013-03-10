@@ -1,4 +1,4 @@
-$background-text: #a0a0a0
+/* inspiration from the colorpicker: http://colorschemedesigner.com/#5C31TqVqV---- */
 
 * {
   margin: 0;
@@ -18,21 +18,22 @@ a {
 
 a:link,
 a:visited {
-  color: #f30;
+  color: #15827e;
 }
 
 a:hover {
-  color: #f90;
+  color: white;
 }
 
 .menu {
   padding-bottom: 1em;
   text-align: center;
-  color: #a0a0a0;
+  color: #264140;
 }
 
 .main {
-  background: #fff;
+  background: white;
+  color: #400002;
 
   position: absolute;
 
@@ -42,6 +43,8 @@ a:hover {
   width: 800px;
 
   padding: 20px;
+
+  border-radius: 40px;
 }
 
 .main h1 {
@@ -66,9 +69,9 @@ a:hover {
 
 .header h1 {
   font-size: 70px;
-  color: #a0a0a0;
+  color: #264140;
   border-bottom: dashed;
-  border-bottom-color: #a0a0a0;
+  border-bottom-color: #264140;
   margin-bottom: 20px;
 }
 
@@ -88,16 +91,16 @@ a:hover {
 
 .footer {
   border-top: dashed;
-  border-top-color: #a0a0a0;
+  border-top-color: #264140;
   margin-top: 20px;
   padding-top: 5px;
   font-size: smaller;
-  color: #a0a0a0;
+  color: #264140;
 }
 
 .old-comments {
   border-top: dashed;
-  border-top-color: #a0a0a0;
+  border-top-color: #264140;
   margin-top: 20px;
   padding-top: 5px;
 }
@@ -115,7 +118,7 @@ a:hover {
 }
 
 .comment-date {
-  color: #a0a0a0;
+  color: #264140;
   margin-right: 10px;
 }
 
@@ -130,6 +133,6 @@ a:hover {
 
 .byline {
   font-size: smaller;
-  color: #a0a0a0;
+  color: #264140;
   margin-left: 4em;
 }
