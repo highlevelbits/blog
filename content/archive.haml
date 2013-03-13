@@ -2,16 +2,17 @@
 title:
 ---
 
-%ul
-- Year.articles_per_year(sorted_articles).each do |label, year|
-  %li
-    %h2= "#{label} (#{year.count})"
-    %ul
-      - year.months.each do |name, month|
-        %li
-          %h3= "#{month.name} (#{month.count})"
-          %ul
-            - month.items.each do |item|
-              .one_article_item
-                = link_to item[:title], item
+.archive
+  %ul
+    - Year.articles_per_year(sorted_articles).each do |label, year|
+      %li
+        %h2= "#{label} (#{year.count})"
+        %ul
+          - year.months.each do |name, month|
+            %li
+              %h3= "#{month.name} (#{month.count})"
+              %ul
+                - month.items.each do |item|
+                  .one_article_item
+                    = link_to item[:title], item
 

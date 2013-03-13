@@ -85,10 +85,6 @@ a:hover {
   line-height: 20px;
 }
 
-.main ul li {
-  list-style-type: square;
-}
-
 .footer {
   border-top: dashed;
   border-top-color: #264140;
@@ -135,4 +131,8 @@ a:hover {
   font-size: smaller;
   color: #264140;
   margin-left: 4em;
+}
+
+.archive li{
+  list-style-type: none;
 }
