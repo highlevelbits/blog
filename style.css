@@ -25,6 +25,13 @@ a:hover {
   color: white;
 }
 
+pre {
+  font-family: Courier New;
+  background-color: #400002;
+  color: white;
+  padding: 20px;
+}
+
 .menu {
   padding-bottom: 1em;
   text-align: center;
