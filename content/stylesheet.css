@@ -29,8 +29,19 @@ pre {
   font-family: Courier New;
   background-color: #400002;
   color: white;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+blockquote {
+  font-style: italic;
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .menu {

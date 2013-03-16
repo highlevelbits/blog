@@ -1,5 +1,6 @@
-<h2 class="article-header"><%= @item[:title] %></h2>
-<div class="byline">
-  by <%= @item[:author] %> on <%= @item[:created_at].strftime '%F' %>
-</div>
+<h2 class="article-header">
+  <%= "#{@item[:created_at].strftime '%F'} #{@item[:author]}" %>
+  <br/>
+  <%= "#{@item[:title]}" %>
+</h2>
 <%= yield %>
