@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - iconv to the rescue</title>
     <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../awesome/font-awesome-min.css">
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
@@ -25,10 +26,12 @@
         fredrik
       </div>
       <div class="content">
-        <h2 class="article-header">iconv to the rescue</h2>
-<div class="byline">
-  by hardy on 2010-04-18
-</div>
+        <h2 class="article-header">
+  <span class="byline">2010-04-18 by hardy</span>
+  <br>
+  iconv to the rescue
+</h2>
+
 <p>Inspired by this Rand's <a href="http://www.randsinrepose.com/archives/2009/12/24/a_creative_soundtrack.html">blog</a> I gave <a href="http://www.ommwriter.com/">Ommwriter</a> a go. Opening an existing text file I was surprised though to be greeted by something like this:</p>
 <p style="text-align: center;">[[{"type":"media","view_mode":"media_large","fid":"89","attributes":{"alt":"","class":"media-image","typeof":"foaf:Image"}}]]</p>
 <p>Unfortunately, I must have accidentally saved the file before I was able to exit the Ommwriter, because when I tried to reopen the file in TextEdit I got the same result. I was pretty sure I was encountering an encoding problem. Time for <span style="font-style: italic;">iconv</span>. The default encoding on my Mac is UTF-8 so I tried something like:</p>

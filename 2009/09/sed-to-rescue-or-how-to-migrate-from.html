@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - sed to the rescue (or how to migrate from java.util.logging to org.slf4j)</title>
     <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../awesome/font-awesome-min.css">
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
@@ -25,10 +26,12 @@
         fredrik
       </div>
       <div class="content">
-        <h2 class="article-header">sed to the rescue (or how to migrate from java.util.logging to org.slf4j)</h2>
-<div class="byline">
-  by fredrik on 2009-09-16
-</div>
+        <h2 class="article-header">
+  <span class="byline">2009-09-16 by fredrik</span>
+  <br>
+  sed to the rescue (or how to migrate from java.util.logging to org.slf4j)
+</h2>
+
 <p>I got the task to migrate all our code - some 100 classes - from standard <a href="http://java.sun.com/javase/6/docs/api/index.html?java/util/logging/package-summary.html">JDK logging</a> to the logging facade framework <a href="http://www.slf4j.org/">slf4j</a>. (I am not sure if there are any real benefits from such a migration but the deploying organization has decided that this is the way to go so the best approach i to just look happy and accept. They also claim that there may be performance issues with the way we log now. It sounds a bit far-fetched to me....) A fast analysis of the task made me conclude that I needed to replace:</p>
 <div>
 <ul>

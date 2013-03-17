@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - Using Mac's TextEdit from the command line</title>
     <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../awesome/font-awesome-min.css">
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
@@ -25,10 +26,12 @@
         fredrik
       </div>
       <div class="content">
-        <h2 class="article-header">Using Mac's TextEdit from the command line</h2>
-<div class="byline">
-  by hardy on 2008-10-08
-</div>
+        <h2 class="article-header">
+  <span class="byline">2008-10-08 by hardy</span>
+  <br>
+  Using Mac's TextEdit from the command line
+</h2>
+
 Just a short little note. As I recently mentioned there are a few things which I actually do not like about my Mac. One is that the <i>Finder</i> per default does not display hidden files and the second related issue that <i>TextEdit</i> is not in the default path of the console.<br>Why is that important you ask? Well I would like to say for example say at the command line:<br><br>&gt; edit foo.txt <br><br>or <br><br>&gt; edit ~/.bashrc<br><br>For the former I could open <i>Finder</i>, locate the file and double click. For the former I am pretty much out of luck. Of course I also could just use <i>vi </i>and in fact that's what I am doing most of the time, but then there are the times where I just want to have another simple editor. To come to the point, here is what I did and what I would like to share with you. Just add this to your <i>~/.bashr</i>c (or <i>~/.bash_profile </i>as a matter of fact):<br><br>function edit()<br>{<br>    /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2&gt;/dev/null<br>}<br><br>Have fun,<br>--Hardy<div class="old-comments">
 <h2>Old comments</h2>
 <div class="one-old-comment">

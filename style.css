@@ -29,7 +29,19 @@ pre {
   font-family: Courier New;
   background-color: #400002;
   color: white;
-  padding: 20px;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+blockquote {
+  font-style: italic;
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .menu {
@@ -135,11 +147,37 @@ pre {
 }
 
 .byline {
-  font-size: smaller;
-  color: #264140;
-  margin-left: 4em;
+  font-family: Iceland, 'Times New Roman', sans-serif;
+  font-size: 22px;
+  float: right;
 }
 
 .archive li{
   list-style-type: none;
 }
+
+.tags {
+  margin-bottom: 5px;
+  float: right;
+}
+
+.one-tag {
+  border-radius: 5px;
+  border: dashed 2px #400002;
+  padding: 5px;
+  margin: 5px;
+  font-family: Iceland;
+  font-size: 22px;
+  background-color: #eafffe;
+}
+
+
+.tags a:link,
+.tags a:visited {
+  color: #400002;
+}
+
+.one-tag a:hover {
+  color: white;
+}
+

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - Wysiwyg inline editing with tinyMce, jQuery, Rails and cucumber</title>
     <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../awesome/font-awesome-min.css">
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
@@ -25,10 +26,12 @@
         fredrik
       </div>
       <div class="content">
-        <h2 class="article-header">Wysiwyg inline editing with tinyMce, jQuery, Rails and cucumber</h2>
-<div class="byline">
-  by fredrik on 2011-05-14
-</div>
+        <h2 class="article-header">
+  <span class="byline">2011-05-14 by fredrik</span>
+  <br>
+  Wysiwyg inline editing with tinyMce, jQuery, Rails and cucumber
+</h2>
+
 <div>I have been a little silent in this space cause I have been busy doing cool new stuff with rails. In a new brand project I am using couch (and nosql) for the first time and I am also diving into the jQuery ocean. It has been a rewarding trip this far with a couple of frustrations that has been solved with the help of the internets. Time to give something back!</div>
 <br><div>This post is about how to use tinyMce not just as a nice wysiwyg editor but also for inline editing. The case is that you have a piece of markup on a page that you want to easily change without leaving the page. It turns out that it is not that hard for your specific case. A more generic case might be harder but not by much. As long as the thing you are editing is an entity that it stored in its entirety somewhere you should be good to go. (Couch is of course nice for this.)</div>
 <br><div>I will assume that you have a running rails project and is familiar with the workings of rails. I am using rails 3 but I think most of the code should work with rails 2 as well. A running rails project with this setup can be <a href="https://github.com/froderik/inlinetinymce">found over at github</a>.</div>

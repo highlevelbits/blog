@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - JPA not so good after all?</title>
     <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../awesome/font-awesome-min.css">
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
@@ -25,10 +26,12 @@
         fredrik
       </div>
       <div class="content">
-        <h2 class="article-header">JPA not so good after all?</h2>
-<div class="byline">
-  by fredrik on 2009-02-05
-</div>
+        <h2 class="article-header">
+  <span class="byline">2009-02-05 by fredrik</span>
+  <br>
+  JPA not so good after all?
+</h2>
+
 <p>At <a href="http://www.highlevelbits.com/2009/01/jfokus-summary.html" id="f.2y" title="jfokus">jfokus</a> I listened to a guy from Oracle talking about JPA 2.0. I guess JPA makes sense from a database perspective. Today I stumbled over <a href="http://www.devwebsphere.com/devwebsphere/2009/02/the-problem-with-jpa-and-java-persistence-in-general.html" id="bek4" title="this interesting article on the subject">this interesting article on the subject</a>. Billy Newport points out that JPA only cares for parts of our needs for persistence. Data stored in web server sessions or in caches are typically put in simple hash tables. JPA could be split into one part that cares for persistence anywhere and another part that cares specifically for persistence into a relational database. Interesting thoughts indeed. On the other hand - what is it that is so bad about SQL?</p>
 <p> </p>
 <div class="old-comments">

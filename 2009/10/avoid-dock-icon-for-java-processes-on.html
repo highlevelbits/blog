@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - Avoid Dock icon for Java processes on Mac OS</title>
     <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../awesome/font-awesome-min.css">
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
@@ -25,10 +26,12 @@
         fredrik
       </div>
       <div class="content">
-        <h2 class="article-header">Avoid Dock icon for Java processes on Mac OS</h2>
-<div class="byline">
-  by hardy on 2009-10-05
-</div>
+        <h2 class="article-header">
+  <span class="byline">2009-10-05 by hardy</span>
+  <br>
+  Avoid Dock icon for Java processes on Mac OS
+</h2>
+
 Hi again,<br><br>in the previous post I forgot to mention one thing. Ever noticed the useless java bean icon in your Dock when running java processes? Here is how you control their behavior.<br><br>If you want to avoid them completely (like for services, eg Tomcat or JBoss) you can just pass the java.awt.property to the JVM. Something like<br><pre><br>java -D java.awt.headless=true ...<br></pre>
 <br>Just find the right way of doing this in your startup script or in case you are using launchd add it to your plist file.<br><br>In the case you actually want to have an icon, but want to have something which actually represents your application you can use the following JVM options:<br><pre><br>java -Xdock:name=MyApp -Xdock:icon=/path/to/custom/icon.png ...<br></pre>
 <br>Now, I better get ready for <a href="http://jaoo.dk/aarhus-2009/">JAOO</a>. Currently I am on the ferry between Varberg and Grenå and I have seen a calmer whaether :(<br><br>Will also meet Fredrik at <a href="http://jaoo.dk/aarhus-2009/">JAOO</a>. I am sure there will be more about this conference here shortly.<br><br>--Hardy<div class="old-comments">

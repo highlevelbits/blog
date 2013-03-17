@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - svn changelists</title>
     <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../awesome/font-awesome-min.css">
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
@@ -25,10 +26,12 @@
         fredrik
       </div>
       <div class="content">
-        <h2 class="article-header">svn changelists</h2>
-<div class="byline">
-  by hardy on 2009-03-20
-</div>
+        <h2 class="article-header">
+  <span class="byline">2009-03-20 by hardy</span>
+  <br>
+  svn changelists
+</h2>
+
 <p>While I am on the 'discovering trip'. Here is another thing I found out this week. This time I actually knew that this particular feature existed, but I never really knew how to use it and how it actually works. I am talking about <a href="http://svnbook.red-bean.com/en/1.5/svn-book.html#svn.advanced.changelists">svn changelists</a>. They are part of subversion since version 1.5 and so far were only something I read about. However, this week I discovered by accident the 'move to changelist' button in the Intellij Idea svn plugin. I just tried it and immediately it dawned on my how useful this feature is. It allows me for example to move some files, which I always change, but never commit into a seperate changeset. This way I don't have to remember to either revert or not commit these files. You probably think that such files should not exists in a properly setup project, but what about for example log4j.properties. I personally like to collect log4j output in <a href="http://logging.apache.org/chainsaw/index.html">Chainsaw</a> , but on the other hand I don't want to commit the log4j configuration file with the required socket appender enabled. Well, now I just moved log4j.properties into its own changelist and I don't have to think about it anymore.<br>From the command line you are using the changelist feature via the '--changelist' options which can be passed to most of the svn sub-commands. For example a checkin would look like this:</p>
 <blockquote>svn commit -m "my log message" --changelist myChangeList</blockquote>
 <p>One caveat though. I was assuming that committing without specifying a changelist would only commit the files which are not specifically in a changelist. Unfortunately, that's not the case. Instead all changes are committed. That's a clear drawback for me, but at least it is hidden from me when using the Idea plugin.<br><br>Time to hand-over to Fredrik again for a less technical blog entry :)<br><br>--Hardy</p>
