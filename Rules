@@ -13,9 +13,8 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-
 compile '*' do
-  if item.binary? or item[:extension] == 'css'
+  if item.binary? or bypass? item[:extension]
   else
     case item[:extension]
     when 'html'
@@ -47,7 +46,7 @@ end
 
 route '/*/' do
   extension = 'html'
-  if item.binary?
+  if item.binary? or  bypass? item[:extension]
     extension = item[:extension]
   end
   "#{item.identifier.chop}.#{extension}"
