@@ -6,3 +6,11 @@ def tags_for item
     []
   end
 end
+
+def items_tagged_with tag, except = []
+  other_items = @items - except
+  other_items.select do |i|
+    (i[:tags] || []).include?(tag)
+  end
+end
+
