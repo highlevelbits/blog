@@ -188,3 +188,7 @@ blockquote {
   margin-top: 20px;
   padding-top: 10px;
 }
+
+.twitter-window {
+  float: right;
+}
