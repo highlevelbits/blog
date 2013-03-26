@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-nanoc prune compile --yes
+nanoc
 cd output
 git pull origin gh-pages
 git add .
