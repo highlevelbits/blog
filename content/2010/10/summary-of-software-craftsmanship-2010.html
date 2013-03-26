@@ -3,6 +3,7 @@ title: "Summary of Software Craftsmanship 2010"
 kind: article
 created_at: 2010-10-10 18:30:00
 author: fredrik
+tags: conference, software craftsmanship, bletchley park
 ---
   <p><a href="http://www.flickr.com/photos/kurioso/1829325/" style="float:right; margin:10px" title="Carving by kev/null, on Flickr"><img alt="Carving" height="180" src="http://farm1.static.flickr.com/2/1829325_45295a12a9_m.jpg" width="240" /></a></p><div>To celebrate 101010 and 42 this blog now features a video for the first time if I remember correctly...</div><div>&nbsp;</div><p>The idea of software professionals as craftsmen has been around for a while perhaps starting with the <a href="http://www.pragprog.com/">pragmatic programmers</a> entrance at the scene. Before that engineering had been the predominant way of looking at software development efforts. The book with the concept as its title appeared in 2001 and a number of thought leaders in our field has modelled themselves since as software craftsmen. It is a concept that certainly is appealing. But isn&#39;t is just another buzz that will go around for a while? Not sure but to found out more I reacted positively to <a href="http://twitter.com/peter_lind">Peter Linds</a> tweet about going to <a href="http://parlezuml.com/softwarecraftsmanship/">Software Craftsmanship 2010</a> - a conference promising to miss out on keynotes and <a href="http://en.wikipedia.org/wiki/Races_and_species_in_The_Hitchhiker's_Guide_to_the_Galaxy#Fluff">fluff</a> in favour of joint coding and peer-to-peer learning.<br /><br />The conference is 10 sessions in 3 tracks. All sessions must involve elements of audience coding. As a result the number of slides were low and the total minutes of one-way communication put to a minimum. I first went to conference organizer <a href="http://twitter.com/jasongorman">Jason Gormans</a> session on refuctoring. I had already watched his - or rather imaginary enterprisy consultant Keith Bank-Account (actually a fellow of the Institute of Mortgage-driven Software Development) - videos (see below) so I had a fair idea of the concept - take something extraordinarily simple like a &quot;Hello world&quot; program and mess it up thourougly. This was ironically put forward as a great idea to make a customer dependent. It was a truly fun session to get as much dirt as possible into a simple piece of code. Halfway through Jason made us change pairs and introduced a new &quot;requirement&quot; - we were now supposed to make the program say &quot;Hello Fredrik&quot; instead of &quot;Hello world&quot;. This made it painfully clear that it takes only about 20 minutes to mess up a piece of code so thouroughly that it is a real pain to maintain.<br />&nbsp;</p><div style="text-align: center;"><object height="344" width="425"><param name="movie" value="http://www.youtube.com/v/7RJmoCWx4cE?fs=1&amp;hl=en_US" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed allowfullscreen="true" allowscriptaccess="always" height="344" src="http://www.youtube.com/v/7RJmoCWx4cE?fs=1&amp;hl=en_US" type="application/x-shockwave-flash" width="425"></embed></object></div><br /><p>Anyways - back at the hotel I made a little implementation that is more nerdy fun than messed:</p>
 <pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;">
@@ -19,19 +20,19 @@ public class WorldGreeter {
  }
 
  private String createGreeting(FormalityLevel levelOfFormality) {
-  return levelOfFormality == FormalityLevel.CASUAL 
-                    ? &quot;Hello&quot; 
+  return levelOfFormality == FormalityLevel.CASUAL
+                    ? &quot;Hello&quot;
                     : &quot;God day&quot;;
  }
- 
+
  public static String VOID = &quot; &quot;;
- 
+
  class VoidGenerator {
   public String generateVoid(){
    return VOID;
   }
  }
- 
+
  enum FormalityLevel{
   CASUAL,
   HIGH_COURT;
