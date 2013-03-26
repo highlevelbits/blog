@@ -16,19 +16,8 @@
       <div class="header">
         <h1>h1ghlevelb1ts</h1>
       </div>
-      <script>
-  (function() {
-    var cx = '006272234050814958525:luuwfw6lru8';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<search></search>
+      <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
       <div class="menu">
         <a href="../../reversedchronologically.html">all</a>
         ·
@@ -45,6 +34,16 @@
   jfokus 2010 day 1 summary
 </h2>
 
+  <div class="tags">
+    
+      <a class="one-tag" href="#jfokus"><span class="icon-tag"></span>jfokus</a>
+    
+      <a class="one-tag" href="#java"><span class="icon-tag"></span>java</a>
+    
+      <a class="one-tag" href="#conference"><span class="icon-tag"></span>conference</a>
+    
+  </div>
+
 <p>It is hard to top the exotic blog posts from my argentinian coblogger. Nevertheless it may make sense to write up a summary of jfokus - the yearly Java conference in Stockholm. Yet again the venue is Filmstaden Sergel and I won't report anymore on this as compared to <a href="http://www.highlevelbits.com/2009/01/jfokus-summary.html">last years report</a>.</p>
 <div>
 <br>The day started badly with a 40 minute delay on the commuter trains from the <a href="http://en.wikipedia.org/wiki/Sollentuna_Municipality">northern suburbs</a>. This made me late to the first tutorial. The first day of two is tutorial day - one before and one after lunch. 4 to choose from. I started with a nice talk on Good Object-Oriented Development by Kevlin Henney. Kevlin went through a lot of basic stuff related to object oriented development. Nothing new really but it is good to get this kind of confirmation know and then. He made some nice examples on encapsulation and showed us some real life code that was just not very good. I see similar stuff often in the systems I work with. One reason for this kind of code is that many developers learn a set of have-tos that they stick to. Some of them should probably be considered harmful. One example: always provide a default constructor. This may be useful if there is such thing as a default state for instances of the class but in many cases it results in objects with undefined state and leads to error prone code. Later on Kevlin removed 'get' from some code with a bunch of getters and I felt like FINALLY. I have never understood the point with the <a href="http://java.sun.com/javase/technologies/desktop/javabeans/index.jsp">JavaBeans</a> standard (ok - tooling but what else?) getters and setters really suck. (Ruby has a much nicer way to go about it. No big surprise there.....) He also talked for a while about unit testing and a feeling I have had lately that writing tests per method is darn wrong was firmly confirmed. It is much better to name methods after what they test. A method is often tested with several test cases while other simpler methods can be tested indirectly without a dedicated test case. The readability of tests is often low and I know I have failed with this on several occasions but it is not hard to argue that test code should be as readable as the main code. It will all live for a while and it will all be maintained so it should all be in as good shape as possible.<br><br>After lunch Anders Hammar delved into the depths of maven. Not the funniest subject but since I have some maven skills and don't work with it currently I felt that it was the best choice of the afternoon. (A kind of attempt to refresh a fading skill set.) Anders mixed slides and live demonstrations which is a very nice way to go about it. He started with lots of examples of the eclipse maven plugin m2eclipse. Looks really nice and I have tried it on a side project also. I didn't realize that m2eclipse runs on maven 3 but apparently it is compatible with maven 2 so you can use m2eclipse and maven 2 on the command line with the same configuration files. The part on dependency management didn't add anything new. More interesting then was the next part on life cycle customization. This is perhaps the area where maven has some serious problems. There are 3 built in lifecycles: default, clean and site. They are built up from phases where each phase has its default plugin that is executed. A problem with this is that this lifecycle view of a system build doesn't always fit all systems. If your plugin doesn't fit nicely into the phases you can run into all sorts of problems. A possiple way out of this problem is to <a href="http://www.sonatype.com/books/mvnref-book/reference/writing-plugins-sect-plugins-lifecycle.html">create your own lifecycle</a>. I am not sure whether this is good or not. Maybe Hardy knows more about it? The tutorial was labelled "advanced" but to me it was closer to basics. My needs for repetition of forgotten knowledge were thus satisfactorily filled!</div>
@@ -58,6 +57,194 @@
 </div>
 </div>
 
+
+  <div class="similar-articles">
+    
+      
+      
+        <h4><a name="jfokus">Other articles tagged jfokus</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../../2009/01/jfokus-summary.html">jfokus summary</a>
+            </li>
+          
+            <li>
+              <a href="jfokus-2010-day-2-summary.html">jfokus 2010 day 2 summary</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+      
+        <h4><a name="java">Other articles tagged java</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../../2007/02/mylar-solution-to-information-overload.html">Mylar - the solution to information overload</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/02/parallel-is-hard-word-to-spell-for.html">The bright future of parallel computing</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/02/there-is-hope-despite-everything.html">There is hope - despite everything</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/03/trends-in-sales-of-programming-language.html">Trends in sales of programming language books (and some lamenting)</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/04/irony-of-application-servers.html">The irony of application servers</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/04/krugle-next-google.html">Krugle the next Google?</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/01/i-was-just-reading-latest-java.html">A whole new world</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/02/little-curiosity-0.html">A little curiosity</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/03/no-need-to-code-just-annotate-it.html">No need to code - just annotate it...</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/05/explicit-nullpointerexception.html">Explicit NullPointerException</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/01/jfokus-summary.html">jfokus summary</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/02/introduction-to-ruby-on-rails-for-java.html">Introduction to Ruby on Rails for Java developers</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/02/jpa-not-so-good-after-all.html">JPA not so good after all?</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/06/two-way-ssl-with-java.html">Two way SSL with Java</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/08/jaxb-with-maven_16.html">JAXB with Maven</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/09/my-macbook-pro-turns-soon-1-year-and-i.html">JDiskReport.</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/09/sed-to-rescue-or-how-to-migrate-from.html">sed to the rescue (or how to migrate from java.util.logging to org.slf4j)</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/1st-day-of-jaoo.html">1st day of JAOO</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/avoid-dock-icon-for-java-processes-on.html">Avoid Dock icon for Java processes on Mac OS</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/give-my-scripting-support-back-please.html">Give my scripting support back, please ...</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/java-programs-as-deamons-on-mac-os-x.html">Java programs as daemons on Mac OS X</a>
+            </li>
+          
+            <li>
+              <a href="jfokus-2010-day-2-summary.html">jfokus 2010 day 2 summary</a>
+            </li>
+          
+            <li>
+              <a href="../03/snorcle-day.html">Snorcle day</a>
+            </li>
+          
+            <li>
+              <a href="../11/where-are-my-sources.html">Where are my sources?</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+      
+        <h4><a name="conference">Other articles tagged conference</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../../2009/01/jfokus-summary.html">jfokus summary</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/03/scandevconf-summary.html">ScanDevConf summary</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/09/thoughtworks-seminar.html">Thoughtworks seminar</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/1st-day-of-jaoo.html">1st day of JAOO</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/2nd-day-of-jaoo.html">2nd day of JAOO</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/3rd-day-of-jaoo-and-wrap-up.html">3rd day of JAOO and wrap up</a>
+            </li>
+          
+            <li>
+              <a href="jfokus-2010-day-2-summary.html">jfokus 2010 day 2 summary</a>
+            </li>
+          
+            <li>
+              <a href="../05/agila-sverige-day-2-refelections.html">agila sverige day 2 reflections</a>
+            </li>
+          
+            <li>
+              <a href="../05/agila-sverige-reflections.html">agila sverige day 1 reflections</a>
+            </li>
+          
+            <li>
+              <a href="../06/first-day-of-swdc-2010.html">First day of SWDC 2010</a>
+            </li>
+          
+            <li>
+              <a href="../06/second-day-of-swdc.html">Second day of SWDC</a>
+            </li>
+          
+            <li>
+              <a href="../10/dynmaic-stockholm-2010.html">Dynamic Stockholm 2010</a>
+            </li>
+          
+            <li>
+              <a href="../10/summary-of-software-craftsmanship-2010.html">Summary of Software Craftsmanship 2010</a>
+            </li>
+          
+            <li>
+              <a href="../11/devoxx-2010-summary.html">devoxx 2010 summary</a>
+            </li>
+          
+        </ul>
+      
+    
+  </div>
 
 
       </div>
