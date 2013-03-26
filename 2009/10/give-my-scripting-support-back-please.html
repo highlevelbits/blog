@@ -9,13 +9,26 @@
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc 3.6.1">
+    <meta name="generator" content="nanoc 3.6.2">
   </head>
   <body>
     <div class="main">
       <div class="header">
         <h1>h1ghlevelb1ts</h1>
       </div>
+      <script>
+  (function() {
+    var cx = '006272234050814958525:luuwfw6lru8';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<search></search>
       <div class="menu">
         <a href="../../reversedchronologically.html">all</a>
         ·
@@ -32,8 +45,129 @@
   Give my scripting support back, please ...
 </h2>
 
+  <div class="tags">
+    
+      <a class="one-tag" href="#java"><span class="icon-tag"></span>java</a>
+    
+      <a class="one-tag" href="#gradle"><span class="icon-tag"></span>gradle</a>
+    
+      <a class="one-tag" href="#maven"><span class="icon-tag"></span>maven</a>
+    
+  </div>
+
 <p>Just recently I struggled again with <a href="http://maven.apache.org/">Maven</a>.Don't get me wrong, it's a great build tool, but it is sometimes frustrating that due to the lack of scripting capabilities you are limited to whatever use-cases the developers envisioned. Often things feel a little like:"My way or the highway!"<br><br>Here is my current problem. Say you are developing a library and you have an optional dependency to another library. Depending on whether this optional library is available at runtime your own library behaves differently. For example a factory class could check whether a the optional dependency is available and if so create a different type of service class.<br><br>As a developer of this library I would like to have two test sets. One where the tests are run with the optional dependency on the classpath and one without. It is already possible two configure two executions of the surefire plugin, but I cannot remove an optional dependency. Admittedly, you can solve this use case using profiles, but the POM becomes very long and the dependency management is confusing in this case :(<br><br>I created a Jira issue - <a href="http://jira.codehaus.org/browse/SUREFIRE-576">SUREFIRE-576</a> - for it. Let's see what's going to happen. However, what's the best solution for now? Try to patch surefire yourself and host the patched version until the patch (hopefully) gets integrated and released. Seems very tedious. If I just would have the possibility to modify the test classpath ;-)<br><br>I wonder whether this use-case would be easier to handle in the latest hot build tool - <a href="http://www.gradle.org/">Gradle</a>.<br><br>enjoy!<br><br>--hardy</p>
 
+
+  <div class="similar-articles">
+    
+      
+      
+        <h4><a name="java">Other articles tagged java</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../../2007/02/mylar-solution-to-information-overload.html">Mylar - the solution to information overload</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/02/parallel-is-hard-word-to-spell-for.html">The bright future of parallel computing</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/02/there-is-hope-despite-everything.html">There is hope - despite everything</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/03/trends-in-sales-of-programming-language.html">Trends in sales of programming language books (and some lamenting)</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/04/irony-of-application-servers.html">The irony of application servers</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/04/krugle-next-google.html">Krugle the next Google?</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/01/i-was-just-reading-latest-java.html">A whole new world</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/02/little-curiosity-0.html">A little curiosity</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/03/no-need-to-code-just-annotate-it.html">No need to code - just annotate it...</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/05/explicit-nullpointerexception.html">Explicit NullPointerException</a>
+            </li>
+          
+            <li>
+              <a href="../01/jfokus-summary.html">jfokus summary</a>
+            </li>
+          
+            <li>
+              <a href="../02/introduction-to-ruby-on-rails-for-java.html">Introduction to Ruby on Rails for Java developers</a>
+            </li>
+          
+            <li>
+              <a href="../02/jpa-not-so-good-after-all.html">JPA not so good after all?</a>
+            </li>
+          
+            <li>
+              <a href="../06/two-way-ssl-with-java.html">Two way SSL with Java</a>
+            </li>
+          
+            <li>
+              <a href="../08/jaxb-with-maven_16.html">JAXB with Maven</a>
+            </li>
+          
+            <li>
+              <a href="../09/my-macbook-pro-turns-soon-1-year-and-i.html">JDiskReport.</a>
+            </li>
+          
+            <li>
+              <a href="../09/sed-to-rescue-or-how-to-migrate-from.html">sed to the rescue (or how to migrate from java.util.logging to org.slf4j)</a>
+            </li>
+          
+            <li>
+              <a href="1st-day-of-jaoo.html">1st day of JAOO</a>
+            </li>
+          
+            <li>
+              <a href="avoid-dock-icon-for-java-processes-on.html">Avoid Dock icon for Java processes on Mac OS</a>
+            </li>
+          
+            <li>
+              <a href="java-programs-as-deamons-on-mac-os-x.html">Java programs as daemons on Mac OS X</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+      
+    
+      
+      
+        <h4><a name="maven">Other articles tagged maven</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../../2007/10/order-does-matter.html">Order does matter</a>
+            </li>
+          
+            <li>
+              <a href="../08/jaxb-with-maven_16.html">JAXB with Maven</a>
+            </li>
+          
+        </ul>
+      
+    
+  </div>
 
 
       </div>

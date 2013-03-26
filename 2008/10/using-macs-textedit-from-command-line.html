@@ -9,13 +9,26 @@
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc 3.6.1">
+    <meta name="generator" content="nanoc 3.6.2">
   </head>
   <body>
     <div class="main">
       <div class="header">
         <h1>h1ghlevelb1ts</h1>
       </div>
+      <script>
+  (function() {
+    var cx = '006272234050814958525:luuwfw6lru8';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<search></search>
       <div class="menu">
         <a href="../../reversedchronologically.html">all</a>
         ·
@@ -31,6 +44,14 @@
   <br>
   Using Mac's TextEdit from the command line
 </h2>
+
+  <div class="tags">
+    
+      <a class="one-tag" href="#bash"><span class="icon-tag"></span>bash</a>
+    
+      <a class="one-tag" href="#mac"><span class="icon-tag"></span>mac</a>
+    
+  </div>
 
 Just a short little note. As I recently mentioned there are a few things which I actually do not like about my Mac. One is that the <i>Finder</i> per default does not display hidden files and the second related issue that <i>TextEdit</i> is not in the default path of the console.<br>Why is that important you ask? Well I would like to say for example say at the command line:<br><br>&gt; edit foo.txt <br><br>or <br><br>&gt; edit ~/.bashrc<br><br>For the former I could open <i>Finder</i>, locate the file and double click. For the former I am pretty much out of luck. Of course I also could just use <i>vi </i>and in fact that's what I am doing most of the time, but then there are the times where I just want to have another simple editor. To come to the point, here is what I did and what I would like to share with you. Just add this to your <i>~/.bashr</i>c (or <i>~/.bash_profile </i>as a matter of fact):<br><br>function edit()<br>{<br>    /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2&gt;/dev/null<br>}<br><br>Have fun,<br>--Hardy<div class="old-comments">
 <h2>Old comments</h2>
@@ -51,6 +72,53 @@ Just a short little note. As I recently mentioned there are a few things which I
 </div>
 </div>
 
+
+  <div class="similar-articles">
+    
+      
+      
+    
+      
+      
+        <h4><a name="mac">Other articles tagged mac</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../09/for-couple-of-weeks-now-i-am-proud.html">Do I love it or hate it?</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/02/switching-between-hiding-and-viewing.html">Hiding and viewing dot files in Mac's Finder</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/03/cycling-application-windows-on-mac-os-x.html">Cycling application windows on Mac OS X</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/03/open.html">open</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/09/my-macbook-pro-turns-soon-1-year-and-i.html">JDiskReport.</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/avoid-dock-icon-for-java-processes-on.html">Avoid Dock icon for Java processes on Mac OS</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/java-programs-as-deamons-on-mac-os-x.html">Java programs as daemons on Mac OS X</a>
+            </li>
+          
+            <li>
+              <a href="../../2009/10/os-x-106-snow-leopard.html">OS X 10.6 Snow Leopard</a>
+            </li>
+          
+        </ul>
+      
+    
+  </div>
 
 
       </div>

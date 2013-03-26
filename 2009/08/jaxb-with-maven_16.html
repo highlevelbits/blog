@@ -9,13 +9,26 @@
     <link rel="stylesheet" href="../../style.css">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc 3.6.1">
+    <meta name="generator" content="nanoc 3.6.2">
   </head>
   <body>
     <div class="main">
       <div class="header">
         <h1>h1ghlevelb1ts</h1>
       </div>
+      <script>
+  (function() {
+    var cx = '006272234050814958525:luuwfw6lru8';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<search></search>
       <div class="menu">
         <a href="../../reversedchronologically.html">all</a>
         ·
@@ -31,6 +44,18 @@
   <br>
   JAXB with Maven
 </h2>
+
+  <div class="tags">
+    
+      <a class="one-tag" href="#java"><span class="icon-tag"></span>java</a>
+    
+      <a class="one-tag" href="#jaxb"><span class="icon-tag"></span>jaxb</a>
+    
+      <a class="one-tag" href="#xml"><span class="icon-tag"></span>xml</a>
+    
+      <a class="one-tag" href="#maven"><span class="icon-tag"></span>maven</a>
+    
+  </div>
 
 <p>Fredrik was recently blogging about "<a href="http://www.highlevelbits.com/2009/06/two-way-ssl-with-java.html">Two way SSL with Java</a>" and about his frustration about the lack of knowledge and documentation. This time I want to blog about another area of software development where frustration is running high - XML processing. On the surface things looks easy, but who does not remember the classpath problems around XML parsing in the early days (SAX vs XERCES vs DOM, etc). And who really fully understands the XSD syntax and is able to create a properly designed xsd? And documentation - let's just not talk about it!<br><br>But let's get to the actual problem. I wanted to use <a href="https://jaxb.dev.java.net/">JAXB</a> to write a parser for XML files matching a given xsd. Given that Sun introduced JAXB as official XML binding framework for Java it seems the obvious choice for the task. Unfortunately, another requirement was that the code would work under JDK 5 and 6. However, the JAXB API is only offical part of the JDK since version 6. To solve this problem a little trick is needed. Let's take it step by step using <a href="http://maven.apache.org/">Maven</a> as build system. First we have to include the <a href="http://mojo.codehaus.org/jaxb2-maven-plugin/">plugin</a> by adding the following to the <a href="http://maven.apache.org/pom.html">POM</a>:</p>
 <pre class="brush: xml">
@@ -72,7 +97,7 @@
                 &lt;/dependency&gt;
             &lt;/dependencies&gt;
         &lt;/profile&gt;
-&lt;/profiles&gt; 
+&lt;/profiles&gt;
 </pre>
 <p>So far things were quite simple to figure out. The hard part is one more requirement I haven't mentioned yet. The parser should be tolerant against whitespaces. Some googling and I figured out that in JAXB this kind of things are done with adapters. In fact the <i>CollapsedStringAdapter</i> seems to be exactly what I want. The javadoc says:"This adapter removes leading and trailing whitespaces, then truncate any sequnce of tab, CR, LF, and SP by a single whitespace character '". Great, but how do I configure JAXB so that it automatically uses this adapter. Here the frustration really starts. The best a search for <i>CollapsedStringAdapter </i>results in is the javadoc for this class. Nothing about how to use it. Not in plain JAXB nor in conjunction with the maven plugin. Frustration started to mount again. To cut a long story short. It took many mailing list posts and a lot of try and error to figure it out. The outcome is that first of all you need the <i><extension>true</extension></i> bit in the plugin configuration. Next you have to create a file called <i>binding-customization.xjb </i>in <i>src/main/xjb</i>. The file has to contain the following:</p>
 <pre class="brush: xml">
@@ -81,7 +106,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"&gt;
     &lt;jxb:bindings schemaLocation="../xsd/validation-mapping-1.0.xsd" node="/xs:schema"&gt;
         &lt;jxb:globalBindings&gt;
-            &lt;xjc:javaType name="java.lang.String" xmlType="xs:string" 
+            &lt;xjc:javaType name="java.lang.String" xmlType="xs:string"
                 adapter="javax.xml.bind.annotation.adapters.CollapsedStringAdapter"/&gt;
         &lt;/jxb:globalBindings&gt;
     &lt;/jxb:bindings&gt;
@@ -98,7 +123,7 @@
 <span class="comment-date">2012-12-03</span><span class="commenter-name">lifestyle v35</span><div class="comment-body">Hi there, after reading this remaгkable paragraph i am too hapρу to shaгe mу know-how here with collеagues.</div>
 </div>
 <div class="one-old-comment">
-<span class="comment-date">2012-12-25</span><span class="commenter-name">cipto junaedy</span><div class="comment-body">Hi, аlωays i usеd tο chеck wеb site poѕts here eаrlу 
+<span class="comment-date">2012-12-25</span><span class="commenter-name">cipto junaedy</span><div class="comment-body">Hi, аlωays i usеd tο chеck wеb site poѕts here eаrlу
 in thе daylіght, for the reаson that i liκe tο find out more and more.</div>
 </div>
 <div class="one-old-comment">
@@ -106,6 +131,129 @@ in thе daylіght, for the reаson that i liκe tο find out more and more.</div
 </div>
 </div>
 
+
+  <div class="similar-articles">
+    
+      
+      
+        <h4><a name="java">Other articles tagged java</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../../2007/02/mylar-solution-to-information-overload.html">Mylar - the solution to information overload</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/02/parallel-is-hard-word-to-spell-for.html">The bright future of parallel computing</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/02/there-is-hope-despite-everything.html">There is hope - despite everything</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/03/trends-in-sales-of-programming-language.html">Trends in sales of programming language books (and some lamenting)</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/04/irony-of-application-servers.html">The irony of application servers</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/04/krugle-next-google.html">Krugle the next Google?</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/01/i-was-just-reading-latest-java.html">A whole new world</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/02/little-curiosity-0.html">A little curiosity</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/03/no-need-to-code-just-annotate-it.html">No need to code - just annotate it...</a>
+            </li>
+          
+            <li>
+              <a href="../../2008/05/explicit-nullpointerexception.html">Explicit NullPointerException</a>
+            </li>
+          
+            <li>
+              <a href="../01/jfokus-summary.html">jfokus summary</a>
+            </li>
+          
+            <li>
+              <a href="../02/introduction-to-ruby-on-rails-for-java.html">Introduction to Ruby on Rails for Java developers</a>
+            </li>
+          
+            <li>
+              <a href="../02/jpa-not-so-good-after-all.html">JPA not so good after all?</a>
+            </li>
+          
+            <li>
+              <a href="../06/two-way-ssl-with-java.html">Two way SSL with Java</a>
+            </li>
+          
+            <li>
+              <a href="../09/my-macbook-pro-turns-soon-1-year-and-i.html">JDiskReport.</a>
+            </li>
+          
+            <li>
+              <a href="../09/sed-to-rescue-or-how-to-migrate-from.html">sed to the rescue (or how to migrate from java.util.logging to org.slf4j)</a>
+            </li>
+          
+            <li>
+              <a href="../10/1st-day-of-jaoo.html">1st day of JAOO</a>
+            </li>
+          
+            <li>
+              <a href="../10/avoid-dock-icon-for-java-processes-on.html">Avoid Dock icon for Java processes on Mac OS</a>
+            </li>
+          
+            <li>
+              <a href="../10/give-my-scripting-support-back-please.html">Give my scripting support back, please ...</a>
+            </li>
+          
+            <li>
+              <a href="../10/java-programs-as-deamons-on-mac-os-x.html">Java programs as daemons on Mac OS X</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+      
+    
+      
+      
+        <h4><a name="xml">Other articles tagged xml</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../../2008/09/list-apart-has-interesting-post-about.html">Web standards revisited</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+      
+        <h4><a name="maven">Other articles tagged maven</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../../2007/10/order-does-matter.html">Order does matter</a>
+            </li>
+          
+            <li>
+              <a href="../10/give-my-scripting-support-back-please.html">Give my scripting support back, please ...</a>
+            </li>
+          
+        </ul>
+      
+    
+  </div>
 
 
       </div>
