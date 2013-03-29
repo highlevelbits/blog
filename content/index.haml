@@ -4,11 +4,11 @@ title:
 
 .start-page
   - sorted_articles[0..2].each do |article|
-    %h2.article-header
-      = article[:title]
     .byline
       by
       = article[:author]
       on
       = article[:created_at].strftime '%F'
+    %h2.article-header
+      = link_to article[:title], article
     = article.compiled_content

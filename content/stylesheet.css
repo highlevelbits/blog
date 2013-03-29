@@ -22,17 +22,20 @@ a:visited {
 }
 
 a:hover {
-  color: white;
+  color: #d52226;
 }
 
-pre {
+pre, code {
   font-family: Courier New;
   background-color: #400002;
   color: white;
-  padding: 8px;
-  border-radius: 5px;
   font-size: 15px;
   white-space: pre-wrap;
+}
+
+pre {
+  border-radius: 5px;
+  padding: 8px;
 }
 
 p {
@@ -78,9 +81,13 @@ blockquote {
   letter-spacing: -1px;
 }
 
-.content h2 {
+.content h2, .content h2 a {
   font-family: Iceland, sans-serif;
   font-size: 30px;
+}
+
+.archive h3 {
+  font-family: Iceland, sans-serif;
 }
 
 .article-header {
