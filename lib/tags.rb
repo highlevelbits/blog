@@ -17,11 +17,11 @@ end
 def items_tagged_with tag, except = []
   other_items = @items - except
   other_items.select do |i|
-    (i[:tags] || []).include?(tag)
+    tags_for(i).include?(tag)
   end
 end
 
 def items_without_tags
-  @items.select { |i| not i[:tags].present? }
+  @items.select { |i| tags_for(i).empty? }
 end
 

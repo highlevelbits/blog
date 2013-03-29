@@ -4,11 +4,18 @@ title:
 
 .start-page
   - sorted_articles[0..2].each do |article|
-    .byline
-      by
-      = article[:author]
-      on
-      = article[:created_at].strftime '%F'
-    %h2.article-header
-      = link_to article[:title], article
-    = article.compiled_content
+    .start-page-article
+      .row
+        .byline
+          by
+          = article[:author]
+          on
+          = article[:created_at].strftime '%F'
+        %h2.article-header
+          = link_to article[:title], article
+      = article.compiled_content
+      %center
+        ="------"
+      Even though this was the entire post you may want to leave a comment on the
+      = link_to 'post page', article
+      = '.'
