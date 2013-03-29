@@ -205,5 +205,7 @@ blockquote {
 }
 
 .start-page-article {
-  border-top: dashed 2px #400002;
+  border-top: dashed 2px lightgray;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
