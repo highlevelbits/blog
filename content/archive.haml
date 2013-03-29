@@ -4,15 +4,32 @@ title:
 
 .archive
   %ul
+    - first_year = true
     - Year.articles_per_year(sorted_articles).each do |label, year|
-      %li
-        %h2= "#{label} (#{year.count})"
-        %ul
-          - year.months.each do |name, month|
-            %li
-              %h3= "#{month.name} (#{month.count})"
-              %ul
-                - month.items.each do |item|
-                  .one_article_item
-                    = link_to item[:title], item
+      .one-year
+        %li
+          - if first_year
+            %input{:id => label, :type => :checkbox, :checked => :checked}
+          - else
+            %input{:id => label, :type => :checkbox}
+          - first_year = false
+          .collapsed-year
+            %label{:for => label}
+              %h2
+                %i.icon-caret-right
+                ="#{label} (#{year.count})"
+          .list-of-months
+            %label{:for => label}
+              %h2
+                %i.icon-caret-down
+                ="#{label} (#{year.count})"
+            %ul
+              - year.months.each do |name, month|
+                .one-month
+                  %li
+                    %h3= "#{month.name} (#{month.count})"
+                    %ul
+                      - month.items.each do |item|
+                        .one_article_item
+                          = link_to item[:title], item
 
