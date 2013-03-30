@@ -15,6 +15,8 @@
 
 compile '*' do
   if item.binary? or bypass? item[:extension]
+  elsif item.identifier == '/atom/'
+    filter :erb
   else
     case item[:extension]
     when 'html'
@@ -30,6 +32,10 @@ compile '*' do
     layout 'default'
     filter( :relativize_paths, :type => :html )
   end
+end
+
+route '/atom/' do
+  '/atom.xml'
 end
 
 route '/stylesheet/' do
