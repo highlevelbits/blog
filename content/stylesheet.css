@@ -210,11 +210,11 @@ blockquote {
   margin-bottom: 20px;
 }
 
-.archive input[type=checkbox] ~ .list-of-months {
+.archive input[type=checkbox] ~ .uncollapsed {
   display:none;
 }
 
-.archive input[type=checkbox] ~ .collapsed-year {
+.archive input[type=checkbox] ~ .collapsed {
   display:block;
 }
 
@@ -224,11 +224,11 @@ blockquote {
   left: -9999px;
 }
 
-.archive input[type=checkbox]:checked ~ .list-of-months {
+.archive input[type=checkbox]:checked ~ .uncollapsed {
   display:block;
 }
 
-.archive input[type=checkbox]:checked ~ .collapsed-year {
+.archive input[type=checkbox]:checked ~ .collapsed {
   display:none;
 }
 
