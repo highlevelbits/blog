@@ -37,6 +37,12 @@
   MySQL, Where Art Thou?
 </h2>
 
+  <div class="tags">
+    
+      <a class="one-tag" href="#mysql"><span class="icon-tag"></span>mysql</a>
+    
+  </div>
+
 I am using <a href="http://www.mysql.com/">MySQL</a> for various things  - my wiki is running against it, my local <a href="http://www.sonarsource.org/">Sonar</a> installation uses it and often I run <a href="http://www.hibernate.org/">Hibernate</a> unit tests against it.  I remember installing MySQL via <a href="http://www.macports.org/">macports</a>, but since then I have not touched it. Well, until a couple of days ago, where I got strange error messages from my JDBC driver when trying to connect to a specific schema in my database. I still could connect to MySQL using the <i>mysql</i> command line though. I wanted to know more. I needed to find the mysqld configuration and error logs. But where?<br>I haven't looked at the MySQL installation for months and I was not sure where macport installed it. I remembered that the MySQL configuration file is called <i>my.cnf</i> or something <i>*.cnf</i>. I tried a quick:<br><br><pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;"><code>&gt; locate my.cnf<br>&gt; locate *.cnf<br></code></pre>
 <br>Both commands gave a uge amounts of hits and I was still not sure where to look at. There must be a better way to find out which configuration the database is using and where the data is stored. I started some digging. Turns out if MySQL is still running, you can simplly issue a SQL statement to get most information you need. The key is the <a href="http://dev.mysql.com/doc/refman/5.0/en/show.html"><i>show</i></a> command. You might already know <i>show databases</i> and <i>show tables</i>, but do you know:<br><br><pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;"><code>show variables;</code></pre>
 <br>This command will tell you almost all you need to know, amongst others:<br><br><pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;"><code>log_error  /opt/local/var/db/mysql5/Sarmakand.local.err<br>pid_file   /opt/local/var/db/mysql5/Sarmakand.local.pid<br>datadir    /opt/local/var/db/mysql5/<br></code></pre>
@@ -45,6 +51,34 @@ I am using <a href="http://www.mysql.com/">MySQL</a> for various things  - my w
 <br>Somewhere hidden in the output you will find:<br><br><pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;"><code>Default options are read from the following files in the given order:<br>/etc/my.cnf /etc/mysql/my.cnf /opt/local/etc/mysql5/my.cnf ~/.my.cnf <br></code></pre>
 <br>BTW, if you are looking for a MySQL client for Mac - there is <a href="http://www.sequelpro.com/">Sequel Pro</a>. Not perfect, but good enough for most day to day tasks.<br><br>So long,<br>Hardy
 
+
+  <div class="similar-articles">
+    
+      
+      
+        <h4><a name="mysql">Other articles tagged mysql</a></h4>
+        <ul>
+          
+            <li>
+              <a href="../../2007/02/no-such-file-or-directory-tmpmysqlsock.html">No such file or directory - /tmp/mysql.sock</a>
+            </li>
+          
+            <li>
+              <a href="../../2007/03/mamp-php-and-mysql-for-macos.html">MAMP - PHP and MySQL for MacOS</a>
+            </li>
+          
+            <li>
+              <a href="../../2010/02/mysql-odyssey.html">A MySQL odyssey</a>
+            </li>
+          
+            <li>
+              <a href="my-favorite-ipad-apps.html">My favorite iPad apps</a>
+            </li>
+          
+        </ul>
+      
+    
+  </div>
 
 
       </div>
