@@ -3,5 +3,6 @@ title: "Gollum wiki reloaded"
 kind: article
 created_at: 2011-11-17 22:24:00
 author: hardy
+tags: gollum, wiki, openshift
 ---
   In my <a href="http://www.highlevelbits.com/2011/11/my-precious-wiki.html">last post</a> I described how to setup a <a href="https://github.com/github/gollum/">gollum</a> wiki on <a href="https://openshift.redhat.com/app">OpenShift</a>. I realized that there was quite some editing involved and especially the need to deploy twice in order to determine the git repo location bugged me. I decided to improve on this. The outcome is the GitHub repo <a href="https://github.com/hferentschik/gollum-openshifted">gollum-openshifted</a>. All required files are checked in and all you have to do is follow the simple instructions in the <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/README.md">README</a>.<br /><br />The key for not having to manually edit <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/config.ru">config.ru</a> is a little perl magic in <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/.openshift/action_hooks/build">.openshift/action_hooks/build</a> and some regular expression replacement with some OpenShift variables.<br /><br />Let me know how it goes,<br />Hardy<br /><br /><br /><br /><br />
