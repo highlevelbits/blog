@@ -64,26 +64,28 @@
 
 <p>I have had the opportunity to work with business intelligence tooling for a customer this fall. It is a new area for me so it has been both frustrating and interesting. The frustration comes from the many dead ends it is possible to walk mindlessly into. The interestingness comes of course from the opportunity to learn new stuff.<br><br>My customer does not have "big data" with row counts in the millions rather than the billions. They get by with a relational database with no problem at all. My task has been to extract data from the relational database and put it in a business intelligence tool to enable ease of reports creation. We choose to develop a proof of concept with <a href="http://www.gooddata.com/">GoodData</a> a SaaS (Software as a Service) vendor in the business intelligence sector. They are on a <a href="http://www.gooddata.com/about/romans-vision">mission to redefine</a> the business intelligence business (wow - a bit meta that) making it easy to get up and running with a nice user interface and some queer command line tools to use for integration. This post is a short list of lessons learned while working on this.<br><br><b>Data quality</b> is important. For a system that has been around for a while it is likely that parts of the data is not of the highest quality. This is not visible until someone put it into reports.<br><br><a href="http://www.gooddata.com/" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" height="188" src="http://www.gooddata.com/images/uploads/poweredby2.png" width="320"></a>GoodData has good support for developers with nice, open, informative forums and fast support. The <b>tools are not outstanding</b> in any way (as you can see to the left). Errors are most often obscured and hard to decipher. A certain amount of trial and error is necessary to get forward. According to various sources - old school business intelligence tools are typically even harder on developers and may cost a fortune to implement. This amazes me.<br><br>There are other SaaS players in the business intelligence niche but only some of them has the option to <b>try the solution before buying</b>. GoodData is one of them. Most of them don't have any useful information about how to go about doing an implementation on their home page. This is a bit strange to me but maybe the typical business intelligence tool buyer is a suit and not a developer? Pro tips for SaaS vendors: offer free trial account and put useful information on your site.<br><br>Even millions of data rows take a long time to extract.<br><br>A <b>flat data structure</b> with lots of redundancies is preferred in the business intelligence end of things. Getting a flat data structure out of a bunch of tables from a highly normalized relational database is not fast at all. My worst case scenario had me at about 13 days to get all the data out. I then abandoned the flatness dream. Export times is not that important though since a full data load should only be necessary once.<br><br>When getting data out of a live system and it involves several hours of processing the <b>data will most likely change</b>. If you are to join it outside the database it may then fail because stuff exported later may reference entries that didn't exists in the target dataset. The best way to solve this is probably to just take a copy of the entire database and work with that instead.<br><br><b>Lookup tables</b> is not what it sounds like. If I - for example - has a flight dataset that got one departure airport and one arrival airport I can not connect this to the same lookup table but have to create a departure airports data set <b>and</b> an arrival airports data set. This is very wrong to me. (This may be a GoodData weirdness.)<br><br>Anyway. This were scattered thoughts - I have had a good time playing with these things and have as a result more respect for the complexity of BIG DATA.</p>
 
-<!-- disqus -->
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-<!-- end disqus -->
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
 
 
-  <div class="similar-articles">
+  <div class="dashed-top-border">
     
       
       

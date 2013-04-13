@@ -191,7 +191,7 @@ blockquote {
   color: white;
 }
 
-.similar-articles {
+.dashed-top-border {
   border-top: dashed 2px #400002;
   margin-top: 20px;
   padding-top: 10px;
