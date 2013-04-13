@@ -89,12 +89,7 @@ blockquote {
 }
 
 .content h2, .content h2 a {
-  font-family: Iceland, sans-serif;
   font-size: 30px;
-}
-
-.archive h3 {
-  font-family: Iceland, sans-serif;
 }
 
 .article-header {
@@ -124,7 +119,8 @@ blockquote {
   border-top: dashed;
   border-top-color: #264140;
   margin-top: 20px;
-  padding-top: 5px;
+  padding-top: 10px;
+  text-align: center;
   font-size: smaller;
   color: #264140;
 }
@@ -179,11 +175,9 @@ blockquote {
 
 .one-tag {
   border-radius: 5px;
-  border: dashed 2px #400002;
+  border: solid 1px #400002;
   padding: 5px;
   margin: 5px;
-  font-family: Iceland;
-  font-size: 22px;
   background-color: #eafffe;
 }
 
