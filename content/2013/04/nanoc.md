@@ -45,3 +45,5 @@ posts with similar tags are shown at the bottom of the page.
 
 The [archive page](/archive.html) was fun to build. I decided to try to do foldable sections without using javascript using the checkbox
 trick. Check the code to find out how it works.
+
+All in all a nice experience. I may well do other sites with nanoc in the future.
