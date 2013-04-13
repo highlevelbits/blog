@@ -1,7 +1,7 @@
 ---
 title: moving from drupal to nanoc
 kind: article
-created_at: 2013-04-01
+created_at: 2013-04-13
 author: fredrik
 tags: nanoc, drupal, ruby
 ---
