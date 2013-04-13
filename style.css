@@ -63,12 +63,15 @@ blockquote {
   background: white;
   color: #400002;
 
-  position: absolute;
-
   top: 40px;
   left: 180px;
 
-  width: 800px;
+  width: 75%;
+  max-width: 1000px;
+  margin-left: 11%;
+  margin-right: 11%;
+  margin-top: 50px;
+  margin-bottom: 50px;
 
   padding: 20px;
 
