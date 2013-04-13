@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2013-03-31T22:00:00Z</updated>
+  <updated>2013-04-12T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
@@ -10,11 +10,11 @@
     <uri>http://www.highlevelbits.com</uri>
   </author>
   <entry>
-    <id>tag:www.highlevelbits.com,2013-04-01:/2013/03/nanoc.html</id>
+    <id>tag:www.highlevelbits.com,2013-04-13:/2013/04/nanoc.html</id>
     <title type="html">moving from drupal to nanoc</title>
-    <published>2013-03-31T22:00:00Z</published>
-    <updated>2013-03-31T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/03/nanoc.html"/>
+    <published>2013-04-12T22:00:00Z</published>
+    <updated>2013-04-12T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/04/nanoc.html"/>
     <content type="html">&lt;p&gt;Time to move on to the bright (old) new world of static sites. We were not
 entirely satisfied with drupal. Not knowing (or wanting to know) the platform
 well enough made us unable to produce the awesome site we want high level bits to be.

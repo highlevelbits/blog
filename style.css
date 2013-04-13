@@ -238,3 +238,9 @@ blockquote {
 .archive .one-year {
   margin-top: 20px;
 }
+
+.outro {
+  color: #400002;
+  text-align: center;
+  font-size: smaller;
+}
