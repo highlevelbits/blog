@@ -12,6 +12,7 @@
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.2">
 
+    <!-- google analytics -->
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -25,6 +26,7 @@
       })();
 
     </script>
+    <!-- end google analytics -->
   </head>
   <body>
     <div class="main">
@@ -63,6 +65,24 @@
 <span class="comment-date">2008-01-20</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Sure are lots to think about when it comes to performance. I occasionally read parts of <a href="http://java.sun.com/docs/books/effective/" rel="nofollow">Effective Java</a> by Joshua Bloch - a book that describes many of the inner workings of Java. It's a bit old (2001) - it would be nice with a new one including features of Java 5. And there probably are changes to the implementation in many of the areas covered by the book. <br><br>I am not sure about the layer thing. I would argue that stable layers is a good thing because the abstraction level can be higher when there are a stable foundation that hides all the boring details. Unstable layers though..... Thinking about a certain OS for example that messes up the life of software developers most of the time. But no one questions the usefulness of a compiler or a relational database. It is important to hook in at the right level. If your application needs details then maybe it should be written at a lower level of abstraction. (Or if it needs to be really fast or safe.)</div>
 </div>
 </div>
+
+<!-- disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<!-- end disqus -->
 
 
   <div class="similar-articles">
