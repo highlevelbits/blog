@@ -32,12 +32,11 @@
       </div>
       <div class="content">
         <h2 class="article-header">
-  <span class="byline">2010-02-24 by fredrik</span>
-  <br>
   buildr overview
 </h2>
 
-  <div class="tags">
+  <span class="byline">2010-02-24 by fredrik</span>
+  <span class="tags">
     
       <a class="one-tag" href="#buildr"><span class="icon-tag"></span>buildr</a>
     
@@ -45,7 +44,7 @@
     
       <a class="one-tag" href="#ruby"><span class="icon-tag"></span>ruby</a>
     
-  </div>
+  </span>
 
 <p>Tonight I spent a couple of hours at <a href="http://www.jayway.se/" id="j98g" title="Jayway">Jayway</a> listening to <a href="http://anders.janmyr.com/" id="ys-p" title="Anders Janmy">Anders Janmy</a>r talking about <a href="http://buildr.apache.org/" id="gbr4" title="buildr">buildr</a> - the build system that doesn't suck. buildr is a build system for Java and a whole bunch of other languages. It is written in Ruby and installs as a gem. Build scripts are also Ruby with everything that comes with it. It is built with the good things of maven as role model and with the less fortunate aspects of maven as frightening example. Dependencies are downloaded from maven repos and local builds can be installed to a local maven repo. To try it out I cd'd into a directory with a maven pom.xml and ran buildr. It gave me the choice of creating a build file from the maven pom or from the directory structure. When choosing maven pom the generated build file was about half the size of the pom. Now this was used on a very simple pom and according to Anders it may not work at all with more complex maven projects. buildr can do all the typical tasks of a build system and if something extraordinary is needed it is easy to script it with ruby.</p>
 <p>Some advantages of buildr: (1) it is Ruby which enables "real" programming in build files, (2) it is Ruby which makes it possible to write build files that looks really nice (3) it is not XML - anyone tired of scripting in XML? (4) it includes the good parts of maven. Some disadvantages: (1) it is Ruby which may result in Perlish code if not careful, (2) it is not Java and XML (thank God) which may make it hard to introduce in larger organisations with static developers. If I was to pick a build system for my own use I would choose buildr but then I perhaps wouldn't choose Java as and the need wouldn't be there.... For larger organisations with competence problems it may be hard to introduce buildr over maven or ant. The threshold into ruby may be a little bit too high for the average java developer.</p>

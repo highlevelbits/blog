@@ -32,18 +32,17 @@
       </div>
       <div class="content">
         <h2 class="article-header">
-  <span class="byline">2007-02-20 by hardy</span>
-  <br>
   Mylar - the solution to information overload
 </h2>
 
-  <div class="tags">
+  <span class="byline">2007-02-20 by hardy</span>
+  <span class="tags">
     
       <a class="one-tag" href="#java"><span class="icon-tag"></span>java</a>
     
       <a class="one-tag" href="#eclipse"><span class="icon-tag"></span>eclipse</a>
     
-  </div>
+  </span>
 
 <p>Hi again,<br><br>one of the recent topics on this blog was information overload. Until recently I experienced this daily within Eclipse IDE. Once your project reaches a moderate size the eclipse package explorer becomes virtually useless since you get completely lost in all the information it displays. Classes, methods, jar dependencies, project file, ... - finding something in this amount of information ended up in hour long scrolling session. I basically got to the point where I completely ignored the package explorer and just relied on the <span style="font-style: italic;">CTRL-R </span>and <span style="font-style: italic;">CTRL-T</span> keyboard shortcuts which let you search for resources respectively classes in the whole workspace.<br><br>Admittedly my problems with Eclipse might not be relevant in the grand scheme of things, but I was still happy when I came across <a href="http://www.eclipse.org/mylar/">Mylar</a> and its solution to this type information overload. Mylar is based on tasks/activities and the idea is that each task starts with an empty package explorer. While you work on the task and continue opening files Mylar will build up a list of <span style="font-style: italic;">task relevant</span> files. Given that you normally only work on a small set of files at a time you end up with a very compact list in the package explorer. You can manually add <span style="font-style: italic;">landmarks</span> to files you want to show in the package explorer or you can remove <span style="font-style: italic;">landmarks</span> mylar created automatically. Last but not least, Mylar also integrates with many bug/task tracking solutions like for example <a href="http://www.atlassian.com/software/jira/">Jira</a>. Mylar Eclipse tasks and your currently assigned tasks from the bug tracker become one and the same thing. I call this true Agile Development :)<br><br>I recommend everyone working with Eclipse to install Mylar. Hopefully it becomes soon the default package explorer in Eclipse.<br><br>In case you are experiencing problems with Eclipse hanging / locking up after installing Mylar it might help to edit <span style="font-style: italic;">eclipse.ini</span> and add the following:<br><br>-vmargs<br>-server<br>-Xms40m<br>-Xmx768m<br>-XX:MaxPermSize=128m<br>-XX:+UseParallelGC<br>-XX:+UseParallelOldGC<br><br>I work with <a href="http://www.exadel.com/web/portal/home">Exadel</a> and <a href="http://www.eclipse.org/mylar/">Mylar</a> and noticed that without these settings that Eclipse would just hang, especially when changing editors. The only way out was to kill Eclipse. The above settings fixed this problem ( it seems to be related to the PermGen size and there are a lot of theories about this - just Google for it ;-)<br><br>--Hardy</p>
 

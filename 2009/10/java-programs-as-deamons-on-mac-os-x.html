@@ -32,18 +32,17 @@
       </div>
       <div class="content">
         <h2 class="article-header">
-  <span class="byline">2009-10-05 by hardy</span>
-  <br>
   Java programs as daemons on Mac OS X
 </h2>
 
-  <div class="tags">
+  <span class="byline">2009-10-05 by hardy</span>
+  <span class="tags">
     
       <a class="one-tag" href="#java"><span class="icon-tag"></span>java</a>
     
       <a class="one-tag" href="#mac"><span class="icon-tag"></span>mac</a>
     
-  </div>
+  </span>
 
 <p>For a while now I am running a local instance of <a href="http://nexus.sonatype.org/">Nexus</a> (Sonatype's maven proxy) and <a href="https://hudson.dev.java.net/">Hudson</a> (continuous integration engine ) on my MacBook. the benefits might not be so obvious initially, but I think as developer you should familiar with the tools supporting your work, even if these tools might be provided to you by some system admin. Besides, it is sometimes quite nice to trigger a clean build of the software you are working on on your own machine while still working on your local copy.<br><br>Anyways, initially I started Nexus and Hudson (which runs in a servlet container) manually when I booted my notebook. Obviously I wanted to automate this. Coming from the Linux world I tried to find the directory <i>/etc/init.d</i>. Anyone who has done the same will know that this was a futile search. It became quite quickly clear to me that Mac uses a different approach for service configuration.<br><br>A search on the internet first led me down the path of <a href="http://macdevcenter.com/pub/a/mac/2003/10/21/startup.html">StartupItems</a>, but some more research showed the better way of doing this is to use the services of the <a href="http://developer.apple.com/macosx/launchd.html">launchd</a> deamon. The are system and user specific services, configured in <i>/System/Library/LaunchAgents</i> and <i>~/System/Library/LaunchAgents</i> respectively. The configuration uses Mac's plist xml format. Since I am not really used to these plist files I had a quick check on the net. surely there must be some sort of frontend to this. And yes, there is - <a href="http://sourceforge.net/projects/lingon/files/">Lingon</a>. I am not sure how active development is on this project, but the version I downloaded did everything I wanted. The interface it quite intuitive, so there is no point to go into too much detail. Instead here comes the plist file Lingon created to for me to run Tomcat as service:</p>
 <pre>

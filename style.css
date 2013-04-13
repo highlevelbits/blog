@@ -88,6 +88,10 @@ blockquote {
   letter-spacing: -1px;
 }
 
+.content {
+  width: 100%;
+}
+
 .content h2, .content h2 a {
   font-size: 30px;
 }
@@ -100,8 +104,6 @@ blockquote {
 .header h1 {
   font-size: 70px;
   color: #264140;
-  border-bottom: dashed;
-  border-bottom-color: #264140;
   margin-bottom: 20px;
 }
 
@@ -159,9 +161,7 @@ blockquote {
 }
 
 .byline {
-  font-family: Iceland, 'Times New Roman', sans-serif;
   font-size: 22px;
-  float: right;
 }
 
 .archive li{
@@ -175,11 +175,9 @@ blockquote {
 
 .one-tag {
   border-radius: 5px;
-  border: dashed 2px #400002;
+  border: solid 1px #400002;
   padding: 5px;
   margin: 5px;
-  font-family: Iceland;
-  font-size: 22px;
   background-color: #eafffe;
 }
 

@@ -32,18 +32,17 @@
       </div>
       <div class="content">
         <h2 class="article-header">
-  <span class="byline">2010-11-04 by hardy</span>
-  <br>
   Where are my sources?
 </h2>
 
-  <div class="tags">
+  <span class="byline">2010-11-04 by hardy</span>
+  <span class="tags">
     
       <a class="one-tag" href="#mac"><span class="icon-tag"></span>mac</a>
     
       <a class="one-tag" href="#java"><span class="icon-tag"></span>java</a>
     
-  </div>
+  </span>
 
 Here comes another little Mac tip related to Java programming.<br><br>As Java developer you sometimes need to step into the source code of the JDK. Any IDE can do that, provided your JDK comes bundles with the sources jar file (<i>src.jar</i> on Mac). You can check whether you have the sources for your JDK by checking the <i>/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home</i> directory. If you have the sources installed you should find <i>src.jar</i> there.<br><br>Unfortunately, the sources are not installed by default (go figure why), instead you have to download and install the Java Developer Package for Mac OS X. This package is available via the <a href="http://developer.apple.com/">ADC</a> (Apple Developer Connection). The download is for free, but you will have to register with ADC first. Here is a direct <a href="http://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wo/8.1.17.2.1.3.3.1.0.1.1.0.3.8.3.3.1">link</a> to the Java related downloads. It hopefully works once you are logged in and save you some frustrating searching.<br><br>The downloaded package is called <i>Java Developer</i> and is in the <i>pgk</i> format. Given my <a href="http://www.highlevelbits.com/2009/10/os-x-106-snow-leopard.html">bad experience</a> with Mac's Java related installers, I wanted to just get the <i>src.jar</i> out of <i>JavaDeveloper.pkg</i> file. But how to unpack a pgk file? <a href="http://www.timdoug.com/unpkg/">unpgk</a> to the rescue. Once downloaded and started you simply drag a pgk file into its window and it will unpack everything into the current directory. Just get hold of <i>src.jar</i> and copy it to <i>/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home</i>. Thank you very much :)<br><br>Why do these type of things have to be so hard? This problem with getting hold of <i>src.jar</i> made me once more aware of how little Apple cares about Java developers. And if I needed any further proof Apple decided now to even <a href="http://www.infoq.com/news/2010/10/apple-deprecates-java">deprecate Java</a>. I think Apple is not realizing that part of Mac's popularity is based on mouth to mouth propaganda. For some time nerds (developers) switched to Mac, because it offered something unique. With Mac OS X they got the the power of a Unix-based operating system <b>and</b> a very slick UI. And whom do you ask what new computer to buy? Of course your software developing nerd friend. However, a slick UI will not for ever compensate for more and more restrictions put on these nerds. Together with the absolute ignorant behavior shown in handling hard- and software problems I wonder how long it will take until these nerds will be leaving the Mac again. And what will they recommend their friends then?<br><br>Anyways, this little Mac rant came for free with the unpgk tip. Enjoy!<br><br>--Hardy<div class="old-comments">
 <h2>Old comments</h2>
