@@ -53,6 +53,11 @@ blockquote {
   margin-bottom: 5px;
 }
 
+img {
+  border: solid 2px;
+  margin: 10px;
+}
+
 .menu {
   padding-bottom: 1em;
   text-align: center;
@@ -94,6 +99,10 @@ blockquote {
 
 .content h2, .content h2 a {
   font-size: 30px;
+}
+
+.content h3 {
+  margin-top: 20px;
 }
 
 .article-header {
