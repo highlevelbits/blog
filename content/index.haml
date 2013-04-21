@@ -14,7 +14,7 @@ author_name: low level mechanizer
           = article[:author]
           on
           = article[:created_at].strftime '%F'
-      = article.compiled_content
+      = preserve article.compiled_content
       %center
         ="------"
       .outro
