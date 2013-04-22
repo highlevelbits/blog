@@ -15,7 +15,7 @@
 
 compile '*' do
   if item.binary? or bypass? item[:extension]
-  elsif item.identifier == '/atom/'
+  elsif item.identifier == '/atom/' or item.identifier == '/rss/'
     filter :erb
   else
     case item[:extension]
@@ -36,6 +36,10 @@ end
 
 route '/atom/' do
   '/atom.xml'
+end
+
+route '/rss/' do
+  '/rss.xml'
 end
 
 route '/stylesheet/' do
