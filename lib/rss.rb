@@ -1,5 +1,6 @@
 require 'simple-rss'
 require 'builder'
+require 'htmlentities'
 
 #shamelessly copied from https://gist.github.com/sangyye/2916860
 def rss_feed atom_feed
@@ -16,7 +17,8 @@ def rss_feed atom_feed
           xml.item do
             xml.title post.title
             xml.link post.link
-            xml.description post.content
+            p post.content
+            xml.description << HTMLEntities.new.decode( post.content )
             xml.pubDate Time.parse(post.updated.to_s).rfc822()
             xml.guid post.link
           end
