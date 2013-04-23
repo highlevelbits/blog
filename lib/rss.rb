@@ -18,7 +18,9 @@ def rss_feed atom_feed
             xml.title post.title
             xml.link post.link
             p post.content
-            xml.description << HTMLEntities.new.decode( post.content )
+            xml.description {
+              xml.cdata! HTMLEntities.new.decode( post.content )
+            }
             xml.pubDate Time.parse(post.updated.to_s).rfc822()
             xml.guid post.link
           end
