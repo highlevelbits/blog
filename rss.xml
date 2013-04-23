@@ -1,88 +1,105 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>rss feed</title><link>http://www.highlevelbits.com/</link><item><title>detecting prime numbers with Test Driven Development</title><link>http://www.highlevelbits.com/2013/04/tdding_prime_detection.html</link><description><![CDATA[<p>This tuesday I held a half day workshop on Test Driven Development for a group of developers
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://www.highlevelbits.com/</id>
+  <title>rss feed</title>
+  <updated>2013-04-22T22:00:00Z</updated>
+  <link rel="alternate" href="http://www.highlevelbits.com/"/>
+  <link rel="self" href="http://www.highlevelbits.com/rss.xml"/>
+  <author>
+    <name>Fredrik &amp; Hardy</name>
+    <uri>http://www.highlevelbits.com</uri>
+  </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-04-23:/2013/04/tdding_prime_detection.html</id>
+    <title type="html">detecting prime numbers with Test Driven Development</title>
+    <published>2013-04-22T22:00:00Z</published>
+    <updated>2013-04-22T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/04/tdding_prime_detection.html"/>
+    <content type="html">&lt;p&gt;This tuesday I held a half day workshop on Test Driven Development for a group of developers
 at Smart Bears Stockholm office. I prepared by writing a
-<a href="/2013/04/what_is_tdd.html">generic post about TDD</a> explaining the main principles. During the
+&lt;a href="/2013/04/what_is_tdd.html"&gt;generic post about TDD&lt;/a&gt; explaining the main principles. During the
 session we used prime number detection as an example kata. This is a very simple problem and
 as such useful to show how to do proper TDD. On the other hand there isn’t much of real world
-problems in there. We started with the tiniest test:</p>
+problems in there. We started with the tiniest test:&lt;/p&gt;
 
-<pre><code>@Test
+&lt;pre&gt;&lt;code&gt;@Test
 public void oneIsPrime(){
     assertTrue("1 should be a prime", Prime.isPrime(1));
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>and implemented this with:</p>
+&lt;p&gt;and implemented this with:&lt;/p&gt;
 
-<pre><code>public class Prime {
+&lt;pre&gt;&lt;code&gt;public class Prime {
   public static boolean isPrime(int number){
     return true;
   }
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>This piece of code is the best thing that fulfills our test so there is no need to get into the
-refactor phase at this stage. The language is called Java if you don’t recognize it.</p>
+&lt;p&gt;This piece of code is the best thing that fulfills our test so there is no need to get into the
+refactor phase at this stage. The language is called Java if you don’t recognize it.&lt;/p&gt;
 
-<p>The next test takes the first non prime number and test it:</p>
+&lt;p&gt;The next test takes the first non prime number and test it:&lt;/p&gt;
 
-<pre><code>@Test
+&lt;pre&gt;&lt;code&gt;@Test
 public void fourIsNotPrime(){
     assertFalse("4 should not be a prime", Prime.isPrime(4));
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>implemented with:</p>
+&lt;p&gt;implemented with:&lt;/p&gt;
 
-<pre><code>public static boolean isPrime(int number){
+&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
     if( number == 4 ) return false;
     return true;
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>Now this can be refactored:</p>
+&lt;p&gt;Now this can be refactored:&lt;/p&gt;
 
-<pre><code>public static boolean isPrime(int number){
+&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
     return number != 4;
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>Note that the refactoring doesn’t add functionality - it just makes the code easier to read. Add another
-non-prime:</p>
+&lt;p&gt;Note that the refactoring doesn’t add functionality - it just makes the code easier to read. Add another
+non-prime:&lt;/p&gt;
 
-<pre><code>@Test
+&lt;pre&gt;&lt;code&gt;@Test
 public void nineIsNotPrime() {
     assertNotPrime(9);
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>and helper methods to make the test code a little bit easier to read:</p>
+&lt;p&gt;and helper methods to make the test code a little bit easier to read:&lt;/p&gt;
 
-<pre><code>public void assertNotPrime(int number){
-    String message = ""   number   " should not be a prime";
+&lt;pre&gt;&lt;code&gt;public void assertNotPrime(int number){
+    String message = "" + number + " should not be a prime";
     assertFalse(message, Prime.isPrime(number));
 }
 
 public void assertPrime(int number){
-    String message = ""   number   " should be a prime";
+    String message = "" + number + " should be a prime";
     assertTrue(message, Prime.isPrime(number));
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>Actually in the workshop we didn’t break out the asserts into methods but went straight for the
-next test code refactoring. The code under test is still naive:</p>
+&lt;p&gt;Actually in the workshop we didn’t break out the asserts into methods but went straight for the
+next test code refactoring. The code under test is still naive:&lt;/p&gt;
 
-<pre><code>public static boolean isPrime(int number){
+&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
     if( number == 4 || number == 9 ) return false;
     return true;
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>Now we felt the need to introduce an easier way to test many combinations at once. This is a bit awkward in
+&lt;p&gt;Now we felt the need to introduce an easier way to test many combinations at once. This is a bit awkward in
 Java and come much more natural in a dynamic language. We used the junit runner Parameterized to be able to
 have one test for each prime we’d like to test while reusing as much of the test code as possible. Here is the
-implementation:</p>
+implementation:&lt;/p&gt;
 
-<pre><code>package prime;
+&lt;pre&gt;&lt;code&gt;package prime;
 
 import java.util.*;
 
@@ -104,7 +121,7 @@ public class TestPrime {
     }
 
     @Parameters
-    public static Collection&lt;Object[]&gt; bunchOfPrimes(){
+    public static Collection&amp;lt;Object[]&amp;gt; bunchOfPrimes(){
         return Arrays.asList(new Object[][]{
             {1, true},
             {2, true},
@@ -128,42 +145,42 @@ public class TestPrime {
     }
 
     public void assertPrime(int number){
-        String message = ""   number   " should be a prime";
+        String message = "" + number + " should be a prime";
         assertTrue(message, Prime.isPrime(number));
     }
 
     public void assertNotPrime(int number){
-        String message = ""   number   " should not be a prime";
+        String message = "" + number + " should not be a prime";
         assertFalse(message, Prime.isPrime(number));
     }
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>This is the code that I prepared before the session. When we programmed it in the session we ended up with
-using <code>assertEquals</code> instead of having the helper methods and I think that was a nicer approach.</p>
+&lt;p&gt;This is the code that I prepared before the session. When we programmed it in the session we ended up with
+using &lt;code&gt;assertEquals&lt;/code&gt; instead of having the helper methods and I think that was a nicer approach.&lt;/p&gt;
 
-<p><code>Parameterized</code> requires a method that returns test data. It should have the awkward return type
-<code>Collection&lt;Object[]&gt;</code> - that is a collection of object arrays. Each member of the array should have
+&lt;p&gt;&lt;code&gt;Parameterized&lt;/code&gt; requires a method that returns test data. It should have the awkward return type
+&lt;code&gt;Collection&amp;lt;Object[]&amp;gt;&lt;/code&gt; - that is a collection of object arrays. Each member of the array should have
 data so that the test class constructor can be called. In our case there is a number - the prime candidate -
 and a boolean indicating if it is expected to be a prime or not. The runner creates one instance per
-data point and runs all Test methods on that one. In our case there is only the <code>isPrime</code> method.</p>
+data point and runs all Test methods on that one. In our case there is only the &lt;code&gt;isPrime&lt;/code&gt; method.&lt;/p&gt;
 
-<p>Now all there is left is to implement the real stuff:</p>
+&lt;p&gt;Now all there is left is to implement the real stuff:&lt;/p&gt;
 
-<pre><code>public static boolean isPrime(int number){
-  for(int i = 2; i &lt; number; i  ) {
+&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
+  for(int i = 2; i &amp;lt; number; i++) {
     if(number % i == 0) {
       return false;
     }
   }
   return true;
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>and a somewhat refactored solution:</p>
+&lt;p&gt;and a somewhat refactored solution:&lt;/p&gt;
 
-<pre><code>public static boolean isPrime(int number){
-  for(int i = 2; i &lt;= sqrt(number); i  ) {
+&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
+  for(int i = 2; i &amp;lt;= sqrt(number); i++) {
     int remainder = number % i;
     if(remainder == 0) {
       return false;
@@ -175,84 +192,93 @@ data point and runs all Test methods on that one. In our case there is only the 
 private static double sqrt(int number){
   return Math.sqrt(number);
 }
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>This was a fun but naive exercise. You can follow this code step-by-step in
-<a href="https://github.com/froderik/javaprime">this github repo</a>.
+&lt;p&gt;This was a fun but naive exercise. You can follow this code step-by-step in
+&lt;a href="https://github.com/froderik/javaprime"&gt;this github repo&lt;/a&gt;.
 There are commits and tags for each step in the TDD cycle. There is also a slightly more advanced example
-with prime factorizations.</p>]]></description><pubDate>Mon, 22 Apr 2013 22:00:00 -0000</pubDate><guid>http://www.highlevelbits.com/2013/04/tdding_prime_detection.html</guid></item><item><title>what is tdd?</title><link>http://www.highlevelbits.com/2013/04/what_is_tdd.html</link><description><![CDATA[<p>I am doing a bit of coaching on Test Driven Development (TDD) this month and had to start
+with prime factorizations.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-04-14:/2013/04/what_is_tdd.html</id>
+    <title type="html">what is tdd?</title>
+    <published>2013-04-14T12:12:12Z</published>
+    <updated>2013-04-14T12:12:12Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/04/what_is_tdd.html"/>
+    <content type="html">&lt;p&gt;I am doing a bit of coaching on Test Driven Development (TDD) this month and had to start
 think about the topic a bit and thus this post. I have been doing TDD since the ages of
 eXtreme Programming in the late 90’s. It now is so natural to me so I never feel done
 without having proper code coverage. Yet at times there are circumstances where I decide
 not to do it and that has almost always to do with large code bases without existing test
 infrastructure. The cost to get started can be so high sometimes. This piece will include
 a definition of TDD and a collection of things to keep in mind when practicing it. In a
-future post I will step you through a code example using the technique.</p>
+future post I will step you through a code example using the technique.&lt;/p&gt;
 
-<p>Many may think of TDD as something related to testing and quality - boooooring stuff. In
+&lt;p&gt;Many may think of TDD as something related to testing and quality - boooooring stuff. In
 fact it turns out that it is truly a software development method. When applied consistently
 it helps with many of the typical problems software projects encounter. I will end this post
-with discussing the benefits of TDD.</p>
+with discussing the benefits of TDD.&lt;/p&gt;
 
-<p>The classic way to describe TDD is with the red-green-refactor mantra and I think it is
-really good to have this <em>easy to understand</em> description of the concept. Red -
+&lt;p&gt;The classic way to describe TDD is with the red-green-refactor mantra and I think it is
+really good to have this &lt;em&gt;easy to understand&lt;/em&gt; description of the concept. Red -
 write at test that fails, green - unfail the test, refactor - adapt the resulting code
-with its surroundings. Lets examine these parts one by one.</p>
+with its surroundings. Lets examine these parts one by one.&lt;/p&gt;
 
-<h3 id="red">Red</h3>
+&lt;h3 id="red"&gt;Red&lt;/h3&gt;
 
-<p>In the red phase - <strong>write a test</strong> that fails. This is the specification of what you are about
-to do next. It defines the scope of the task. You may want to understand it as your <em>definition
-of done</em>.</p>
+&lt;p&gt;In the red phase - &lt;strong&gt;write a test&lt;/strong&gt; that fails. This is the specification of what you are about
+to do next. It defines the scope of the task. You may want to understand it as your &lt;em&gt;definition
+of done&lt;/em&gt;.&lt;/p&gt;
 
-<p>This test should test only one thing in order to keep changes small. If the test is small - it is
+&lt;p&gt;This test should test only one thing in order to keep changes small. If the test is small - it is
 likely that the code fulfilling the test also will be small and you’ll end up with a nice change
-set to put in your repository.</p>
+set to put in your repository.&lt;/p&gt;
 
-<p>It may help thinking about specifications rather than tests. What you really do when writing
+&lt;p&gt;It may help thinking about specifications rather than tests. What you really do when writing
 the test upfront is designing the interface of the unit under test. It is the first usage of
-the upcoming code and as such is a great way to understand what is really needed from the code.</p>
+the upcoming code and as such is a great way to understand what is really needed from the code.&lt;/p&gt;
 
-<p><a href="http://www.flickr.com/photos/martinlabar/159577406"><img style="float:right" src="http://farm1.staticflickr.com/64/159577406_f681497ca1.jpg" /></a></p>
+&lt;p&gt;&lt;a href="http://www.flickr.com/photos/martinlabar/159577406"&gt;&lt;img style="float:right" src="http://farm1.staticflickr.com/64/159577406_f681497ca1.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 
-<h3 id="green">Green</h3>
+&lt;h3 id="green"&gt;Green&lt;/h3&gt;
 
-<p>In the green phase - <strong>unfail the test</strong> - write the code that makes the test pass. May it be with
+&lt;p&gt;In the green phase - &lt;strong&gt;unfail the test&lt;/strong&gt; - write the code that makes the test pass. May it be with
 shortcuts, magic numbers and whatnots. It should make the test pass - nothing more, nothing less.
 Most of the thinking has already been done in the red phase so this may turn out to be rather easy.
-Actually - if it turns out to be hard it may well be that the test written is a bit too large.</p>
+Actually - if it turns out to be hard it may well be that the test written is a bit too large.&lt;/p&gt;
 
-<h3 id="refactor">Refactor</h3>
+&lt;h3 id="refactor"&gt;Refactor&lt;/h3&gt;
 
-<p>In the refactor phase - <strong>rewrite the code</strong> written in the green phase. I like to think of this
+&lt;p&gt;In the refactor phase - &lt;strong&gt;rewrite the code&lt;/strong&gt; written in the green phase. I like to think of this
 as adapting the new code into the surrounding code base. Another way to put it is: remove duplication.
 The most important thing to keep in mind during this phase is to NOT ADD ANY FUNCTIONALITY. The code
 should behave exactly the same but now be written in a way that is readable and maintainable. How exactly
 this is may differ between languages, organisations and teams. To make sure that the code really conforms
-to the standards set you could choose between <em>pair programming</em> and <em>code review</em>. It may also be
-helpful to have som static code analyzers in place to detect common mistakes.</p>
+to the standards set you could choose between &lt;em&gt;pair programming&lt;/em&gt; and &lt;em&gt;code review&lt;/em&gt;. It may also be
+helpful to have som static code analyzers in place to detect common mistakes.&lt;/p&gt;
 
-<h3 id="understand">Understand</h3>
+&lt;h3 id="understand"&gt;Understand&lt;/h3&gt;
 
-<p>When thinking about processes and methods I sometimes fall back to this kentbeckism:</p>
+&lt;p&gt;When thinking about processes and methods I sometimes fall back to this kentbeckism:&lt;/p&gt;
 
-<blockquote>
-  <p>Listening, Testing, Coding, Refactoring.
+&lt;blockquote&gt;
+  &lt;p&gt;Listening, Testing, Coding, Refactoring.
 That’s all there is to software.
-Anyone who tells you different is selling something.</p>
-</blockquote>
+Anyone who tells you different is selling something.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-<p>As you can see red-green-refactor maps nicely to testing-coding-refactoring and then we have the added
-<em>listening</em>. What this means - of course - is to make sure that you build the right stuff. You have
+&lt;p&gt;As you can see red-green-refactor maps nicely to testing-coding-refactoring and then we have the added
+&lt;em&gt;listening&lt;/em&gt;. What this means - of course - is to make sure that you build the right stuff. You have
 to listen to the user of the system, you have to listen to (understand) the domain you work in. Only
 then can you make sure that the spec you will be writing in the red phase is the right spec. If the
-spec is not what is needed the whole cycle will be waste.</p>
+spec is not what is needed the whole cycle will be waste.&lt;/p&gt;
 
-<p>With that said the basics has been covered. Lets take a look at some issues and possibilities.</p>
+&lt;p&gt;With that said the basics has been covered. Lets take a look at some issues and possibilities.&lt;/p&gt;
 
-<h3 id="coding-guidelines">Coding guidelines?</h3>
+&lt;h3 id="coding-guidelines"&gt;Coding guidelines?&lt;/h3&gt;
 
-<p>Way back I often regarded test code as something that could be treated without care - a possibility to
+&lt;p&gt;Way back I often regarded test code as something that could be treated without care - a possibility to
 do some cowboy hacking. This is a dangerous stand. Nowadays I think that the test code may be the most
 important code to keep in shape. If well written it will serve as documentation for the system. In any
 living system it is also the place where any new developer starts off when making changes. It should
@@ -260,52 +286,52 @@ be easy to add and alter tests. Generally it is wise to have the same coding gui
 as for the system as a whole. The only thing that may differ is the degree of DRY (don’t repeat yourself).
 Readable test code may sometime benefit from duplication. Setup code that calls generic methods makes
 the test hard to follow - better to hardwire setup data that is relevant for the test and hide any setup
-that is just boiler plate. Readability is more important than DRY-ness when it comes to test code.</p>
+that is just boiler plate. Readability is more important than DRY-ness when it comes to test code.&lt;/p&gt;
 
-<h3 id="test-to-code-mapping">Test to code mapping</h3>
+&lt;h3 id="test-to-code-mapping"&gt;Test to code mapping&lt;/h3&gt;
 
-<p>A common practice is to have one test class per class and often you also see one test method per method.
+&lt;p&gt;A common practice is to have one test class per class and often you also see one test method per method.
 This may or may not be a good idea. The class-to-class mapping is good most of the time since it is
 really easy to find relevant tests. If test files are growing out of control it is probably an indication
 that the unit under test is in need of refactoring. The same goes for methods. A test method should test
 one thing and if the method under test can be tested with only one test method this is good. But in many
-cases this makes for bad test design so it really depends. Which leads us to….</p>
+cases this makes for bad test design so it really depends. Which leads us to….&lt;/p&gt;
 
-<h3 id="test-design">Test design</h3>
+&lt;h3 id="test-design"&gt;Test design&lt;/h3&gt;
 
-<p>While a good design may emerge from TDD it may be easy to forget the design of the test code itself.
+&lt;p&gt;While a good design may emerge from TDD it may be easy to forget the design of the test code itself.
 The common principles of designing software should be applied equally to this code but with readability
-as the most important aspect.</p>
+as the most important aspect.&lt;/p&gt;
 
-<h3 id="coverage">Coverage</h3>
+&lt;h3 id="coverage"&gt;Coverage&lt;/h3&gt;
 
-<p>Ideally - every code line is covered when running all tests. This is almost never the case. Some languages
+&lt;p&gt;Ideally - every code line is covered when running all tests. This is almost never the case. Some languages
 makes it hard to get full coverage (think about javas checked exceptions that never occur). Legacy code
 bases may have areas where intermingling dependencies makes it impossible to add any unit tests at all.
 Black box acceptance like tests are likely the best approach to these cases. That said, it is never a bad
 thing to strive for 100% code coverage. One way to make this possible is to stay small. If a method under
 test does one thing it may be tested with one scenario but if it does several different things the number of
-needed scenarios will multiply and increase the test code size exponentially.</p>
+needed scenarios will multiply and increase the test code size exponentially.&lt;/p&gt;
 
-<p><a href="http://www.flickr.com/photos/mike9alive/447845750"><img style="float:left" src="http://farm1.staticflickr.com/204/447845750_87dd3c1a48.jpg" /></a></p>
+&lt;p&gt;&lt;a href="http://www.flickr.com/photos/mike9alive/447845750"&gt;&lt;img style="float:left" src="http://farm1.staticflickr.com/204/447845750_87dd3c1a48.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 
-<h3 id="no-coverage">No coverage</h3>
-<p>Sadly enough - there are code bases with next to no code coverage. This may make it hard to get started.
+&lt;h3 id="no-coverage"&gt;No coverage&lt;/h3&gt;
+&lt;p&gt;Sadly enough - there are code bases with next to no code coverage. This may make it hard to get started.
 In these cases it is often best to do some integration tests on the whole first before starting to mess
 around. Then - if possible - add unit tests whenever new code is written. Some parts may be next to
 impossible to unit test without a non-estimable refactoring. Depending on your budget you’ll have to decide
 whether to attempt a refactoring or not. When using static languages it may often be safe to do refactorings
-like <em>extract something</em> and <em>inline something</em>. It may be enough to get some part of the code into
-testable shape.</p>
+like &lt;em&gt;extract something&lt;/em&gt; and &lt;em&gt;inline something&lt;/em&gt;. It may be enough to get some part of the code into
+testable shape.&lt;/p&gt;
 
-<p>Also note that the refactor phase may result in small TDD loops on other parts of the system
+&lt;p&gt;Also note that the refactor phase may result in small TDD loops on other parts of the system
 in order to do a refactoring safely. This is because you may want to integrate your changes into some part
 of the system that currently lack tests. In these cases it may be better to finish the task at hand in a decent
-shape before moving on to tackle the needed refactoring in a new red-green-refactor cycle.</p>
+shape before moving on to tackle the needed refactoring in a new red-green-refactor cycle.&lt;/p&gt;
 
-<h3 id="what-about-user-interfaces">What about user interfaces?</h3>
+&lt;h3 id="what-about-user-interfaces"&gt;What about user interfaces?&lt;/h3&gt;
 
-<p>Yes! Test them also. That a user interface looks good can never be tested automatically. At least not until
+&lt;p&gt;Yes! Test them also. That a user interface looks good can never be tested automatically. At least not until
 we get sentient AIs that can understand the feelings of humans… But the code inside the user interface
 can be tested. Any code that is complex can be extracted into testable units. The actual composition of a
 user interface may not be possible to test (depending on the technique used) but the code needed to compose
@@ -314,64 +340,73 @@ sits together nicely is best tested with integration/acceptance tests. Most comm
 have some kind of framework for this and if you lack this there are user interface robots for the common
 platforms that knows how to enter characters in fields and click buttons. For the web there are several good
 options that also tests dynamic content on a web page. I have good experiences with
-<a href="https://github.com/jnicklas/capybara">capybara</a> using the webkit driver. In Java land there is
-<a href="http://docs.seleniumhq.org/projects/webdriver/">selenium</a> that makes it easy to write javascript-aware tests.
-For static sites it is even easier.</p>
+&lt;a href="https://github.com/jnicklas/capybara"&gt;capybara&lt;/a&gt; using the webkit driver. In Java land there is
+&lt;a href="http://docs.seleniumhq.org/projects/webdriver/"&gt;selenium&lt;/a&gt; that makes it easy to write javascript-aware tests.
+For static sites it is even easier.&lt;/p&gt;
 
-<h3 id="what-language-to-write-tests-in">What language to write tests in?</h3>
+&lt;h3 id="what-language-to-write-tests-in"&gt;What language to write tests in?&lt;/h3&gt;
 
-<p>Most of the time it makes sense to write tests in the same language as the units under test. As a developer you
+&lt;p&gt;Most of the time it makes sense to write tests in the same language as the units under test. As a developer you
 don’t need to switch in another syntax cartridge. But for some languages (Java comes to mind) the amount of
 code needed to write anything may make it worthwhile looking at a dynamic languages for tests. Groovy is probably
-most handy for testing Java although any dynamic languages that runs on the JVM will do fine.</p>
+most handy for testing Java although any dynamic languages that runs on the JVM will do fine.&lt;/p&gt;
 
-<h3 id="continuous-integration">Continuous integration</h3>
+&lt;h3 id="continuous-integration"&gt;Continuous integration&lt;/h3&gt;
 
-<p>I have written extensively about <a href="http://highlevelbits.com/2010/11/continuous-integration-essentials.html">this elsewhere</a>
-so at the moment I will just take it down to: TDD without continuous integration is wasteful.</p>
+&lt;p&gt;I have written extensively about &lt;a href="http://highlevelbits.com/2010/11/continuous-integration-essentials.html"&gt;this elsewhere&lt;/a&gt;
+so at the moment I will just take it down to: TDD without continuous integration is wasteful.&lt;/p&gt;
 
-<h3 id="so-what-are-the-benefits-of-working-this-way">So what are the benefits of working this way?</h3>
+&lt;h3 id="so-what-are-the-benefits-of-working-this-way"&gt;So what are the benefits of working this way?&lt;/h3&gt;
 
-<p>There are benefits at several levels. On the personal level TDD gives a sense of accomplishment and a secureness that the
+&lt;p&gt;There are benefits at several levels. On the personal level TDD gives a sense of accomplishment and a secureness that the
 code delivered actually works and adds value to the whole. But this may differ from person to person. The more obvious benefits
-are on the organizational level:</p>
+are on the organizational level:&lt;/p&gt;
 
-<ul>
-  <li>stability - the code base will be stable over time. New features won’t break old ones.</li>
-  <li>predictability - it will be easier to predict the outcome of a project since the code base will be in a known state. Estimates
-may actually turn out to be correct!</li>
-  <li>readability - the code produced will be readable which in turn will make the system maintainable.</li>
-</ul>
+&lt;ul&gt;
+  &lt;li&gt;stability - the code base will be stable over time. New features won’t break old ones.&lt;/li&gt;
+  &lt;li&gt;predictability - it will be easier to predict the outcome of a project since the code base will be in a known state. Estimates
+may actually turn out to be correct!&lt;/li&gt;
+  &lt;li&gt;readability - the code produced will be readable which in turn will make the system maintainable.&lt;/li&gt;
+&lt;/ul&gt;
 
-<p>So the benefits are huge - there are no known disadvantages. If you are not doing TDD today I hope this article sparked
-some inspiration. If you feel you need guidance to get going I or one of many other TDD coaches will be happy to help you out.</p>
+&lt;p&gt;So the benefits are huge - there are no known disadvantages. If you are not doing TDD today I hope this article sparked
+some inspiration. If you feel you need guidance to get going I or one of many other TDD coaches will be happy to help you out.&lt;/p&gt;
 
-<p>While researching images for my TDD presentation I stumbled upon this guy. Kind of not related but awesome nevertheless.</p>
+&lt;p&gt;While researching images for my TDD presentation I stumbled upon this guy. Kind of not related but awesome nevertheless.&lt;/p&gt;
 
-<p><a href="http://www.flickr.com/photos/photochiel/2043747282"><img src="http://farm3.staticflickr.com/2201/2043747282_eaa5239696_b.jpg" /></a></p>
+&lt;p&gt;&lt;a href="http://www.flickr.com/photos/photochiel/2043747282"&gt;&lt;img src="http://farm3.staticflickr.com/2201/2043747282_eaa5239696_b.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 
-<p>Photo credits to flickr users <a href="http://www.flickr.com/photos/martinlabar">martinlabar</a>,
-<a href="http://www.flickr.com/photos/mike9alive">mike9alive</a> and <a href="http://www.flickr.com/photos/photochiel">photochiel</a>.</p>]]></description><pubDate>Sun, 14 Apr 2013 12:12:12 -0000</pubDate><guid>http://www.highlevelbits.com/2013/04/what_is_tdd.html</guid></item><item><title>moving from drupal to nanoc</title><link>http://www.highlevelbits.com/2013/04/nanoc.html</link><description><![CDATA[<p>Time to move on to the bright (old) new world of static sites. We were not
+&lt;p&gt;Photo credits to flickr users &lt;a href="http://www.flickr.com/photos/martinlabar"&gt;martinlabar&lt;/a&gt;,
+&lt;a href="http://www.flickr.com/photos/mike9alive"&gt;mike9alive&lt;/a&gt; and &lt;a href="http://www.flickr.com/photos/photochiel"&gt;photochiel&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-04-13:/2013/04/nanoc.html</id>
+    <title type="html">moving from drupal to nanoc</title>
+    <published>2013-04-12T22:00:00Z</published>
+    <updated>2013-04-12T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/04/nanoc.html"/>
+    <content type="html">&lt;p&gt;Time to move on to the bright (old) new world of static sites. We were not
 entirely satisfied with drupal. Not knowing (or wanting to know) the platform
 well enough made us unable to produce the awesome site we want high level bits to be.
-In comes <a href="http://nanoc.ws/">nanoc</a> - what you read here is generated by nanoc.</p>
+In comes &lt;a href="http://nanoc.ws/"&gt;nanoc&lt;/a&gt; - what you read here is generated by nanoc.&lt;/p&gt;
 
-<p>The source is now <a href="https://github.com/highlevelbits/blog">all available at github</a> so if you want to
-contribute a post just clone and pull request away.</p>
+&lt;p&gt;The source is now &lt;a href="https://github.com/highlevelbits/blog"&gt;all available at github&lt;/a&gt; so if you want to
+contribute a post just clone and pull request away.&lt;/p&gt;
 
-<p>We started by exporting our data from Drupal with <a href="https://github.com/highlevelbits/blog/blob/master/import.rb">this little Ruby script</a>
+&lt;p&gt;We started by exporting our data from Drupal with &lt;a href="https://github.com/highlevelbits/blog/blob/master/import.rb"&gt;this little Ruby script&lt;/a&gt;
 that connects directly with the
 drupal database and creates posts and appends old comments to the post. It also updates the
 head section with title, timestamp and author. We decided to skip exporting of tags and do a retagging of all
-the articles. Well worth the effort.</p>
+the articles. Well worth the effort.&lt;/p&gt;
 
-<p>The natural choice for hosting is <a href="http://pages.github.com/">github pages</a>. It turned out to be rather easy to setup with nanoc.
+&lt;p&gt;The natural choice for hosting is &lt;a href="http://pages.github.com/"&gt;github pages&lt;/a&gt;. It turned out to be rather easy to setup with nanoc.
 There was no documentation for how to do it with nanoc so I added a
-<a href="https://github.com/froderik/nanoc-site/blob/master/content/docs/guides/deploying-nanoc-sites.md#with-github-pages">section to the deploy guide</a>.
+&lt;a href="https://github.com/froderik/nanoc-site/blob/master/content/docs/guides/deploying-nanoc-sites.md#with-github-pages"&gt;section to the deploy guide&lt;/a&gt;.
 (Yet to make it into the main docs.) The instructions in the github docs are straightforward. A little script
-automates the deploy procedure:</p>
+automates the deploy procedure:&lt;/p&gt;
 
-<pre><code>#! /usr/bin/env bash
+&lt;pre&gt;&lt;code&gt;#! /usr/bin/env bash
 
 nanoc prune compile --yes
 cd output
@@ -380,41 +415,60 @@ git add .
 git commit -am "high level bits automatic deploy"
 git push origin gh-pages
 cd ..
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>To choose nanoc more or less just happened. I asked a bit on twitter and got nanoc is nice back and started
+&lt;p&gt;To choose nanoc more or less just happened. I asked a bit on twitter and got nanoc is nice back and started
 to play with it. It is nice and so here we are. Hardy had good experiences with awestruct but since he had
-less time at the moment I just moved forward with nanoc to try it out.</p>
+less time at the moment I just moved forward with nanoc to try it out.&lt;/p&gt;
 
-<p>All articles have been retagged so hopefully tags make more sense now. We don’t have a tags page anymore. Instead
-posts with similar tags are shown at the bottom of the page.</p>
+&lt;p&gt;All articles have been retagged so hopefully tags make more sense now. We don’t have a tags page anymore. Instead
+posts with similar tags are shown at the bottom of the page.&lt;/p&gt;
 
-<p>The <a href="/archive.html">archive page</a> was fun to build. I decided to try to do foldable sections without using javascript using the checkbox
-trick. Check the code to find out how it works.</p>
+&lt;p&gt;The &lt;a href="/archive.html"&gt;archive page&lt;/a&gt; was fun to build. I decided to try to do foldable sections without using javascript using the checkbox
+trick. Check the code to find out how it works.&lt;/p&gt;
 
-<p>All in all a nice experience. I may well do other sites with nanoc in the future.</p>]]></description><pubDate>Fri, 12 Apr 2013 22:00:00 -0000</pubDate><guid>http://www.highlevelbits.com/2013/04/nanoc.html</guid></item><item><title>Far east culture</title><link>http://www.highlevelbits.com/2012/05/far-east-culture.html</link><description><![CDATA[<p>I had in mind a series of posts about our trip to the far east but I realize that it will not happen with everything else that is happening now. So I will settle on writing a bit about the culture of Japan and Korea. Beer in mind that we only spent about 3 weeks in total so there is plenty of room for misunderstandings. </p>
+&lt;p&gt;All in all a nice experience. I may well do other sites with nanoc in the future.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2012-05-28:/2012/05/far-east-culture.html</id>
+    <title type="html">Far east culture</title>
+    <published>2012-05-27T22:12:15Z</published>
+    <updated>2012-05-27T22:12:15Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2012/05/far-east-culture.html"/>
+    <content type="html">&lt;p&gt;I had in mind a series of posts about our trip to the far east but I realize that it will not happen with everything else that is happening now. So I will settle on writing a bit about the culture of Japan and Korea. Beer in mind that we only spent about 3 weeks in total so there is plenty of room for misunderstandings. &lt;/p&gt;
 
-<p><img src="http://farm8.staticflickr.com/7089/6965682494_87406a6cf0.jpg" alt="harajuku" /></p>
+&lt;p&gt;&lt;img src="http://farm8.staticflickr.com/7089/6965682494_87406a6cf0.jpg" alt="harajuku" /&gt;&lt;/p&gt;
 
-<p>The first thing that went missing when leaving Japan is polite and smiling people. In almost every shop you are welcomed by a smiling person that says something to you. Back in Sweden it is rather the exception. Also when looking lost in a street corner with a map there is always someone trying to help. This was even more apparent in Korea than in Japan. Seoul was a bit friendlier in this resepect compared to Japan. All in all I don’t think we met a single person that was not friendly during the trip.</p>
+&lt;p&gt;The first thing that went missing when leaving Japan is polite and smiling people. In almost every shop you are welcomed by a smiling person that says something to you. Back in Sweden it is rather the exception. Also when looking lost in a street corner with a map there is always someone trying to help. This was even more apparent in Korea than in Japan. Seoul was a bit friendlier in this resepect compared to Japan. All in all I don’t think we met a single person that was not friendly during the trip.&lt;/p&gt;
 
-<p>The low tax on income makes it worthwhile to have small businesses which makes cities much more lively. There are so many small enterprises in both Japan and Korea that makes the countries more alive. It is also something that makes it easier to find something to eat. And yes - the food is awesome. Japanese food is of course about the fish and the rice which we had plenty. But it is also about yakitori, ramen and udon. One of the best meals was a lunch in Kyoto where we got noodles on a fry bench (griddles? - a bit lost about the english word for this….). Korean cuisine may not be that famous in the west but stands up really good. It is not only about the kimchi and it is certainly not just spicy chilliish food as the guide book said. Korean BBQ is often prepared at the table by the guests or by a chef. With meat of good quality and all the nice side dishes it makes for a really intimate way to share a meal. We also took a liking to korean breakfast. It is much the same as a “normal” meal but in smaller quantities. The kimchi and the ever present soup is there and maybe one smaller dish with meat or fish. Also - the ever present cup of tasty green tea. The only thing to grow tired of is all that rice.</p>
+&lt;p&gt;The low tax on income makes it worthwhile to have small businesses which makes cities much more lively. There are so many small enterprises in both Japan and Korea that makes the countries more alive. It is also something that makes it easier to find something to eat. And yes - the food is awesome. Japanese food is of course about the fish and the rice which we had plenty. But it is also about yakitori, ramen and udon. One of the best meals was a lunch in Kyoto where we got noodles on a fry bench (griddles? - a bit lost about the english word for this….). Korean cuisine may not be that famous in the west but stands up really good. It is not only about the kimchi and it is certainly not just spicy chilliish food as the guide book said. Korean BBQ is often prepared at the table by the guests or by a chef. With meat of good quality and all the nice side dishes it makes for a really intimate way to share a meal. We also took a liking to korean breakfast. It is much the same as a “normal” meal but in smaller quantities. The kimchi and the ever present soup is there and maybe one smaller dish with meat or fish. Also - the ever present cup of tasty green tea. The only thing to grow tired of is all that rice.&lt;/p&gt;
 
-<p><img src="http://farm8.staticflickr.com/7055/7053758185_b0364ae8a5.jpg" alt="udon" /></p>
+&lt;p&gt;&lt;img src="http://farm8.staticflickr.com/7055/7053758185_b0364ae8a5.jpg" alt="udon" /&gt;&lt;/p&gt;
 
-<p>From food it is easy to move on to cleanliness. Most restaurants give you warm or cold small wet towels to clean yourself before starting to eat. Such a nice thing to start every meal feeling refreshed especially after a couple of hours of sightseeing. Another great thing about these countries are restrooms everywhere. Every building in Japan seem to have a tidy public restroom. </p>
+&lt;p&gt;From food it is easy to move on to cleanliness. Most restaurants give you warm or cold small wet towels to clean yourself before starting to eat. Such a nice thing to start every meal feeling refreshed especially after a couple of hours of sightseeing. Another great thing about these countries are restrooms everywhere. Every building in Japan seem to have a tidy public restroom. &lt;/p&gt;
 
-<p>We did a bit of sampling of the Japanese onsen (bathing) culture. In Beppu we stayed at a hotel with a couple of private baths that you could book for free by the hour. True balm for the soul to sit in these warm baths and just exist for a while. We could have done much more of this side of Japan but so much to see and just 3 weeks to spend.</p>
+&lt;p&gt;We did a bit of sampling of the Japanese onsen (bathing) culture. In Beppu we stayed at a hotel with a couple of private baths that you could book for free by the hour. True balm for the soul to sit in these warm baths and just exist for a while. We could have done much more of this side of Japan but so much to see and just 3 weeks to spend.&lt;/p&gt;
 
-<p>A nice trip and there may be more of the far east soon. Käthes youngest daughter is about to study in Shanghai for a year so maybe we will “have to” visit her around christmas.</p>
-<div class="old-comments"><h2>Old comments</h2><div class="one-old-comment"><span class="comment-date">2012-06-07</span><span class="commenter-name">hardy</span><div class="comment-body">Ahh, sounds awesome. Food, baths and sauna. My passions. I think I need to plan a trip to Japan as well :-)</div></div></div>]]></description><pubDate>Sun, 27 May 2012 22:12:15 -0000</pubDate><guid>http://www.highlevelbits.com/2012/05/far-east-culture.html</guid></item><item><title>A perfect day</title><link>http://www.highlevelbits.com/2012/05/perfect-day.html</link><description><![CDATA[<ul>
-  <li>Train ride to <a href="http://en.wikipedia.org/wiki/Copenhagen">Copenhagen</a> playing <a href="http://eu.battle.net/d3/en/?-">Diablo III</a></li>
-  <li>30 minutes tunnel at <a href="http://www.airexperience.dk/">Copenhagen Air Experience</a></li>
-  <li>Dinner at <a href="http://nose2tail.dk/">Nose2Tail</a></li>
-  <li>Train ride to Göteborg listening to <a href="http://www.udo-lindenberg.de/mtv_unplugged.80021.htm">Udo Lidenberg &amp; Das Panik-Orchester MTV Unplugged</a></li>
-</ul>
+&lt;p&gt;A nice trip and there may be more of the far east soon. Käthes youngest daughter is about to study in Shanghai for a year so maybe we will “have to” visit her around christmas.&lt;/p&gt;
+&lt;div class="old-comments"&gt;&lt;h2&gt;Old comments&lt;/h2&gt;&lt;div class="one-old-comment"&gt;&lt;span class="comment-date"&gt;2012-06-07&lt;/span&gt;&lt;span class="commenter-name"&gt;hardy&lt;/span&gt;&lt;div class="comment-body"&gt;Ahh, sounds awesome. Food, baths and sauna. My passions. I think I need to plan a trip to Japan as well :-)&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2012-05-18:/2012/05/perfect-day.html</id>
+    <title type="html">A perfect day</title>
+    <published>2012-05-17T22:55:47Z</published>
+    <updated>2012-05-17T22:55:47Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2012/05/perfect-day.html"/>
+    <content type="html">&lt;ul&gt;
+  &lt;li&gt;Train ride to &lt;a href="http://en.wikipedia.org/wiki/Copenhagen"&gt;Copenhagen&lt;/a&gt; playing &lt;a href="http://eu.battle.net/d3/en/?-"&gt;Diablo III&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;30 minutes tunnel at &lt;a href="http://www.airexperience.dk/"&gt;Copenhagen Air Experience&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Dinner at &lt;a href="http://nose2tail.dk/"&gt;Nose2Tail&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Train ride to Göteborg listening to &lt;a href="http://www.udo-lindenberg.de/mtv_unplugged.80021.htm"&gt;Udo Lidenberg &amp;amp; Das Panik-Orchester MTV Unplugged&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-<p>:-)</p>
-<div class="old-comments"><h2>Old comments</h2><div class="one-old-comment"><span class="comment-date">2012-08-31</span><span class="commenter-name">diablo guide demon hunter</span><div class="comment-body">&#1053;&#1110; there, yup th&#1110;s post i&#1109; actually n&#1110;c&#1077; an&#1281; &#1231;
-have learned lot of th&#1110;ngs from it c&#959;n&#1089;erning blogging.
-than&kappa;s.</div></div></div>]]></description><pubDate>Thu, 17 May 2012 22:55:47 -0000</pubDate><guid>http://www.highlevelbits.com/2012/05/perfect-day.html</guid></item></channel></rss>
+&lt;p&gt;:-)&lt;/p&gt;
+&lt;div class="old-comments"&gt;&lt;h2&gt;Old comments&lt;/h2&gt;&lt;div class="one-old-comment"&gt;&lt;span class="comment-date"&gt;2012-08-31&lt;/span&gt;&lt;span class="commenter-name"&gt;diablo guide demon hunter&lt;/span&gt;&lt;div class="comment-body"&gt;&amp;#1053;&amp;#1110; there, yup th&amp;#1110;s post i&amp;#1109; actually n&amp;#1110;c&amp;#1077; an&amp;#1281; &amp;#1231;
+have learned lot of th&amp;#1110;ngs from it c&amp;#959;n&amp;#1089;erning blogging.
+than&amp;kappa;s.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content>
+  </entry>
+</feed>
