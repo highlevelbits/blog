@@ -174,4 +174,7 @@ and a somewhat refactored solution:
       return Math.sqrt(number);
     }
 
-This was a fun but naive exercise.
+This was a fun but naive exercise. You can follow this code step-by-step in
+[this github repo](https://github.com/froderik/javaprime).
+There are commits and tags for each step in the TDD cycle. There is also a slightly more advanced example
+with prime factorizations.
