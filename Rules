@@ -15,7 +15,7 @@
 
 compile '*' do
   if item.binary? or bypass? item[:extension]
-  elsif item.identifier == '/atom/' or item.identifier == '/rss/'
+  elsif item.identifier == '/atom/' or item.identifier == '/rss/' or item.identifier == '/feeds/posts/default/'
     filter :erb
   else
     case item[:extension]
@@ -40,6 +40,11 @@ end
 
 route '/rss/' do
   '/rss.xml'
+end
+
+# backwards compatible RSS feed
+route '/feeds/posts/default/' do
+  '/feeds/posts/default'
 end
 
 route '/stylesheet/' do
