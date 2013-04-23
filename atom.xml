@@ -194,7 +194,10 @@ private static double sqrt(int number){
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This was a fun but naive exercise.&lt;/p&gt;
+&lt;p&gt;This was a fun but naive exercise. You can follow this code step-by-step in
+&lt;a href="https://github.com/froderik/javaprime"&gt;this github repo&lt;/a&gt;.
+There are commits and tags for each step in the TDD cycle. There is also a slightly more advanced example
+with prime factorizations.&lt;/p&gt;
 </content>
   </entry>
   <entry>
