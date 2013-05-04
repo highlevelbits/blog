@@ -2,13 +2,29 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2013-04-22T22:00:00Z</updated>
+  <updated>2013-05-04T21:03:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-05-04:/2013/05/camera_fun.html</id>
+    <title type="html">moving from drupal to nanoc</title>
+    <published>2013-05-04T21:03:00Z</published>
+    <updated>2013-05-04T21:03:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/05/camera_fun.html"/>
+    <content type="html">&lt;p&gt;Had some fun with the camera today.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://farm9.staticflickr.com/8267/8708350808_05f235587c_z.jpg" alt="" /&gt;
+&lt;img src="http://farm9.staticflickr.com/8418/8708352708_9a36fbda12_z.jpg" alt="" /&gt;
+&lt;img src="http://farm9.staticflickr.com/8256/8708354468_e350932458_z.jpg" alt="" /&gt;
+&lt;img src="http://farm9.staticflickr.com/8414/8707233857_a24b5f5555_z.jpg" alt="" /&gt;
+&lt;img src="http://farm9.staticflickr.com/8400/8708357766_bd655013f5_z.jpg" alt="" /&gt;
+&lt;img src="http://farm9.staticflickr.com/8279/8707236779_d7c966d82d_z.jpg" alt="" /&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-04-23:/2013/04/tdding_prime_detection.html</id>
     <title type="html">detecting prime numbers with Test Driven Development</title>
@@ -452,23 +468,5 @@ trick. Check the code to find out how it works.&lt;/p&gt;
 
 &lt;p&gt;A nice trip and there may be more of the far east soon. Käthes youngest daughter is about to study in Shanghai for a year so maybe we will “have to” visit her around christmas.&lt;/p&gt;
 &lt;div class="old-comments"&gt;&lt;h2&gt;Old comments&lt;/h2&gt;&lt;div class="one-old-comment"&gt;&lt;span class="comment-date"&gt;2012-06-07&lt;/span&gt;&lt;span class="commenter-name"&gt;hardy&lt;/span&gt;&lt;div class="comment-body"&gt;Ahh, sounds awesome. Food, baths and sauna. My passions. I think I need to plan a trip to Japan as well :-)&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2012-05-18:/2012/05/perfect-day.html</id>
-    <title type="html">A perfect day</title>
-    <published>2012-05-17T22:55:47Z</published>
-    <updated>2012-05-17T22:55:47Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2012/05/perfect-day.html"/>
-    <content type="html">&lt;ul&gt;
-  &lt;li&gt;Train ride to &lt;a href="http://en.wikipedia.org/wiki/Copenhagen"&gt;Copenhagen&lt;/a&gt; playing &lt;a href="http://eu.battle.net/d3/en/?-"&gt;Diablo III&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;30 minutes tunnel at &lt;a href="http://www.airexperience.dk/"&gt;Copenhagen Air Experience&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Dinner at &lt;a href="http://nose2tail.dk/"&gt;Nose2Tail&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Train ride to Göteborg listening to &lt;a href="http://www.udo-lindenberg.de/mtv_unplugged.80021.htm"&gt;Udo Lidenberg &amp;amp; Das Panik-Orchester MTV Unplugged&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;:-)&lt;/p&gt;
-&lt;div class="old-comments"&gt;&lt;h2&gt;Old comments&lt;/h2&gt;&lt;div class="one-old-comment"&gt;&lt;span class="comment-date"&gt;2012-08-31&lt;/span&gt;&lt;span class="commenter-name"&gt;diablo guide demon hunter&lt;/span&gt;&lt;div class="comment-body"&gt;&amp;#1053;&amp;#1110; there, yup th&amp;#1110;s post i&amp;#1109; actually n&amp;#1110;c&amp;#1077; an&amp;#1281; &amp;#1231;
-have learned lot of th&amp;#1110;ngs from it c&amp;#959;n&amp;#1089;erning blogging.
-than&amp;kappa;s.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content>
   </entry>
 </feed>
