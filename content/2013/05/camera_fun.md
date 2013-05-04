@@ -1,5 +1,5 @@
 ---
-title: moving from drupal to nanoc
+title: cool photos
 kind: article
 created_at: 2013-05-04 21:03:00
 author: fredrik
