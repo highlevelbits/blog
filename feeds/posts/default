@@ -2,13 +2,56 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2013-05-04T21:03:00Z</updated>
+  <updated>2013-05-21T21:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-05-21:/2013/05/agila_sverige.html</id>
+    <title type="html">agila sverige 2013</title>
+    <published>2013-05-21T21:00:00Z</published>
+    <updated>2013-05-21T21:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/05/agila_sverige.html"/>
+    <content type="html">&lt;p&gt;It was time for my second &lt;a href="http://www.agilasverige.se"&gt;agila sverige&lt;/a&gt;. I attended three years ago and wrote &lt;a href="highlevelbits.com/2010/05/agila-sverige-reflections.html‎"&gt;a couple&lt;/a&gt; &lt;a href="www.highlevelbits.com/2010/05/agila-sverige-day-2-refelections.html‎"&gt;of reports&lt;/a&gt; so I will try to do something similar this year.&lt;/p&gt;
+
+&lt;p&gt;A difference this year was finding me on the speakers list. My talk was about not writing too much dry code and it went very well. I got very nice and insightful comments afterwards so I am happy about it. It was some time since I did this kind of public speaking so I was a bit nervous. But as always I got comments on how calm I seemed. I am apparently good at hiding my nervousness. I definitely need to do this more often.&lt;/p&gt;
+
+&lt;p&gt;A theme that hasn’t gone away since the last time I attended is the reorientation of &lt;em&gt;old&lt;/em&gt; roles in the new agile world. The old way of thinking in roles seems to be hard to get rid of. This year I sense that the focus on management has faded a bit. Maybe the roles &lt;em&gt;product owner&lt;/em&gt; and &lt;em&gt;scrum master&lt;/em&gt; has settled a bit? I heard other say the opposite so maybe I just avoided those sessions. Talking about testing prevails as before but it seems like test automation (and automation overall) is more of a given now. A definite trend is the need to talk about requirements gathering. I suspect that teams that has been doing agile for a while have a clear sense of lacking overview images/sketches/diagrams of their system. On the other hand what does &lt;em&gt;doing agile&lt;/em&gt; even mean these days….?!?&lt;/p&gt;
+
+&lt;p&gt;Some talks worthy of mention (that would be all talks but then this post would be sooooo long):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Impact mapping was one of the new things for me. Staffan Nöteberg kicked of the conference by using it to explain how to avoid expensive no-result projects.&lt;/li&gt;
+  &lt;li&gt;Peter Antman talked about code ownership and the tragedy of the commons. Stuffed with references to high knowledge he ended with a list of things that can make &lt;em&gt;commons&lt;/em&gt; work.&lt;/li&gt;
+  &lt;li&gt;One entire talk in rhyme by Marcus Hammarberg about always failing when introducing an agile way of working in large organisation.&lt;/li&gt;
+  &lt;li&gt;Martin Christensen had an improved version of the user story format that looked really nice.&lt;/li&gt;
+  &lt;li&gt;Jimmy Janlen alias the evil coach made a great performance about how to continue &lt;em&gt;bad&lt;/em&gt; practices in the name of agile. Very entertaining.&lt;/li&gt;
+  &lt;li&gt;How to shave that yak was explained in a humorous yet thought provoking way by Gabriel Falkenberg. &lt;em&gt;It might become hairy!&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;The agical crew represented by Ville Svärd and Tobbe Anderberg presented mob programming. Sort of pair programming taken one huge step further. The idea is to let the whole team program together on one (1) computer. This is truly innovative and may actually be a good thing to do. The increase in quality will be huge, the learning curve of team members drastically improved not to mention the happiness. Will it be more productive than the &lt;em&gt;normal&lt;/em&gt; way? Hard to tell. Maybe not but the increase in quality may well be worth it anyway. I hope I will be able to try it soonish in some setting.&lt;/li&gt;
+  &lt;li&gt;Andreas Larsson declared the end of the agile revolution and prompted us to start reigning. There are no true opponents of agile left. We all like it! I wonder if this is because it has been watered out over the years or are we truly changing?&lt;/li&gt;
+  &lt;li&gt;The ending lightning talk was an amazing performance by Adam Killander where he acted out a developer that had to choose between new development and maintenance. In the end he was preaching fundamentalist maintenance to the masses. Check it out in &lt;a href="https://agilasverige.solidtango.com"&gt;them streams&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In addition to talks there were a bunch of open spaces of which I only attended five due to cloning incapabilities:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How to write requirements. I went to this one mostly to hear how we talk about this nowadays. I found that not much has changed but there are people executing their specs (cucumber sorta) - that was nice to hear.&lt;/li&gt;
+  &lt;li&gt;About getting stuck in technical decisions. We often decide what technical solution to choose based on what we user before, what skill set we have or what seems to be the common choice at the moment rather than base on what technology best suits the problem at hand. One example of this is how we user object oriented techniques to build web sites - a very functional problem space.&lt;/li&gt;
+  &lt;li&gt;The mob programming talk extended into a very creative open space.&lt;/li&gt;
+  &lt;li&gt;About competence. Andreas Larsson showed how he divides competence into the three sub parts technical, domain and personality. An interesting discussion around this.&lt;/li&gt;
+  &lt;li&gt;The final one was about (and with) senior developers. Why are they not in abundance? Why do many move on to other roles? How sad is it that we are losing a fair bit of knowledge in this way? Thought provoking and yet another reminder to stay in continuous learning mode.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some obligatory ending comments about the venue. This one works better than the old one. The two rooms used for the two tracks are next to each other so it is easy to change between in the 2 minute breaks. The food has been good and coffee has been available in abundance. The dinner was served in the main conference room which made it all stick together nicely.&lt;/p&gt;
+
+&lt;p&gt;The conference ended with sorta a retrospective. Post-its on the wall and on the chest and some mingling talking about experiences from the conference. Great to just talk about how great it was for a couple of minutes.&lt;/p&gt;
+
+&lt;p&gt;Huge amounts of thanks to the organizers.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-05-04:/2013/05/camera_fun.html</id>
     <title type="html">cool photos</title>
@@ -445,28 +488,5 @@ trick. Check the code to find out how it works.&lt;/p&gt;
 
 &lt;p&gt;All in all a nice experience. I may well do other sites with nanoc in the future.&lt;/p&gt;
 </content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2012-05-28:/2012/05/far-east-culture.html</id>
-    <title type="html">Far east culture</title>
-    <published>2012-05-27T22:12:15Z</published>
-    <updated>2012-05-27T22:12:15Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2012/05/far-east-culture.html"/>
-    <content type="html">&lt;p&gt;I had in mind a series of posts about our trip to the far east but I realize that it will not happen with everything else that is happening now. So I will settle on writing a bit about the culture of Japan and Korea. Beer in mind that we only spent about 3 weeks in total so there is plenty of room for misunderstandings. &lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm8.staticflickr.com/7089/6965682494_87406a6cf0.jpg" alt="harajuku" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The first thing that went missing when leaving Japan is polite and smiling people. In almost every shop you are welcomed by a smiling person that says something to you. Back in Sweden it is rather the exception. Also when looking lost in a street corner with a map there is always someone trying to help. This was even more apparent in Korea than in Japan. Seoul was a bit friendlier in this resepect compared to Japan. All in all I don’t think we met a single person that was not friendly during the trip.&lt;/p&gt;
-
-&lt;p&gt;The low tax on income makes it worthwhile to have small businesses which makes cities much more lively. There are so many small enterprises in both Japan and Korea that makes the countries more alive. It is also something that makes it easier to find something to eat. And yes - the food is awesome. Japanese food is of course about the fish and the rice which we had plenty. But it is also about yakitori, ramen and udon. One of the best meals was a lunch in Kyoto where we got noodles on a fry bench (griddles? - a bit lost about the english word for this….). Korean cuisine may not be that famous in the west but stands up really good. It is not only about the kimchi and it is certainly not just spicy chilliish food as the guide book said. Korean BBQ is often prepared at the table by the guests or by a chef. With meat of good quality and all the nice side dishes it makes for a really intimate way to share a meal. We also took a liking to korean breakfast. It is much the same as a “normal” meal but in smaller quantities. The kimchi and the ever present soup is there and maybe one smaller dish with meat or fish. Also - the ever present cup of tasty green tea. The only thing to grow tired of is all that rice.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm8.staticflickr.com/7055/7053758185_b0364ae8a5.jpg" alt="udon" /&gt;&lt;/p&gt;
-
-&lt;p&gt;From food it is easy to move on to cleanliness. Most restaurants give you warm or cold small wet towels to clean yourself before starting to eat. Such a nice thing to start every meal feeling refreshed especially after a couple of hours of sightseeing. Another great thing about these countries are restrooms everywhere. Every building in Japan seem to have a tidy public restroom. &lt;/p&gt;
-
-&lt;p&gt;We did a bit of sampling of the Japanese onsen (bathing) culture. In Beppu we stayed at a hotel with a couple of private baths that you could book for free by the hour. True balm for the soul to sit in these warm baths and just exist for a while. We could have done much more of this side of Japan but so much to see and just 3 weeks to spend.&lt;/p&gt;
-
-&lt;p&gt;A nice trip and there may be more of the far east soon. Käthes youngest daughter is about to study in Shanghai for a year so maybe we will “have to” visit her around christmas.&lt;/p&gt;
-&lt;div class="old-comments"&gt;&lt;h2&gt;Old comments&lt;/h2&gt;&lt;div class="one-old-comment"&gt;&lt;span class="comment-date"&gt;2012-06-07&lt;/span&gt;&lt;span class="commenter-name"&gt;hardy&lt;/span&gt;&lt;div class="comment-body"&gt;Ahh, sounds awesome. Food, baths and sauna. My passions. I think I need to plan a trip to Japan as well :-)&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content>
   </entry>
 </feed>
