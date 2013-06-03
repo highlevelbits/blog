@@ -51,6 +51,35 @@
   <div class="start-page-article">
     <div class="row">
       <h2 class="article-header">
+        <a href="2013/06/pirate_cinema.html">pirate cinema</a>
+      </h2>
+      <div class="byline">
+        by
+        fredrik
+        on
+        2013-06-03
+      </div>
+    </div>
+    <p><a href="http://www.flickr.com/photos/joi/549393610"><img src="http://farm2.staticflickr.com/1350/549393610_f6119e19fc_m.jpg" style="float:left"></a>
+So I just finished <a href="http://www.goodreads.com/book/show/13539171-pirate-cinema">Pirate Cinema</a> by <a href="http://craphound.com/">Cory Doctorow</a>. A thought provoking quick read.  It is set in a not so distant future where things have gone a little bit more out of hand. In particular the media lobby has succeeded in adding some invasive legislation in the copyright land. So in this future your internet can be turned off if you illegally download copyrighted content. The main character - 16 year old Trent - manages to get his families internet turned off and then runs of to London for some serious squatting and the important fight for reasonable legislation. It turns out fine in some ways - in other ways not so good. Highlights are the improvised cinema in a cemetery where films are projected from trees onto the wall of a chapel, another highlight are mosquito zappers - a kind of hat with built in mosquito zapping lasers. The attention to technical detail is really fun.</p>
+
+<p>This novel is a good solid voice in frightening times where our creative freedom is at stake. Lets hope our ending is a bit better than the setting of Pirate Cinema. This was my first encounter with Cory Doctorow and I certainly will try to read more of his work.</p>
+
+<p>A final word to legislators out there - try to make this world a fun place to live in. Of course - artists should get what they are due - but corporations making a profit out of limiting our creativity should just go away.</p>
+    <center>
+      ------
+    </center>
+    <div class="outro">
+      <i>
+        Even though this was the entire post you may want to leave a comment on the
+        <a href="2013/06/pirate_cinema.html">post page</a>
+        .
+      </i>
+    </div>
+  </div>
+  <div class="start-page-article">
+    <div class="row">
+      <h2 class="article-header">
         <a href="2013/05/agila_sverige.html">agila sverige 2013</a>
       </h2>
       <div class="byline">
@@ -139,212 +168,6 @@
       <i>
         Even though this was the entire post you may want to leave a comment on the
         <a href="2013/05/camera_fun.html">post page</a>
-        .
-      </i>
-    </div>
-  </div>
-  <div class="start-page-article">
-    <div class="row">
-      <h2 class="article-header">
-        <a href="2013/04/tdding_prime_detection.html">detecting prime numbers with Test Driven Development</a>
-      </h2>
-      <div class="byline">
-        by
-        fredrik
-        on
-        2013-04-23
-      </div>
-    </div>
-    <p>This tuesday I held a half day workshop on Test Driven Development for a group of developers
-at Smart Bears Stockholm office. I prepared by writing a
-<a href="2013/04/what_is_tdd.html">generic post about TDD</a> explaining the main principles. During the
-session we used prime number detection as an example kata. This is a very simple problem and
-as such useful to show how to do proper TDD. On the other hand there isn’t much of real world
-problems in there. We started with the tiniest test:</p>
-
-<pre><code>@Test
-public void oneIsPrime(){
-    assertTrue("1 should be a prime", Prime.isPrime(1));
-}
-</code></pre>
-
-<p>and implemented this with:</p>
-
-<pre><code>public class Prime {
-  public static boolean isPrime(int number){
-    return true;
-  }
-}
-</code></pre>
-
-<p>This piece of code is the best thing that fulfills our test so there is no need to get into the
-refactor phase at this stage. The language is called Java if you don’t recognize it.</p>
-
-<p>The next test takes the first non prime number and test it:</p>
-
-<pre><code>@Test
-public void fourIsNotPrime(){
-    assertFalse("4 should not be a prime", Prime.isPrime(4));
-}
-</code></pre>
-
-<p>implemented with:</p>
-
-<pre><code>public static boolean isPrime(int number){
-    if( number == 4 ) return false;
-    return true;
-}
-</code></pre>
-
-<p>Now this can be refactored:</p>
-
-<pre><code>public static boolean isPrime(int number){
-    return number != 4;
-}
-</code></pre>
-
-<p>Note that the refactoring doesn’t add functionality - it just makes the code easier to read. Add another
-non-prime:</p>
-
-<pre><code>@Test
-public void nineIsNotPrime() {
-    assertNotPrime(9);
-}
-</code></pre>
-
-<p>and helper methods to make the test code a little bit easier to read:</p>
-
-<pre><code>public void assertNotPrime(int number){
-    String message = "" + number + " should not be a prime";
-    assertFalse(message, Prime.isPrime(number));
-}
-
-public void assertPrime(int number){
-    String message = "" + number + " should be a prime";
-    assertTrue(message, Prime.isPrime(number));
-}
-</code></pre>
-
-<p>Actually in the workshop we didn’t break out the asserts into methods but went straight for the
-next test code refactoring. The code under test is still naive:</p>
-
-<pre><code>public static boolean isPrime(int number){
-    if( number == 4 || number == 9 ) return false;
-    return true;
-}
-</code></pre>
-
-<p>Now we felt the need to introduce an easier way to test many combinations at once. This is a bit awkward in
-Java and come much more natural in a dynamic language. We used the junit runner Parameterized to be able to
-have one test for each prime we’d like to test while reusing as much of the test code as possible. Here is the
-implementation:</p>
-
-<pre><code>package prime;
-
-import java.util.*;
-
-import org.junit.*;
-import org.junit.runner.*;
-import org.junit.runners.*;
-import org.junit.runners.Parameterized.*;
-
-import static org.junit.Assert.*;
-
-@RunWith(Parameterized.class)
-public class TestPrime {
-    private int number;
-    private boolean isPrime;
-
-    public TestPrime(int number, boolean isPrime){
-        this.number = number;
-        this.isPrime = isPrime;
-    }
-
-    @Parameters
-    public static Collection&lt;Object[]&gt; bunchOfPrimes(){
-        return Arrays.asList(new Object[][]{
-            {1, true},
-            {2, true},
-            {3, true},
-            {4, false},
-            {7, true},
-            {9, false},
-            {10, false},
-            {13, true},
-            {15, false}
-        });
-    }
-
-    @Test
-    public void isPrime(){
-        if(this.isPrime){
-            assertPrime(this.number);
-        } else {
-            assertNotPrime(this.number);
-        }
-    }
-
-    public void assertPrime(int number){
-        String message = "" + number + " should be a prime";
-        assertTrue(message, Prime.isPrime(number));
-    }
-
-    public void assertNotPrime(int number){
-        String message = "" + number + " should not be a prime";
-        assertFalse(message, Prime.isPrime(number));
-    }
-}
-</code></pre>
-
-<p>This is the code that I prepared before the session. When we programmed it in the session we ended up with
-using <code>assertEquals</code> instead of having the helper methods and I think that was a nicer approach.</p>
-
-<p><code>Parameterized</code> requires a method that returns test data. It should have the awkward return type
-<code>Collection&lt;Object[]&gt;</code> - that is a collection of object arrays. Each member of the array should have
-data so that the test class constructor can be called. In our case there is a number - the prime candidate -
-and a boolean indicating if it is expected to be a prime or not. The runner creates one instance per
-data point and runs all Test methods on that one. In our case there is only the <code>isPrime</code> method.</p>
-
-<p>Now all there is left is to implement the real stuff:</p>
-
-<pre><code>public static boolean isPrime(int number){
-  for(int i = 2; i &lt; number; i++) {
-    if(number % i == 0) {
-      return false;
-    }
-  }
-  return true;
-}
-</code></pre>
-
-<p>and a somewhat refactored solution:</p>
-
-<pre><code>public static boolean isPrime(int number){
-  for(int i = 2; i &lt;= sqrt(number); i++) {
-    int remainder = number % i;
-    if(remainder == 0) {
-      return false;
-    }
-  }
-  return true;
-}
-
-private static double sqrt(int number){
-  return Math.sqrt(number);
-}
-</code></pre>
-
-<p>This was a fun but naive exercise. You can follow this code step-by-step in
-<a href="https://github.com/froderik/javaprime">this github repo</a>.
-There are commits and tags for each step in the TDD cycle. There is also a slightly more advanced example
-with prime factorizations.</p>
-    <center>
-      ------
-    </center>
-    <div class="outro">
-      <i>
-        Even though this was the entire post you may want to leave a comment on the
-        <a href="2013/04/tdding_prime_detection.html">post page</a>
         .
       </i>
     </div>
