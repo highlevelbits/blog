@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - css sibling operator (folding divs)</title>
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../awesome/font-awesome-min.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.6.2">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  css sibling operator (folding divs)
+</h2>
+
+  <span class="byline">2013-06-05 by fredrik</span>
+  <span class="tags">
+    
+      <a class="one-tag" href="#css"><span class="icon-tag"></span>css</a>
+    
+  </span>
+
+<p>I have been fiddling with CSS a lot in my current client project. I am no ninja yet but I am getting hold of the elementary stuff at least. Today I made one radio button show a div and another one hide it. To be able to do this you need to know about the sibling operator <code>~</code> that is used to find an element matching the selector that is <em>after</em> the main rule. Consider this markup snippet:</p>
+
+<pre><code>&lt;input checked="checked" class="fold_open" type="radio" value="open" /&gt;
+&lt;input class="fold_closed" type="radio" value="closed" /&gt;
+&lt;div class="foldee"&gt;
+  &lt;!-- some awesome markup here --&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Two radio buttons with classes <code>fold_open</code> and <code>fold_closed</code> respectively. One div with the class <code>foldee</code>. To make the div fold when <code>fold_closed</code> selected and unfold when <code>fold_open</code> is selected - add this css:</p>
+
+<pre><code>.fold_open:checked ~ .foldee {
+  display: block;
+}
+
+.fold_closed:checked ~ .foldee {
+  display: none;
+}
+</code></pre>
+
+<p><a href="http://www.flickr.com/photos/henry-gail/2844798054"><img src="http://farm4.staticflickr.com/3221/2844798054_37bc48f208_m.jpg" style="float:right"></a>
+This means that when the class <code>fold_open</code> is checked (works for radio buttons and check boxes) its sibling <code>foldee</code> will be shown and when <code>fold_closed</code> is checked it will disappear. A tricky thing with the sibling selector is that it only finds elements after its left hand operator. So if you want to hide something above you will have to rearrange your markup and use inspired styling to make it show up in the right place.</p>
+
+<p>This will probably not work in <em>some</em> browsers mayhaps causing a problem depending on your use case and your user base. For a version that is guaranteed to work you will have to write some scripts instead. The amount of code with something like jquery is about the same. But I found it a bit more elegant to do it with css.</p>
+
+<p>The car in the photo is an <a href="http://en.wikipedia.org/wiki/Alfa_Romeo_1900">Alfa Romeo 1900 CSS</a> and it is just here for looks. Find a good photo about css….. It was shot by flickr user Henry Figueroa.</p>
+
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+
+  <div class="dashed-top-border">
+    
+      
+      
+    
+  </div>
+
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,13 +2,47 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2013-06-03T19:00:00Z</updated>
+  <updated>2013-06-05T01:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/rss.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-06-05:/2013/06/css_sibling.html</id>
+    <title type="html">css sibling operator (folding divs)</title>
+    <published>2013-06-05T01:00:00Z</published>
+    <updated>2013-06-05T01:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/06/css_sibling.html"/>
+    <content type="html">&lt;p&gt;I have been fiddling with CSS a lot in my current client project. I am no ninja yet but I am getting hold of the elementary stuff at least. Today I made one radio button show a div and another one hide it. To be able to do this you need to know about the sibling operator &lt;code&gt;~&lt;/code&gt; that is used to find an element matching the selector that is &lt;em&gt;after&lt;/em&gt; the main rule. Consider this markup snippet:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;input checked="checked" class="fold_open" type="radio" value="open" /&amp;gt;
+&amp;lt;input class="fold_closed" type="radio" value="closed" /&amp;gt;
+&amp;lt;div class="foldee"&amp;gt;
+  &amp;lt;!-- some awesome markup here --&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Two radio buttons with classes &lt;code&gt;fold_open&lt;/code&gt; and &lt;code&gt;fold_closed&lt;/code&gt; respectively. One div with the class &lt;code&gt;foldee&lt;/code&gt;. To make the div fold when &lt;code&gt;fold_closed&lt;/code&gt; selected and unfold when &lt;code&gt;fold_open&lt;/code&gt; is selected - add this css:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.fold_open:checked ~ .foldee {
+  display: block;
+}
+
+.fold_closed:checked ~ .foldee {
+  display: none;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="http://www.flickr.com/photos/henry-gail/2844798054"&gt;&lt;img src="http://farm4.staticflickr.com/3221/2844798054_37bc48f208_m.jpg" style="float:right" /&gt;&lt;/a&gt;
+This means that when the class &lt;code&gt;fold_open&lt;/code&gt; is checked (works for radio buttons and check boxes) its sibling &lt;code&gt;foldee&lt;/code&gt; will be shown and when &lt;code&gt;fold_closed&lt;/code&gt; is checked it will disappear. A tricky thing with the sibling selector is that it only finds elements after its left hand operator. So if you want to hide something above you will have to rearrange your markup and use inspired styling to make it show up in the right place.&lt;/p&gt;
+
+&lt;p&gt;This will probably not work in &lt;em&gt;some&lt;/em&gt; browsers mayhaps causing a problem depending on your use case and your user base. For a version that is guaranteed to work you will have to write some scripts instead. The amount of code with something like jquery is about the same. But I found it a bit more elegant to do it with css.&lt;/p&gt;
+
+&lt;p&gt;The car in the photo is an &lt;a href="http://en.wikipedia.org/wiki/Alfa_Romeo_1900"&gt;Alfa Romeo 1900 CSS&lt;/a&gt; and it is just here for looks. Find a good photo about css….. It was shot by flickr user Henry Figueroa.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-06-03:/2013/06/pirate_cinema.html</id>
     <title type="html">pirate cinema</title>
@@ -271,186 +305,6 @@ private static double sqrt(int number){
 &lt;a href="https://github.com/froderik/javaprime"&gt;this github repo&lt;/a&gt;.
 There are commits and tags for each step in the TDD cycle. There is also a slightly more advanced example
 with prime factorizations.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-04-14:/2013/04/what_is_tdd.html</id>
-    <title type="html">what is tdd?</title>
-    <published>2013-04-14T12:12:12Z</published>
-    <updated>2013-04-14T12:12:12Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/04/what_is_tdd.html"/>
-    <content type="html">&lt;p&gt;I am doing a bit of coaching on Test Driven Development (TDD) this month and had to start
-think about the topic a bit and thus this post. I have been doing TDD since the ages of
-eXtreme Programming in the late 90’s. It now is so natural to me so I never feel done
-without having proper code coverage. Yet at times there are circumstances where I decide
-not to do it and that has almost always to do with large code bases without existing test
-infrastructure. The cost to get started can be so high sometimes. This piece will include
-a definition of TDD and a collection of things to keep in mind when practicing it. In a
-future post I will step you through a code example using the technique.&lt;/p&gt;
-
-&lt;p&gt;Many may think of TDD as something related to testing and quality - boooooring stuff. In
-fact it turns out that it is truly a software development method. When applied consistently
-it helps with many of the typical problems software projects encounter. I will end this post
-with discussing the benefits of TDD.&lt;/p&gt;
-
-&lt;p&gt;The classic way to describe TDD is with the red-green-refactor mantra and I think it is
-really good to have this &lt;em&gt;easy to understand&lt;/em&gt; description of the concept. Red -
-write at test that fails, green - unfail the test, refactor - adapt the resulting code
-with its surroundings. Lets examine these parts one by one.&lt;/p&gt;
-
-&lt;h3 id="red"&gt;Red&lt;/h3&gt;
-
-&lt;p&gt;In the red phase - &lt;strong&gt;write a test&lt;/strong&gt; that fails. This is the specification of what you are about
-to do next. It defines the scope of the task. You may want to understand it as your &lt;em&gt;definition
-of done&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;This test should test only one thing in order to keep changes small. If the test is small - it is
-likely that the code fulfilling the test also will be small and you’ll end up with a nice change
-set to put in your repository.&lt;/p&gt;
-
-&lt;p&gt;It may help thinking about specifications rather than tests. What you really do when writing
-the test upfront is designing the interface of the unit under test. It is the first usage of
-the upcoming code and as such is a great way to understand what is really needed from the code.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://www.flickr.com/photos/martinlabar/159577406"&gt;&lt;img style="float:right" src="http://farm1.staticflickr.com/64/159577406_f681497ca1.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id="green"&gt;Green&lt;/h3&gt;
-
-&lt;p&gt;In the green phase - &lt;strong&gt;unfail the test&lt;/strong&gt; - write the code that makes the test pass. May it be with
-shortcuts, magic numbers and whatnots. It should make the test pass - nothing more, nothing less.
-Most of the thinking has already been done in the red phase so this may turn out to be rather easy.
-Actually - if it turns out to be hard it may well be that the test written is a bit too large.&lt;/p&gt;
-
-&lt;h3 id="refactor"&gt;Refactor&lt;/h3&gt;
-
-&lt;p&gt;In the refactor phase - &lt;strong&gt;rewrite the code&lt;/strong&gt; written in the green phase. I like to think of this
-as adapting the new code into the surrounding code base. Another way to put it is: remove duplication.
-The most important thing to keep in mind during this phase is to NOT ADD ANY FUNCTIONALITY. The code
-should behave exactly the same but now be written in a way that is readable and maintainable. How exactly
-this is may differ between languages, organisations and teams. To make sure that the code really conforms
-to the standards set you could choose between &lt;em&gt;pair programming&lt;/em&gt; and &lt;em&gt;code review&lt;/em&gt;. It may also be
-helpful to have som static code analyzers in place to detect common mistakes.&lt;/p&gt;
-
-&lt;h3 id="understand"&gt;Understand&lt;/h3&gt;
-
-&lt;p&gt;When thinking about processes and methods I sometimes fall back to this kentbeckism:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Listening, Testing, Coding, Refactoring.
-That’s all there is to software.
-Anyone who tells you different is selling something.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;As you can see red-green-refactor maps nicely to testing-coding-refactoring and then we have the added
-&lt;em&gt;listening&lt;/em&gt;. What this means - of course - is to make sure that you build the right stuff. You have
-to listen to the user of the system, you have to listen to (understand) the domain you work in. Only
-then can you make sure that the spec you will be writing in the red phase is the right spec. If the
-spec is not what is needed the whole cycle will be waste.&lt;/p&gt;
-
-&lt;p&gt;With that said the basics has been covered. Lets take a look at some issues and possibilities.&lt;/p&gt;
-
-&lt;h3 id="coding-guidelines"&gt;Coding guidelines?&lt;/h3&gt;
-
-&lt;p&gt;Way back I often regarded test code as something that could be treated without care - a possibility to
-do some cowboy hacking. This is a dangerous stand. Nowadays I think that the test code may be the most
-important code to keep in shape. If well written it will serve as documentation for the system. In any
-living system it is also the place where any new developer starts off when making changes. It should
-be easy to add and alter tests. Generally it is wise to have the same coding guidelines for test code
-as for the system as a whole. The only thing that may differ is the degree of DRY (don’t repeat yourself).
-Readable test code may sometime benefit from duplication. Setup code that calls generic methods makes
-the test hard to follow - better to hardwire setup data that is relevant for the test and hide any setup
-that is just boiler plate. Readability is more important than DRY-ness when it comes to test code.&lt;/p&gt;
-
-&lt;h3 id="test-to-code-mapping"&gt;Test to code mapping&lt;/h3&gt;
-
-&lt;p&gt;A common practice is to have one test class per class and often you also see one test method per method.
-This may or may not be a good idea. The class-to-class mapping is good most of the time since it is
-really easy to find relevant tests. If test files are growing out of control it is probably an indication
-that the unit under test is in need of refactoring. The same goes for methods. A test method should test
-one thing and if the method under test can be tested with only one test method this is good. But in many
-cases this makes for bad test design so it really depends. Which leads us to….&lt;/p&gt;
-
-&lt;h3 id="test-design"&gt;Test design&lt;/h3&gt;
-
-&lt;p&gt;While a good design may emerge from TDD it may be easy to forget the design of the test code itself.
-The common principles of designing software should be applied equally to this code but with readability
-as the most important aspect.&lt;/p&gt;
-
-&lt;h3 id="coverage"&gt;Coverage&lt;/h3&gt;
-
-&lt;p&gt;Ideally - every code line is covered when running all tests. This is almost never the case. Some languages
-makes it hard to get full coverage (think about javas checked exceptions that never occur). Legacy code
-bases may have areas where intermingling dependencies makes it impossible to add any unit tests at all.
-Black box acceptance like tests are likely the best approach to these cases. That said, it is never a bad
-thing to strive for 100% code coverage. One way to make this possible is to stay small. If a method under
-test does one thing it may be tested with one scenario but if it does several different things the number of
-needed scenarios will multiply and increase the test code size exponentially.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://www.flickr.com/photos/mike9alive/447845750"&gt;&lt;img style="float:left" src="http://farm1.staticflickr.com/204/447845750_87dd3c1a48.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id="no-coverage"&gt;No coverage&lt;/h3&gt;
-&lt;p&gt;Sadly enough - there are code bases with next to no code coverage. This may make it hard to get started.
-In these cases it is often best to do some integration tests on the whole first before starting to mess
-around. Then - if possible - add unit tests whenever new code is written. Some parts may be next to
-impossible to unit test without a non-estimable refactoring. Depending on your budget you’ll have to decide
-whether to attempt a refactoring or not. When using static languages it may often be safe to do refactorings
-like &lt;em&gt;extract something&lt;/em&gt; and &lt;em&gt;inline something&lt;/em&gt;. It may be enough to get some part of the code into
-testable shape.&lt;/p&gt;
-
-&lt;p&gt;Also note that the refactor phase may result in small TDD loops on other parts of the system
-in order to do a refactoring safely. This is because you may want to integrate your changes into some part
-of the system that currently lack tests. In these cases it may be better to finish the task at hand in a decent
-shape before moving on to tackle the needed refactoring in a new red-green-refactor cycle.&lt;/p&gt;
-
-&lt;h3 id="what-about-user-interfaces"&gt;What about user interfaces?&lt;/h3&gt;
-
-&lt;p&gt;Yes! Test them also. That a user interface looks good can never be tested automatically. At least not until
-we get sentient AIs that can understand the feelings of humans… But the code inside the user interface
-can be tested. Any code that is complex can be extracted into testable units. The actual composition of a
-user interface may not be possible to test (depending on the technique used) but the code needed to compose
-it sure may. This will also lead to a good separation of concerns in the UI code base. That the whole thing
-sits together nicely is best tested with integration/acceptance tests. Most common user interface technologies
-have some kind of framework for this and if you lack this there are user interface robots for the common
-platforms that knows how to enter characters in fields and click buttons. For the web there are several good
-options that also tests dynamic content on a web page. I have good experiences with
-&lt;a href="https://github.com/jnicklas/capybara"&gt;capybara&lt;/a&gt; using the webkit driver. In Java land there is
-&lt;a href="http://docs.seleniumhq.org/projects/webdriver/"&gt;selenium&lt;/a&gt; that makes it easy to write javascript-aware tests.
-For static sites it is even easier.&lt;/p&gt;
-
-&lt;h3 id="what-language-to-write-tests-in"&gt;What language to write tests in?&lt;/h3&gt;
-
-&lt;p&gt;Most of the time it makes sense to write tests in the same language as the units under test. As a developer you
-don’t need to switch in another syntax cartridge. But for some languages (Java comes to mind) the amount of
-code needed to write anything may make it worthwhile looking at a dynamic languages for tests. Groovy is probably
-most handy for testing Java although any dynamic languages that runs on the JVM will do fine.&lt;/p&gt;
-
-&lt;h3 id="continuous-integration"&gt;Continuous integration&lt;/h3&gt;
-
-&lt;p&gt;I have written extensively about &lt;a href="http://highlevelbits.com/2010/11/continuous-integration-essentials.html"&gt;this elsewhere&lt;/a&gt;
-so at the moment I will just take it down to: TDD without continuous integration is wasteful.&lt;/p&gt;
-
-&lt;h3 id="so-what-are-the-benefits-of-working-this-way"&gt;So what are the benefits of working this way?&lt;/h3&gt;
-
-&lt;p&gt;There are benefits at several levels. On the personal level TDD gives a sense of accomplishment and a secureness that the
-code delivered actually works and adds value to the whole. But this may differ from person to person. The more obvious benefits
-are on the organizational level:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;stability - the code base will be stable over time. New features won’t break old ones.&lt;/li&gt;
-  &lt;li&gt;predictability - it will be easier to predict the outcome of a project since the code base will be in a known state. Estimates
-may actually turn out to be correct!&lt;/li&gt;
-  &lt;li&gt;readability - the code produced will be readable which in turn will make the system maintainable.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So the benefits are huge - there are no known disadvantages. If you are not doing TDD today I hope this article sparked
-some inspiration. If you feel you need guidance to get going I or one of many other TDD coaches will be happy to help you out.&lt;/p&gt;
-
-&lt;p&gt;While researching images for my TDD presentation I stumbled upon this guy. Kind of not related but awesome nevertheless.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://www.flickr.com/photos/photochiel/2043747282"&gt;&lt;img src="http://farm3.staticflickr.com/2201/2043747282_eaa5239696_b.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Photo credits to flickr users &lt;a href="http://www.flickr.com/photos/martinlabar"&gt;martinlabar&lt;/a&gt;,
-&lt;a href="http://www.flickr.com/photos/mike9alive"&gt;mike9alive&lt;/a&gt; and &lt;a href="http://www.flickr.com/photos/photochiel"&gt;photochiel&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>

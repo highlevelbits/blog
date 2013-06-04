@@ -51,6 +51,55 @@
   <div class="start-page-article">
     <div class="row">
       <h2 class="article-header">
+        <a href="2013/06/css_sibling.html">css sibling operator (folding divs)</a>
+      </h2>
+      <div class="byline">
+        by
+        fredrik
+        on
+        2013-06-05
+      </div>
+    </div>
+    <p>I have been fiddling with CSS a lot in my current client project. I am no ninja yet but I am getting hold of the elementary stuff at least. Today I made one radio button show a div and another one hide it. To be able to do this you need to know about the sibling operator <code>~</code> that is used to find an element matching the selector that is <em>after</em> the main rule. Consider this markup snippet:</p>
+
+<pre><code>&lt;input checked="checked" class="fold_open" type="radio" value="open" /&gt;
+&lt;input class="fold_closed" type="radio" value="closed" /&gt;
+&lt;div class="foldee"&gt;
+  &lt;!-- some awesome markup here --&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Two radio buttons with classes <code>fold_open</code> and <code>fold_closed</code> respectively. One div with the class <code>foldee</code>. To make the div fold when <code>fold_closed</code> selected and unfold when <code>fold_open</code> is selected - add this css:</p>
+
+<pre><code>.fold_open:checked ~ .foldee {
+  display: block;
+}
+
+.fold_closed:checked ~ .foldee {
+  display: none;
+}
+</code></pre>
+
+<p><a href="http://www.flickr.com/photos/henry-gail/2844798054"><img src="http://farm4.staticflickr.com/3221/2844798054_37bc48f208_m.jpg" style="float:right"></a>
+This means that when the class <code>fold_open</code> is checked (works for radio buttons and check boxes) its sibling <code>foldee</code> will be shown and when <code>fold_closed</code> is checked it will disappear. A tricky thing with the sibling selector is that it only finds elements after its left hand operator. So if you want to hide something above you will have to rearrange your markup and use inspired styling to make it show up in the right place.</p>
+
+<p>This will probably not work in <em>some</em> browsers mayhaps causing a problem depending on your use case and your user base. For a version that is guaranteed to work you will have to write some scripts instead. The amount of code with something like jquery is about the same. But I found it a bit more elegant to do it with css.</p>
+
+<p>The car in the photo is an <a href="http://en.wikipedia.org/wiki/Alfa_Romeo_1900">Alfa Romeo 1900 CSS</a> and it is just here for looks. Find a good photo about css….. It was shot by flickr user Henry Figueroa.</p>
+    <center>
+      ------
+    </center>
+    <div class="outro">
+      <i>
+        Even though this was the entire post you may want to leave a comment on the
+        <a href="2013/06/css_sibling.html">post page</a>
+        .
+      </i>
+    </div>
+  </div>
+  <div class="start-page-article">
+    <div class="row">
+      <h2 class="article-header">
         <a href="2013/06/pirate_cinema.html">pirate cinema</a>
       </h2>
       <div class="byline">
@@ -137,37 +186,6 @@ So I just finished <a href="http://www.goodreads.com/book/show/13539171-pirate-c
       <i>
         Even though this was the entire post you may want to leave a comment on the
         <a href="2013/05/agila_sverige.html">post page</a>
-        .
-      </i>
-    </div>
-  </div>
-  <div class="start-page-article">
-    <div class="row">
-      <h2 class="article-header">
-        <a href="2013/05/camera_fun.html">cool photos</a>
-      </h2>
-      <div class="byline">
-        by
-        fredrik
-        on
-        2013-05-04
-      </div>
-    </div>
-    <p>Had some fun with the camera today.</p>
-
-<p><img src="http://farm9.staticflickr.com/8267/8708350808_05f235587c_z.jpg" alt="">
-<img src="http://farm9.staticflickr.com/8418/8708352708_9a36fbda12_z.jpg" alt="">
-<img src="http://farm9.staticflickr.com/8256/8708354468_e350932458_z.jpg" alt="">
-<img src="http://farm9.staticflickr.com/8414/8707233857_a24b5f5555_z.jpg" alt="">
-<img src="http://farm9.staticflickr.com/8400/8708357766_bd655013f5_z.jpg" alt="">
-<img src="http://farm9.staticflickr.com/8279/8707236779_d7c966d82d_z.jpg" alt=""></p>
-    <center>
-      ------
-    </center>
-    <div class="outro">
-      <i>
-        Even though this was the entire post you may want to leave a comment on the
-        <a href="2013/05/camera_fun.html">post page</a>
         .
       </i>
     </div>
