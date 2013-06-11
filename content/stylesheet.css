@@ -31,8 +31,6 @@ a:hover {
 
 pre, code {
   font-family: Courier New;
-  background-color: #400002;
-  color: white;
   font-size: 15px;
   white-space: pre-wrap;
 }
@@ -43,6 +41,7 @@ pre {
   margin-left: 40px;
   margin-bottom: 10px;
   margin-right: 40px;
+  border: dashed 2px lightgray;
 }
 
 p {
