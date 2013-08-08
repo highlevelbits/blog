@@ -2,13 +2,36 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2013-06-05T01:00:00Z</updated>
+  <updated>2013-08-08T23:07:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-08-09:/2013/08/freedom.html</id>
+    <title type="html">freedom</title>
+    <published>2013-08-08T23:07:00Z</published>
+    <updated>2013-08-08T23:07:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/08/freedom.html"/>
+    <content type="html">&lt;p&gt;&lt;a href="http://www.flickr.com/photos/jollino/5736137535"&gt;&lt;img src="http://farm3.staticflickr.com/2182/5736137535_dee0bcbd61.jpg" style="float:right" /&gt;&lt;/a&gt; I need to write a little piece on freedom. Recent affairs regarding surveillance carried out by a huge democracy and self proclaimed defender of freedom has made me think. No new splendid thoughts - just a reminder of some important things. &lt;/p&gt;
+
+&lt;p&gt;In a distant past the Internet was a place where anyone could share information using open standards. The infrastructure of the internet creates a place where information is published and interchanged at will but controlled by the user. Lets call this the &lt;strong&gt;personal internet&lt;/strong&gt;. As the personal internet grew and proved useful for the masses so did the business value of having a corporate presence on the internet. This shift started to happen about 15 years ago and is probably not complete yet. Lets call this the &lt;strong&gt;corporate internet&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;The corporate internet is made up of many different business interests. There are &lt;em&gt;old&lt;/em&gt; companies that increasingly do their business using the web. Different industries have reached different levels of maturity. Some industries have embraced the net fully and do most of their business netwise while other industries are more physical in nature and so will only use the web for parts of their business anyway. Then there are new companies that have as their sole business idea to do things on the web. Some of them has grown rather big and are now full blown multinational corporations with all that comes with it.&lt;/p&gt;
+
+&lt;p&gt;It is likely that data communications always has been monitored by government agencies but the shift towards the corporate internet surely has made it harder to control for the individual. We all give away much of our data and our interactions to big players like facebook, apple and google. And these companies do not use open standards for these interchanges. If you want to communicate with a facebook user you are doomed to be a facebook user yourself. Far from the open and highly distributed mechanisms of email for example. (Or news if anyone remembers?) And most of us just don’t care at all. Convenience makes it so easy compared to freer alternatives.&lt;/p&gt;
+
+&lt;p&gt;(Sidenote: yes I am aware that facebook uses open standards like HTTP and HTML to communicate with its users. The point here is that they are not using an open standard for the communication between users.)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="www.flickr.com/photos/nolifebeforecoffee/124659356"&gt;&lt;img src="http://farm1.staticflickr.com/1/124659356_bbe1e5b661.jpg" style="float:left" /&gt;&lt;/a&gt; In comes surveillance. As soon as we give away the infrastructure of our interactions to business interests we also give away the control over access to those interactions. Suddenly it is someone else’s corporate decision whether to give away my information to a government agency or not. In the old world it used to be a court order that could enforce surveillance. Sure - the web of open standards can also easily be compromised by whomever wants to listen in. Me for one don’t care much about that since nothing I write is sensitive in any way. It is a matter of principles. I shouldn’t be afraid to say &lt;em&gt;anything&lt;/em&gt; anywhere on the internet. The authorities should not listen in. It reduces my freedom.&lt;/p&gt;
+
+&lt;p&gt;All in all - we really need to &lt;em&gt;abandon&lt;/em&gt; social networks and internet companies that are not using open standards for communication. We should be able to use whatever software we like to interact with each other. The &lt;em&gt;corporate internet&lt;/em&gt; needs to be controlled by the standards of the &lt;em&gt;personal internet&lt;/em&gt;. &lt;strong&gt;Don’t let them reduce our freedom.&lt;/strong&gt; Start today by looking at &lt;a href="https://prism-break.org/"&gt;this list of alternative solutions&lt;/a&gt; and start using the thing that hurts the least. &lt;/p&gt;
+
+&lt;p&gt;(And yes - I am a pharisee writing this on my Apple computer. And I will probably post it on one or several proprietary social networks. Sorry about that…)&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-06-05:/2013/06/css_sibling.html</id>
     <title type="html">css sibling operator (folding divs)</title>
@@ -114,197 +137,6 @@ So I just finished &lt;a href="http://www.goodreads.com/book/show/13539171-pirat
 &lt;img src="http://farm9.staticflickr.com/8414/8707233857_a24b5f5555_z.jpg" alt="" /&gt;
 &lt;img src="http://farm9.staticflickr.com/8400/8708357766_bd655013f5_z.jpg" alt="" /&gt;
 &lt;img src="http://farm9.staticflickr.com/8279/8707236779_d7c966d82d_z.jpg" alt="" /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-04-23:/2013/04/tdding_prime_detection.html</id>
-    <title type="html">detecting prime numbers with Test Driven Development</title>
-    <published>2013-04-22T22:00:00Z</published>
-    <updated>2013-04-22T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/04/tdding_prime_detection.html"/>
-    <content type="html">&lt;p&gt;This tuesday I held a half day workshop on Test Driven Development for a group of developers
-at Smart Bears Stockholm office. I prepared by writing a
-&lt;a href="/2013/04/what_is_tdd.html"&gt;generic post about TDD&lt;/a&gt; explaining the main principles. During the
-session we used prime number detection as an example kata. This is a very simple problem and
-as such useful to show how to do proper TDD. On the other hand there isn’t much of real world
-problems in there. We started with the tiniest test:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@Test
-public void oneIsPrime(){
-    assertTrue("1 should be a prime", Prime.isPrime(1));
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and implemented this with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public class Prime {
-  public static boolean isPrime(int number){
-    return true;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This piece of code is the best thing that fulfills our test so there is no need to get into the
-refactor phase at this stage. The language is called Java if you don’t recognize it.&lt;/p&gt;
-
-&lt;p&gt;The next test takes the first non prime number and test it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@Test
-public void fourIsNotPrime(){
-    assertFalse("4 should not be a prime", Prime.isPrime(4));
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;implemented with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
-    if( number == 4 ) return false;
-    return true;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now this can be refactored:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
-    return number != 4;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that the refactoring doesn’t add functionality - it just makes the code easier to read. Add another
-non-prime:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@Test
-public void nineIsNotPrime() {
-    assertNotPrime(9);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and helper methods to make the test code a little bit easier to read:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public void assertNotPrime(int number){
-    String message = "" + number + " should not be a prime";
-    assertFalse(message, Prime.isPrime(number));
-}
-
-public void assertPrime(int number){
-    String message = "" + number + " should be a prime";
-    assertTrue(message, Prime.isPrime(number));
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Actually in the workshop we didn’t break out the asserts into methods but went straight for the
-next test code refactoring. The code under test is still naive:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
-    if( number == 4 || number == 9 ) return false;
-    return true;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we felt the need to introduce an easier way to test many combinations at once. This is a bit awkward in
-Java and come much more natural in a dynamic language. We used the junit runner Parameterized to be able to
-have one test for each prime we’d like to test while reusing as much of the test code as possible. Here is the
-implementation:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;package prime;
-
-import java.util.*;
-
-import org.junit.*;
-import org.junit.runner.*;
-import org.junit.runners.*;
-import org.junit.runners.Parameterized.*;
-
-import static org.junit.Assert.*;
-
-@RunWith(Parameterized.class)
-public class TestPrime {
-    private int number;
-    private boolean isPrime;
-
-    public TestPrime(int number, boolean isPrime){
-        this.number = number;
-        this.isPrime = isPrime;
-    }
-
-    @Parameters
-    public static Collection&amp;lt;Object[]&amp;gt; bunchOfPrimes(){
-        return Arrays.asList(new Object[][]{
-            {1, true},
-            {2, true},
-            {3, true},
-            {4, false},
-            {7, true},
-            {9, false},
-            {10, false},
-            {13, true},
-            {15, false}
-        });
-    }
-
-    @Test
-    public void isPrime(){
-        if(this.isPrime){
-            assertPrime(this.number);
-        } else {
-            assertNotPrime(this.number);
-        }
-    }
-
-    public void assertPrime(int number){
-        String message = "" + number + " should be a prime";
-        assertTrue(message, Prime.isPrime(number));
-    }
-
-    public void assertNotPrime(int number){
-        String message = "" + number + " should not be a prime";
-        assertFalse(message, Prime.isPrime(number));
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is the code that I prepared before the session. When we programmed it in the session we ended up with
-using &lt;code&gt;assertEquals&lt;/code&gt; instead of having the helper methods and I think that was a nicer approach.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Parameterized&lt;/code&gt; requires a method that returns test data. It should have the awkward return type
-&lt;code&gt;Collection&amp;lt;Object[]&amp;gt;&lt;/code&gt; - that is a collection of object arrays. Each member of the array should have
-data so that the test class constructor can be called. In our case there is a number - the prime candidate -
-and a boolean indicating if it is expected to be a prime or not. The runner creates one instance per
-data point and runs all Test methods on that one. In our case there is only the &lt;code&gt;isPrime&lt;/code&gt; method.&lt;/p&gt;
-
-&lt;p&gt;Now all there is left is to implement the real stuff:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
-  for(int i = 2; i &amp;lt; number; i++) {
-    if(number % i == 0) {
-      return false;
-    }
-  }
-  return true;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and a somewhat refactored solution:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public static boolean isPrime(int number){
-  for(int i = 2; i &amp;lt;= sqrt(number); i++) {
-    int remainder = number % i;
-    if(remainder == 0) {
-      return false;
-    }
-  }
-  return true;
-}
-
-private static double sqrt(int number){
-  return Math.sqrt(number);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This was a fun but naive exercise. You can follow this code step-by-step in
-&lt;a href="https://github.com/froderik/javaprime"&gt;this github repo&lt;/a&gt;.
-There are commits and tags for each step in the TDD cycle. There is also a slightly more advanced example
-with prime factorizations.&lt;/p&gt;
 </content>
   </entry>
 </feed>
