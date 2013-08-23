@@ -1,8 +1,8 @@
 <h2 class="article-header">
   <%= "#{@item[:title]}" %>
 </h2>
+<span class="byline"><%= "#{@item[:created_at].strftime '%F'} by #{@item[:author]}" %></span>
 <% if @item[:tags] %>
-  <span class="byline"><%= "#{@item[:created_at].strftime '%F'} by #{@item[:author]}" %></span>
   <span class="tags">
     <% tags_for( @item ).each do |one_tag| %>
       <a class="one-tag" href="#<%= one_tag %>"><span class="icon-tag" /><%= one_tag %></a>
