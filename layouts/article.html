@@ -5,7 +5,10 @@
 <% if @item[:tags] %>
   <span class="tags">
     <% tags_for( @item ).each do |one_tag| %>
-      <a class="one-tag" href="#<%= one_tag %>"><span class="icon-tag" /><%= one_tag %></a>
+      <% similar_articles = items_tagged_with one_tag, [@item] %>
+      <% if similar_articles.any? %>
+        <a class="one-tag" href="#<%= one_tag %>"><span class="icon-tag" /><%= one_tag %></a>
+      <% end %>
     <% end %>
   </span>
 <% end %>

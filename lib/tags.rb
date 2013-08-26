@@ -1,11 +1,3 @@
-
-class Object
-  def present?
-    understands_empty = self.respond_to?( :empty? )
-    not self.nil? and (understands_empty ? self.empty? : true)
-  end
-end
-
 def tags_for item
   if item[:tags]
     item[:tags].split(',').map {|tag| tag.strip }
@@ -16,8 +8,8 @@ end
 
 def items_tagged_with tag, except = []
   other_items = @items - except
-  other_items.select do |i|
-    tags_for(i).include?(tag)
+  other_items.select do |item|
+    tags_for(item).include?(tag)
   end
 end
 
