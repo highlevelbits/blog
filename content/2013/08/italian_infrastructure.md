@@ -3,7 +3,7 @@ title: infrastructure shots
 kind: article
 created_at: 2013-08-12 14:07:00
 author: fredrik
-tags: photo, italy, traveling
+tags: photo, italy, traveling, history
 ---
 
 We were fortunate enough to spend a couple of weeks in Italy. A great country always worth returning to. I read a book during the vacation about how Italy managed to become one. Seems like it was mostly a piedmontesian project when it started. Most of Italy were not that keen on the idea. Somehow they managed to pull it through but it is good to keep in mind that the different country parts have very different background, history and culture. Even the food changes a lot as you travel around. We focused on northern italy this time. We decided to go about by train and stayed in 4 cities during our trip. In this post I will show some nice shots of infrastructure (in a broad meaning) I took during the trip. Lets start in Milan with a [nice old tram](http://www.flickr.com/photos/froderik/9374266046/).
