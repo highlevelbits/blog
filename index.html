@@ -51,6 +51,94 @@
   <div class="start-page-article">
     <div class="row">
       <h2 class="article-header">
+        <a href="2013/09/pragmatic_unit_testing_with_go.html">pragmatic unit testing with go</a>
+      </h2>
+      <div class="byline">
+        by
+        fredrik
+        on
+        2013-09-08
+      </div>
+    </div>
+    <p><a href="http://www.flickr.com/photos/ajstarks/8461414333"><img style="float:right" src="http://farm9.staticflickr.com/8373/8461414333_4a30e15dd3_m.jpg"></a></p>
+
+<p>I am fortunate to code some <a href="http://golang.org/">go</a> at my new assignment. I had some two weeks with the language last fall but apart from that it is new unmarked land for me. It is a nice language that is easy to learn and does things in very different ways. You get started really fast but with that nagging feeling that there is much more to learn around the corner. I suspect that you can be really productive in go. If you like your strong types and a bit lower level than normal you will get back performance only matched by C and a robust piece of code. </p>
+
+<p>Needless to say - the benefits of unit tests in a strongly typed and opionionated language like go is a bit lower than in dynamic languages like ruby, python and javascript. It is still necessary to keep your code base stable over time. So I have tried it out a bit. I started with the <a href="http://golang.org/pkg/testing/">standard library approach</a> where you get something like this:</p>
+
+<pre><code>func TestSomething(t *testing.T) {
+  something := false
+  if something {
+    t.Log("Oh noes - something is false")
+    t.Fail()      
+  }
+}
+</code></pre>
+
+<p>Oh no. This is a bit verbose for my taste. Some four lines to do an assert…. Sure, you can add some semicolons and get in one line but with reduced readability. I sort of hoped that I had gotten something wrong here. This couldn’t possible be the way to do it? I <a href="http://stackoverflow.com/q/18637912/135673">turned to stackoverflow and asked how</a> to do it. The first two answers pretty much confirmed that this is the way to do it. Idiomatic go according to the language constructors. One of the answers stated that:</p>
+
+<blockquote>
+  <p>I discourage writing test in the way you seem to have desire for. 
+It’s not by chance that the whole stdlib uses the, as you call it, 
+“verbose” way.</p>
+</blockquote>
+
+<p>I elaborated my question and asked if it wouldn’t be nice to reuse a bit of code in my own assert method:</p>
+
+<pre><code>func AssertTrue(t *testing.T, value bool, message string) {
+  if value {
+    t.Log(message)
+    t.Fail()
+  }
+}
+</code></pre>
+
+<p>and use it in my test like so:</p>
+
+<pre><code>func TestSomething(t *testing.T) {
+  something := false
+  AssertTrue(t, something, "Oh noes - something is false")
+}
+</code></pre>
+
+<p>and I got this reply:</p>
+
+<blockquote>
+  <p>Based on your update, that is not idiomatic Go. What you are doing is in 
+essence designing a test extension framework to mirror what you get in 
+the XUnit frameworks. While there is nothing fundamentally wrong, from 
+an engineering perspective, it does raise questions as to the value + cost 
+of maintaining this extension library. Additionally, you are creating an 
+in-house standard that will potentially ruffle feathers. The biggest thing 
+about Go is it is not C or Java or C++ or Python and things should be done 
+the way the language is constructed. </p>
+</blockquote>
+
+<p>So from this reasoning it seems like normal practices like code reuse is not applicable to go. Weird - me thinks…. So I started to give up hope about this nice little language. Fortunately a third answer (that I accepted) dropped in introducing gocheck and basically telling me that there are other opinions in the go community than the stdlib ones. Good to hear - maybe there is a place for a pragmatic programmer after all. With <a href="http://labix.org/gocheck">gocheck</a> you can do asserts easily:</p>
+
+<pre><code>func (s *MySuite) TestSomething(c *C) { 
+  something := false
+  c.Check(something, Equals, true, "Oh noes - something is false") 
+}
+</code></pre>
+
+<p>Works for me. I’m gonna use that for a while and see how it feels. I will - however - try to grasp the <em>go way</em> as I go and if needed will change my mind in this matter.</p>
+
+<p>Expect more posts about go during the fall.</p>
+    <center>
+      ------
+    </center>
+    <div class="outro">
+      <i>
+        Even though this was the entire post you may want to leave a comment on the
+        <a href="2013/09/pragmatic_unit_testing_with_go.html">post page</a>
+        .
+      </i>
+    </div>
+  </div>
+  <div class="start-page-article">
+    <div class="row">
+      <h2 class="article-header">
         <a href="2013/09/guardi.html">guardi - painter of ruins</a>
       </h2>
       <div class="byline">
@@ -135,46 +223,6 @@
       <i>
         Even though this was the entire post you may want to leave a comment on the
         <a href="2013/08/italian_infrastructure.html">post page</a>
-        .
-      </i>
-    </div>
-  </div>
-  <div class="start-page-article">
-    <div class="row">
-      <h2 class="article-header">
-        <a href="2013/08/freedom.html">freedom</a>
-      </h2>
-      <div class="byline">
-        by
-        fredrik
-        on
-        2013-08-09
-      </div>
-    </div>
-    <p><a href="http://www.flickr.com/photos/jollino/5736137535"><img src="http://farm3.staticflickr.com/2182/5736137535_dee0bcbd61.jpg" style="float:right"></a> I need to write a little piece on freedom. Recent affairs regarding surveillance carried out by a huge democracy and self proclaimed defender of freedom has made me think. No new splendid thoughts - just a reminder of some important things. </p>
-
-<p>In a distant past the Internet was a place where anyone could share information using open standards. The infrastructure of the internet creates a place where information is published and interchanged at will but controlled by the user. Lets call this the <strong>personal internet</strong>. As the personal internet grew and proved useful for the masses so did the business value of having a corporate presence on the internet. This shift started to happen about 15 years ago and is probably not complete yet. Lets call this the <strong>corporate internet</strong>. </p>
-
-<p>The corporate internet is made up of many different business interests. There are <em>old</em> companies that increasingly do their business using the web. Different industries have reached different levels of maturity. Some industries have embraced the net fully and do most of their business netwise while other industries are more physical in nature and so will only use the web for parts of their business anyway. Then there are new companies that have as their sole business idea to do things on the web. Some of them has grown rather big and are now full blown multinational corporations with all that comes with it.</p>
-
-<p>It is likely that data communications always has been monitored by government agencies but the shift towards the corporate internet surely has made it harder to control for the individual. We all give away much of our data and our interactions to big players like facebook, apple and google. And these companies do not use open standards for these interchanges. If you want to communicate with a facebook user you are doomed to be a facebook user yourself. Far from the open and highly distributed mechanisms of email for example. (Or news if anyone remembers?) And most of us just don’t care at all. Convenience makes it so easy compared to freer alternatives.</p>
-
-<p>(Sidenote: yes I am aware that facebook uses open standards like HTTP and HTML to communicate with its users. The point here is that they are not using an open standard for the communication between users.)</p>
-
-<p><a href="http://www.flickr.com/photos/nolifebeforecoffee/124659356"><img src="http://farm1.staticflickr.com/1/124659356_bbe1e5b661.jpg" style="float:left"></a> In comes surveillance. As soon as we give away the infrastructure of our interactions to business interests we also give away the control over access to those interactions. Suddenly it is someone else’s corporate decision whether to give away my information to a government agency or not. In the old world it used to be a court order that could enforce surveillance. Sure - the web of open standards can also easily be compromised by whomever wants to listen in. Me for one don’t care much about that since nothing I write is sensitive in any way. It is a matter of principles. I shouldn’t be afraid to say <em>anything</em> anywhere on the internet. The authorities should not listen in. It reduces my freedom.</p>
-
-<p>All in all - we really need to <em>abandon</em> social networks and internet companies that are not using open standards for communication. We should be able to use whatever software we like to interact with each other. The <em>corporate internet</em> needs to be controlled by the standards of the <em>personal internet</em>. <strong>Don’t let them reduce our freedom.</strong> Start today by looking at <a href="https://prism-break.org/">this list of alternative solutions</a> and start using the thing that hurts the least. </p>
-
-<p>(And yes - I am a pharisee writing this on my Apple computer. And I will probably post it on one or several proprietary social networks. Sorry about that…)</p>
-
-<p><em>Those great photos are in the open domain under nice licenses for non-commercial use. The chess board photo is by <a href="http://www.flickr.com/photos/jollino/">Daniele Nicolucci</a> and the surveillance one is by <a href="http://www.flickr.com/photos/nolifebeforecoffee/">nolifebeforecoffee</a>. Flickr users that use flattr gets one from me whenever I favorite a photo.</em></p>
-    <center>
-      ------
-    </center>
-    <div class="outro">
-      <i>
-        Even though this was the entire post you may want to leave a comment on the
-        <a href="2013/08/freedom.html">post page</a>
         .
       </i>
     </div>
