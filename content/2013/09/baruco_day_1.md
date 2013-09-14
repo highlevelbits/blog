@@ -1,0 +1,25 @@
+---
+title: baruco day one [conference report]
+kind: article
+created_at: 2013-09-14 21:02:00
+author: fredrik
+tags: barcelona, spain, baruco, conference
+---
+
+<img style="float:right" src="http://assets2013.baruco.org/assets/logo-3ff2130df4d6cf11e8bd7f1e3d72bb6d.png"/>
+
+Last year I went to Ghent and [arrrrcamp](http://arrrrcamp.be/) but failed to write a report. This year I am improving with reports from both days of [baruco](http://www.baruco.org) - a bit larger a conference but similar in form to arrrrcamp. The timing could have been better though. I left a rails assignment two weeks ago and are now spending my days coding go. Exciting indeed but my ruby wanderings will be limited to side projects for a while now.
+
+The conference started with a keynote by the creator of [Ruby](https://www.ruby-lang.org/en/): [Yukihiro Matsumoto](https://twitter.com/yukihiro_matz) (aka Mats). He started out with talking about himself. How he started coding basic on a very limited device some 30+ years from now and how he started designing Ruby 20 years ago. A very nice personal touch. The most thought provoking thing from the talk was how (computer) languages affect the way we think. Just like natural languages do. The way we have of communicating clearly influences how we organize our thoughts around a certain problem. Later on [Matt Wynne](http://blog.mattwynne.net/) touched the same issue when giving a short overview over the history of object oriented programming. How it all started with Simula but then around 1980 branched of into Smalltalk and C++ where Smalltalk stands for less control, higher freedom and worse performance and C++ of the opposite. Matt pointed out that UML and the Rational Unified Process conglomerate came out of the C++ community whereas nice things like Domain Driven Design and eXtreme Programming came right out of the Smalltalk community. (No C++ programmers around to defend it.)
+
+Mats also told as a bit about future plans for Ruby core. Ruby 2.1 is due before christmas. Refinements will be a permanent feature of the language then. New releases will appear on an annual basis from now on. Ruby 3.0 in 2023 then?
+
+After Mats there were two talks about technical stuff relating to scaling Ruby. I haven't had that kind of problems yet. If I am fortunate enough to build something that needs to scale massively I'll have to deal with it then. Likely the performant parts will be rewritten in Go rather than trying to get Ruby to perform. Later on another talk on the technical side argued about obvious things like keepin secrets in env variables and trying to have dev and test environments as similar as production as possible. I suspect many needed to hear this so I was happy about it!
+
+Another trait of the first day was several ventures into object orientation. Matt Wynne described how a rewrite of cucumber made it into another kind of object oriented. It sounded very close to functional though so hard to tell the significance. [Sandi Metz](http://www.sandimetz.com/) gave us a couple of rules for our object oriented life. Things like 200 lines to a class and 5 to a method. Sort of clean code baked down to a few rules. Interesting indeed. I have two rules: (1) write code that is easy to read (2) for the next person working on it. The result is pretty much the same. I don't care much how these rules are formulated but I want them to exist (written or verbally) in any project I work on. [Corey Haines](http://coreyhaines.com/) moved in the same hood with his entertaining talk *Design Patterns And The Proper Cultivation Thereof* which in summary made the point that design patterns sure are useful if used as they were meant to be. He quoted [Christoper Alexander](http://c2.com/cgi/wiki?ChristopherAlexander) (always nice!) saying that the application of design patterns can be done many times but will not produce the same result twice.
+
+[Jeremy Walker](https://twitter.com/iHiD) had a really nice talk about productivity. Most of the common sense things came though including work hard but not too hard and spiders on caffeine (which I have seen before - Linda Rising maybe?). The only thing I missed was pomodoro which would fit nicely into the focused work combined with the need for exercise now and then. People argue that you can't use pomodoro if you want to reach and stay in flow. I don't agree with that from my own personal experience. But it sure is different to us all and that was one of the important take aways from Jeremy's talk. In the same spirit - [Avdi Grimm](http://about.avdi.org/) neatly inter-vowed a bit of meta ruby code with a sincere message about finding the love of programming. A very important message to us all.
+
+The event is nicely organized with above standard foods both for breakfast and lunch. Way to go. Some optimism about the registration process caused a long queue in the morning so the whole day become half an hour late. But we are in Spain now so nemas problemas about that! 
+
+I ended the day with a visit at Nou Camp and saw Barcelona beat Sevilla with 3-2. Lots of energy in that stadium!
