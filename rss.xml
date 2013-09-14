@@ -2,13 +2,38 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2013-09-08T21:02:00Z</updated>
+  <updated>2013-09-14T21:02:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/rss.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-09-14:/2013/09/baruco_day_1.html</id>
+    <title type="html">baruco day one [conference report]</title>
+    <published>2013-09-14T21:02:00Z</published>
+    <updated>2013-09-14T21:02:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/09/baruco_day_1.html"/>
+    <content type="html">&lt;p&gt;&lt;img style="float:right" src="http://assets2013.baruco.org/assets/logo-3ff2130df4d6cf11e8bd7f1e3d72bb6d.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Last year I went to Ghent and &lt;a href="http://arrrrcamp.be/"&gt;arrrrcamp&lt;/a&gt; but failed to write a report. This year I am improving with reports from both days of &lt;a href="http://www.baruco.org"&gt;baruco&lt;/a&gt; - a bit larger a conference but similar in form to arrrrcamp. The timing could have been better though. I left a rails assignment two weeks ago and are now spending my days coding go. Exciting indeed but my ruby wanderings will be limited to side projects for a while now.&lt;/p&gt;
+
+&lt;p&gt;The conference started with a keynote by the creator of &lt;a href="https://www.ruby-lang.org/en/"&gt;Ruby&lt;/a&gt;: &lt;a href="https://twitter.com/yukihiro_matz"&gt;Yukihiro Matsumoto&lt;/a&gt; (aka Mats). He started out with talking about himself. How he started coding basic on a very limited device some 30+ years from now and how he started designing Ruby 20 years ago. A very nice personal touch. The most thought provoking thing from the talk was how (computer) languages affect the way we think. Just like natural languages do. The way we have of communicating clearly influences how we organize our thoughts around a certain problem. Later on &lt;a href="http://blog.mattwynne.net/"&gt;Matt Wynne&lt;/a&gt; touched the same issue when giving a short overview over the history of object oriented programming. How it all started with Simula but then around 1980 branched of into Smalltalk and C++ where Smalltalk stands for less control, higher freedom and worse performance and C++ of the opposite. Matt pointed out that UML and the Rational Unified Process conglomerate came out of the C++ community whereas nice things like Domain Driven Design and eXtreme Programming came right out of the Smalltalk community. (No C++ programmers around to defend it.)&lt;/p&gt;
+
+&lt;p&gt;Mats also told as a bit about future plans for Ruby core. Ruby 2.1 is due before christmas. Refinements will be a permanent feature of the language then. New releases will appear on an annual basis from now on. Ruby 3.0 in 2023 then?&lt;/p&gt;
+
+&lt;p&gt;After Mats there were two talks about technical stuff relating to scaling Ruby. I haven’t had that kind of problems yet. If I am fortunate enough to build something that needs to scale massively I’ll have to deal with it then. Likely the performant parts will be rewritten in Go rather than trying to get Ruby to perform. Later on another talk on the technical side argued about obvious things like keepin secrets in env variables and trying to have dev and test environments as similar as production as possible. I suspect many needed to hear this so I was happy about it!&lt;/p&gt;
+
+&lt;p&gt;Another trait of the first day was several ventures into object orientation. Matt Wynne described how a rewrite of cucumber made it into another kind of object oriented. It sounded very close to functional though so hard to tell the significance. &lt;a href="http://www.sandimetz.com/"&gt;Sandi Metz&lt;/a&gt; gave us a couple of rules for our object oriented life. Things like 200 lines to a class and 5 to a method. Sort of clean code baked down to a few rules. Interesting indeed. I have two rules: (1) write code that is easy to read (2) for the next person working on it. The result is pretty much the same. I don’t care much how these rules are formulated but I want them to exist (written or verbally) in any project I work on. &lt;a href="http://coreyhaines.com/"&gt;Corey Haines&lt;/a&gt; moved in the same hood with his entertaining talk &lt;em&gt;Design Patterns And The Proper Cultivation Thereof&lt;/em&gt; which in summary made the point that design patterns sure are useful if used as they were meant to be. He quoted &lt;a href="http://c2.com/cgi/wiki?ChristopherAlexander"&gt;Christoper Alexander&lt;/a&gt; (always nice!) saying that the application of design patterns can be done many times but will not produce the same result twice.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/iHiD"&gt;Jeremy Walker&lt;/a&gt; had a really nice talk about productivity. Most of the common sense things came though including work hard but not too hard and spiders on caffeine (which I have seen before - Linda Rising maybe?). The only thing I missed was pomodoro which would fit nicely into the focused work combined with the need for exercise now and then. People argue that you can’t use pomodoro if you want to reach and stay in flow. I don’t agree with that from my own personal experience. But it sure is different to us all and that was one of the important take aways from Jeremy’s talk. In the same spirit - &lt;a href="http://about.avdi.org/"&gt;Avdi Grimm&lt;/a&gt; neatly inter-vowed a bit of meta ruby code with a sincere message about finding the love of programming. A very important message to us all.&lt;/p&gt;
+
+&lt;p&gt;The event is nicely organized with above standard foods both for breakfast and lunch. Way to go. Some optimism about the registration process caused a long queue in the morning so the whole day become half an hour late. But we are in Spain now so nemas problemas about that! &lt;/p&gt;
+
+&lt;p&gt;I ended the day with a visit at Nou Camp and saw Barcelona beat Sevilla with 3-2. Lots of energy in that stadium!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-09-08:/2013/09/pragmatic_unit_testing_with_go.html</id>
     <title type="html">pragmatic unit testing with go</title>
@@ -166,40 +191,6 @@ the way the language is constructed. &lt;/p&gt;
 &lt;p&gt;(And yes - I am a pharisee writing this on my Apple computer. And I will probably post it on one or several proprietary social networks. Sorry about that…)&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Those great photos are in the open domain under nice licenses for non-commercial use. The chess board photo is by &lt;a href="http://www.flickr.com/photos/jollino/"&gt;Daniele Nicolucci&lt;/a&gt; and the surveillance one is by &lt;a href="http://www.flickr.com/photos/nolifebeforecoffee/"&gt;nolifebeforecoffee&lt;/a&gt;. Flickr users that use flattr gets one from me whenever I favorite a photo.&lt;/em&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-06-05:/2013/06/css_sibling.html</id>
-    <title type="html">css sibling operator (folding divs)</title>
-    <published>2013-06-05T01:00:00Z</published>
-    <updated>2013-06-05T01:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/06/css_sibling.html"/>
-    <content type="html">&lt;p&gt;I have been fiddling with CSS a lot in my current client project. I am no ninja yet but I am getting hold of the elementary stuff at least. Today I made one radio button show a div and another one hide it. To be able to do this you need to know about the sibling operator &lt;code&gt;~&lt;/code&gt; that is used to find an element matching the selector that is &lt;em&gt;after&lt;/em&gt; the main rule. Consider this markup snippet:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;input checked="checked" class="fold_open" type="radio" value="open" /&amp;gt;
-&amp;lt;input class="fold_closed" type="radio" value="closed" /&amp;gt;
-&amp;lt;div class="foldee"&amp;gt;
-  &amp;lt;!-- some awesome markup here --&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Two radio buttons with classes &lt;code&gt;fold_open&lt;/code&gt; and &lt;code&gt;fold_closed&lt;/code&gt; respectively. One div with the class &lt;code&gt;foldee&lt;/code&gt;. To make the div fold when &lt;code&gt;fold_closed&lt;/code&gt; selected and unfold when &lt;code&gt;fold_open&lt;/code&gt; is selected - add this css:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;.fold_open:checked ~ .foldee {
-  display: block;
-}
-
-.fold_closed:checked ~ .foldee {
-  display: none;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href="http://www.flickr.com/photos/henry-gail/2844798054"&gt;&lt;img src="http://farm4.staticflickr.com/3221/2844798054_37bc48f208_m.jpg" style="float:right" /&gt;&lt;/a&gt;
-This means that when the class &lt;code&gt;fold_open&lt;/code&gt; is checked (works for radio buttons and check boxes) its sibling &lt;code&gt;foldee&lt;/code&gt; will be shown and when &lt;code&gt;fold_closed&lt;/code&gt; is checked it will disappear. A tricky thing with the sibling selector is that it only finds elements after its left hand operator. So if you want to hide something above you will have to rearrange your markup and use inspired styling to make it show up in the right place.&lt;/p&gt;
-
-&lt;p&gt;This will probably not work in &lt;em&gt;some&lt;/em&gt; browsers mayhaps causing a problem depending on your use case and your user base. For a version that is guaranteed to work you will have to write some scripts instead. The amount of code with something like jquery is about the same. But I found it a bit more elegant to do it with css.&lt;/p&gt;
-
-&lt;p&gt;The car in the photo is an &lt;a href="http://en.wikipedia.org/wiki/Alfa_Romeo_1900"&gt;Alfa Romeo 1900 CSS&lt;/a&gt; and it is just here for looks. Find a good photo about css….. It was shot by flickr user Henry Figueroa.&lt;/p&gt;
 </content>
   </entry>
 </feed>

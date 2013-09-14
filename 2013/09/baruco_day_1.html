@@ -3,7 +3,7 @@
   <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>high level bits - Lean thoughts</title>
+    <title>high level bits - baruco day one [conference report]</title>
     <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../awesome/font-awesome-min.css">
     <link rel="stylesheet" href="../../style.css">
@@ -48,11 +48,17 @@
       </div>
       <div class="content">
         <h2 class="article-header">
-  Lean thoughts
+  baruco day one [conference report]
 </h2>
-<span class="byline">2011-11-09 by fredrik</span>
+<span class="byline">2013-09-14 by fredrik</span>
 
   <span class="tags">
+    
+      
+      
+    
+      
+      
     
       
       
@@ -64,13 +70,24 @@
     
   </span>
 
-<br><p>Agile has been devoid of meaning. One of my customers claim they are doing agile in a clearly waterfallish organization. It is kind of cool that people WANT to be agile these days but it is NOT kind of cool that the meaning of agile has been watered out to mean 'good'. Lean to the rescue. To get on the track with the words and principles of lean I spent a couple of days last week at the <a href="http://less2011.leanssc.org/">LESS conference</a> and here is a couple of thoughts emancipating from this experience merged with some own reflections. (Not a conference report......)<br><br>Lean is more macro than agile - it tries to fix the entire organization. One of the tracks were called 'beyond budgeting' and focused on how organizations can abandon their normal way of commanding and controlling in favor of a more fluid way of work. Key case studies: statoil and handelsbanken. (Note to self: ask sister at handelsbanken about how it 'feels' a bit down in the organization. Are they really entirely lean. It is not what I have heard...)<br><br>Lean that is forced upon a company from above is not really lean - it has to be embraced by the people on the floor also. You can not send in a team to leanify an organization.<br><br>Relative metrics. Absolute numbers is not useful in a fast changing world. It is much better to compare with similar companies.<br><br>The absence of lean presentations was a bit surprising. I am not a great presenter but I sure would be able to make better slides than most of the speakers here. Please spend some time with <a href="http://www.presentationzen.com/">presentation zen</a>.<br><br>Whats the deal with the lean A3 obsession?<br><br>It would have been sweet with more stuff on changing parts of a stale organization from the inside. If you are lost deep inside an old school organization - is there really anything you can do to start the change? I know - live by example and all that but it really doesn't bring much change about.<br><br>It is also a cultural change. Just adding a bunch of practices and values won't change a thing in the short run. Cultural changes to a large system has to be made incrementally and be measured over a long period of time. (Unless the big bang approach is used - then it is essentially a new system replacing the old one - not the same system that has learnt something.)<br><br>Lean is definitely up and coming and I predict that companies embracing the lean way today will be market leaders in the future. But we will also see lots of lean attempts that will fail. It is not the easiest thing to change feelings and behaviors of people.</p>
-<div class="old-comments">
-<h2>Old comments</h2>
-<div class="one-old-comment">
-<span class="comment-date">2011-11-09</span><span class="commenter-name">Vasco Duarte</span><div class="comment-body">Good write-up!<br><br>Just a note about the A3. In the Lean community A3 is not a tool only, it is also a way of thinking and coaching a team. <br><br>"Managing to Learn" http://www.lean.org/bookstore/productdetails.cfm?selectedproductid=246<br>This is one of the books that describes the thinking behind A3. I should note also that the A3 format (piece of paper) is just the visible part of the tool, as described in the book the thinking behind that format is much more important. <br><br>Agree on the presentation style! :)</div>
-</div>
-</div>
+<p><img style="float:right" src="http://assets2013.baruco.org/assets/logo-3ff2130df4d6cf11e8bd7f1e3d72bb6d.png"></p>
+
+<p>Last year I went to Ghent and <a href="http://arrrrcamp.be/">arrrrcamp</a> but failed to write a report. This year I am improving with reports from both days of <a href="http://www.baruco.org">baruco</a> - a bit larger a conference but similar in form to arrrrcamp. The timing could have been better though. I left a rails assignment two weeks ago and are now spending my days coding go. Exciting indeed but my ruby wanderings will be limited to side projects for a while now.</p>
+
+<p>The conference started with a keynote by the creator of <a href="https://www.ruby-lang.org/en/">Ruby</a>: <a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto</a> (aka Mats). He started out with talking about himself. How he started coding basic on a very limited device some 30+ years from now and how he started designing Ruby 20 years ago. A very nice personal touch. The most thought provoking thing from the talk was how (computer) languages affect the way we think. Just like natural languages do. The way we have of communicating clearly influences how we organize our thoughts around a certain problem. Later on <a href="http://blog.mattwynne.net/">Matt Wynne</a> touched the same issue when giving a short overview over the history of object oriented programming. How it all started with Simula but then around 1980 branched of into Smalltalk and C++ where Smalltalk stands for less control, higher freedom and worse performance and C++ of the opposite. Matt pointed out that UML and the Rational Unified Process conglomerate came out of the C++ community whereas nice things like Domain Driven Design and eXtreme Programming came right out of the Smalltalk community. (No C++ programmers around to defend it.)</p>
+
+<p>Mats also told as a bit about future plans for Ruby core. Ruby 2.1 is due before christmas. Refinements will be a permanent feature of the language then. New releases will appear on an annual basis from now on. Ruby 3.0 in 2023 then?</p>
+
+<p>After Mats there were two talks about technical stuff relating to scaling Ruby. I haven’t had that kind of problems yet. If I am fortunate enough to build something that needs to scale massively I’ll have to deal with it then. Likely the performant parts will be rewritten in Go rather than trying to get Ruby to perform. Later on another talk on the technical side argued about obvious things like keepin secrets in env variables and trying to have dev and test environments as similar as production as possible. I suspect many needed to hear this so I was happy about it!</p>
+
+<p>Another trait of the first day was several ventures into object orientation. Matt Wynne described how a rewrite of cucumber made it into another kind of object oriented. It sounded very close to functional though so hard to tell the significance. <a href="http://www.sandimetz.com/">Sandi Metz</a> gave us a couple of rules for our object oriented life. Things like 200 lines to a class and 5 to a method. Sort of clean code baked down to a few rules. Interesting indeed. I have two rules: (1) write code that is easy to read (2) for the next person working on it. The result is pretty much the same. I don’t care much how these rules are formulated but I want them to exist (written or verbally) in any project I work on. <a href="http://coreyhaines.com/">Corey Haines</a> moved in the same hood with his entertaining talk <em>Design Patterns And The Proper Cultivation Thereof</em> which in summary made the point that design patterns sure are useful if used as they were meant to be. He quoted <a href="http://c2.com/cgi/wiki?ChristopherAlexander">Christoper Alexander</a> (always nice!) saying that the application of design patterns can be done many times but will not produce the same result twice.</p>
+
+<p><a href="https://twitter.com/iHiD">Jeremy Walker</a> had a really nice talk about productivity. Most of the common sense things came though including work hard but not too hard and spiders on caffeine (which I have seen before - Linda Rising maybe?). The only thing I missed was pomodoro which would fit nicely into the focused work combined with the need for exercise now and then. People argue that you can’t use pomodoro if you want to reach and stay in flow. I don’t agree with that from my own personal experience. But it sure is different to us all and that was one of the important take aways from Jeremy’s talk. In the same spirit - <a href="http://about.avdi.org/">Avdi Grimm</a> neatly inter-vowed a bit of meta ruby code with a sincere message about finding the love of programming. A very important message to us all.</p>
+
+<p>The event is nicely organized with above standard foods both for breakfast and lunch. Way to go. Some optimism about the registration process caused a long queue in the morning so the whole day become half an hour late. But we are in Spain now so nemas problemas about that! </p>
+
+<p>I ended the day with a visit at Nou Camp and saw Barcelona beat Sevilla with 3-2. Lots of energy in that stadium!</p>
+
 
 <div class="dashed-top-border">
   <!-- disqus -->
@@ -94,6 +111,12 @@
 
 
   <div class="dashed-top-border">
+    
+      
+      
+    
+      
+      
     
       
       
@@ -164,31 +187,31 @@
             </li>
           
             <li>
-              <a href="../02/conferencing-before-summer.html">Conferencing before summer</a>
+              <a href="../../2011/02/conferencing-before-summer.html">Conferencing before summer</a>
             </li>
           
             <li>
-              <a href="../02/jfokus-2011-day-1-wrap-up.html">JFokus 2011 Day 1 wrap-up</a>
+              <a href="../../2011/02/jfokus-2011-day-1-wrap-up.html">JFokus 2011 Day 1 wrap-up</a>
             </li>
           
             <li>
-              <a href="../02/jfokus-2011-day-2-wrap-up.html">JFokus 2011 Day 2 wrap-up</a>
+              <a href="../../2011/02/jfokus-2011-day-2-wrap-up.html">JFokus 2011 Day 2 wrap-up</a>
             </li>
           
             <li>
-              <a href="../03/dyncon-2011.html">dyncon 2011</a>
+              <a href="../../2011/03/dyncon-2011.html">dyncon 2011</a>
             </li>
           
             <li>
-              <a href="../06/nordic-ruby.html">nordic ruby</a>
+              <a href="../../2011/06/nordic-ruby.html">nordic ruby</a>
             </li>
           
             <li>
-              <a href="../../2013/05/agila_sverige.html">agila sverige 2013</a>
+              <a href="../../2011/11/lean-thoughts.html">Lean thoughts</a>
             </li>
           
             <li>
-              <a href="../../2013/09/baruco_day_1.html">baruco day one [conference report]</a>
+              <a href="../05/agila_sverige.html">agila sverige 2013</a>
             </li>
           
         </ul>
