@@ -4,11 +4,8 @@
 <span class="byline"><%= "#{@item[:created_at].strftime '%F'} by #{@item[:author]}" %></span>
 <% if @item[:tags] %>
   <span class="tags">
-    <% tags_for( @item ).each do |one_tag| %>
-      <% similar_articles = items_tagged_with one_tag, [@item] %>
-      <% if similar_articles.any? %>
-        <a class="one-tag" href="#<%= one_tag %>"><span class="icon-tag" /><%= one_tag %></a>
-      <% end %>
+    <% tags_with_sibling_articles_for @item do |one_tag, similar_articles| %>
+      <a class="one-tag" href="#<%= one_tag %>"><span class="icon-tag" /><%= one_tag %></a>
     <% end %>
   </span>
 <% end %>
@@ -35,18 +32,15 @@
 
 <% if tags_for( @item ).any? %>
   <div class="dashed-top-border">
-    <% tags_for( @item ).each do |one_tag| %>
-      <% similar_articles = items_tagged_with one_tag, [@item] %>
-      <% if similar_articles.any? %>
-        <h4><a name="<%= one_tag %>"><%= "Other articles tagged #{one_tag}" %></a></h4>
-        <ul>
-          <% similar_articles.each do |item| %>
-            <li>
-              <%= link_to item[:title], item %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
+    <% tags_with_sibling_articles_for @item do |one_tag, similar_articles| %>
+      <h4><a name="<%= one_tag %>"><%= "Other articles tagged #{one_tag}" %></a></h4>
+      <ul>
+        <% similar_articles.each do |item| %>
+          <li>
+            <%= link_to item[:title], item %>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
   </div>
 <% end %>
