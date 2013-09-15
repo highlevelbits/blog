@@ -3,7 +3,7 @@ title: baruco day two [conference report]
 kind: article
 created_at: 2013-09-15 21:02:00
 author: fredrik
-tags: barcelona, spain, baruco, conference
+tags: barcelona, baruco, conference
 ---
 
 The nice organisers thought it wise to start the second day an hour later. Surely a blessing for the first speaker. 

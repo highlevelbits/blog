@@ -3,7 +3,7 @@ title: baruco day one [conference report]
 kind: article
 created_at: 2013-09-14 21:02:00
 author: fredrik
-tags: barcelona, spain, baruco, conference
+tags: barcelona, baruco, conference
 ---
 
 <img style="float:right" src="http://assets2013.baruco.org/assets/logo-3ff2130df4d6cf11e8bd7f1e3d72bb6d.png"/>
