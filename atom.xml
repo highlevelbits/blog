@@ -2,13 +2,41 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2013-09-14T21:02:00Z</updated>
+  <updated>2013-09-15T21:02:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-09-15:/2013/09/baruco_day_2.html</id>
+    <title type="html">baruco day two [conference report]</title>
+    <published>2013-09-15T21:02:00Z</published>
+    <updated>2013-09-15T21:02:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/09/baruco_day_2.html"/>
+    <content type="html">&lt;p&gt;&lt;img style="float:right" src="http://assets2013.baruco.org/assets/logo-3ff2130df4d6cf11e8bd7f1e3d72bb6d.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The nice organisers thought it wise to start the second day an hour later. Surely a blessing for the first speaker. &lt;/p&gt;
+
+&lt;p&gt;The keynote by Paolo Perrotta was entertaining and thought provoking. Spanning such wide topics as the discovery of how to calculate longitudes, distant forefathers crawling up from the sea and the horrors of SOAP, Paolo made a good shot at comparing progress in the software discipline with the evolution of mankind and maybe just maybe the future will be more functional than the present.&lt;/p&gt;
+
+&lt;p&gt;Apart from the keynote the talks were more technical this day. The future of jruby, rubymotion for iOS coding, a bit of clojure, tender love shaving a yak. That sort of thing. &lt;/p&gt;
+
+&lt;p&gt;Rather than listing all the talks I will focus on my takeaways from the conference:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;functional programming is on the move. I heard a lot about that object orientation has become the way to code in the 21st century. But there are some issues that are not solved that well with object orientation. It doesn’t scale nicely and it seems that it is next to impossible to write larger systems with the technique. Functional has some characteristics that makes it attractive for the upcoming challenges. It is highly scalable (due to immutability) and it is really great for testing. THat functional sort of ‘appears’ at a Ruby conference is a good sign that it is up and coming.&lt;/li&gt;
+  &lt;li&gt;a sense of fatigue and maturity. Look how far we have come in our field, that is great but many things still suck and we are bit tired. Hopefully a conference like this one can reeenergize and help us move on. The needs for decent software creation will not diminish in neither the close nor the distant future.&lt;/li&gt;
+  &lt;li&gt;maybe use jruby in production?!?&lt;/li&gt;
+  &lt;li&gt;there were several talks about the quality without a name. How do we go about producing software that can stay around for a while? Since I have been interested in these things since late 90s I didn’t learn much but it gives me hope that good practices are preached at a conference like this one. How to penetrate the breadth of developers out there is still largely an unknown.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To sum up: a really nice conference moulded in the standard format. The communication flows mainly in one direction with breaks and parties making it possible to interact a bit further. This bothers me more and more with conferences - I would prefer a bit more interactivity. This time I sneaked away a bit prematurely feeling numb from all the listening. So sadly I missed the lightning talks - I am sure this was one of the best parts of the conference.&lt;/p&gt;
+
+&lt;p&gt;Luckily I booked a further two days in Barcelona so now that the conference is over I will find out more about the city. It looks really nice so far! I had good food both nights at random restaurants and I stay at a really &lt;a href="https://sv.airbnb.com/rooms/1159801"&gt;nice airbnb&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-09-14:/2013/09/baruco_day_1.html</id>
     <title type="html">baruco day one [conference report]</title>
@@ -19,13 +47,13 @@
 
 &lt;p&gt;Last year I went to Ghent and &lt;a href="http://arrrrcamp.be/"&gt;arrrrcamp&lt;/a&gt; but failed to write a report. This year I am improving with reports from both days of &lt;a href="http://www.baruco.org"&gt;baruco&lt;/a&gt; - a bit larger a conference but similar in form to arrrrcamp. The timing could have been better though. I left a rails assignment two weeks ago and are now spending my days coding go. Exciting indeed but my ruby wanderings will be limited to side projects for a while now.&lt;/p&gt;
 
-&lt;p&gt;The conference started with a keynote by the creator of &lt;a href="https://www.ruby-lang.org/en/"&gt;Ruby&lt;/a&gt;: &lt;a href="https://twitter.com/yukihiro_matz"&gt;Yukihiro Matsumoto&lt;/a&gt; (aka Mats). He started out with talking about himself. How he started coding basic on a very limited device some 30+ years from now and how he started designing Ruby 20 years ago. A very nice personal touch. The most thought provoking thing from the talk was how (computer) languages affect the way we think. Just like natural languages do. The way we have of communicating clearly influences how we organize our thoughts around a certain problem. Later on &lt;a href="http://blog.mattwynne.net/"&gt;Matt Wynne&lt;/a&gt; touched the same issue when giving a short overview over the history of object oriented programming. How it all started with Simula but then around 1980 branched of into Smalltalk and C++ where Smalltalk stands for less control, higher freedom and worse performance and C++ of the opposite. Matt pointed out that UML and the Rational Unified Process conglomerate came out of the C++ community whereas nice things like Domain Driven Design and eXtreme Programming came right out of the Smalltalk community. (No C++ programmers around to defend it.)&lt;/p&gt;
+&lt;p&gt;The conference started with a keynote by the creator of &lt;a href="https://www.ruby-lang.org/en/"&gt;Ruby&lt;/a&gt;: &lt;a href="https://twitter.com/yukihiro_matz"&gt;Yukihiro Matzumoto&lt;/a&gt; (aka Matz). He started out with talking about himself. How he started coding basic on a very limited device some 30+ years from now and how he started designing Ruby 20 years ago. A very nice personal touch. The most thought provoking thing from the talk was how (computer) languages affect the way we think. Just like natural languages do. The way we have of communicating clearly influences how we organize our thoughts around a certain problem. Later on &lt;a href="http://blog.mattwynne.net/"&gt;Matt Wynne&lt;/a&gt; touched the same issue when giving a short overview over the history of object oriented programming. How it all started with Simula but then around 1980 branched of into Smalltalk and C++ where Smalltalk stands for less control, higher freedom and worse performance and C++ of the opposite. Matt pointed out that UML and the Rational Unified Process conglomerate came out of the C++ community whereas nice things like Domain Driven Design and eXtreme Programming came right out of the Smalltalk community. (No C++ programmers around to defend it.)&lt;/p&gt;
 
-&lt;p&gt;Mats also told as a bit about future plans for Ruby core. Ruby 2.1 is due before christmas. Refinements will be a permanent feature of the language then. New releases will appear on an annual basis from now on. Ruby 3.0 in 2023 then?&lt;/p&gt;
+&lt;p&gt;Matz also told as a bit about future plans for Ruby core. Ruby 2.1 is due before christmas. Refinements will be a permanent feature of the language then. New releases will appear on an annual basis from now on. Ruby 3.0 in 2023 then?&lt;/p&gt;
 
-&lt;p&gt;After Mats there were two talks about technical stuff relating to scaling Ruby. I haven’t had that kind of problems yet. If I am fortunate enough to build something that needs to scale massively I’ll have to deal with it then. Likely the performant parts will be rewritten in Go rather than trying to get Ruby to perform. Later on another talk on the technical side argued about obvious things like keepin secrets in env variables and trying to have dev and test environments as similar as production as possible. I suspect many needed to hear this so I was happy about it!&lt;/p&gt;
+&lt;p&gt;After Matz there were two talks about technical stuff relating to scaling Ruby. I haven’t had that kind of problems yet. If I am fortunate enough to build something that needs to scale massively I’ll have to deal with it then. Likely the performant parts will be rewritten in Go rather than trying to get Ruby to perform. Later on another talk on the technical side argued about obvious things like keepin secrets in env variables and trying to have dev and test environments as similar as production as possible. I suspect many needed to hear this so I was happy about it!&lt;/p&gt;
 
-&lt;p&gt;Another trait of the first day was several ventures into object orientation. Matt Wynne described how a rewrite of cucumber made it into another kind of object oriented. It sounded very close to functional though so hard to tell the significance. &lt;a href="http://www.sandimetz.com/"&gt;Sandi Metz&lt;/a&gt; gave us a couple of rules for our object oriented life. Things like 200 lines to a class and 5 to a method. Sort of clean code baked down to a few rules. Interesting indeed. I have two rules: (1) write code that is easy to read (2) for the next person working on it. The result is pretty much the same. I don’t care much how these rules are formulated but I want them to exist (written or verbally) in any project I work on. &lt;a href="http://coreyhaines.com/"&gt;Corey Haines&lt;/a&gt; moved in the same hood with his entertaining talk &lt;em&gt;Design Patterns And The Proper Cultivation Thereof&lt;/em&gt; which in summary made the point that design patterns sure are useful if used as they were meant to be. He quoted &lt;a href="http://c2.com/cgi/wiki?ChristopherAlexander"&gt;Christoper Alexander&lt;/a&gt; (always nice!) saying that the application of design patterns can be done many times but will not produce the same result twice.&lt;/p&gt;
+&lt;p&gt;Another trait of the first day was several ventures into object orientation. Matt Wynne described how a rewrite of cucumber made it into another kind of object oriented. It sounded very close to functional though so hard to tell the significance. &lt;a href="http://www.sandimetz.com/"&gt;Sandi Metz&lt;/a&gt; gave us a couple of rules for our object oriented life. Things like 100 lines to a class and 5 to a method. Sort of clean code baked down to a few rules. Interesting indeed. I have two rules: (1) write code that is easy to read (2) for the next person working on it. The result is pretty much the same. I don’t care much how these rules are formulated but I want them to exist (written or verbally) in any project I work on. &lt;a href="http://coreyhaines.com/"&gt;Corey Haines&lt;/a&gt; moved in the same hood with his entertaining talk &lt;em&gt;Design Patterns And The Proper Cultivation Thereof&lt;/em&gt; which in summary made the point that design patterns sure are useful if used as they were meant to be. He quoted &lt;a href="http://c2.com/cgi/wiki?ChristopherAlexander"&gt;Christoper Alexander&lt;/a&gt; (always nice!) saying that the application of design patterns can be done many times but will not produce the same result twice.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="https://twitter.com/iHiD"&gt;Jeremy Walker&lt;/a&gt; had a really nice talk about productivity. Most of the common sense things came though including work hard but not too hard and spiders on caffeine (which I have seen before - Linda Rising maybe?). The only thing I missed was pomodoro which would fit nicely into the focused work combined with the need for exercise now and then. People argue that you can’t use pomodoro if you want to reach and stay in flow. I don’t agree with that from my own personal experience. But it sure is different to us all and that was one of the important take aways from Jeremy’s talk. In the same spirit - &lt;a href="http://about.avdi.org/"&gt;Avdi Grimm&lt;/a&gt; neatly inter-vowed a bit of meta ruby code with a sincere message about finding the love of programming. A very important message to us all.&lt;/p&gt;
 
@@ -166,31 +194,6 @@ the way the language is constructed. &lt;/p&gt;
 &lt;img src="http://farm3.staticflickr.com/2819/9484436291_3428fb4370_c.jpg" alt="" /&gt;&lt;/p&gt;
 
 &lt;p&gt;After Bologna we turned north and spend a couple of days in Innsbruck and München on our way home. All in all a good trip. All the &lt;a href="http://www.flickr.com/photos/froderik/"&gt;pictures from the trip&lt;/a&gt; can be found at flickr.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-08-09:/2013/08/freedom.html</id>
-    <title type="html">freedom</title>
-    <published>2013-08-08T23:07:00Z</published>
-    <updated>2013-08-08T23:07:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/08/freedom.html"/>
-    <content type="html">&lt;p&gt;&lt;a href="http://www.flickr.com/photos/jollino/5736137535"&gt;&lt;img src="http://farm3.staticflickr.com/2182/5736137535_dee0bcbd61.jpg" style="float:right" /&gt;&lt;/a&gt; I need to write a little piece on freedom. Recent affairs regarding surveillance carried out by a huge democracy and self proclaimed defender of freedom has made me think. No new splendid thoughts - just a reminder of some important things. &lt;/p&gt;
-
-&lt;p&gt;In a distant past the Internet was a place where anyone could share information using open standards. The infrastructure of the internet creates a place where information is published and interchanged at will but controlled by the user. Lets call this the &lt;strong&gt;personal internet&lt;/strong&gt;. As the personal internet grew and proved useful for the masses so did the business value of having a corporate presence on the internet. This shift started to happen about 15 years ago and is probably not complete yet. Lets call this the &lt;strong&gt;corporate internet&lt;/strong&gt;. &lt;/p&gt;
-
-&lt;p&gt;The corporate internet is made up of many different business interests. There are &lt;em&gt;old&lt;/em&gt; companies that increasingly do their business using the web. Different industries have reached different levels of maturity. Some industries have embraced the net fully and do most of their business netwise while other industries are more physical in nature and so will only use the web for parts of their business anyway. Then there are new companies that have as their sole business idea to do things on the web. Some of them has grown rather big and are now full blown multinational corporations with all that comes with it.&lt;/p&gt;
-
-&lt;p&gt;It is likely that data communications always has been monitored by government agencies but the shift towards the corporate internet surely has made it harder to control for the individual. We all give away much of our data and our interactions to big players like facebook, apple and google. And these companies do not use open standards for these interchanges. If you want to communicate with a facebook user you are doomed to be a facebook user yourself. Far from the open and highly distributed mechanisms of email for example. (Or news if anyone remembers?) And most of us just don’t care at all. Convenience makes it so easy compared to freer alternatives.&lt;/p&gt;
-
-&lt;p&gt;(Sidenote: yes I am aware that facebook uses open standards like HTTP and HTML to communicate with its users. The point here is that they are not using an open standard for the communication between users.)&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://www.flickr.com/photos/nolifebeforecoffee/124659356"&gt;&lt;img src="http://farm1.staticflickr.com/1/124659356_bbe1e5b661.jpg" style="float:left" /&gt;&lt;/a&gt; In comes surveillance. As soon as we give away the infrastructure of our interactions to business interests we also give away the control over access to those interactions. Suddenly it is someone else’s corporate decision whether to give away my information to a government agency or not. In the old world it used to be a court order that could enforce surveillance. Sure - the web of open standards can also easily be compromised by whomever wants to listen in. Me for one don’t care much about that since nothing I write is sensitive in any way. It is a matter of principles. I shouldn’t be afraid to say &lt;em&gt;anything&lt;/em&gt; anywhere on the internet. The authorities should not listen in. It reduces my freedom.&lt;/p&gt;
-
-&lt;p&gt;All in all - we really need to &lt;em&gt;abandon&lt;/em&gt; social networks and internet companies that are not using open standards for communication. We should be able to use whatever software we like to interact with each other. The &lt;em&gt;corporate internet&lt;/em&gt; needs to be controlled by the standards of the &lt;em&gt;personal internet&lt;/em&gt;. &lt;strong&gt;Don’t let them reduce our freedom.&lt;/strong&gt; Start today by looking at &lt;a href="https://prism-break.org/"&gt;this list of alternative solutions&lt;/a&gt; and start using the thing that hurts the least. &lt;/p&gt;
-
-&lt;p&gt;(And yes - I am a pharisee writing this on my Apple computer. And I will probably post it on one or several proprietary social networks. Sorry about that…)&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Those great photos are in the open domain under nice licenses for non-commercial use. The chess board photo is by &lt;a href="http://www.flickr.com/photos/jollino/"&gt;Daniele Nicolucci&lt;/a&gt; and the surveillance one is by &lt;a href="http://www.flickr.com/photos/nolifebeforecoffee/"&gt;nolifebeforecoffee&lt;/a&gt;. Flickr users that use flattr gets one from me whenever I favorite a photo.&lt;/em&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
