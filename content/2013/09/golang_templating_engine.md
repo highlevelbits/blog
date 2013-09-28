@@ -6,7 +6,7 @@ author: fredrik
 tags: golang, coding, web, template engine
 ---
 
-[<img style="float:right" src="http://farm3.staticflickr.com/2723/4264734398_f89371801a.jpg" />](www.flickr.com/photos/29363671@N08/4264734398)
+[<img style="float:right" src="http://farm3.staticflickr.com/2723/4264734398_f89371801a.jpg" />](http://www.flickr.com/photos/29363671@N08/4264734398)
 
 I am busy coding a web site with [go](http://golang.org/). I am still not convinced that go is the best choice for web development unless performance is in high demand. It is still great fun to learn a new language and a language that have different opinions on many things compared to other languages. This kind of experiences are very good to move forward as a developer. So kudos to [flatwallet](http://www.flatwallet.se/) that lets me learn go while getting paid for it. 
 
