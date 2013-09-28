@@ -51,6 +51,88 @@
   <div class="start-page-article">
     <div class="row">
       <h2 class="article-header">
+        <a href="2013/09/golang_templating_engine.html">go templating - the basics</a>
+      </h2>
+      <div class="byline">
+        by
+        fredrik
+        on
+        2013-09-28
+      </div>
+    </div>
+    <p><a href="www.flickr.com/photos/29363671@N08/4264734398"><img style="float:right" src="http://farm3.staticflickr.com/2723/4264734398_f89371801a.jpg"></a></p>
+
+<p>I am busy coding a web site with <a href="http://golang.org/">go</a>. I am still not convinced that go is the best choice for web development unless performance is in high demand. It is still great fun to learn a new language and a language that have different opinions on many things compared to other languages. This kind of experiences are very good to move forward as a developer. So kudos to <a href="http://www.flatwallet.se/">flatwallet</a> that lets me learn go while getting paid for it. </p>
+
+<p>We try to use as much as possible of the standard library but sometimes it is hard as I <a href="http://highlevelbits.com/2013/09/pragmatic_unit_testing_with_go.html">described in my post about testing</a>. When it comes to web development there is a good enough <a href="http://golang.org/pkg/text/template/">template engine</a> that provides with the simplest things to get stuff into your <a href="http://highlevelbits.com/2012/04/control-your-markup.html">markup</a>. In mainstream template engines the normal way to get behavior into your template is to use <code>&lt;% %&gt;</code> for executing some code and <code>&lt;%= %&gt;</code> for getting some stuff inserted into the generated markup. In go you use double curly braces instead. So in order to insert a value you go <code>{{.Value}}</code>. The single point is a reference to the data structure (remember - no objects in go) that was passed to the template from the back end code and value is a field in that structure. There is the basic control flow things like:</p>
+
+<pre><code>{{ if .IsActive }}
+  Active
+{{ else }}
+  Inactive
+{{ end }}
+</code></pre>
+
+<p>and loops:</p>
+
+<pre><code>{{ range .Books }}
+  &lt;div&gt;
+    {{ .Title }} by {{ .Author }}
+  &lt;/div&gt;
+{{ end }}
+</code></pre>
+
+<p>When using <code>range</code> the <code>.</code> context is set to the current item for each loop over the collection. As you see you just mix curly braces with HTML freely. (So that it looks really messy to the eye….) Since the templating doesn’t conflict with the markup you can also use them in attribute values. This may look nasty at times:</p>
+
+<pre><code>&lt;div class="{{if .IsActive}}active{{else}}passive{{end}}"/&gt;
+</code></pre>
+
+<p>Not to my liking. The alternative is to add another field to the page structure and calculate the value in the go code instead. It adds a bit of duplication and the number of line increases and I am not sure the overall readability goes up. So the above may actually be a good choice at times. In this particular case it has the benefit of keepin css classes in the markup. Indeed - you could do it like this just as well:</p>
+
+<pre><code>{{ if .IsActive }}
+  &lt;div class="active"/&gt;
+{{ else }}
+  &lt;div class="passive"/&gt;
+{{ end }}
+</code></pre>
+
+<p>Better or worse? This is a simple div with nothing else in it but consider a real world situation where there are some content inside etc. Then it may be better to go with the compact solution instead. Things like these may be good to put in the coding guidelines for a project. (You all do them - right?!?)</p>
+
+<p>You can define a template with <code>{{ define "my_template" }} &lt;html&gt;....&lt;/html&gt; {{ end }}</code> for both whole pages and parts in a page. Say you define a header partial: <code>{{ define "header" }}&lt;div&gt;Menus and other header stuffs.&lt;/div&gt;{{ end }}</code> then you can use it in another template with: <code>{{ template "header" }}</code>. So that is kind of neat. There is no support for layouts so for solving that in the standard library way you’ll have to do it yourself with functions calling different templates in different contexts. </p>
+
+<p>One more thing. You can use <code>with</code> to get deeper in the context of the page. Like this:</p>
+
+<pre><code>{{ range .Books }}
+  &lt;div&gt;
+    {{ .Title }} by 
+    {{ with .Author }}
+      {{ .FirstName }}{{ .LastName }}
+    {{ end }}
+  &lt;/div&gt;
+{{ end }}
+</code></pre>
+
+<p>I haven’t used this much but it has the benefit of getting evaluated only if there is something in the referenced value. So it is a combined <code>if</code> statement with a scope narrower.</p>
+
+<p>Then there is a bunch of built-in functions that makes life a bit easier. The one that has bothered me most is <code>call</code> that lets you call a function from within the template. But not any function. It must either have been previously tied to the template with calls to <code>Funcs</code> with a <code>FuncMap</code> or be in the global namespace. So if you have a nice little function tied to the struct you are exposing to your template you can not use it right away. I find this limiting - the extra code to set it up can just as well be used to introduce another variable in the struct that holds the computed value. You end up with redundant data in your model where parts are ‘real’ data and parts are computed values. I don’t have a perfect <em>feel</em> for this yet and will come back to review it later and maybe another post about advanced templating.</p>
+
+<p>The standard library documentation is really good. The templating basics is in the <a href="http://golang.org/pkg/text/template/">text/template package</a> while there are some added things for web pages in the <a href="http://golang.org/pkg/text/template/">html/template package</a>. This separation is obviously good so that you can do templating inside whatever format you work with.</p>
+
+<p>Engine photo by <a href="http://www.flickr.com/photos/29363671@N08/">Jon Pekelnicky</a>.</p>
+    <center>
+      ------
+    </center>
+    <div class="outro">
+      <i>
+        Even though this was the entire post you may want to leave a comment on the
+        <a href="2013/09/golang_templating_engine.html">post page</a>
+        .
+      </i>
+    </div>
+  </div>
+  <div class="start-page-article">
+    <div class="row">
+      <h2 class="article-header">
         <a href="2013/09/baruco_day_2.html">baruco day two [conference report]</a>
       </h2>
       <div class="byline">
@@ -127,94 +209,6 @@
       <i>
         Even though this was the entire post you may want to leave a comment on the
         <a href="2013/09/baruco_day_1.html">post page</a>
-        .
-      </i>
-    </div>
-  </div>
-  <div class="start-page-article">
-    <div class="row">
-      <h2 class="article-header">
-        <a href="2013/09/pragmatic_unit_testing_with_go.html">pragmatic unit testing with go</a>
-      </h2>
-      <div class="byline">
-        by
-        fredrik
-        on
-        2013-09-08
-      </div>
-    </div>
-    <p><a href="http://www.flickr.com/photos/ajstarks/8461414333"><img style="float:right" src="http://farm9.staticflickr.com/8373/8461414333_4a30e15dd3_m.jpg"></a></p>
-
-<p>I am fortunate to code some <a href="http://golang.org/">go</a> at my new assignment. I had some two weeks with the language last fall but apart from that it is new unmarked land for me. It is a nice language that is easy to learn and does things in very different ways. You get started really fast but with that nagging feeling that there is much more to learn around the corner. I suspect that you can be really productive in go. If you like your strong types and a bit lower level than normal you will get back performance only matched by C and a robust piece of code. </p>
-
-<p>Needless to say - the benefits of unit tests in a strongly typed and opionionated language like go is a bit lower than in dynamic languages like ruby, python and javascript. It is still necessary to keep your code base stable over time. So I have tried it out a bit. I started with the <a href="http://golang.org/pkg/testing/">standard library approach</a> where you get something like this:</p>
-
-<pre><code>func TestSomething(t *testing.T) {
-  something := false
-  if something {
-    t.Log("Oh noes - something is false")
-    t.Fail()      
-  }
-}
-</code></pre>
-
-<p>Oh no. This is a bit verbose for my taste. Some four lines to do an assert…. Sure, you can add some semicolons and get in one line but with reduced readability. I sort of hoped that I had gotten something wrong here. This couldn’t possible be the way to do it? I <a href="http://stackoverflow.com/q/18637912/135673">turned to stackoverflow and asked how</a> to do it. The first two answers pretty much confirmed that this is the way to do it. Idiomatic go according to the language constructors. One of the answers stated that:</p>
-
-<blockquote>
-  <p>I discourage writing test in the way you seem to have desire for. 
-It’s not by chance that the whole stdlib uses the, as you call it, 
-“verbose” way.</p>
-</blockquote>
-
-<p>I elaborated my question and asked if it wouldn’t be nice to reuse a bit of code in my own assert method:</p>
-
-<pre><code>func AssertTrue(t *testing.T, value bool, message string) {
-  if value {
-    t.Log(message)
-    t.Fail()
-  }
-}
-</code></pre>
-
-<p>and use it in my test like so:</p>
-
-<pre><code>func TestSomething(t *testing.T) {
-  something := false
-  AssertTrue(t, something, "Oh noes - something is false")
-}
-</code></pre>
-
-<p>and I got this reply:</p>
-
-<blockquote>
-  <p>Based on your update, that is not idiomatic Go. What you are doing is in 
-essence designing a test extension framework to mirror what you get in 
-the XUnit frameworks. While there is nothing fundamentally wrong, from 
-an engineering perspective, it does raise questions as to the value + cost 
-of maintaining this extension library. Additionally, you are creating an 
-in-house standard that will potentially ruffle feathers. The biggest thing 
-about Go is it is not C or Java or C++ or Python and things should be done 
-the way the language is constructed. </p>
-</blockquote>
-
-<p>So from this reasoning it seems like normal practices like code reuse is not applicable to go. Weird - me thinks…. So I started to give up hope about this nice little language. Fortunately a third answer (that I accepted) dropped in introducing gocheck and basically telling me that there are other opinions in the go community than the stdlib ones. Good to hear - maybe there is a place for a pragmatic programmer after all. With <a href="http://labix.org/gocheck">gocheck</a> you can do asserts easily:</p>
-
-<pre><code>func (s *MySuite) TestSomething(c *C) { 
-  something := false
-  c.Check(something, Equals, true, "Oh noes - something is false") 
-}
-</code></pre>
-
-<p>Works for me. I’m gonna use that for a while and see how it feels. I will - however - try to grasp the <em>go way</em> as I go and if needed will change my mind in this matter.</p>
-
-<p>Expect more posts about go during the fall.</p>
-    <center>
-      ------
-    </center>
-    <div class="outro">
-      <i>
-        Even though this was the entire post you may want to leave a comment on the
-        <a href="2013/09/pragmatic_unit_testing_with_go.html">post page</a>
         .
       </i>
     </div>

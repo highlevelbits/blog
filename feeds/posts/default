@@ -2,13 +2,80 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2013-09-15T21:02:00Z</updated>
+  <updated>2013-09-28T13:02:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-09-28:/2013/09/golang_templating_engine.html</id>
+    <title type="html">go templating - the basics</title>
+    <published>2013-09-28T13:02:00Z</published>
+    <updated>2013-09-28T13:02:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/09/golang_templating_engine.html"/>
+    <content type="html">&lt;p&gt;&lt;a href="www.flickr.com/photos/29363671@N08/4264734398"&gt;&lt;img style="float:right" src="http://farm3.staticflickr.com/2723/4264734398_f89371801a.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I am busy coding a web site with &lt;a href="http://golang.org/"&gt;go&lt;/a&gt;. I am still not convinced that go is the best choice for web development unless performance is in high demand. It is still great fun to learn a new language and a language that have different opinions on many things compared to other languages. This kind of experiences are very good to move forward as a developer. So kudos to &lt;a href="http://www.flatwallet.se/"&gt;flatwallet&lt;/a&gt; that lets me learn go while getting paid for it. &lt;/p&gt;
+
+&lt;p&gt;We try to use as much as possible of the standard library but sometimes it is hard as I &lt;a href="http://highlevelbits.com/2013/09/pragmatic_unit_testing_with_go.html"&gt;described in my post about testing&lt;/a&gt;. When it comes to web development there is a good enough &lt;a href="http://golang.org/pkg/text/template/"&gt;template engine&lt;/a&gt; that provides with the simplest things to get stuff into your &lt;a href="http://highlevelbits.com/2012/04/control-your-markup.html"&gt;markup&lt;/a&gt;. In mainstream template engines the normal way to get behavior into your template is to use &lt;code&gt;&amp;lt;% %&amp;gt;&lt;/code&gt; for executing some code and &lt;code&gt;&amp;lt;%= %&amp;gt;&lt;/code&gt; for getting some stuff inserted into the generated markup. In go you use double curly braces instead. So in order to insert a value you go &lt;code&gt;{{.Value}}&lt;/code&gt;. The single point is a reference to the data structure (remember - no objects in go) that was passed to the template from the back end code and value is a field in that structure. There is the basic control flow things like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if .IsActive }}
+  Active
+{{ else }}
+  Inactive
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and loops:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ range .Books }}
+  &amp;lt;div&amp;gt;
+    {{ .Title }} by {{ .Author }}
+  &amp;lt;/div&amp;gt;
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When using &lt;code&gt;range&lt;/code&gt; the &lt;code&gt;.&lt;/code&gt; context is set to the current item for each loop over the collection. As you see you just mix curly braces with HTML freely. (So that it looks really messy to the eye….) Since the templating doesn’t conflict with the markup you can also use them in attribute values. This may look nasty at times:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class="{{if .IsActive}}active{{else}}passive{{end}}"/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not to my liking. The alternative is to add another field to the page structure and calculate the value in the go code instead. It adds a bit of duplication and the number of line increases and I am not sure the overall readability goes up. So the above may actually be a good choice at times. In this particular case it has the benefit of keepin css classes in the markup. Indeed - you could do it like this just as well:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ if .IsActive }}
+  &amp;lt;div class="active"/&amp;gt;
+{{ else }}
+  &amp;lt;div class="passive"/&amp;gt;
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Better or worse? This is a simple div with nothing else in it but consider a real world situation where there are some content inside etc. Then it may be better to go with the compact solution instead. Things like these may be good to put in the coding guidelines for a project. (You all do them - right?!?)&lt;/p&gt;
+
+&lt;p&gt;You can define a template with &lt;code&gt;{{ define "my_template" }} &amp;lt;html&amp;gt;....&amp;lt;/html&amp;gt; {{ end }}&lt;/code&gt; for both whole pages and parts in a page. Say you define a header partial: &lt;code&gt;{{ define "header" }}&amp;lt;div&amp;gt;Menus and other header stuffs.&amp;lt;/div&amp;gt;{{ end }}&lt;/code&gt; then you can use it in another template with: &lt;code&gt;{{ template "header" }}&lt;/code&gt;. So that is kind of neat. There is no support for layouts so for solving that in the standard library way you’ll have to do it yourself with functions calling different templates in different contexts. &lt;/p&gt;
+
+&lt;p&gt;One more thing. You can use &lt;code&gt;with&lt;/code&gt; to get deeper in the context of the page. Like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{ range .Books }}
+  &amp;lt;div&amp;gt;
+    {{ .Title }} by 
+    {{ with .Author }}
+      {{ .FirstName }}{{ .LastName }}
+    {{ end }}
+  &amp;lt;/div&amp;gt;
+{{ end }}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I haven’t used this much but it has the benefit of getting evaluated only if there is something in the referenced value. So it is a combined &lt;code&gt;if&lt;/code&gt; statement with a scope narrower.&lt;/p&gt;
+
+&lt;p&gt;Then there is a bunch of built-in functions that makes life a bit easier. The one that has bothered me most is &lt;code&gt;call&lt;/code&gt; that lets you call a function from within the template. But not any function. It must either have been previously tied to the template with calls to &lt;code&gt;Funcs&lt;/code&gt; with a &lt;code&gt;FuncMap&lt;/code&gt; or be in the global namespace. So if you have a nice little function tied to the struct you are exposing to your template you can not use it right away. I find this limiting - the extra code to set it up can just as well be used to introduce another variable in the struct that holds the computed value. You end up with redundant data in your model where parts are ‘real’ data and parts are computed values. I don’t have a perfect &lt;em&gt;feel&lt;/em&gt; for this yet and will come back to review it later and maybe another post about advanced templating.&lt;/p&gt;
+
+&lt;p&gt;The standard library documentation is really good. The templating basics is in the &lt;a href="http://golang.org/pkg/text/template/"&gt;text/template package&lt;/a&gt; while there are some added things for web pages in the &lt;a href="http://golang.org/pkg/text/template/"&gt;html/template package&lt;/a&gt;. This separation is obviously good so that you can do templating inside whatever format you work with.&lt;/p&gt;
+
+&lt;p&gt;Engine photo by &lt;a href="http://www.flickr.com/photos/29363671@N08/"&gt;Jon Pekelnicky&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-09-15:/2013/09/baruco_day_2.html</id>
     <title type="html">baruco day two [conference report]</title>
@@ -148,52 +215,6 @@ the way the language is constructed. &lt;/p&gt;
 &lt;p&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Francesco_Guardi_009.jpg" alt="" /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Francesco_Guardi_008.jpg" alt="" /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-08-12:/2013/08/italian_infrastructure.html</id>
-    <title type="html">infrastructure shots</title>
-    <published>2013-08-12T14:07:00Z</published>
-    <updated>2013-08-12T14:07:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/08/italian_infrastructure.html"/>
-    <content type="html">&lt;p&gt;We were fortunate enough to spend a couple of weeks in Italy. A great country always worth returning to. I read a book during the vacation about how Italy managed to become one. Seems like it was mostly a piedmontesian project when it started. Most of Italy were not that keen on the idea. Somehow they managed to pull it through but it is good to keep in mind that the different country parts have very different background, history and culture. Even the food changes a lot as you travel around. We focused on northern italy this time. We decided to go about by train and stayed in 4 cities during our trip. In this post I will show some nice shots of infrastructure (in a broad meaning) I took during the trip. Lets start in Milan with a &lt;a href="http://www.flickr.com/photos/froderik/9374266046/"&gt;nice old tram&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm8.staticflickr.com/7324/9374266046_980a707e2e_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;And a &lt;a href="www.flickr.com/photos/froderik/9376268864"&gt;strong moon&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm3.staticflickr.com/2879/9376268864_440e3dd733_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;From Milan we moved on for some sun and waves at the nice little town &lt;a href="http://www.comune.sestri-levante.ge.it/"&gt;Sestri Levante&lt;/a&gt; about an hour from Genoa. Built on a former island &lt;a href="http://www.flickr.com/photos/froderik/9469229505"&gt;narrowly corrected&lt;/a&gt; with the mainland it was a nice place for a amateur photographer.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm4.staticflickr.com/3665/9469229505_b921f1f9e1_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;We also had some good timing with the sun that produced this &lt;a href="www.flickr.com/photos/froderik/9472019882"&gt;awesome view&lt;/a&gt; one of the evenings.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm4.staticflickr.com/3753/9472019882_eebc3586ed_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;We moved on to Genoa (or Genova as the locals spell it). This former mechant republic used to compete with Venice on the high seas. Contrary to Venice it still is one of the important ports in Italy. We took a walk down to the 500 year old lighthouse for some &lt;a href="http://www.flickr.com/photos/froderik/9471054149"&gt;views of the modern harbor&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm8.staticflickr.com/7299/9471054149_dfe7864733_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Genoa is built where the mountains meet the mediterranean so there is a &lt;a href="www.flickr.com/photos/froderik/9471062411"&gt;need for tunnels&lt;/a&gt;. One of my best shots during the trip.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm6.staticflickr.com/5499/9471062411_78b6535c78_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;From Genoa we continued to Bologna via Cinque Terre. It rained to we couldn’t explore the 5 villages by the sea properly. But you’ll get &lt;a href="http://www.flickr.com/photos/froderik/9477777932"&gt;the idea&lt;/a&gt; anyway…..&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm3.staticflickr.com/2832/9477777932_651841f59d_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;And &lt;a href="http://www.flickr.com/photos/froderik/9477788986"&gt;another tunnel&lt;/a&gt;!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm3.staticflickr.com/2855/9477788986_de2afcf87a_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Bologna is an awesome city. Despite being old and like an old museum it still is lively. Likely due to its very old university still going strong. Much of the streets in the inner city got colonnades which us just an &lt;a href="http://www.flickr.com/photos/froderik/9487213376"&gt;awesome&lt;/a&gt; &lt;a href="http://www.flickr.com/photos/froderik/9484436291"&gt;thing&lt;/a&gt; to have in a city. &lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm6.staticflickr.com/5449/9487213376_7c771e8e84_c.jpg" alt="" /&gt;
-&lt;img src="http://farm3.staticflickr.com/2819/9484436291_3428fb4370_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;After Bologna we turned north and spend a couple of days in Innsbruck and München on our way home. All in all a good trip. All the &lt;a href="http://www.flickr.com/photos/froderik/"&gt;pictures from the trip&lt;/a&gt; can be found at flickr.&lt;/p&gt;
 </content>
   </entry>
 </feed>
