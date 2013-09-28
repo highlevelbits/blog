@@ -15,7 +15,7 @@
     <published>2013-09-28T13:02:00Z</published>
     <updated>2013-09-28T13:02:00Z</updated>
     <link rel="alternate" href="http://www.highlevelbits.com/2013/09/golang_templating_engine.html"/>
-    <content type="html">&lt;p&gt;&lt;a href="www.flickr.com/photos/29363671@N08/4264734398"&gt;&lt;img style="float:right" src="http://farm3.staticflickr.com/2723/4264734398_f89371801a.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;a href="http://www.flickr.com/photos/29363671@N08/4264734398"&gt;&lt;img style="float:right" src="http://farm3.staticflickr.com/2723/4264734398_f89371801a.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;I am busy coding a web site with &lt;a href="http://golang.org/"&gt;go&lt;/a&gt;. I am still not convinced that go is the best choice for web development unless performance is in high demand. It is still great fun to learn a new language and a language that have different opinions on many things compared to other languages. This kind of experiences are very good to move forward as a developer. So kudos to &lt;a href="http://www.flatwallet.se/"&gt;flatwallet&lt;/a&gt; that lets me learn go while getting paid for it. &lt;/p&gt;
 
