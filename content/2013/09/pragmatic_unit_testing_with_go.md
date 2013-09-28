@@ -3,7 +3,7 @@ title: pragmatic unit testing with go
 kind: article
 created_at: 2013-09-08 21:02:00
 author: fredrik
-tags: golang, reusability, coding, programming, tdd, testing
+tags: golang, reusability, coding, tdd, testing
 ---
 
 [<img style="float:right" src="http://farm9.staticflickr.com/8373/8461414333_4a30e15dd3_m.jpg" />](http://www.flickr.com/photos/ajstarks/8461414333)
