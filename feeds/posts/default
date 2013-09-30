@@ -2,13 +2,36 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2013-09-28T13:02:00Z</updated>
+  <updated>2013-09-30T21:02:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-09-30:/2013/09/go_error_handling_thoughts.html</id>
+    <title type="html">thoughts about error handling with go</title>
+    <published>2013-09-30T21:02:00Z</published>
+    <updated>2013-09-30T21:02:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/09/go_error_handling_thoughts.html"/>
+    <content type="html">&lt;p&gt;I find myself with this code line lots of time:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if err != nil { return err }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sometimes with an extra return value - sometimes not. However - the go formatter likes it to be:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if err != nil {
+    return err
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which is my preferred way to write it normally. Now I have started to use the one-liner approach to make my code more readable. In a simple database sequence you may need to check the error 3 or more times (getting the database, executing the query and scanning the response for data) so the error handling &lt;em&gt;noise&lt;/em&gt; will be 3 or 9 lines of such a function. In my mind there is a conflict between explicit code and readable code. Go seems to drive me towards explicit code forcing me to leave some of my coding practices behind.&lt;/p&gt;
+
+&lt;p&gt;Please contribute your thoughts about this in the comments section below.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-09-28:/2013/09/golang_templating_engine.html</id>
     <title type="html">go templating - the basics</title>
@@ -200,21 +223,6 @@ the way the language is constructed. &lt;/p&gt;
 &lt;p&gt;Works for me. I’m gonna use that for a while and see how it feels. I will - however - try to grasp the &lt;em&gt;go way&lt;/em&gt; as I go and if needed will change my mind in this matter.&lt;/p&gt;
 
 &lt;p&gt;Expect more posts about go during the fall.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-09-04:/2013/09/guardi.html</id>
-    <title type="html">guardi - painter of ruins</title>
-    <published>2013-09-04T21:02:00Z</published>
-    <updated>2013-09-04T21:02:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/09/guardi.html"/>
-    <content type="html">&lt;p&gt;As &lt;a href="http://highlevelbits.com/2013/08/italian_infrastructure.html"&gt;already reported&lt;/a&gt; we spent a couple of weeks in Italy this summer. In Milan we went to Museo Poldi-Pezzoli, once the home of a wealthy family and now turned into a museum with a really nice selecton of paintings. I like these smaller museums. It is possible to view most of the works without getting overwhelmed. This time I fell for a painting by Fransesco Guardi (a new acquaintance for me) called &lt;strong&gt;Architectural Caprice with Roman Ruins&lt;/strong&gt;. The painting shows a ‘normal’ life by the sea and upon that some large roman ruins are added. I liked the sense of how time passes but life goes on and also how the work of the ones before us still dwell among us. The ruins may be seen as a symbol for our history continuously putting its mark on our life.&lt;/p&gt;
-
-&lt;p&gt;The painting can be &lt;a href="http://www.museopoldipezzoli.it/en/node/700"&gt;viewed online&lt;/a&gt; at the museos web site. All rights reserved so can’t be shown here. The following paintings comes from &lt;a href="https://commons.wikimedia.org"&gt;wikimedia commons&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Francesco_Guardi_009.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Francesco_Guardi_008.jpg" alt="" /&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
