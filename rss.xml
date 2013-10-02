@@ -2,13 +2,63 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2013-09-30T21:02:00Z</updated>
+  <updated>2013-10-03T01:59:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/rss.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-10-03:/2013/10/single_point_logging.html</id>
+    <title type="html">single point logging with go</title>
+    <published>2013-10-03T01:59:00Z</published>
+    <updated>2013-10-03T01:59:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/10/single_point_logging.html"/>
+    <content type="html">&lt;p&gt;I’ll continue to spam you with &lt;a href="http://golang.org/"&gt;go&lt;/a&gt; related posts. I am working on a rather small webapp built with go. Despite it being small we have still managed to code differently in different parts of the application. Logging is one such issue that we decided to do something about the other day. At the same time it was good to improve on the error handling which often goes hand in hand with logging. In the midst of this some external forces (operations….) tells us that we should use a &lt;strong&gt;logging server&lt;/strong&gt; for logging. Not right away mayhaps but eventually. This led us to go for our own logging functions so that we can change the implementation in one place. So we needed to get some common things into the log. User name (or some way to keep track of one call to the system), a timestamp, the code line where the logging occurred and the message itself. A normal application log file more or less. &lt;/p&gt;
+
+&lt;p&gt;To call our own logger we thought something like &lt;code&gt;LogInfo(user User, message string, args... interface{})&lt;/code&gt; looked nice with corresponding functions for Error and Debug. The first implementation was easy enough:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func LogInfo(message string, args ...interface{}) {
+  log.Printf("INFO | " + message, args...)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But wait? What happens with the code line number? It will point to our logger function and that is not what we intended. We would like the line nubmer to be where the call to LogInfo occurred. At this point in time it was very handy to have the source code available for the standard library. &lt;code&gt;Printf&lt;/code&gt; does not care about line numbers and such - it just prints whatever line it is invoked on. Underneath the &lt;code&gt;Printf&lt;/code&gt; function there are a &lt;code&gt;Logger&lt;/code&gt; type that defines an &lt;code&gt;Output&lt;/code&gt; function called by printf. So lets start with constructing a &lt;code&gt;Logger&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func Logger() *log.Logger {
+  return log.New( os.Stderr, "", log.Lshortfile | log.Ldate | log.Ltime )
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first argument to &lt;code&gt;New is a writer. For now we are happy to write to Stderr. The second is a prefix to use when logging - we don't care about it now - probably useful when you log from several things to the same file. Lastly we tell the standard library what we want to log - a short file description with line number and a timestamp. Find the available options under the *const* part in the log package documentation. Now all we need to do is to call the &lt;/code&gt;Output` function on the logger.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func LogInfo(message string, args ...interface{}) {
+  calldepth := 3 // the distance to the actual call for logging
+  Logger().Output(calldepth, "INFO | " + fmt.Sprintf(message, args...))
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and use it to log some stuff:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LogInfo("%s %s", "some", "stuff")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;calldepth&lt;/code&gt; here is basically what part of the stack that makes it as a code line into the block. The standard library uses 2 so it made sense to add one to get to the right position for us. The standard library uses &lt;code&gt;runtime.Caller&lt;/code&gt; to get to this information. There are other functions to get to the stack also in the &lt;code&gt;runtime&lt;/code&gt; package.&lt;/p&gt;
+
+&lt;p&gt;In the real world we passed in info about our user, extracted log message creation to its own function and added functions for error and debug. We also had one set of functions accepting a user and one set not accepting a user. We also did &lt;a href="http://stackoverflow.com/q/19115273/135673"&gt;some thinking&lt;/a&gt; about if it was possible to log something like a thread id and came to the conclusion that it isn’t possible in go. I got a &lt;a href="http://stackoverflow.com/a/19116962/135673"&gt;nice answer&lt;/a&gt; from &lt;a href="http://stackoverflow.com/users/41344/rog"&gt;rog&lt;/a&gt; and here is the first part:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Because of the high potential for abuse, there is no way to access an identifier for the current goroutine in Go. This may 
+seem draconian, but this actually preserves an important property of the Go package ecosystem: &lt;em&gt;it does not matter if you 
+start a new goroutine to do something&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A good explanation and in line with the go way of doing things. I can find it a bit limiting at times but it is almost always for a good reason which makes it easier to accept.&lt;/p&gt;
+
+&lt;p&gt;As a side note - the go community is very helpful. Using the #golang tag on twitter for asking questions renders some nice answers and discussions. Very useful. And &lt;a href="http://stackoverflow.com"&gt;stackoverflow&lt;/a&gt; is a good resource as always.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-09-30:/2013/09/go_error_handling_thoughts.html</id>
     <title type="html">thoughts about error handling with go</title>
@@ -150,79 +200,6 @@
 &lt;p&gt;The event is nicely organized with above standard foods both for breakfast and lunch. Way to go. Some optimism about the registration process caused a long queue in the morning so the whole day become half an hour late. But we are in Spain now so nemas problemas about that! &lt;/p&gt;
 
 &lt;p&gt;I ended the day with a visit at Nou Camp and saw Barcelona beat Sevilla with 3-2. Lots of energy in that stadium!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-09-08:/2013/09/pragmatic_unit_testing_with_go.html</id>
-    <title type="html">pragmatic unit testing with go</title>
-    <published>2013-09-08T21:02:00Z</published>
-    <updated>2013-09-08T21:02:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/09/pragmatic_unit_testing_with_go.html"/>
-    <content type="html">&lt;p&gt;&lt;a href="http://www.flickr.com/photos/ajstarks/8461414333"&gt;&lt;img style="float:right" src="http://farm9.staticflickr.com/8373/8461414333_4a30e15dd3_m.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I am fortunate to code some &lt;a href="http://golang.org/"&gt;go&lt;/a&gt; at my new assignment. I had some two weeks with the language last fall but apart from that it is new unmarked land for me. It is a nice language that is easy to learn and does things in very different ways. You get started really fast but with that nagging feeling that there is much more to learn around the corner. I suspect that you can be really productive in go. If you like your strong types and a bit lower level than normal you will get back performance only matched by C and a robust piece of code. &lt;/p&gt;
-
-&lt;p&gt;Needless to say - the benefits of unit tests in a strongly typed and opionionated language like go is a bit lower than in dynamic languages like ruby, python and javascript. It is still necessary to keep your code base stable over time. So I have tried it out a bit. I started with the &lt;a href="http://golang.org/pkg/testing/"&gt;standard library approach&lt;/a&gt; where you get something like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func TestSomething(t *testing.T) {
-  something := false
-  if something {
-    t.Log("Oh noes - something is false")
-    t.Fail()      
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Oh no. This is a bit verbose for my taste. Some four lines to do an assert…. Sure, you can add some semicolons and get in one line but with reduced readability. I sort of hoped that I had gotten something wrong here. This couldn’t possible be the way to do it? I &lt;a href="http://stackoverflow.com/q/18637912/135673"&gt;turned to stackoverflow and asked how&lt;/a&gt; to do it. The first two answers pretty much confirmed that this is the way to do it. Idiomatic go according to the language constructors. One of the answers stated that:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;I discourage writing test in the way you seem to have desire for. 
-It’s not by chance that the whole stdlib uses the, as you call it, 
-“verbose” way.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I elaborated my question and asked if it wouldn’t be nice to reuse a bit of code in my own assert method:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func AssertTrue(t *testing.T, value bool, message string) {
-  if value {
-    t.Log(message)
-    t.Fail()
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and use it in my test like so:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func TestSomething(t *testing.T) {
-  something := false
-  AssertTrue(t, something, "Oh noes - something is false")
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and I got this reply:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Based on your update, that is not idiomatic Go. What you are doing is in 
-essence designing a test extension framework to mirror what you get in 
-the XUnit frameworks. While there is nothing fundamentally wrong, from 
-an engineering perspective, it does raise questions as to the value + cost 
-of maintaining this extension library. Additionally, you are creating an 
-in-house standard that will potentially ruffle feathers. The biggest thing 
-about Go is it is not C or Java or C++ or Python and things should be done 
-the way the language is constructed. &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;So from this reasoning it seems like normal practices like code reuse is not applicable to go. Weird - me thinks…. So I started to give up hope about this nice little language. Fortunately a third answer (that I accepted) dropped in introducing gocheck and basically telling me that there are other opinions in the go community than the stdlib ones. Good to hear - maybe there is a place for a pragmatic programmer after all. With &lt;a href="http://labix.org/gocheck"&gt;gocheck&lt;/a&gt; you can do asserts easily:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func (s *MySuite) TestSomething(c *C) { 
-  something := false
-  c.Check(something, Equals, true, "Oh noes - something is false") 
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Works for me. I’m gonna use that for a while and see how it feels. I will - however - try to grasp the &lt;em&gt;go way&lt;/em&gt; as I go and if needed will change my mind in this matter.&lt;/p&gt;
-
-&lt;p&gt;Expect more posts about go during the fall.&lt;/p&gt;
 </content>
   </entry>
 </feed>

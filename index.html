@@ -51,6 +51,71 @@
   <div class="start-page-article">
     <div class="row">
       <h2 class="article-header">
+        <a href="2013/10/single_point_logging.html">single point logging with go</a>
+      </h2>
+      <div class="byline">
+        by
+        fredrik
+        on
+        2013-10-03
+      </div>
+    </div>
+    <p>I’ll continue to spam you with <a href="http://golang.org/">go</a> related posts. I am working on a rather small webapp built with go. Despite it being small we have still managed to code differently in different parts of the application. Logging is one such issue that we decided to do something about the other day. At the same time it was good to improve on the error handling which often goes hand in hand with logging. In the midst of this some external forces (operations….) tells us that we should use a <strong>logging server</strong> for logging. Not right away mayhaps but eventually. This led us to go for our own logging functions so that we can change the implementation in one place. So we needed to get some common things into the log. User name (or some way to keep track of one call to the system), a timestamp, the code line where the logging occurred and the message itself. A normal application log file more or less. </p>
+
+<p>To call our own logger we thought something like <code>LogInfo(user User, message string, args... interface{})</code> looked nice with corresponding functions for Error and Debug. The first implementation was easy enough:</p>
+
+<pre><code>func LogInfo(message string, args ...interface{}) {
+  log.Printf("INFO | " + message, args...)
+}
+</code></pre>
+
+<p>But wait? What happens with the code line number? It will point to our logger function and that is not what we intended. We would like the line nubmer to be where the call to LogInfo occurred. At this point in time it was very handy to have the source code available for the standard library. <code>Printf</code> does not care about line numbers and such - it just prints whatever line it is invoked on. Underneath the <code>Printf</code> function there are a <code>Logger</code> type that defines an <code>Output</code> function called by printf. So lets start with constructing a <code>Logger</code>:</p>
+
+<pre><code>func Logger() *log.Logger {
+  return log.New( os.Stderr, "", log.Lshortfile | log.Ldate | log.Ltime )
+}
+</code></pre>
+
+<p>The first argument to <code>New is a writer. For now we are happy to write to Stderr. The second is a prefix to use when logging - we don't care about it now - probably useful when you log from several things to the same file. Lastly we tell the standard library what we want to log - a short file description with line number and a timestamp. Find the available options under the *const* part in the log package documentation. Now all we need to do is to call the </code>Output` function on the logger.</p>
+
+<pre><code>func LogInfo(message string, args ...interface{}) {
+  calldepth := 3 // the distance to the actual call for logging
+  Logger().Output(calldepth, "INFO | " + fmt.Sprintf(message, args...))
+}
+</code></pre>
+
+<p>and use it to log some stuff:</p>
+
+<pre><code>LogInfo("%s %s", "some", "stuff")
+</code></pre>
+
+<p>The <code>calldepth</code> here is basically what part of the stack that makes it as a code line into the block. The standard library uses 2 so it made sense to add one to get to the right position for us. The standard library uses <code>runtime.Caller</code> to get to this information. There are other functions to get to the stack also in the <code>runtime</code> package.</p>
+
+<p>In the real world we passed in info about our user, extracted log message creation to its own function and added functions for error and debug. We also had one set of functions accepting a user and one set not accepting a user. We also did <a href="http://stackoverflow.com/q/19115273/135673">some thinking</a> about if it was possible to log something like a thread id and came to the conclusion that it isn’t possible in go. I got a <a href="http://stackoverflow.com/a/19116962/135673">nice answer</a> from <a href="http://stackoverflow.com/users/41344/rog">rog</a> and here is the first part:</p>
+
+<blockquote>
+  <p>Because of the high potential for abuse, there is no way to access an identifier for the current goroutine in Go. This may 
+seem draconian, but this actually preserves an important property of the Go package ecosystem: <em>it does not matter if you 
+start a new goroutine to do something</em>.</p>
+</blockquote>
+
+<p>A good explanation and in line with the go way of doing things. I can find it a bit limiting at times but it is almost always for a good reason which makes it easier to accept.</p>
+
+<p>As a side note - the go community is very helpful. Using the #golang tag on twitter for asking questions renders some nice answers and discussions. Very useful. And <a href="http://stackoverflow.com">stackoverflow</a> is a good resource as always.</p>
+    <center>
+      ------
+    </center>
+    <div class="outro">
+      <i>
+        Even though this was the entire post you may want to leave a comment on the
+        <a href="2013/10/single_point_logging.html">post page</a>
+        .
+      </i>
+    </div>
+  </div>
+  <div class="start-page-article">
+    <div class="row">
+      <h2 class="article-header">
         <a href="2013/09/go_error_handling_thoughts.html">thoughts about error handling with go</a>
       </h2>
       <div class="byline">
@@ -164,49 +229,6 @@
       <i>
         Even though this was the entire post you may want to leave a comment on the
         <a href="2013/09/golang_templating_engine.html">post page</a>
-        .
-      </i>
-    </div>
-  </div>
-  <div class="start-page-article">
-    <div class="row">
-      <h2 class="article-header">
-        <a href="2013/09/baruco_day_2.html">baruco day two [conference report]</a>
-      </h2>
-      <div class="byline">
-        by
-        fredrik
-        on
-        2013-09-15
-      </div>
-    </div>
-    <p><img style="float:right" src="http://assets2013.baruco.org/assets/logo-3ff2130df4d6cf11e8bd7f1e3d72bb6d.png"></p>
-
-<p>The nice organisers thought it wise to start the second day an hour later. Surely a blessing for the first speaker. </p>
-
-<p>The keynote by Paolo Perrotta was entertaining and thought provoking. Spanning such wide topics as the discovery of how to calculate longitudes, distant forefathers crawling up from the sea and the horrors of SOAP, Paolo made a good shot at comparing progress in the software discipline with the evolution of mankind and maybe just maybe the future will be more functional than the present.</p>
-
-<p>Apart from the keynote the talks were more technical this day. The future of jruby, rubymotion for iOS coding, a bit of clojure, tender love shaving a yak. That sort of thing. </p>
-
-<p>Rather than listing all the talks I will focus on my takeaways from the conference:</p>
-
-<ul>
-  <li>functional programming is on the move. I heard a lot about that object orientation has become the way to code in the 21st century. But there are some issues that are not solved that well with object orientation. It doesn’t scale nicely and it seems that it is next to impossible to write larger systems with the technique. Functional has some characteristics that makes it attractive for the upcoming challenges. It is highly scalable (due to immutability) and it is really great for testing. THat functional sort of ‘appears’ at a Ruby conference is a good sign that it is up and coming.</li>
-  <li>a sense of fatigue and maturity. Look how far we have come in our field, that is great but many things still suck and we are bit tired. Hopefully a conference like this one can reeenergize and help us move on. The needs for decent software creation will not diminish in neither the close nor the distant future.</li>
-  <li>maybe use jruby in production?!?</li>
-  <li>there were several talks about the quality without a name. How do we go about producing software that can stay around for a while? Since I have been interested in these things since late 90s I didn’t learn much but it gives me hope that good practices are preached at a conference like this one. How to penetrate the breadth of developers out there is still largely an unknown.</li>
-</ul>
-
-<p>To sum up: a really nice conference moulded in the standard format. The communication flows mainly in one direction with breaks and parties making it possible to interact a bit further. This bothers me more and more with conferences - I would prefer a bit more interactivity. This time I sneaked away a bit prematurely feeling numb from all the listening. So sadly I missed the lightning talks - I am sure this was one of the best parts of the conference.</p>
-
-<p>Luckily I booked a further two days in Barcelona so now that the conference is over I will find out more about the city. It looks really nice so far! I had good food both nights at random restaurants and I stay at a really <a href="https://sv.airbnb.com/rooms/1159801">nice airbnb</a>.</p>
-    <center>
-      ------
-    </center>
-    <div class="outro">
-      <i>
-        Even though this was the entire post you may want to leave a comment on the
-        <a href="2013/09/baruco_day_2.html">post page</a>
         .
       </i>
     </div>
