@@ -1,0 +1,23 @@
+---
+title: activating submit button when multiple fields validates
+kind: article
+created_at: 2013-10-04 16:16:00
+author: fredrik
+tags: javascript, coding, web
+---
+
+%p
+  I have encountered this kind of requirement several times now and made better and better implementations of it. The task is to make a form submit button active only when several fields in a form validates. In the form below there are 3 different inputs with different validation requirements and the submit button only activates when all of them are validated.
+
+%form
+  %label
+    Some text
+  %textarea{ id: 'area' }
+  %label
+    A date (yyyy-mm-dd)
+  %input{ type: 'text' }
+  %label
+    A time (hh:mm)
+  %input{ type: 'text' }
+  %input{ type: 'submit' }
+
