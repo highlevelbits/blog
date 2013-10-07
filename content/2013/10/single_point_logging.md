@@ -20,7 +20,7 @@ But wait? What happens with the code line number? It will point to our logger fu
       return log.New( os.Stderr, "", log.Lshortfile | log.Ldate | log.Ltime )
     }
 
-The first argument to `New is a writer. For now we are happy to write to Stderr. The second is a prefix to use when logging - we don't care about it now - probably useful when you log from several things to the same file. Lastly we tell the standard library what we want to log - a short file description with line number and a timestamp. Find the available options under the *const* part in the log package documentation. Now all we need to do is to call the `Output` function on the logger.
+The first argument to `New` is a writer. For now we are happy to write to Stderr. The second is a prefix to use when logging - we don't care about it now - probably useful when you log from several things to the same file. Lastly we tell the standard library what we want to log - a short file description with line number and a timestamp. Find the available options under the *const* part in the log package documentation. Now all we need to do is to call the `Output` function on the logger.
 
     func LogInfo(message string, args ...interface{}) {
       calldepth := 3 // the distance to the actual call for logging
