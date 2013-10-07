@@ -76,7 +76,7 @@
 }
 </code></pre>
 
-<p>The first argument to <code>New is a writer. For now we are happy to write to Stderr. The second is a prefix to use when logging - we don't care about it now - probably useful when you log from several things to the same file. Lastly we tell the standard library what we want to log - a short file description with line number and a timestamp. Find the available options under the *const* part in the log package documentation. Now all we need to do is to call the </code>Output` function on the logger.</p>
+<p>The first argument to <code>New</code> is a writer. For now we are happy to write to Stderr. The second is a prefix to use when logging - we don’t care about it now - probably useful when you log from several things to the same file. Lastly we tell the standard library what we want to log - a short file description with line number and a timestamp. Find the available options under the <em>const</em> part in the log package documentation. Now all we need to do is to call the <code>Output</code> function on the logger.</p>
 
 <pre><code>func LogInfo(message string, args ...interface{}) {
   calldepth := 3 // the distance to the actual call for logging
