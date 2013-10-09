@@ -9,3 +9,5 @@ gem 'nokogiri'
 gem 'builder'
 gem 'simple-rss'
 gem 'htmlentities'
+
+gem 'guard-nanoc'

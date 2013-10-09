@@ -51,6 +51,11 @@ File type support
 
 Currently content can be written in markdown, erb or haml. Check (or change) the [Rules](https://github.com/highlevelbits/blog/blob/master/Rules) file for the most up to date definitions. To add support for another markup engine should be as easy as adding a `when` to the `case` in the Rules `compile` part and adding the corresponding gem to the Gemfile. (Also - run `bundle install`.)
 
+Guard
+-----
+
+To recompile the site automatically guard is now included in the gemfile. `bundle install` and then `bundle exec guard` to get recompiles when something changes.
+
 Contribute
 ----------
 
