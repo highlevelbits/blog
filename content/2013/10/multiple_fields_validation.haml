@@ -1,0 +1,177 @@
+---
+title: multiple fields validates with javascript
+kind: article
+created_at: 2013-10-15 18:16:00
+author: fredrik
+tags: jquery, javascript, coding, web
+---
+
+%p
+  I have encountered one particular kind of requirement several times now and made a couple of different implementations of it. This last implementation is generic and can be reused in several places. The task is to make a form submit button active only when all fields in a form validates. It helps the user to understand that they have entered something wrong without the roundtrip to a server. It should be combined with useful error messages next to the fields but I won't go in to that now. 
+
+%p
+  In the form below there are 3 different inputs with different validation requirements and the submit button only activates when all of them are validated. There need to be something in the text area and the date and time fields should be on the format dddd-dd-dd and dd:dd and only then will the button become activated.
+
+%script{ src: 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', type: 'text/javascript' }
+
+:javascript
+
+  function buttonEnabling(buttonSelector, isEnabled){
+    if(isEnabled) {
+      $(buttonSelector).removeAttr("disabled");
+    } else {
+      $(buttonSelector).attr("disabled", "disabled")
+    }
+  }
+
+  function validateFields(selectorsWithFunctions, buttonSelector) {
+    var isValid = true
+    for (var i = selectorsWithFunctions.length - 1; i >= 0; i--) {
+      var selector = selectorsWithFunctions[i][0];
+      var func = selectorsWithFunctions[i][1];
+
+      if( !func(selector) ) {
+        isValid = false;
+        break;
+      }
+    };
+    buttonEnabling(buttonSelector, isValid);
+  }
+
+  function validateTime(selector) {
+    var fieldValue = $(selector).val();
+    return /^\d\d:\d\d$/.test(fieldValue.trim());
+  }
+
+  function validateDate(selector) {
+    var fieldValue = $(selector).val();
+    return /^\d\d\d\d-\d\d-\d\d$/.test(fieldValue.trim());
+  }
+
+  function validatePresence(selector) {
+    var fieldValue = $(selector).val();
+    return fieldValue.length > 0
+  }
+
+  function runFieldValidations() {
+    validators = [
+      ["#some-text", validatePresence],
+      ["#date", validateDate],
+      ["#time", validateTime]
+    ];
+    validateFields(validators, "#submit-button")
+  }
+
+  $(document).ready(function(){
+    $("#some-text").keyup(runFieldValidations);
+    $("#date").keyup(runFieldValidations);
+    $("#time").keyup(runFieldValidations);
+    runFieldValidations();
+  });
+
+
+%p
+  %form
+    .form-row
+      .label
+        %label
+          Some mandatory text
+      %textarea{ id: 'some-text' }
+    .form-row
+      .label
+        %label
+          A date (yyyy-mm-dd)
+      %input{ id: 'date', type: 'text' }
+    .form-row
+      .label
+        %label
+          A time (hh:mm)
+      %input{ id: 'time', type: 'text' }
+    .form-row
+      %input{ id: 'submit-button', disabled: 'disabled', type: 'submit' }
+
+%p
+  Lets go top down through the code that does this. I am using jquery in the example but it shouldn't be a problem doing the same thing with vanilla javascript or your framework of choice. First - set up event listeners on keyboard events triggered in our 3 widgets. (Widgets! Sound of the 90s!) For this the ready function of jquery is convenient:
+
+%pre
+  %code
+    :escaped
+      $(document).ready(function(){
+        $("#some-text").keyup(runFieldValidations);
+        $("#date").keyup(runFieldValidations);
+        $("#time").keyup(runFieldValidations);
+        runFieldValidations();
+      }
+
+%p
+  Three widgets means three event bindings to the function 
+  %code
+    runFieldValidations
+  that does the actual validations. Finally it is called once to make sure the button is in the correct state when entering the document. If it has been disabled to start with we can still end up with a bit of data entered by the browser from a previous session. The runFieldValidations function takes care of setting up the validation used for each widget.
+
+%pre
+  %code
+    :escaped
+        function runFieldValidations() {
+          validators = [
+            ["#some-text", validatePresence],
+            ["#date", validateDate],
+            ["#time", validateTime]
+          ];
+          validateFields(validators, "#submit-button")
+        }
+
+%p 
+  It calls a generic function called
+  %code 
+    validateFields
+  that accepts an array of tuples each of which is a css selector (pointing to the widget we want to validate) and a function that should be called to validate it. As its second argument it accepts a css selector for the button that is to be (dis|en)abled. It loops over the tuples and calls the function to decide if the validation passes or not. As soon as something doesn't validate it breaks out of the loops and disables the button. In my first version button enabling was inline in the function but I decided that breaking it out would increase readability. The button enabling itself is as easy as setting or removing the attribute disabled.
+
+%pre
+  %code
+    :escaped
+      function buttonEnabling(buttonSelector, isEnabled){
+        if(isEnabled) {
+          $(buttonSelector).removeAttr("disabled");
+        } else {
+          $(buttonSelector).attr("disabled", "disabled")
+        }
+      }
+
+      function validateFields(selectorsWithFunctions, buttonSelector) {
+        var isValid = true
+        for (var i = selectorsWithFunctions.length - 1; i >= 0; i--) {
+          var selector = selectorsWithFunctions[i][0];
+          var func = selectorsWithFunctions[i][1];
+
+          if( !func(selector) ) {
+            isValid = false;
+            break;
+          }
+        };
+        buttonEnabling(buttonSelector, isValid);
+      }
+
+%p
+  This is the engine of the solution. Now the only thing left is to show the functions that does the actual validation. They accept a selector and does some easy checking on the value. In the date and time cases this is done with regular expressions. They look like this:
+
+%pre
+  %code
+    :escaped
+      function validateTime(selector) {
+        var fieldValue = $(selector).val();
+        return /^\d\d:\d\d$/.test(fieldValue.trim());
+      }
+
+      function validateDate(selector) {
+        var fieldValue = $(selector).val();
+        return /^\d\d\d\d-\d\d-\d\d$/.test(fieldValue.trim());
+      }
+
+      function validatePresence(selector) {
+        var fieldValue = $(selector).val();
+        return fieldValue.length > 0
+      }
+
+%p
+  I am actually getting to like Javascript. It is rather easy to create small lightweight pieces of code. In this example we send around pointers to functions (a language feature that made this blog post possible). I think many script developers lack a bit in discipline and end up with high complexity and low readability. But this is clearly not the fault of javascript. As always - with higher levels of freedom comes a greater burden of responsibility.
