@@ -2,13 +2,181 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2013-10-03T01:59:00Z</updated>
+  <updated>2013-10-15T18:16:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-10-15:/2013/10/multiple_fields_validation.html</id>
+    <title type="html">multiple fields validates with javascript</title>
+    <published>2013-10-15T18:16:00Z</published>
+    <updated>2013-10-15T18:16:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/10/multiple_fields_validation.html"/>
+    <content type="html">&lt;p&gt;
+  I have encountered one particular kind of requirement several times now and made a couple of different implementations of it. This last implementation is generic and can be reused in several places. The task is to make a form submit button active only when all fields in a form validates. It helps the user to understand that they have entered something wrong without the roundtrip to a server. It should be combined with useful error messages next to the fields but I won't go in to that now.
+&lt;/p&gt;
+&lt;p&gt;
+  In the form below there are 3 different inputs with different validation requirements and the submit button only activates when all of them are validated. There need to be something in the text area and the date and time fields should be on the format dddd-dd-dd and dd:dd and only then will the button become activated.
+&lt;/p&gt;
+&lt;script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script&gt;
+  function buttonEnabling(buttonSelector, isEnabled){
+    if(isEnabled) {
+      $(buttonSelector).removeAttr("disabled");
+    } else {
+      $(buttonSelector).attr("disabled", "disabled")
+    }
+  }
+  
+  function validateFields(selectorsWithFunctions, buttonSelector) {
+    var isValid = true
+    for (var i = selectorsWithFunctions.length - 1; i &gt;= 0; i--) {
+      var selector = selectorsWithFunctions[i][0];
+      var func = selectorsWithFunctions[i][1];
+  
+      if( !func(selector) ) {
+        isValid = false;
+        break;
+      }
+    };
+    buttonEnabling(buttonSelector, isValid);
+  }
+  
+  function validateTime(selector) {
+    var fieldValue = $(selector).val();
+    return /^\d\d:\d\d$/.test(fieldValue.trim());
+  }
+  
+  function validateDate(selector) {
+    var fieldValue = $(selector).val();
+    return /^\d\d\d\d-\d\d-\d\d$/.test(fieldValue.trim());
+  }
+  
+  function validatePresence(selector) {
+    var fieldValue = $(selector).val();
+    return fieldValue.length &gt; 0
+  }
+  
+  function runFieldValidations() {
+    validators = [
+      ["#some-text", validatePresence],
+      ["#date", validateDate],
+      ["#time", validateTime]
+    ];
+    validateFields(validators, "#submit-button")
+  }
+  
+  $(document).ready(function(){
+    $("#some-text").keyup(runFieldValidations);
+    $("#date").keyup(runFieldValidations);
+    $("#time").keyup(runFieldValidations);
+    runFieldValidations();
+  });
+&lt;/script&gt;
+&lt;p&gt;
+  &lt;form&gt;
+    &lt;div class='form-row'&gt;
+      &lt;div class='label'&gt;
+        &lt;label&gt;
+          Some mandatory text
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;textarea id='some-text'&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div class='form-row'&gt;
+      &lt;div class='label'&gt;
+        &lt;label&gt;
+          A date (yyyy-mm-dd)
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;input id='date' type='text'&gt;
+    &lt;/div&gt;
+    &lt;div class='form-row'&gt;
+      &lt;div class='label'&gt;
+        &lt;label&gt;
+          A time (hh:mm)
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;input id='time' type='text'&gt;
+    &lt;/div&gt;
+    &lt;div class='form-row'&gt;
+      &lt;input disabled='disabled' id='submit-button' type='submit'&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Lets go top down through the code that does this. I am using jquery in the example but it shouldn't be a problem doing the same thing with vanilla javascript or your framework of choice. First - set up event listeners on keyboard events triggered in our 3 widgets. (Widgets! Sound of the 90s!) For this the ready function of jquery is convenient:
+&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$(document).ready(function(){
+  $(&amp;quot;#some-text&amp;quot;).keyup(runFieldValidations);
+  $(&amp;quot;#date&amp;quot;).keyup(runFieldValidations);
+  $(&amp;quot;#time&amp;quot;).keyup(runFieldValidations);
+  runFieldValidations();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+  Three widgets means three event bindings to the function
+  &lt;code&gt;runFieldValidations&lt;/code&gt;
+  that does the actual validations. Finally it is called once to make sure the button is in the correct state when entering the document. If it has been disabled to start with we can still end up with a bit of data entered by the browser from a previous session. The runFieldValidations function takes care of setting up the validation used for each widget.
+&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  function runFieldValidations() {
+    validators = [
+      [&amp;quot;#some-text&amp;quot;, validatePresence],
+      [&amp;quot;#date&amp;quot;, validateDate],
+      [&amp;quot;#time&amp;quot;, validateTime]
+    ];
+    validateFields(validators, &amp;quot;#submit-button&amp;quot;)
+  }&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+  It calls a generic function called
+  &lt;code&gt;validateFields&lt;/code&gt;
+  that accepts an array of tuples each of which is a css selector (pointing to the widget we want to validate) and a function that should be called to validate it. As its second argument it accepts a css selector for the button that is to be (dis|en)abled. It loops over the tuples and calls the function to decide if the validation passes or not. As soon as something doesn't validate it breaks out of the loops and disables the button. In my first version button enabling was inline in the function but I decided that breaking it out would increase readability. The button enabling itself is as easy as setting or removing the attribute disabled.
+&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function buttonEnabling(buttonSelector, isEnabled){
+  if(isEnabled) {
+    $(buttonSelector).removeAttr(&amp;quot;disabled&amp;quot;);
+  } else {
+    $(buttonSelector).attr(&amp;quot;disabled&amp;quot;, &amp;quot;disabled&amp;quot;)
+  }
+}
+
+function validateFields(selectorsWithFunctions, buttonSelector) {
+  var isValid = true
+  for (var i = selectorsWithFunctions.length - 1; i &amp;gt;= 0; i--) {
+    var selector = selectorsWithFunctions[i][0];
+    var func = selectorsWithFunctions[i][1];
+
+    if( !func(selector) ) {
+      isValid = false;
+      break;
+    }
+  };
+  buttonEnabling(buttonSelector, isValid);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+  This is the engine of the solution. Now the only thing left is to show the functions that does the actual validation. They accept a selector and does some easy checking on the value. In the date and time cases this is done with regular expressions. They look like this:
+&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function validateTime(selector) {
+  var fieldValue = $(selector).val();
+  return /^\d\d:\d\d$/.test(fieldValue.trim());
+}
+
+function validateDate(selector) {
+  var fieldValue = $(selector).val();
+  return /^\d\d\d\d-\d\d-\d\d$/.test(fieldValue.trim());
+}
+
+function validatePresence(selector) {
+  var fieldValue = $(selector).val();
+  return fieldValue.length &amp;gt; 0
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+  I am actually getting to like Javascript. It is rather easy to create small lightweight pieces of code. In this example we send around pointers to functions (a language feature that made this blog post possible). I think many script developers lack a bit in discipline and end up with high complexity and low readability. But this is clearly not the fault of javascript. As always - with higher levels of freedom comes a greater burden of responsibility.
+&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-10-03:/2013/10/single_point_logging.html</id>
     <title type="html">single point logging with go</title>
@@ -175,31 +343,6 @@ start a new goroutine to do something&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;To sum up: a really nice conference moulded in the standard format. The communication flows mainly in one direction with breaks and parties making it possible to interact a bit further. This bothers me more and more with conferences - I would prefer a bit more interactivity. This time I sneaked away a bit prematurely feeling numb from all the listening. So sadly I missed the lightning talks - I am sure this was one of the best parts of the conference.&lt;/p&gt;
 
 &lt;p&gt;Luckily I booked a further two days in Barcelona so now that the conference is over I will find out more about the city. It looks really nice so far! I had good food both nights at random restaurants and I stay at a really &lt;a href="https://sv.airbnb.com/rooms/1159801"&gt;nice airbnb&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-09-14:/2013/09/baruco_day_1.html</id>
-    <title type="html">baruco day one [conference report]</title>
-    <published>2013-09-14T21:02:00Z</published>
-    <updated>2013-09-14T21:02:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/09/baruco_day_1.html"/>
-    <content type="html">&lt;p&gt;&lt;img style="float:right" src="http://assets2013.baruco.org/assets/logo-3ff2130df4d6cf11e8bd7f1e3d72bb6d.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Last year I went to Ghent and &lt;a href="http://arrrrcamp.be/"&gt;arrrrcamp&lt;/a&gt; but failed to write a report. This year I am improving with reports from both days of &lt;a href="http://www.baruco.org"&gt;baruco&lt;/a&gt; - a bit larger a conference but similar in form to arrrrcamp. The timing could have been better though. I left a rails assignment two weeks ago and are now spending my days coding go. Exciting indeed but my ruby wanderings will be limited to side projects for a while now.&lt;/p&gt;
-
-&lt;p&gt;The conference started with a keynote by the creator of &lt;a href="https://www.ruby-lang.org/en/"&gt;Ruby&lt;/a&gt;: &lt;a href="https://twitter.com/yukihiro_matz"&gt;Yukihiro Matzumoto&lt;/a&gt; (aka Matz). He started out with talking about himself. How he started coding basic on a very limited device some 30+ years from now and how he started designing Ruby 20 years ago. A very nice personal touch. The most thought provoking thing from the talk was how (computer) languages affect the way we think. Just like natural languages do. The way we have of communicating clearly influences how we organize our thoughts around a certain problem. Later on &lt;a href="http://blog.mattwynne.net/"&gt;Matt Wynne&lt;/a&gt; touched the same issue when giving a short overview over the history of object oriented programming. How it all started with Simula but then around 1980 branched of into Smalltalk and C++ where Smalltalk stands for less control, higher freedom and worse performance and C++ of the opposite. Matt pointed out that UML and the Rational Unified Process conglomerate came out of the C++ community whereas nice things like Domain Driven Design and eXtreme Programming came right out of the Smalltalk community. (No C++ programmers around to defend it.)&lt;/p&gt;
-
-&lt;p&gt;Matz also told as a bit about future plans for Ruby core. Ruby 2.1 is due before christmas. Refinements will be a permanent feature of the language then. New releases will appear on an annual basis from now on. Ruby 3.0 in 2023 then?&lt;/p&gt;
-
-&lt;p&gt;After Matz there were two talks about technical stuff relating to scaling Ruby. I haven’t had that kind of problems yet. If I am fortunate enough to build something that needs to scale massively I’ll have to deal with it then. Likely the performant parts will be rewritten in Go rather than trying to get Ruby to perform. Later on another talk on the technical side argued about obvious things like keepin secrets in env variables and trying to have dev and test environments as similar as production as possible. I suspect many needed to hear this so I was happy about it!&lt;/p&gt;
-
-&lt;p&gt;Another trait of the first day was several ventures into object orientation. Matt Wynne described how a rewrite of cucumber made it into another kind of object oriented. It sounded very close to functional though so hard to tell the significance. &lt;a href="http://www.sandimetz.com/"&gt;Sandi Metz&lt;/a&gt; gave us a couple of rules for our object oriented life. Things like 100 lines to a class and 5 to a method. Sort of clean code baked down to a few rules. Interesting indeed. I have two rules: (1) write code that is easy to read (2) for the next person working on it. The result is pretty much the same. I don’t care much how these rules are formulated but I want them to exist (written or verbally) in any project I work on. &lt;a href="http://coreyhaines.com/"&gt;Corey Haines&lt;/a&gt; moved in the same hood with his entertaining talk &lt;em&gt;Design Patterns And The Proper Cultivation Thereof&lt;/em&gt; which in summary made the point that design patterns sure are useful if used as they were meant to be. He quoted &lt;a href="http://c2.com/cgi/wiki?ChristopherAlexander"&gt;Christoper Alexander&lt;/a&gt; (always nice!) saying that the application of design patterns can be done many times but will not produce the same result twice.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://twitter.com/iHiD"&gt;Jeremy Walker&lt;/a&gt; had a really nice talk about productivity. Most of the common sense things came though including work hard but not too hard and spiders on caffeine (which I have seen before - Linda Rising maybe?). The only thing I missed was pomodoro which would fit nicely into the focused work combined with the need for exercise now and then. People argue that you can’t use pomodoro if you want to reach and stay in flow. I don’t agree with that from my own personal experience. But it sure is different to us all and that was one of the important take aways from Jeremy’s talk. In the same spirit - &lt;a href="http://about.avdi.org/"&gt;Avdi Grimm&lt;/a&gt; neatly inter-vowed a bit of meta ruby code with a sincere message about finding the love of programming. A very important message to us all.&lt;/p&gt;
-
-&lt;p&gt;The event is nicely organized with above standard foods both for breakfast and lunch. Way to go. Some optimism about the registration process caused a long queue in the morning so the whole day become half an hour late. But we are in Spain now so nemas problemas about that! &lt;/p&gt;
-
-&lt;p&gt;I ended the day with a visit at Nou Camp and saw Barcelona beat Sevilla with 3-2. Lots of energy in that stadium!&lt;/p&gt;
 </content>
   </entry>
 </feed>

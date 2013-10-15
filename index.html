@@ -1,19 +1,16 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  <head>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>high level bits - </title>
-    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="awesome/font-awesome-min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="alternate" type="application/atom+xml" title="high level bits" href="atom.xml">
-
-    <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc 3.6.2">
-
-    <!-- google analytics -->
-    <script type="text/javascript">
+<meta charset="utf-8">
+<title>high level bits - </title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="awesome/font-awesome-min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<link href="forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.5">
+<!-- google analytics --><script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -25,16 +22,15 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script>
-    <!-- end google analytics -->
-  </head>
-  <body>
+    </script><!-- end google analytics -->
+</head>
+<body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
+</div>
         <h1>h1ghlevelb1ts</h1>
       </div>
       <div class="menu">
@@ -48,6 +44,137 @@
       </div>
       <div class="content">
         <div class="start-page">
+  <div class="start-page-article">
+    <div class="row">
+      <h2 class="article-header">
+        <a href="2013/10/multiple_fields_validation.html">multiple fields validates with javascript</a>
+      </h2>
+      <div class="byline">
+        by
+        fredrik
+        on
+        2013-10-15
+      </div>
+    </div>
+    <p>
+  I have encountered one particular kind of requirement several times now and made a couple of different implementations of it. This last implementation is generic and can be reused in several places. The task is to make a form submit button active only when all fields in a form validates. It helps the user to understand that they have entered something wrong without the roundtrip to a server. It should be combined with useful error messages next to the fields but I won't go in to that now.
+</p>
+<p>
+  In the form below there are 3 different inputs with different validation requirements and the submit button only activates when all of them are validated. There need to be something in the text area and the date and time fields should be on the format dddd-dd-dd and dd:dd and only then will the button become activated.
+</p>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+<script>&#x000A;  function buttonEnabling(buttonSelector, isEnabled){&#x000A;    if(isEnabled) {&#x000A;      $(buttonSelector).removeAttr("disabled");&#x000A;    } else {&#x000A;      $(buttonSelector).attr("disabled", "disabled")&#x000A;    }&#x000A;  }&#x000A;  &#x000A;  function validateFields(selectorsWithFunctions, buttonSelector) {&#x000A;    var isValid = true&#x000A;    for (var i = selectorsWithFunctions.length - 1; i >= 0; i--) {&#x000A;      var selector = selectorsWithFunctions[i][0];&#x000A;      var func = selectorsWithFunctions[i][1];&#x000A;  &#x000A;      if( !func(selector) ) {&#x000A;        isValid = false;&#x000A;        break;&#x000A;      }&#x000A;    };&#x000A;    buttonEnabling(buttonSelector, isValid);&#x000A;  }&#x000A;  &#x000A;  function validateTime(selector) {&#x000A;    var fieldValue = $(selector).val();&#x000A;    return /^\d\d:\d\d$/.test(fieldValue.trim());&#x000A;  }&#x000A;  &#x000A;  function validateDate(selector) {&#x000A;    var fieldValue = $(selector).val();&#x000A;    return /^\d\d\d\d-\d\d-\d\d$/.test(fieldValue.trim());&#x000A;  }&#x000A;  &#x000A;  function validatePresence(selector) {&#x000A;    var fieldValue = $(selector).val();&#x000A;    return fieldValue.length > 0&#x000A;  }&#x000A;  &#x000A;  function runFieldValidations() {&#x000A;    validators = [&#x000A;      ["#some-text", validatePresence],&#x000A;      ["#date", validateDate],&#x000A;      ["#time", validateTime]&#x000A;    ];&#x000A;    validateFields(validators, "#submit-button")&#x000A;  }&#x000A;  &#x000A;  $(document).ready(function(){&#x000A;    $("#some-text").keyup(runFieldValidations);&#x000A;    $("#date").keyup(runFieldValidations);&#x000A;    $("#time").keyup(runFieldValidations);&#x000A;    runFieldValidations();&#x000A;  });&#x000A;</script>
+<p>
+  </p>
+<form>
+    <div class="form-row">
+      <div class="label">
+        <label>
+          Some mandatory text
+        </label>
+      </div>
+      <textarea id="some-text"></textarea>
+    </div>
+    <div class="form-row">
+      <div class="label">
+        <label>
+          A date (yyyy-mm-dd)
+        </label>
+      </div>
+      <input id="date" type="text">
+    </div>
+    <div class="form-row">
+      <div class="label">
+        <label>
+          A time (hh:mm)
+        </label>
+      </div>
+      <input id="time" type="text">
+    </div>
+    <div class="form-row">
+      <input disabled id="submit-button" type="submit">
+    </div>
+  </form>
+
+<p>
+  Lets go top down through the code that does this. I am using jquery in the example but it shouldn't be a problem doing the same thing with vanilla javascript or your framework of choice. First - set up event listeners on keyboard events triggered in our 3 widgets. (Widgets! Sound of the 90s!) For this the ready function of jquery is convenient:
+</p>
+<pre><code>$(document).ready(function(){
+  $("#some-text").keyup(runFieldValidations);
+  $("#date").keyup(runFieldValidations);
+  $("#time").keyup(runFieldValidations);
+  runFieldValidations();
+}</code></pre>
+<p>
+  Three widgets means three event bindings to the function
+  <code>runFieldValidations</code>
+  that does the actual validations. Finally it is called once to make sure the button is in the correct state when entering the document. If it has been disabled to start with we can still end up with a bit of data entered by the browser from a previous session. The runFieldValidations function takes care of setting up the validation used for each widget.
+</p>
+<pre><code>  function runFieldValidations() {
+    validators = [
+      ["#some-text", validatePresence],
+      ["#date", validateDate],
+      ["#time", validateTime]
+    ];
+    validateFields(validators, "#submit-button")
+  }</code></pre>
+<p>
+  It calls a generic function called
+  <code>validateFields</code>
+  that accepts an array of tuples each of which is a css selector (pointing to the widget we want to validate) and a function that should be called to validate it. As its second argument it accepts a css selector for the button that is to be (dis|en)abled. It loops over the tuples and calls the function to decide if the validation passes or not. As soon as something doesn't validate it breaks out of the loops and disables the button. In my first version button enabling was inline in the function but I decided that breaking it out would increase readability. The button enabling itself is as easy as setting or removing the attribute disabled.
+</p>
+<pre><code>function buttonEnabling(buttonSelector, isEnabled){
+  if(isEnabled) {
+    $(buttonSelector).removeAttr("disabled");
+  } else {
+    $(buttonSelector).attr("disabled", "disabled")
+  }
+}
+
+function validateFields(selectorsWithFunctions, buttonSelector) {
+  var isValid = true
+  for (var i = selectorsWithFunctions.length - 1; i &gt;= 0; i--) {
+    var selector = selectorsWithFunctions[i][0];
+    var func = selectorsWithFunctions[i][1];
+
+    if( !func(selector) ) {
+      isValid = false;
+      break;
+    }
+  };
+  buttonEnabling(buttonSelector, isValid);
+}</code></pre>
+<p>
+  This is the engine of the solution. Now the only thing left is to show the functions that does the actual validation. They accept a selector and does some easy checking on the value. In the date and time cases this is done with regular expressions. They look like this:
+</p>
+<pre><code>function validateTime(selector) {
+  var fieldValue = $(selector).val();
+  return /^\d\d:\d\d$/.test(fieldValue.trim());
+}
+
+function validateDate(selector) {
+  var fieldValue = $(selector).val();
+  return /^\d\d\d\d-\d\d-\d\d$/.test(fieldValue.trim());
+}
+
+function validatePresence(selector) {
+  var fieldValue = $(selector).val();
+  return fieldValue.length &gt; 0
+}</code></pre>
+<p>
+  I am actually getting to like Javascript. It is rather easy to create small lightweight pieces of code. In this example we send around pointers to functions (a language feature that made this blog post possible). I think many script developers lack a bit in discipline and end up with high complexity and low readability. But this is clearly not the fault of javascript. As always - with higher levels of freedom comes a greater burden of responsibility.
+</p>
+    <center>
+      ------
+    </center>
+    <div class="outro">
+      <i>
+        Even though this was the entire post you may want to leave a comment on the
+        <a href="2013/10/multiple_fields_validation.html">post page</a>
+        .
+      </i>
+    </div>
+  </div>
   <div class="start-page-article">
     <div class="row">
       <h2 class="article-header">
@@ -147,88 +274,6 @@ start a new goroutine to do something</em>.</p>
       <i>
         Even though this was the entire post you may want to leave a comment on the
         <a href="2013/09/go_error_handling_thoughts.html">post page</a>
-        .
-      </i>
-    </div>
-  </div>
-  <div class="start-page-article">
-    <div class="row">
-      <h2 class="article-header">
-        <a href="2013/09/golang_templating_engine.html">go templating - the basics</a>
-      </h2>
-      <div class="byline">
-        by
-        fredrik
-        on
-        2013-09-28
-      </div>
-    </div>
-    <p><a href="http://www.flickr.com/photos/29363671@N08/4264734398"><img style="float:right" src="http://farm3.staticflickr.com/2723/4264734398_f89371801a.jpg"></a></p>
-
-<p>I am busy coding a web site with <a href="http://golang.org/">go</a>. I am still not convinced that go is the best choice for web development unless performance is in high demand. It is still great fun to learn a new language and a language that have different opinions on many things compared to other languages. This kind of experiences are very good to move forward as a developer. So kudos to <a href="http://www.flatwallet.se/">flatwallet</a> that lets me learn go while getting paid for it. </p>
-
-<p>We try to use as much as possible of the standard library but sometimes it is hard as I <a href="http://highlevelbits.com/2013/09/pragmatic_unit_testing_with_go.html">described in my post about testing</a>. When it comes to web development there is a good enough <a href="http://golang.org/pkg/text/template/">template engine</a> that provides with the simplest things to get stuff into your <a href="http://highlevelbits.com/2012/04/control-your-markup.html">markup</a>. In mainstream template engines the normal way to get behavior into your template is to use <code>&lt;% %&gt;</code> for executing some code and <code>&lt;%= %&gt;</code> for getting some stuff inserted into the generated markup. In go you use double curly braces instead. So in order to insert a value you go <code>{{.Value}}</code>. The single point is a reference to the data structure (remember - no objects in go) that was passed to the template from the back end code and value is a field in that structure. There is the basic control flow things like:</p>
-
-<pre><code>{{ if .IsActive }}
-  Active
-{{ else }}
-  Inactive
-{{ end }}
-</code></pre>
-
-<p>and loops:</p>
-
-<pre><code>{{ range .Books }}
-  &lt;div&gt;
-    {{ .Title }} by {{ .Author }}
-  &lt;/div&gt;
-{{ end }}
-</code></pre>
-
-<p>When using <code>range</code> the <code>.</code> context is set to the current item for each loop over the collection. As you see you just mix curly braces with HTML freely. (So that it looks really messy to the eye….) Since the templating doesn’t conflict with the markup you can also use them in attribute values. This may look nasty at times:</p>
-
-<pre><code>&lt;div class="{{if .IsActive}}active{{else}}passive{{end}}"/&gt;
-</code></pre>
-
-<p>Not to my liking. The alternative is to add another field to the page structure and calculate the value in the go code instead. It adds a bit of duplication and the number of line increases and I am not sure the overall readability goes up. So the above may actually be a good choice at times. In this particular case it has the benefit of keepin css classes in the markup. Indeed - you could do it like this just as well:</p>
-
-<pre><code>{{ if .IsActive }}
-  &lt;div class="active"/&gt;
-{{ else }}
-  &lt;div class="passive"/&gt;
-{{ end }}
-</code></pre>
-
-<p>Better or worse? This is a simple div with nothing else in it but consider a real world situation where there are some content inside etc. Then it may be better to go with the compact solution instead. Things like these may be good to put in the coding guidelines for a project. (You all do them - right?!?)</p>
-
-<p>You can define a template with <code>{{ define "my_template" }} &lt;html&gt;....&lt;/html&gt; {{ end }}</code> for both whole pages and parts in a page. Say you define a header partial: <code>{{ define "header" }}&lt;div&gt;Menus and other header stuffs.&lt;/div&gt;{{ end }}</code> then you can use it in another template with: <code>{{ template "header" }}</code>. So that is kind of neat. There is no support for layouts so for solving that in the standard library way you’ll have to do it yourself with functions calling different templates in different contexts. </p>
-
-<p>One more thing. You can use <code>with</code> to get deeper in the context of the page. Like this:</p>
-
-<pre><code>{{ range .Books }}
-  &lt;div&gt;
-    {{ .Title }} by 
-    {{ with .Author }}
-      {{ .FirstName }}{{ .LastName }}
-    {{ end }}
-  &lt;/div&gt;
-{{ end }}
-</code></pre>
-
-<p>I haven’t used this much but it has the benefit of getting evaluated only if there is something in the referenced value. So it is a combined <code>if</code> statement with a scope narrower.</p>
-
-<p>Then there is a bunch of built-in functions that makes life a bit easier. The one that has bothered me most is <code>call</code> that lets you call a function from within the template. But not any function. It must either have been previously tied to the template with calls to <code>Funcs</code> with a <code>FuncMap</code> or be in the global namespace. So if you have a nice little function tied to the struct you are exposing to your template you can not use it right away. I find this limiting - the extra code to set it up can just as well be used to introduce another variable in the struct that holds the computed value. You end up with redundant data in your model where parts are ‘real’ data and parts are computed values. I don’t have a perfect <em>feel</em> for this yet and will come back to review it later and maybe another post about advanced templating.</p>
-
-<p>The standard library documentation is really good. The templating basics is in the <a href="http://golang.org/pkg/text/template/">text/template package</a> while there are some added things for web pages in the <a href="http://golang.org/pkg/text/template/">html/template package</a>. This separation is obviously good so that you can do templating inside whatever format you work with.</p>
-
-<p>Engine photo by <a href="http://www.flickr.com/photos/29363671@N08/">Jon Pekelnicky</a>.</p>
-    <center>
-      ------
-    </center>
-    <div class="outro">
-      <i>
-        Even though this was the entire post you may want to leave a comment on the
-        <a href="2013/09/golang_templating_engine.html">post page</a>
         .
       </i>
     </div>
