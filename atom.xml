@@ -2,13 +2,40 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2013-10-15T18:16:00Z</updated>
+  <updated>2013-11-03T15:01:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-11-03:/2013/11/china.html</id>
+    <title type="html">visions of china</title>
+    <published>2013-11-03T15:01:00Z</published>
+    <updated>2013-11-03T15:01:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/11/china.html"/>
+    <content type="html">&lt;p&gt;&lt;img src="http://farm9.staticflickr.com/8465/8372395689_1a5a353bc8_b.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I like numbers. This is why I often sneak into &lt;a href="http://www.flickr.com/photos/froderik/"&gt;my flickr account&lt;/a&gt; and look at statistics. I have had an account for almost 8 years and there has beeen som 230000 views of my almost 8500 photos. And the more photos I put up - the more views I get. The other day I got interested in a peak on 30th of october with 1622 views and I found out that a picture (shown above) I took from the dragon tower in &lt;a href="https://en.wikipedia.org/wiki/Harbin"&gt;Harbin&lt;/a&gt; (China) last christmas had been used in a &lt;strong&gt;the verge&lt;/strong&gt; post about the chinese smog problem. Fun! I really liked the dreamy views from up the tower created by the cold -30 degrees celsius and the coal factories. Cold and cool….&lt;/p&gt;
+
+&lt;p&gt;Another shot I am happy with is this night time view of the main railway station in Harbin.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://farm9.staticflickr.com/8354/8373376294_4aac9d57ba_b.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Some &lt;a href="http://www.flickr.com/search/?w=36307913@N00&amp;amp;q=harbin"&gt;more photos&lt;/a&gt; from our days in Harbin including many of ice sculptures.&lt;/p&gt;
+
+&lt;p&gt;From Harbin we got to Beijing by train. We only had two days there but still enough to get a good view of the forbidden palace and the wall. We had some luck with the weather the day when &lt;a href="http://www.flickr.com/search/?w=36307913@N00&amp;amp;q=great%20wall"&gt;we went out to the wall&lt;/a&gt; - cold and sunny!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://farm9.staticflickr.com/8214/8441104536_a18c490d83_b.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our visit to the forbidden palace was in very cloudy weather so no nice pictures from there. Night time in the old parts of Beijing on the other hand is something extra. It is rather dark - not much street lihtning but you still fell safe. Probably because there are much people around. The photo below is from a restaurant street where we had some nice hot pot!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://farm9.staticflickr.com/8193/8440607785_e90fb36635_b.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;For more chinese goodness you can browse all &lt;a href="http://www.flickr.com/search/?w=36307913@N00&amp;amp;q=china"&gt;my photos from China&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-10-15:/2013/10/multiple_fields_validation.html</id>
     <title type="html">multiple fields validation with javascript</title>
@@ -315,34 +342,6 @@ start a new goroutine to do something&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The standard library documentation is really good. The templating basics is in the &lt;a href="http://golang.org/pkg/text/template/"&gt;text/template package&lt;/a&gt; while there are some added things for web pages in the &lt;a href="http://golang.org/pkg/text/template/"&gt;html/template package&lt;/a&gt;. This separation is obviously good so that you can do templating inside whatever format you work with.&lt;/p&gt;
 
 &lt;p&gt;Engine photo by &lt;a href="http://www.flickr.com/photos/29363671@N08/"&gt;Jon Pekelnicky&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-09-15:/2013/09/baruco_day_2.html</id>
-    <title type="html">baruco day two [conference report]</title>
-    <published>2013-09-15T21:02:00Z</published>
-    <updated>2013-09-15T21:02:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/09/baruco_day_2.html"/>
-    <content type="html">&lt;p&gt;&lt;img style="float:right" src="http://assets2013.baruco.org/assets/logo-3ff2130df4d6cf11e8bd7f1e3d72bb6d.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The nice organisers thought it wise to start the second day an hour later. Surely a blessing for the first speaker. &lt;/p&gt;
-
-&lt;p&gt;The keynote by Paolo Perrotta was entertaining and thought provoking. Spanning such wide topics as the discovery of how to calculate longitudes, distant forefathers crawling up from the sea and the horrors of SOAP, Paolo made a good shot at comparing progress in the software discipline with the evolution of mankind and maybe just maybe the future will be more functional than the present.&lt;/p&gt;
-
-&lt;p&gt;Apart from the keynote the talks were more technical this day. The future of jruby, rubymotion for iOS coding, a bit of clojure, tender love shaving a yak. That sort of thing. &lt;/p&gt;
-
-&lt;p&gt;Rather than listing all the talks I will focus on my takeaways from the conference:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;functional programming is on the move. I heard a lot about that object orientation has become the way to code in the 21st century. But there are some issues that are not solved that well with object orientation. It doesn’t scale nicely and it seems that it is next to impossible to write larger systems with the technique. Functional has some characteristics that makes it attractive for the upcoming challenges. It is highly scalable (due to immutability) and it is really great for testing. THat functional sort of ‘appears’ at a Ruby conference is a good sign that it is up and coming.&lt;/li&gt;
-  &lt;li&gt;a sense of fatigue and maturity. Look how far we have come in our field, that is great but many things still suck and we are bit tired. Hopefully a conference like this one can reeenergize and help us move on. The needs for decent software creation will not diminish in neither the close nor the distant future.&lt;/li&gt;
-  &lt;li&gt;maybe use jruby in production?!?&lt;/li&gt;
-  &lt;li&gt;there were several talks about the quality without a name. How do we go about producing software that can stay around for a while? Since I have been interested in these things since late 90s I didn’t learn much but it gives me hope that good practices are preached at a conference like this one. How to penetrate the breadth of developers out there is still largely an unknown.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To sum up: a really nice conference moulded in the standard format. The communication flows mainly in one direction with breaks and parties making it possible to interact a bit further. This bothers me more and more with conferences - I would prefer a bit more interactivity. This time I sneaked away a bit prematurely feeling numb from all the listening. So sadly I missed the lightning talks - I am sure this was one of the best parts of the conference.&lt;/p&gt;
-
-&lt;p&gt;Luckily I booked a further two days in Barcelona so now that the conference is over I will find out more about the city. It looks really nice so far! I had good food both nights at random restaurants and I stay at a really &lt;a href="https://sv.airbnb.com/rooms/1159801"&gt;nice airbnb&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>
