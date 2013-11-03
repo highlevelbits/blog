@@ -14,7 +14,7 @@ To get started
     cd highlevelbits/blog
 
     # set up the gh-pages branch
-    git clone . output
+    git clone git@github.com:highlevelbits/blog.git output
     cd output
     git checkout gh-pages
     cd ..
