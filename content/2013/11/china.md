@@ -8,7 +8,7 @@ tags: photo, china, harbin, coal, smog
 
 ![](http://farm9.staticflickr.com/8465/8372395689_1a5a353bc8_b.jpg)
 
-I like numbers. This is why I often sneak into [my flickr account](http://www.flickr.com/photos/froderik/) and look at statistics. I have had an account for almost 8 years and there has beeen som 230000 views of my almost 8500 photos. And the more photos I put up - the more views I get. The other day I got interested in a peak on 30th of october with 1622 views and I found out that a picture (shown above) I took from the dragon tower in [Harbin](https://en.wikipedia.org/wiki/Harbin) (China) last christmas had been used in a **the verge** post about the chinese smog problem. Fun! I really liked the dreamy views from up the tower created by the cold -30 degrees celsius and the coal factories. Cold and cool....
+I like numbers. This is why I often sneak into [my flickr account](http://www.flickr.com/photos/froderik/) and look at statistics. I have had an account for almost 8 years and there has beeen som 230000 views of my almost 8500 photos. And the more photos I put up - the more views I get. The other day I got interested in a peak on 30th of october with 1622 views and I found out that a picture (shown above) I took from the dragon tower in [Harbin](https://en.wikipedia.org/wiki/Harbin) (China) last christmas had been used in [a **the verge** post](http://www.theverge.com/2013/10/30/5042534/daan-roosegaarde-vacuum-looks-to-sweep-away-china-smog-in-beijing) about the chinese smog problem. Fun! I really liked the dreamy views from up the tower created by the cold -30 degrees celsius and the coal factories. Cold and cool....
 
 Another shot I am happy with is this night time view of the main railway station in Harbin.
 
