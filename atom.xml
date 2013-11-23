@@ -2,13 +2,57 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2013-11-13T20:13:00Z</updated>
+  <updated>2013-11-23T15:01:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2013-11-23:/2013/11/post-agile.html</id>
+    <title type="html">the postagile world</title>
+    <published>2013-11-23T15:01:00Z</published>
+    <updated>2013-11-23T15:01:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2013/11/post-agile.html"/>
+    <content type="html">&lt;p&gt;The lines of thoughts in this post started with &lt;a href="http://www.antman.se/"&gt;Peter Antman&lt;/a&gt; inviting to a meeting to discuss a new thing called #notest - a very interesting subject clearly. I felt an urge to rant a bit about this #no trend and thus this tweet:&lt;/p&gt;
+
+&lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p&gt;the new thing after agile is to put &amp;quot;no&amp;quot; in front of standard practices: &lt;a href="https://twitter.com/search?q=%23noestimates&amp;amp;src=hash"&gt;#noestimates&lt;/a&gt;, &lt;a href="https://twitter.com/search?q=%23notest&amp;amp;src=hash"&gt;#notest&lt;/a&gt;, &lt;a href="https://twitter.com/search?q=%23noprocess&amp;amp;src=hash"&gt;#noprocess&lt;/a&gt;, &lt;a href="https://twitter.com/search?q=%23nomanagement&amp;amp;src=hash"&gt;#nomanagement&lt;/a&gt; but never &lt;a href="https://twitter.com/search?q=%23nocode&amp;amp;src=hash"&gt;#nocode&lt;/a&gt;&lt;/p&gt;&amp;mdash; Fredrik Rubensson (@froderik) &lt;a href="https://twitter.com/froderik/statuses/403235228589637632"&gt;November 20, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;Normally when I rant on twitter I get no responses but this time my tweet spawned two separate threads that &lt;a href="https://twitter.com/froderik/status/403235228589637632"&gt;merged together after a while&lt;/a&gt;. Both threads questioned that agile is something of the past. And maybe they are right. I don’t know. What I do know is that everyone wants to be agile these days. Agile has won. But at the same time agile has lost its controversy. When I look at the agile manifesto today I just feel that “yeah - this is how I work - this how I react even”. And I am sure many developers feel the same way. The manifesto was hugely important when it came. It summarized a couple of good process oriented movements in 4 points. These 4 things is not much more than common sense really. The reason it was needed was due to the monstrous processes that had grown in strength during the 90s and that threatened to suffocate the entire business. Now agile has been embraced by many. I consulted for a large organisation some years back that claimed to aim for being best in the agile class yet they had no agile practices whatsoever in sight. I then deduced that the word &lt;em&gt;agile&lt;/em&gt; for many had come down to just mean &lt;em&gt;good&lt;/em&gt;. We work in an agile/good way. And no one wants to work in a bad way. Suddenly some of the old &lt;em&gt;bad&lt;/em&gt; practices also makes it into the agile portfolio.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nowadays I just want to get things done. If the process stays in the way it has to go. Agile or not.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We now live and work in a postagile world. Agile has won and now we have to find out how to improve our work within that mindset. We also need to protect the gains that has been made over the years. Lets have a look at each part of the manifesto.&lt;/p&gt;
+
+&lt;h1 id="individuals-and-interactions-over-processes-and-tools"&gt;Individuals and interactions over processes and tools&lt;/h1&gt;
+
+&lt;p&gt;The morning meeting and the retrospective has won. Most team work in this way now. We have to beware of getting value out of the morning meeting. In my last team we tried to talk about each thing on the board rather than walk through all the persons. It worked well with a senior team. With a new team it may be better to just go the round. A tight team may decide to skip morning meetings altogether. They are just there to make sure that communication happens. &lt;/p&gt;
+
+&lt;p&gt;Sadly enough we are more likely to find morning meetings in a team than retrospectives. The tool for continuous improvement that takes place outside the daily loop is of course very important to get anywhere. In the postagile world we need to make sure that we don’t miss out on retrospectives and the opportunity to improve our process continuously. We also need to guard against the agenda of tool vendors. I recently heard that one of my old clients were about to implement a planning to tool to help them with their agile process. Sigh…&lt;/p&gt;
+
+&lt;h1 id="working-software-over-comprehensive-documentation"&gt;Working software over comprehensive documentation&lt;/h1&gt;
+
+&lt;p&gt;I have seen one case where a scrum-by-the-book team ended up with no documentation at all. I was asked to do an architectural review and the only material to use was source code and tickets. That was fun! In a postagile world we need to produce the artifacts that is needed. This will always be mostly source code but occasionally we will need to write a couple of documents. These documents are likely to be system overviews. How does things fit together. I like to think of &lt;a href="http://highlevelbits.com/2009/05/software-development-as-mapping.html"&gt;this need as maps&lt;/a&gt;. Maps to help navigate the system and the surrounding world of users and other systems. This metaphor works much better than architecture for me.&lt;/p&gt;
+
+&lt;h1 id="customer-collaboration-over-contract-negotiation"&gt;Customer collaboration over contract negotiation&lt;/h1&gt;
+
+&lt;p&gt;This really is about trust. If there is no trust between the customer and me I am lost anyway. It probably is scary as hell to buy custom software since so many projects still fail so badly regardless if they are based on customer collaboration or not. In a postagile world we need to give and receieve trust and we need to educate our customers in demanding visible deliverables continuously. Still many teams are reluctant to deliver things soon and many customers don’t want to get that involved. That need to change. Customers must involve themselves in the delivery rythm of their software team and the team need to be verbose about their progress and more importantly about their obstacles. There will be no true dialog about a piece of software until it is there to look at and use. It happpens all the time that the first time there is any real feedback is when the piece is in production.&lt;/p&gt;
+
+&lt;h1 id="responding-to-change-over-following-a-plan"&gt;Responding to change over following a plan&lt;/h1&gt;
+
+&lt;p&gt;This one is a bit tricky. While it is normally no point in planning the future many organisations need to manage expectations about the future in some way. Plans for what features will get into future releases may be necessary to keep business. You may see this also as responding to change but it is likely that the business side of things would like to call it a plan. In a postagile world we need to make long term plans that can be abandoned when we respond to change. We need to be good at communicating this dilemma.&lt;/p&gt;
+
+&lt;h1 id="what-is-this-postagile-thing-anyway"&gt;What is this postagile thing anyway&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="https://duckduckgo.com/?q=postagile"&gt;Duckduckgoing for postagile&lt;/a&gt; gives a bunch of interesting hits. I guess people started talking about postagile even earlier than the &lt;a href="http://www.infoq.com/news/2007/05/is-post-agile-just-agile"&gt;infoq post from 2007&lt;/a&gt; that asks “Is Post-Agile Just Agile?”. The answer is yes. So the idea of something postagile has been around for a while.&lt;/p&gt;
+
+&lt;p&gt;My twitter ranting lead to an interesting dialog with &lt;a href="http://zuill.us/WoodyZuill/"&gt;Woody Zuill&lt;/a&gt; and &lt;a href="http://www.jbrains.ca/"&gt;J. B. Rainsberger&lt;/a&gt; to start with and then &lt;a href="http://twitter.com/dahankzter"&gt;Henrik Johansson&lt;/a&gt; and &lt;a href="https://twitter.com/YvesHanoulle"&gt;Yves Hanoulle&lt;/a&gt; joined in. After that I felt the need to rant a bit more in this post. To sum it up - this is what I have found:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Agile is the consensus we have reached. Postagile is the task of improving our work on an agile foundation.&lt;/strong&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-11-13:/2013/11/composers.html</id>
     <title type="html">timeline of composers</title>
@@ -319,29 +363,6 @@ start a new goroutine to do something&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;A good explanation and in line with the go way of doing things. I can find it a bit limiting at times but it is almost always for a good reason which makes it easier to accept.&lt;/p&gt;
 
 &lt;p&gt;As a side note - the go community is very helpful. Using the #golang tag on twitter for asking questions renders some nice answers and discussions. Very useful. And &lt;a href="http://stackoverflow.com"&gt;stackoverflow&lt;/a&gt; is a good resource as always.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-09-30:/2013/09/go_error_handling_thoughts.html</id>
-    <title type="html">thoughts about error handling with go</title>
-    <published>2013-09-30T21:02:00Z</published>
-    <updated>2013-09-30T21:02:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/09/go_error_handling_thoughts.html"/>
-    <content type="html">&lt;p&gt;I find myself with this code line lots of time:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if err != nil { return err }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Sometimes with an extra return value - sometimes not. However - the go formatter likes it to be:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if err != nil {
-    return err
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;which is my preferred way to write it normally. Now I have started to use the one-liner approach to make my code more readable. In a simple database sequence you may need to check the error 3 or more times (getting the database, executing the query and scanning the response for data) so the error handling &lt;em&gt;noise&lt;/em&gt; will be 3 or 9 lines of such a function. In my mind there is a conflict between explicit code and readable code. Go seems to drive me towards explicit code forcing me to leave some of my coding practices behind.&lt;/p&gt;
-
-&lt;p&gt;Please contribute your thoughts about this in the comments section below.&lt;/p&gt;
 </content>
   </entry>
 </feed>
