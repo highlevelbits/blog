@@ -57,8 +57,9 @@ blockquote {
 
 img {
   border: solid 2px;
-  margin: 10px;
-  dispaly: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
   max-width: 100%;
 }
 
