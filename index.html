@@ -47,6 +47,129 @@
   <div class="start-page-article">
     <div class="row">
       <h2 class="article-header">
+        <a href="2013/12/simple_backups.html">simple backups</a>
+      </h2>
+      <div class="byline">
+        by
+        fredrik
+        on
+        2013-12-15
+      </div>
+    </div>
+  </div>
+  <p><img src="http://farm7.staticflickr.com/6054/6261970884_ea884ea79f_b.jpg" alt="backups"></p>
+
+<p>(<a href="http://www.flickr.com/photos/40133358@N05/6261970884">Photo by gagam13</a>)</p>
+
+<p>I just finished moving a rails thing from <a href="https://heroku.com">heroku</a> to my own <a href="https://www.archlinux.org/">arch linux server</a> at <a href="https://www.digitalocean.com/">digital ocean</a>. This has involved learning lots about server management. Setting up the server with decent security (ufw - uncomplicated firewall to the rescue) and a nginx web service talking to the unicorn-powered rails application. All rather easy and with lots of resources available on the interwebz. I didn’t find much about backing up a postgres database though so I figured something out on my own. And here it is! My requirements:</p>
+
+<ul>
+  <li>nightly backups is enough (for now - users may lose latest updates)</li>
+  <li>backups must be stored on another server</li>
+  <li>backups on that other server should be encrypted</li>
+</ul>
+
+<p>This leaves me with 4 tasks:</p>
+
+<ul>
+  <li>create a backup file</li>
+  <li>encrypt the backup file</li>
+  <li>upload the encrypted file to another server</li>
+  <li>schedule a nightly task to initiate the backup</li>
+</ul>
+
+<h3 id="create-a-backup-file">Create a backup file</h3>
+
+<p>Postgres comes with the easy to use <code>pg_dump</code> command. Name your database and the file you want to export to:</p>
+
+<pre><code>pg_dump -f &lt;filename&gt; &lt;database&gt;
+</code></pre>
+
+<p>If you want to export all databases in your postgres server you can use the <code>pg_dumpall</code> command instead and omit the database name. I created a filename with a timestamp so that there will be no file name conflict:</p>
+
+<pre><code>date +%Y.%m.%d.%H.%M.%S
+</code></pre>
+
+<p>plus a suffix.</p>
+
+<h3 id="encrypt-the-backup-file">Encrypt the backup file</h3>
+
+<p><code>gnupg</code> provides with encryption. Easily installed with</p>
+
+<pre><code>pacman -S gnupg
+</code></pre>
+
+<p>I settled for symmetric encryption with a hard password. </p>
+
+<pre><code>gpg --symmetric --batch --passphrase &lt;password&gt; --force-mdc &lt;backupfile&gt;
+</code></pre>
+
+<p>The <code>--symmetric</code> flag says to encrypt symmetrically. This means that we can decrypt with the same password. <code>--batch</code> makes it possible to pass in the passphrase on the command line rather than getting a prompt to enter it. <code>--force-mdc</code> makes sure that a warning about mdc is avoided when decrypting. I am not sure what this means. The command creates a file in parallell to the backup file with the added <code>.gpg</code> extension.</p>
+
+<h3 id="upload-the-encrypted-file-to-another-server">Upload the encrypted file to another server</h3>
+
+<p>This can be done in many ways. I settled for dropbox mostly because it is free and rather easy to do. Even easier would be something like <code>sftp</code> if you have the luxury of having another server for backup storing. To communicate with dropbox I use the <a href="https://www.dropbox.com/developers/core">Core API</a> with Ruby. </p>
+
+<pre><code>gem install dropbox-sdk
+</code></pre>
+
+<p>To use it you need to register an app with dropbox. Then you will get the key and secret needed to initiate communication and get an access token. To get the access token you will need to run the following once:</p>
+
+<pre><code>require 'dropbox_sdk'
+
+flow = DropboxOAuth2FlowNoRedirect.new(APP_KEY, APP_SECRET)
+url = flow.start
+puts url
+</code></pre>
+
+<p>Go to the outputted url logged in as the user you want for dropbox and grab the code. Pass it in to the method below:</p>
+
+<pre><code>code = gets.strip
+access_token, user_id = flow.finish code 
+</code></pre>
+
+<p>This access token can then be reused for all subsequent calls.</p>
+
+<p>Then do the actual file transfer with:</p>
+
+<pre><code>client = DropboxClient.new access_token
+file = open gpgfilename
+response = client.put_file(gpgfilename, file)
+</code></pre>
+
+<p>and the file ends up in the <code>Apps/&lt;yourappname&gt;</code> folder.</p>
+
+<p>I use Ruby here but there are several other options depending on your setup.</p>
+
+<h3 id="schedule-a-nightly-task">Schedule a nightly task</h3>
+
+<p>Finally I put all the above in to one huge ruby file (that I won’t share because it is kinda messy). Then I added it to crontab with </p>
+
+<pre><code>export EDITOR=vim
+crontab -e
+</code></pre>
+
+<p>I always fail with vi…. The line to add for a nightly run at 01:37 is:</p>
+
+<pre><code>37 1 * * * /path/to/backup.sh
+</code></pre>
+
+<p>Keep in mind that cron executes with <code>/bin/sh</code> so make sure to test your command under those circumstances. Cron is supposed to send mails when it fails. That remains to set up. I will probably rather hook the job up with nagios once I get that up and running for monitoring.</p>
+
+<p>Thats it for now. I will come back with more server side tips further on.</p>
+  <center>
+    ------
+  </center>
+  <div class="outro">
+    <i>
+      Even though this was the entire post you may want to leave a comment on the
+      <a href="2013/12/simple_backups.html">post page</a>
+      .
+    </i>
+  </div>
+  <div class="start-page-article">
+    <div class="row">
+      <h2 class="article-header">
         <a href="2013/12/arch.html">finally on linux</a>
       </h2>
       <div class="byline">
@@ -157,54 +280,6 @@ Linux system is therefore readily configurable to the very last detail.</p>
     <i>
       Even though this was the entire post you may want to leave a comment on the
       <a href="2013/11/post-agile.html">post page</a>
-      .
-    </i>
-  </div>
-  <div class="start-page-article">
-    <div class="row">
-      <h2 class="article-header">
-        <a href="2013/11/composers.html">timeline of composers</a>
-      </h2>
-      <div class="byline">
-        by
-        fredrik
-        on
-        2013-11-13
-      </div>
-    </div>
-  </div>
-  It is the season of requiems. At least here in Sweden we have lots of
-<a href="https://en.wikipedia.org/wiki/Requiem">
-  Requiem
-</a>
-concerts around
-<a href="https://en.wikipedia.org/wiki/Halloween">
-  Halloween
-</a>
-or Alla Helgons Afton as we used to call it before the Americanization began. The triumphal entry of Halloween into Swedish culture may be the subject of another blog post. This blog post is about composers. We have been to two requiems this year. The ones by Duruflé and Brahms. I knew that Duruflé is kind of recent. The requiem is from the 40s. But I tried to put Brahms in the same time as Haydn which turned out to be totally and fundamentally wrong since Haydn was all dead before Brahms was born. So to make some sense out of the when of composers I decided to construct a time line.
-<script src="https://www.google.com/jsapi?autoload=%7B'modules':%5B%7B'name':'visualization','version':'1','packages':%5B'timeline'%5D%7D%5D%7D" type="text/javascript"></script>
-<script>&#x000A;  google.setOnLoadCallback(drawChart);&#x000A;  &#x000A;  function drawChart() {&#x000A;    var container = document.getElementById('composers');&#x000A;  &#x000A;    var chart = new google.visualization.Timeline(container);&#x000A;  &#x000A;    var dataTable = new google.visualization.DataTable();&#x000A;  &#x000A;    dataTable.addColumn({ type: 'string', id: 'Composer' });&#x000A;    dataTable.addColumn({ type: 'date', id: 'Start' });&#x000A;    dataTable.addColumn({ type: 'date', id: 'End' });&#x000A;  &#x000A;    dataTable.addRows([&#x000A;      [ 'Händel', new Date(1685, 2, 23), new Date(1759, 4, 14) ],&#x000A;      [ 'Bach', new Date(1685, 3, 31), new Date(1750, 7, 28) ],&#x000A;      [ 'Haydn', new Date(1732, 3, 31), new Date(1809, 5, 31) ],&#x000A;      [ 'Mozart', new Date(1756, 1, 27), new Date(1791, 12, 5) ],&#x000A;      [ 'Beethoven', new Date(1770, 12, 17), new Date(1827, 3, 26) ],&#x000A;      [ 'Verdi', new Date(1813, 10, 10), new Date(1901, 1, 27) ],&#x000A;      [ 'Brahms', new Date(1833, 5, 7), new Date(1897, 4, 3) ],&#x000A;      [ 'Tchaikovsky', new Date(1840, 5, 7), new Date(1893, 11, 6) ],&#x000A;      [ 'Grieg', new Date(1843, 6, 15), new Date(1907, 9, 4) ],&#x000A;      [ 'Fauré', new Date(1845, 5, 12), new Date(1924, 11, 2) ],&#x000A;      [ 'Puccini', new Date(1858, 12, 22), new Date(1924, 11, 29) ],&#x000A;      [ 'Debussy', new Date(1862, 8, 22), new Date(1918, 3, 25) ],&#x000A;      [ 'Ravel', new Date(1875, 3, 7), new Date(1937, 12, 28) ],&#x000A;      [ 'Stravinsky', new Date(1882, 6, 17), new Date(1971, 4, 16) ],&#x000A;      [ 'Duruflé', new Date(1902, 1, 11), new Date(1986, 6, 16) ]&#x000A;    ]);&#x000A;  &#x000A;    chart.draw(dataTable);&#x000A;  }&#x000A;</script>
-<div class="graph" id="composers" style="height: 700px; width: 100%; margin-top: 20px;"></div>
-<p>
-  I added randomly composers I came to think off and that I like or that are *important*. (Disclaimer: I don't really like Brahms...) For a while there was no living composer between Beethoven and Brahms but than I came to think of Verdi. He saves the continuity through the graph....
-</p>
-<p>
-  There seems to be a cluster of composers born in the middle of the 19th century and active towards the late 19th century that I particularly like. A favorite for a long time in my youth - maybe because I play the piano - was Claude Debussy. The best piece of classical music I know right now is the Requiem by Gabriel Fauré. Also interesting is that this period is also the most interesting when it comes to visual arts. This is the age of impressionists with great French painters like Monet and Degas leading the way. My favorite Swedish art is also from this time. What was it that made this time so interesting when it comes to the arts? Yet another blog post about that may-haps but I think the answer may be found in the borderlands between absolutism and relativism, authority and freedom etc. It was all falling apart - or in place depending on your view - at this time.
-</p>
-<p>
-  For the nerd. You may look at the source to see what I did. It is a straightforward use of the
-  <a href="https://developers.google.com/chart/interactive/docs/gallery/timeline">
-    time line graph
-  </a>
-  in the Google visualization API. I have been using some of the other graph types for statistics with my current client so it was an easy choice to put this together with the same technique. And the data was put in by MANUALLY reading wikipedia articles and transporting dates into the code. Will build integration with freebase or similar another time.....
-</p>
-  <center>
-    ------
-  </center>
-  <div class="outro">
-    <i>
-      Even though this was the entire post you may want to leave a comment on the
-      <a href="2013/11/composers.html">post page</a>
       .
     </i>
   </div>
