@@ -2,13 +2,36 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2013-12-15T21:01:00Z</updated>
+  <updated>2014-01-02T07:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-01-02:/2014/notes-on-my-nexus-5.html</id>
+    <title type="html">Notes on my Nexus 5</title>
+    <published>2014-01-02T07:00:00Z</published>
+    <updated>2014-01-02T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/notes-on-my-nexus-5.html"/>
+    <content type="html">&lt;p&gt;I got myself a &lt;strong&gt;Nexus 5&lt;/strong&gt; just before christmas. It was about time to replace me Nexus S - a phone that I have been happy with and not really saw a reason to switch out. Since there is no truly open choice when it comes to mobiles (not one that seems to also work….) I decided to continue with Nexus. This is my third. I also had a Nexus One before the S. I posted &lt;a href="http://highlevelbits.com/2010/03/notes-on-my-nexus-one.html"&gt;some notes on the Nexus One&lt;/a&gt; back in january 2010. It was my first Android so there is a lot in there that may seem self evident nowadays. Still - it has only been 4 years… One wonders where mobiles will be in 2018? Now I will just stick to the differences between my previous two nexuses and this new one.&lt;/p&gt;
+
+&lt;p&gt;It is &lt;strong&gt;big&lt;/strong&gt;. I can barely use it with one hand which kind of sucks. When holding it in one hand I can not reach the opposite upper corner with my thumb. It turns out that this is ok when using it with my left hand but in the right hand there are several apps that got a menu top left that is unreachable. Another effect of this is that you’ll have to place the desktop icons you actually use to the bottom of the screen.&lt;/p&gt;
+
+&lt;p&gt;It is &lt;strong&gt;fast&lt;/strong&gt;. Everything is much faster. Browser, GPS, music streaming, app starting - it all is much faster.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;screen&lt;/strong&gt; is also big. This is the biggest advantage of the phone. It is actually meningful to watch video in this device. The resolution is good enough to make it a good alternative to the television set. When I lay down in my sofa and hold the phone in front of me it is the same &lt;em&gt;visual&lt;/em&gt; size as the television set. No difference there. The screen size also makes the device better for reading. This is mostly because you don’t need tyo scroll as often.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;battery&lt;/strong&gt; is internal which worried me a bit initially. I bought an extra battery for my Nexus S to make it possible to go on long geocaching trips. However the battery time of this phone is really good. I haven’t had one case of it running out yet despite doing many battery intensive things in a day.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;camera&lt;/strong&gt; is good and fast. I may actually start to use it. I did snap a lot with a Nokia I had way back but since then I haven’t had the inspiration - just the occasional ‘must take’ pic. I bring my &lt;em&gt;real&lt;/em&gt; camera whenever I want to take proper shots. It is a bit limiting to be sure so maybe that will change. The nice (if I may say so) &lt;a href="http://www.flickr.com/photos/froderik/11684236696/"&gt;photo below&lt;/a&gt; is taken with the camera on a walk yesterday.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://farm4.staticflickr.com/3801/11684236696_7a7a4c6121_b.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;As it should be - this is the best phone I have had.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2013-12-15:/2013/12/simple_backups.html</id>
     <title type="html">simple backups</title>
@@ -266,33 +289,6 @@ or Alla Helgons Afton as we used to call it before the Americanization began. Th
   &lt;/a&gt;
   in the Google visualization API. I have been using some of the other graph types for statistics with my current client so it was an easy choice to put this together with the same technique. And the data was put in by MANUALLY reading wikipedia articles and transporting dates into the code. Will build integration with freebase or similar another time.....
 &lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-11-03:/2013/11/china.html</id>
-    <title type="html">visions of china</title>
-    <published>2013-11-03T15:01:00Z</published>
-    <updated>2013-11-03T15:01:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/11/china.html"/>
-    <content type="html">&lt;p&gt;&lt;img src="http://farm9.staticflickr.com/8465/8372395689_1a5a353bc8_b.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I like numbers. This is why I often sneak into &lt;a href="http://www.flickr.com/photos/froderik/"&gt;my flickr account&lt;/a&gt; and look at statistics. I have had an account for almost 8 years and there has beeen som 230000 views of my almost 8500 photos. And the more photos I put up - the more views I get. The other day I got interested in a peak on 30th of october with 1622 views and I found out that a picture (shown above) I took from the dragon tower in &lt;a href="https://en.wikipedia.org/wiki/Harbin"&gt;Harbin&lt;/a&gt; (China) last christmas had been used in &lt;a href="http://www.theverge.com/2013/10/30/5042534/daan-roosegaarde-vacuum-looks-to-sweep-away-china-smog-in-beijing"&gt;a &lt;strong&gt;the verge&lt;/strong&gt; post&lt;/a&gt; about the chinese smog problem. Fun! I really liked the dreamy views from up the tower created by the cold -30 degrees celsius and the coal factories. Cold and cool….&lt;/p&gt;
-
-&lt;p&gt;Another shot I am happy with is this night time view of the main railway station in Harbin.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm9.staticflickr.com/8354/8373376294_4aac9d57ba_b.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Some &lt;a href="http://www.flickr.com/search/?w=36307913@N00&amp;amp;q=harbin"&gt;more photos&lt;/a&gt; from our days in Harbin including many of ice sculptures.&lt;/p&gt;
-
-&lt;p&gt;From Harbin we got to Beijing by train. We only had two days there but still enough to get a good view of the forbidden palace and the wall. We had some luck with the weather the day when &lt;a href="http://www.flickr.com/search/?w=36307913@N00&amp;amp;q=great%20wall"&gt;we went out to the wall&lt;/a&gt; - cold and sunny!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm9.staticflickr.com/8214/8441104536_a18c490d83_b.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Our visit to the forbidden palace was in very cloudy weather so no nice pictures from there. Night time in the old parts of Beijing on the other hand is something extra. It is rather dark - not much street lihtning but you still fell safe. Probably because there are much people around. The photo below is from a restaurant street where we had some nice hot pot!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm9.staticflickr.com/8193/8440607785_e90fb36635_b.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;For more chinese goodness you can browse all &lt;a href="http://www.flickr.com/search/?w=36307913@N00&amp;amp;q=china"&gt;my photos from China&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>
