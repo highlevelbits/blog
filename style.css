@@ -212,7 +212,7 @@ img {
   float: right;
 }
 
-.start-page-article {
+.start-page-article, .archive {
   border-top: dashed 2px lightgray;
   margin-top: 20px;
   margin-bottom: 20px;
