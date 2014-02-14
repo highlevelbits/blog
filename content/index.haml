@@ -15,10 +15,16 @@ author_name: low level mechanizer
           on
           = article[:created_at].strftime '%F'
     = preserve article.compiled_content
-    %center
-      ="------"
+    %center="------"
     .outro
       %i
         Even though this was the entire post you may want to leave a comment on the
         = link_to 'post page', article
         = '.'
+    %center="------"
+    .outro
+      %i
+        Find more posts in the 
+        %a{ href: '/archive.html' }
+          archives
+        = '.' 

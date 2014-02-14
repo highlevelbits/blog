@@ -1,8 +1,13 @@
 ---
-title:
+title: Archives
+authot: The Almight Bits Librarian
 ---
 
 .archive
+  %h2{ class: 'article-header' }
+    Archives
+  %p
+    In the archives you can find all high level bits posts sorted by date. Although the bits has moved from blogger via drupal to nanoc its owners has managed to move its waste archive with it and retain the links as they once was created.
   %ul
     - first_year = true
     - Year.articles_per_year(sorted_articles).each do |label, year|
