@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>high level bits - Trends in sales of programming language books (and some lamenting)</title>
+<title>high level bits - Using redis as a cache with Ruby</title>
 <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
 <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
 <link href="../../style.css" rel="stylesheet">
@@ -44,27 +44,62 @@
       </div>
       <div class="content">
         <h2 class="article-header">
-  Trends in sales of programming language books (and some lamenting)
+  Using redis as a cache with Ruby
 </h2>
-<span class="byline">2007-03-05 by fredrik</span>
+<span class="byline">2014-02-16 by fredrik</span>
 
   <span class="tags">
     
-      <a class="one-tag" href="#javascript"><span class="icon-tag"></span>javascript</a>
-    
       <a class="one-tag" href="#ruby"><span class="icon-tag"></span>ruby</a>
-    
-      <a class="one-tag" href="#legacy"><span class="icon-tag"></span>legacy</a>
     
   </span>
 
-<p>O'Reilly Radar <a href="http://radar.oreilly.com/archives/2007/03/programming_lan.html">reports statistics on programming language books sales</a> for January 2006 and 2007. Java is still king with &gt; 20% of all sales despite a decrease of 5% or so since last year. It seems the trend is that Ajax and Web 2.0 related languages are increasing. JavaScript is up from 5% to almost 15% which may seam a bit strange but as Tim rightly says: "it is driven by Ajax". Ruby is up from nothing to a bit over 5%. SQL also is up which probably is because web developers now connect directly with the database by means of PHP and Rails. All interesting stuff.<br><br>I don't know if I like the JavaScript trend but Ruby combined with SQL is truly a step forward for us developers. Maybe there will be nicer to be a developer in a couple of years when the "enterprise" thing has calmed down. (Oh - I forgot - there will be some other thing that will appear and make all managers go WOW and LETS BUY IT and suddenly us poor developers will be stuck in some new enterprise nightmare that probably is supposed to integrate with all the old technologies we already built ourselves into. Where I work now the set of IT systems is a mixture of Unisys mainframes, Oracle Forms, VB on top of Tuxedo and the full J2EE stack with a homegrown framework. The problem is that the old technologies are never removed - new ones just adds on to them making the network of system impossible to understand.)</p>
-<div class="old-comments">
-<h2>Old comments</h2>
-<div class="one-old-comment">
-<span class="comment-date">2007-03-08</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Regarding the rise of Ruby there is another interesting fact on the Ruby <a href="http://www.ruby-lang.org/en/about/" rel="nofollow"> homepage</a>:"<i>The TIOBE index, which measures the growth of programming languages, ranks Ruby as #11 among programming languages worldwide. Citing its growth, they predict, “Chances are that Ruby will enter the top 10 within half a year.”</i>".<br>Well, a quick check of the <a href="http://www.tiobe.com/tpci.htm%20" rel="nofollow">index</a> shows that the prediction is reality now. Ruby is now the #10. Of course this growth is mainly thanks to the growing popularity of <a href="http://www.rubyonrails.org/" rel="nofollow">Ruby on Rails</a>.</div>
-</div>
-</div>
+<p>For one sinatra based web site I am messing with I needed a cache for calls to third party APIs. I had used <a href="http://redis.io/">redis</a> before together with <a href="http://resquework.org/">resque</a> at a client gig so it was a natural choice for this task. Essentially I needed to use URLs as keys and the returned content for that URL as the value.</p>
+
+<p>Installing redis is easy on arch: </p>
+
+<pre><code>pacman -S redis 
+</code></pre>
+
+<p>It hooks in nicely with <code>systemctl</code> so you can </p>
+
+<pre><code>systemctl start redis
+systemctl enable redis 
+</code></pre>
+
+<p>to have it up and running after reboots.</p>
+
+<p>For integrating with Ruby there is a nice gem called <code>redis</code>. Install it with:</p>
+
+<pre><code>gem install redis
+</code></pre>
+
+<p>or put it in your Gemfile for use with bundler.</p>
+
+<p>Now we are ready to start using <code>redis</code>. My use case is the simplest possible with strings for both keys and values. To start interacting with redis you need a client instance:</p>
+
+<pre><code>redis = Redis.new host: '127.0.0.1'
+</code></pre>
+
+<p>This creates a client with all the defaults trying to connect with redis on the default port <code>6379</code>. On my server I have a restrictive firewall running so I had to specify talking to an IP address rather than the default <code>localhost</code>. It is also possible to start redis listening to a socket instead of a port. This may be a bit faster.</p>
+
+<p>Now we can put some stuff into the database:</p>
+
+<pre><code>redis.set 'some_random_key', 'value'
+redis.expire 'some_random_key', 60 * 60 * 24
+</code></pre>
+
+<p>If I want to save the value forever only the first line is needed. But since this is a cache I had to add the second line to get a 24 hour expiry time on the item.</p>
+
+<p>Now the key will be available for 24 hours and the be removed. To retrieve the value is just as easy:</p>
+
+<pre><code>redis.get 'some_random_key'
+</code></pre>
+
+<p>I coded this up on the commute to work one day and installed it on the server the next. Really easy and useful. I certainly will consider redis as a database candidate for real work in the future. Using it as a cache is nice but it seems capable of being you main persistance store if you are into NoSQL stuff.</p>
+
+<p>Also - it is really fast.</p>
+
 
 <div class="dashed-top-border">
   <!-- disqus -->
@@ -88,28 +123,9 @@
 
   <div class="dashed-top-border">
     
-      <h4><a name="javascript">Other articles tagged javascript</a></h4>
+      <h4><a name="ruby">Other articles tagged ruby</a></h4>
       <ul>
 <li>
-            <a href="../../2013/11/composers.html">timeline of composers</a> on 2013-11-13
-          </li>
-        
-          <li>
-            <a href="../../2013/10/multiple_fields_validation.html">multiple fields validation with javascript</a> on 2013-10-15
-          </li>
-        
-          <li>
-            <a href="../../2011/12/programming-languages-in-2012.html">Programming languages in 2012</a> on 2011-12-28
-          </li>
-        
-      </ul>
-<h4><a name="ruby">Other articles tagged ruby</a></h4>
-      <ul>
-<li>
-            <a href="../../2014/02/using-redis-as-cache-with-ruby.html">Using redis as a cache with Ruby</a> on 2014-02-16
-          </li>
-        
-          <li>
             <a href="../../2013/04/nanoc.html">moving from drupal to nanoc</a> on 2013-04-13
           </li>
         
@@ -134,18 +150,15 @@
           </li>
         
           <li>
-            <a href="../02/no-such-file-or-directory-tmpmysqlsock.html">No such file or directory - /tmp/mysql.sock</a> on 2007-02-13
+            <a href="../../2007/03/trends-in-sales-of-programming-language.html">Trends in sales of programming language books (and some lamenting)</a> on 2007-03-05
           </li>
         
           <li>
-            <a href="../02/there-is-hope-despite-everything.html">There is hope - despite everything</a> on 2007-02-08
+            <a href="../../2007/02/no-such-file-or-directory-tmpmysqlsock.html">No such file or directory - /tmp/mysql.sock</a> on 2007-02-13
           </li>
         
-      </ul>
-<h4><a name="legacy">Other articles tagged legacy</a></h4>
-      <ul>
-<li>
-            <a href="../../2009/03/web-is-outdated.html">The web is outdated</a> on 2009-03-10
+          <li>
+            <a href="../../2007/02/there-is-hope-despite-everything.html">There is hope - despite everything</a> on 2007-02-08
           </li>
         
       </ul>

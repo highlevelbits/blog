@@ -2,13 +2,66 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2014-01-02T07:00:00Z</updated>
+  <updated>2014-02-16T07:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-02-16:/2014/02/using-redis-as-cache-with-ruby.html</id>
+    <title type="html">Using redis as a cache with Ruby</title>
+    <published>2014-02-16T07:00:00Z</published>
+    <updated>2014-02-16T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/02/using-redis-as-cache-with-ruby.html"/>
+    <content type="html">&lt;p&gt;For one sinatra based web site I am messing with I needed a cache for calls to third party APIs. I had used &lt;a href="http://redis.io/"&gt;redis&lt;/a&gt; before together with &lt;a href="http://resquework.org/"&gt;resque&lt;/a&gt; at a client gig so it was a natural choice for this task. Essentially I needed to use URLs as keys and the returned content for that URL as the value.&lt;/p&gt;
+
+&lt;p&gt;Installing redis is easy on arch: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pacman -S redis 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It hooks in nicely with &lt;code&gt;systemctl&lt;/code&gt; so you can &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;systemctl start redis
+systemctl enable redis 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to have it up and running after reboots.&lt;/p&gt;
+
+&lt;p&gt;For integrating with Ruby there is a nice gem called &lt;code&gt;redis&lt;/code&gt;. Install it with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install redis
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or put it in your Gemfile for use with bundler.&lt;/p&gt;
+
+&lt;p&gt;Now we are ready to start using &lt;code&gt;redis&lt;/code&gt;. My use case is the simplest possible with strings for both keys and values. To start interacting with redis you need a client instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;redis = Redis.new host: '127.0.0.1'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This creates a client with all the defaults trying to connect with redis on the default port &lt;code&gt;6379&lt;/code&gt;. On my server I have a restrictive firewall running so I had to specify talking to an IP address rather than the default &lt;code&gt;localhost&lt;/code&gt;. It is also possible to start redis listening to a socket instead of a port. This may be a bit faster.&lt;/p&gt;
+
+&lt;p&gt;Now we can put some stuff into the database:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;redis.set 'some_random_key', 'value'
+redis.expire 'some_random_key', 60 * 60 * 24
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I want to save the value forever only the first line is needed. But since this is a cache I had to add the second line to get a 24 hour expiry time on the item.&lt;/p&gt;
+
+&lt;p&gt;Now the key will be available for 24 hours and the be removed. To retrieve the value is just as easy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;redis.get 'some_random_key'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I coded this up on the commute to work one day and installed it on the server the next. Really easy and useful. I certainly will consider redis as a database candidate for real work in the future. Using it as a cache is nice but it seems capable of being you main persistance store if you are into NoSQL stuff.&lt;/p&gt;
+
+&lt;p&gt;Also - it is really fast.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-01-02:/2014/01/notes-on-my-nexus-5.html</id>
     <title type="html">Notes on my Nexus 5</title>
@@ -222,73 +275,6 @@ Linux system is therefore readily configurable to the very last detail.&lt;/p&gt
 &lt;p&gt;My twitter ranting lead to an interesting dialog with &lt;a href="http://zuill.us/WoodyZuill/"&gt;Woody Zuill&lt;/a&gt; and &lt;a href="http://www.jbrains.ca/"&gt;J. B. Rainsberger&lt;/a&gt; to start with and then &lt;a href="http://twitter.com/dahankzter"&gt;Henrik Johansson&lt;/a&gt; and &lt;a href="https://twitter.com/YvesHanoulle"&gt;Yves Hanoulle&lt;/a&gt; joined in. After that I felt the need to rant a bit more in this post. To sum it up - this is what I have found:&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Agile is the consensus we have reached. Postagile is the task of improving our work on an agile foundation.&lt;/strong&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-11-13:/2013/11/composers.html</id>
-    <title type="html">timeline of composers</title>
-    <published>2013-11-13T20:13:00Z</published>
-    <updated>2013-11-13T20:13:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/11/composers.html"/>
-    <content type="html">It is the season of requiems. At least here in Sweden we have lots of
-&lt;a href='https://en.wikipedia.org/wiki/Requiem'&gt;
-  Requiem
-&lt;/a&gt;
-concerts around
-&lt;a href='https://en.wikipedia.org/wiki/Halloween'&gt;
-  Halloween
-&lt;/a&gt;
-or Alla Helgons Afton as we used to call it before the Americanization began. The triumphal entry of Halloween into Swedish culture may be the subject of another blog post. This blog post is about composers. We have been to two requiems this year. The ones by Duruflé and Brahms. I knew that Duruflé is kind of recent. The requiem is from the 40s. But I tried to put Brahms in the same time as Haydn which turned out to be totally and fundamentally wrong since Haydn was all dead before Brahms was born. So to make some sense out of the when of composers I decided to construct a time line.
-&lt;script src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['timeline']}]}" type='text/javascript'&gt;&lt;/script&gt;
-&lt;script&gt;
-  google.setOnLoadCallback(drawChart);
-  
-  function drawChart() {
-    var container = document.getElementById('composers');
-  
-    var chart = new google.visualization.Timeline(container);
-  
-    var dataTable = new google.visualization.DataTable();
-  
-    dataTable.addColumn({ type: 'string', id: 'Composer' });
-    dataTable.addColumn({ type: 'date', id: 'Start' });
-    dataTable.addColumn({ type: 'date', id: 'End' });
-  
-    dataTable.addRows([
-      [ 'Händel', new Date(1685, 2, 23), new Date(1759, 4, 14) ],
-      [ 'Bach', new Date(1685, 3, 31), new Date(1750, 7, 28) ],
-      [ 'Haydn', new Date(1732, 3, 31), new Date(1809, 5, 31) ],
-      [ 'Mozart', new Date(1756, 1, 27), new Date(1791, 12, 5) ],
-      [ 'Beethoven', new Date(1770, 12, 17), new Date(1827, 3, 26) ],
-      [ 'Verdi', new Date(1813, 10, 10), new Date(1901, 1, 27) ],
-      [ 'Brahms', new Date(1833, 5, 7), new Date(1897, 4, 3) ],
-      [ 'Tchaikovsky', new Date(1840, 5, 7), new Date(1893, 11, 6) ],
-      [ 'Grieg', new Date(1843, 6, 15), new Date(1907, 9, 4) ],
-      [ 'Fauré', new Date(1845, 5, 12), new Date(1924, 11, 2) ],
-      [ 'Puccini', new Date(1858, 12, 22), new Date(1924, 11, 29) ],
-      [ 'Debussy', new Date(1862, 8, 22), new Date(1918, 3, 25) ],
-      [ 'Ravel', new Date(1875, 3, 7), new Date(1937, 12, 28) ],
-      [ 'Stravinsky', new Date(1882, 6, 17), new Date(1971, 4, 16) ],
-      [ 'Duruflé', new Date(1902, 1, 11), new Date(1986, 6, 16) ]
-    ]);
-  
-    chart.draw(dataTable);
-  }
-&lt;/script&gt;
-&lt;div class='graph' id='composers' style='height: 700px; width: 100%; margin-top: 20px;'&gt;&lt;/div&gt;
-&lt;p&gt;
-  I added randomly composers I came to think off and that I like or that are *important*. (Disclaimer: I don't really like Brahms...) For a while there was no living composer between Beethoven and Brahms but than I came to think of Verdi. He saves the continuity through the graph....
-&lt;/p&gt;
-&lt;p&gt;
-  There seems to be a cluster of composers born in the middle of the 19th century and active towards the late 19th century that I particularly like. A favorite for a long time in my youth - maybe because I play the piano - was Claude Debussy. The best piece of classical music I know right now is the Requiem by Gabriel Fauré. Also interesting is that this period is also the most interesting when it comes to visual arts. This is the age of impressionists with great French painters like Monet and Degas leading the way. My favorite Swedish art is also from this time. What was it that made this time so interesting when it comes to the arts? Yet another blog post about that may-haps but I think the answer may be found in the borderlands between absolutism and relativism, authority and freedom etc. It was all falling apart - or in place depending on your view - at this time.
-&lt;/p&gt;
-&lt;p&gt;
-  For the nerd. You may look at the source to see what I did. It is a straightforward use of the
-  &lt;a href='https://developers.google.com/chart/interactive/docs/gallery/timeline'&gt;
-    time line graph
-  &lt;/a&gt;
-  in the Google visualization API. I have been using some of the other graph types for statistics with my current client so it was an easy choice to put this together with the same technique. And the data was put in by MANUALLY reading wikipedia articles and transporting dates into the code. Will build integration with freebase or similar another time.....
-&lt;/p&gt;
 </content>
   </entry>
 </feed>
