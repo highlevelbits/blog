@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>high level bits - The bright future of parallel computing</title>
+<title>high level bits - Back in Javaland</title>
 <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
 <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
 <link href="../../style.css" rel="stylesheet">
@@ -44,21 +44,35 @@
       </div>
       <div class="content">
         <h2 class="article-header">
-  The bright future of parallel computing
+  Back in Javaland
 </h2>
-<span class="byline">2007-02-22 by fredrik</span>
+<span class="byline">2014-03-05 by fredrik</span>
 
   <span class="tags">
-    
-      <a class="one-tag" href="#erlang"><span class="icon-tag"></span>erlang</a>
     
       <a class="one-tag" href="#java"><span class="icon-tag"></span>java</a>
     
   </span>
 
-<p>Parallel is a hard word to spell for a native swede. In swedish it comes with 4 l as in parallell so when doing some searches I only got swedish hits.... I started thinking a bit about parallel computing after reading <a href="http://radar.oreilly.com/archives/2007/02/a_fast_waitfree_1.html">these interesting fragments</a> of an internal O'Reilly conversation on the matter. The point is that processors are not gonna get much faster in the future so our hope for faster computing lies in making them run in parallel. This is a prospect worth thinking about for a while. Will this new hardware architecture imply a change in how we construct software? Probably. Java, for example, doesn't have built-in support for massive parallelism. Java has threads but they have to be created by the programmer. EJB application servers might be able to use many processors effectively since the EJB container is responsible for threading of beans. In this case a single request will always be linearly executed and the possible advantage of many processors will be wasted. The use of JMS could possibly solve this but a message that you let go doesn't report back.<br>Java is not the language to use with this new harware then. Without really knowing I suspect that this is about the same for C#. We need languages that support code to may run concurrently without no hard work placed on the programmer. There are probably a number of candidates for this. Nat Torkington - also for O'Reilly Radar - <a href="http://radar.oreilly.com/archives/2007/01/threads_conside.html">mentions</a> Erlang, Haskell and E as potential languages. Wikipedia says about Erlang that:</p>
-<blockquote>Erlang's main strength is support for <a href="http://en.wikipedia.org/wiki/Concurrency_%28computer_science%29" title="Concurrency (computer science)">concurrency</a>. It has a small but powerful set of primitives to create processes and communicate between them. Processes are the primary means to structure an Erlang application. Erlang processes are neither OS processes nor OS threads, but lightweight threads somewhat similar to <a href="http://en.wikipedia.org/wiki/Java" title="Java">Java</a>'s "green threads".</blockquote>
-<p>Interesting! The years to come will definitley see some new players challenging the dominance of Java and C# for the enterprise. The Web 2.0 toolset will be likely to get some new tools. Ajax is kind of a parallel way of writing web pages so this shift in technology may be a natural continuation of the Web 2.0 thingie.</p>
+<p>So I am currently back coding Java. It is two months into the current assignment and about time to report some findings. The product I work on (yes - a real product that is <strong>released</strong>) is a desktop application written with <a href="https://en.wikipedia.org/wiki/Swing_%28Java%29">Swing</a> - this GUI framework of Java that seems to be almost abandoned. But it is the choice you have when doing desktop with Java. (I have no idea whethere this is better or worse with other languages. Probably not for cross platform stuff. This <a href="http://qt-project.org/">qt</a> thing might be a contender though.) It sure is possible to do good stuff with it. In this code base I have mostly been saved from interacting directly with Swing due to several abstractions (of varying quality) built on top of it. Some things have been really nice to use. Adding another menu item is done in no time at all. Sometimes it goes in the way. We tried to remove a tab from an editor window and it wasn’t possible to even understand how to do it in a couple of hours. The code base is a bit old but still remarkable stable despite a clear lack of automated tests. (Yes - we are increasing the numbers.) So that is a little background to what I am doing at the moment. A couple of reflections on this:</p>
+
+<ul>
+<li>Java is the language I know best and it is really easy to just get going with it despite not having coding it for more than a year. Some skills seem to stick.</li>
+  <li>inheritance sucks.</li>
+  <li>interfaces may be handy if you use them consistently.</li>
+  <li>the lack of enforced dependencies between packages in Java makes any code base a big soap.</li>
+  <li>abstractions may make you go faster once you understand them.</li>
+  <li>testing is hard. We tried to use <a href="https://code.google.com/p/fest/">Fest</a> underneath the <a href="https://github.com/cucumber/cucumber-jvm">JVM flavour of Cucumber</a>. It looked promising but than we got weird problems with running tests on the build server so we abandoned it for a while in favor of automated tests under the hood instead. </li>
+  <li>the current code base is entangled so we always need to do a fair bit of mocking when setting up a test.</li>
+  <li>since most of the code is uncovered by test we try to write unit tests for bigger units then classes so we cover as much as ground as possible with a single test. This has been working really fine. It is important to put the mocks in the right place for an interaction under test. </li>
+  <li>in a statically typed, compiled language even a system that has too few tests can have a some stability.</li>
+</ul>
+<p>I will stay in Javaland for another 2 months. It is nicer than I expected. </p>
+
+<p>I also found out that there is a <a href="http://www.javaland.eu/en/javaland-2014.html">german conference</a> called Javaland. Not for me but in case you want to go I give you a nice banner.</p>
+
+<p><img src="http://www.javaland.eu/typo3temp/pics/8e30c2bb4b.jpg" alt=""></p>
+
 
 <div class="dashed-top-border">
   <!-- disqus -->
@@ -82,20 +96,9 @@
 
   <div class="dashed-top-border">
     
-      <h4><a name="erlang">Other articles tagged erlang</a></h4>
+      <h4><a name="java">Other articles tagged java</a></h4>
       <ul>
 <li>
-            <a href="../../2009/03/scandevconf-summary.html">ScanDevConf summary</a> on 2009-03-25
-          </li>
-        
-      </ul>
-<h4><a name="java">Other articles tagged java</a></h4>
-      <ul>
-<li>
-            <a href="../../2014/03/back-in-javaland.html">Back in Javaland</a> on 2014-03-05
-          </li>
-        
-          <li>
             <a href="../../2013/04/tdding_prime_detection.html">detecting prime numbers with Test Driven Development</a> on 2013-04-23
           </li>
         
@@ -184,19 +187,23 @@
           </li>
         
           <li>
-            <a href="../04/krugle-next-google.html">Krugle the next Google?</a> on 2007-04-30
+            <a href="../../2007/04/krugle-next-google.html">Krugle the next Google?</a> on 2007-04-30
           </li>
         
           <li>
-            <a href="../04/irony-of-application-servers.html">The irony of application servers</a> on 2007-04-02
+            <a href="../../2007/04/irony-of-application-servers.html">The irony of application servers</a> on 2007-04-02
           </li>
         
           <li>
-            <a href="mylar-solution-to-information-overload.html">Mylar - the solution to information overload</a> on 2007-02-20
+            <a href="../../2007/02/parallel-is-hard-word-to-spell-for.html">The bright future of parallel computing</a> on 2007-02-22
           </li>
         
           <li>
-            <a href="there-is-hope-despite-everything.html">There is hope - despite everything</a> on 2007-02-08
+            <a href="../../2007/02/mylar-solution-to-information-overload.html">Mylar - the solution to information overload</a> on 2007-02-20
+          </li>
+        
+          <li>
+            <a href="../../2007/02/there-is-hope-despite-everything.html">There is hope - despite everything</a> on 2007-02-08
           </li>
         
       </ul>

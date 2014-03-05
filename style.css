@@ -59,7 +59,7 @@ img {
   border: solid 2px;
   margin: 10px;
   display: block;
-  max-width: 100%;
+  max-width: 97%;
 }
 
 .menu {
@@ -119,12 +119,6 @@ img {
   margin-bottom: 20px;
   margin-left: 20px;
   margin-right: 20px;
-}
-
-.main li {
-  font-size: 15px;
-
-  line-height: 20px;
 }
 
 .footer {

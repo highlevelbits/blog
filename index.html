@@ -47,6 +47,56 @@
   <div class="start-page-article">
     <div class="row">
       <h2 class="article-header">
+        <a href="2014/03/back-in-javaland.html">Back in Javaland</a>
+      </h2>
+      <div class="byline">
+        by
+        fredrik
+        on
+        2014-03-05
+      </div>
+    </div>
+  </div>
+  <p>So I am currently back coding Java. It is two months into the current assignment and about time to report some findings. The product I work on (yes - a real product that is <strong>released</strong>) is a desktop application written with <a href="https://en.wikipedia.org/wiki/Swing_%28Java%29">Swing</a> - this GUI framework of Java that seems to be almost abandoned. But it is the choice you have when doing desktop with Java. (I have no idea whethere this is better or worse with other languages. Probably not for cross platform stuff. This <a href="http://qt-project.org/">qt</a> thing might be a contender though.) It sure is possible to do good stuff with it. In this code base I have mostly been saved from interacting directly with Swing due to several abstractions (of varying quality) built on top of it. Some things have been really nice to use. Adding another menu item is done in no time at all. Sometimes it goes in the way. We tried to remove a tab from an editor window and it wasn’t possible to even understand how to do it in a couple of hours. The code base is a bit old but still remarkable stable despite a clear lack of automated tests. (Yes - we are increasing the numbers.) So that is a little background to what I am doing at the moment. A couple of reflections on this:</p>
+
+<ul>
+  <li>Java is the language I know best and it is really easy to just get going with it despite not having coding it for more than a year. Some skills seem to stick.</li>
+  <li>inheritance sucks.</li>
+  <li>interfaces may be handy if you use them consistently.</li>
+  <li>the lack of enforced dependencies between packages in Java makes any code base a big soap.</li>
+  <li>abstractions may make you go faster once you understand them.</li>
+  <li>testing is hard. We tried to use <a href="https://code.google.com/p/fest/">Fest</a> underneath the <a href="https://github.com/cucumber/cucumber-jvm">JVM flavour of Cucumber</a>. It looked promising but than we got weird problems with running tests on the build server so we abandoned it for a while in favor of automated tests under the hood instead. </li>
+  <li>the current code base is entangled so we always need to do a fair bit of mocking when setting up a test.</li>
+  <li>since most of the code is uncovered by test we try to write unit tests for bigger units then classes so we cover as much as ground as possible with a single test. This has been working really fine. It is important to put the mocks in the right place for an interaction under test. </li>
+  <li>in a statically typed, compiled language even a system that has too few tests can have a some stability.</li>
+</ul>
+
+<p>I will stay in Javaland for another 2 months. It is nicer than I expected. </p>
+
+<p>I also found out that there is a <a href="http://www.javaland.eu/en/javaland-2014.html">german conference</a> called Javaland. Not for me but in case you want to go I give you a nice banner.</p>
+
+<p><img src="http://www.javaland.eu/typo3temp/pics/8e30c2bb4b.jpg" alt=""></p>
+  <center>------</center>
+  <div class="outro">
+    <i>
+      Even though this was the entire post you may want to leave a comment on the
+      <a href="2014/03/back-in-javaland.html">post page</a>
+      .
+    </i>
+  </div>
+  <center>------</center>
+  <div class="outro">
+    <i>
+      Find more posts in the
+      <a href="archive.html">
+        archives
+      </a>
+      .
+    </i>
+  </div>
+  <div class="start-page-article">
+    <div class="row">
+      <h2 class="article-header">
         <a href="2014/02/using-redis-as-cache-with-ruby.html">Using redis as a cache with Ruby</a>
       </h2>
       <div class="byline">
@@ -153,137 +203,6 @@ redis.expire 'some_random_key', 60 * 60 * 24
     <i>
       Even though this was the entire post you may want to leave a comment on the
       <a href="2014/01/notes-on-my-nexus-5.html">post page</a>
-      .
-    </i>
-  </div>
-  <center>------</center>
-  <div class="outro">
-    <i>
-      Find more posts in the
-      <a href="archive.html">
-        archives
-      </a>
-      .
-    </i>
-  </div>
-  <div class="start-page-article">
-    <div class="row">
-      <h2 class="article-header">
-        <a href="2013/12/simple_backups.html">simple backups</a>
-      </h2>
-      <div class="byline">
-        by
-        fredrik
-        on
-        2013-12-15
-      </div>
-    </div>
-  </div>
-  <p><img src="http://farm7.staticflickr.com/6054/6261970884_ea884ea79f_b.jpg" alt="backups"></p>
-
-<p>(<a href="http://www.flickr.com/photos/40133358@N05/6261970884">Photo by gagam13</a>)</p>
-
-<p>I just finished moving a rails thing from <a href="https://heroku.com">heroku</a> to my own <a href="https://www.archlinux.org/">arch linux server</a> at <a href="https://www.digitalocean.com/">digital ocean</a>. This has involved learning lots about server management. Setting up the server with decent security (ufw - uncomplicated firewall to the rescue) and a nginx web service talking to the unicorn-powered rails application. All rather easy and with lots of resources available on the interwebz. I didn’t find much about backing up a postgres database though so I figured something out on my own. And here it is! My requirements:</p>
-
-<ul>
-  <li>nightly backups is enough (for now - users may lose latest updates)</li>
-  <li>backups must be stored on another server</li>
-  <li>backups on that other server should be encrypted</li>
-</ul>
-
-<p>This leaves me with 4 tasks:</p>
-
-<ul>
-  <li>create a backup file</li>
-  <li>encrypt the backup file</li>
-  <li>upload the encrypted file to another server</li>
-  <li>schedule a nightly task to initiate the backup</li>
-</ul>
-
-<h3 id="create-a-backup-file">Create a backup file</h3>
-
-<p>Postgres comes with the easy to use <code>pg_dump</code> command. Name your database and the file you want to export to:</p>
-
-<pre><code>pg_dump -f &lt;filename&gt; &lt;database&gt;
-</code></pre>
-
-<p>If you want to export all databases in your postgres server you can use the <code>pg_dumpall</code> command instead and omit the database name. I created a filename with a timestamp so that there will be no file name conflict:</p>
-
-<pre><code>date +%Y.%m.%d.%H.%M.%S
-</code></pre>
-
-<p>plus a suffix.</p>
-
-<h3 id="encrypt-the-backup-file">Encrypt the backup file</h3>
-
-<p><code>gnupg</code> provides with encryption. Easily installed with</p>
-
-<pre><code>pacman -S gnupg
-</code></pre>
-
-<p>I settled for symmetric encryption with a hard password. </p>
-
-<pre><code>gpg --symmetric --batch --passphrase &lt;password&gt; --force-mdc &lt;backupfile&gt;
-</code></pre>
-
-<p>The <code>--symmetric</code> flag says to encrypt symmetrically. This means that we can decrypt with the same password. <code>--batch</code> makes it possible to pass in the passphrase on the command line rather than getting a prompt to enter it. <code>--force-mdc</code> makes sure that a warning about mdc is avoided when decrypting. I am not sure what this means. The command creates a file in parallell to the backup file with the added <code>.gpg</code> extension.</p>
-
-<h3 id="upload-the-encrypted-file-to-another-server">Upload the encrypted file to another server</h3>
-
-<p>This can be done in many ways. I settled for dropbox mostly because it is free and rather easy to do. Even easier would be something like <code>sftp</code> if you have the luxury of having another server for backup storing. To communicate with dropbox I use the <a href="https://www.dropbox.com/developers/core">Core API</a> with Ruby. </p>
-
-<pre><code>gem install dropbox-sdk
-</code></pre>
-
-<p>To use it you need to register an app with dropbox. Then you will get the key and secret needed to initiate communication and get an access token. To get the access token you will need to run the following once:</p>
-
-<pre><code>require 'dropbox_sdk'
-
-flow = DropboxOAuth2FlowNoRedirect.new(APP_KEY, APP_SECRET)
-url = flow.start
-puts url
-</code></pre>
-
-<p>Go to the outputted url logged in as the user you want for dropbox and grab the code. Pass it in to the method below:</p>
-
-<pre><code>code = gets.strip
-access_token, user_id = flow.finish code 
-</code></pre>
-
-<p>This access token can then be reused for all subsequent calls.</p>
-
-<p>Then do the actual file transfer with:</p>
-
-<pre><code>client = DropboxClient.new access_token
-file = open gpgfilename
-response = client.put_file(gpgfilename, file)
-</code></pre>
-
-<p>and the file ends up in the <code>Apps/&lt;yourappname&gt;</code> folder.</p>
-
-<p>I use Ruby here but there are several other options depending on your setup.</p>
-
-<h3 id="schedule-a-nightly-task">Schedule a nightly task</h3>
-
-<p>Finally I put all the above in to one huge ruby file (that I won’t share because it is kinda messy). Then I added it to crontab with </p>
-
-<pre><code>export EDITOR=vim
-crontab -e
-</code></pre>
-
-<p>I always fail with vi…. The line to add for a nightly run at 01:37 is:</p>
-
-<pre><code>37 1 * * * /path/to/backup.sh
-</code></pre>
-
-<p>Keep in mind that cron executes with <code>/bin/sh</code> so make sure to test your command under those circumstances. Cron is supposed to send mails when it fails. That remains to set up. I will probably rather hook the job up with nagios once I get that up and running for monitoring.</p>
-
-<p>Thats it for now. I will come back with more server side tips further on.</p>
-  <center>------</center>
-  <div class="outro">
-    <i>
-      Even though this was the entire post you may want to leave a comment on the
-      <a href="2013/12/simple_backups.html">post page</a>
       .
     </i>
   </div>
