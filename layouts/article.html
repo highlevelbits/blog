@@ -37,7 +37,7 @@
       <ul>
         <% similar_articles.each do |item| %>
           <li>
-            <%= link_to item[:title], item %> on <%= item[:created_at].strftime '%F' %>
+            <%= link_to item[:title], item %> by <%= item[:author] %> on <%= item[:created_at].strftime '%F' %>
           </li>
         <% end %>
       </ul>
