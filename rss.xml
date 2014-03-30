@@ -2,13 +2,48 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2014-03-05T07:00:00Z</updated>
+  <updated>2014-03-30T07:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/rss.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-03-30:/2014/03/current-state-of-virtual-reality.html</id>
+    <title type="html">current state of virtual reality</title>
+    <published>2014-03-30T07:00:00Z</published>
+    <updated>2014-03-30T07:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/03/current-state-of-virtual-reality.html"/>
+    <content type="html">&lt;p&gt;As our loyal readers surely remembers we have touched upon the subject of virtual reality and alternative input devices before. This was a common theme in the first year of this web log. Back in february 2007 when we launched I posted &lt;a href="/2007/02/whats-that-noise-about-second-life.html"&gt;&lt;em&gt;Whats that noise about Second Life?&lt;/em&gt;&lt;/a&gt; with this analysis:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I am pretty sure that this is overhyped now but in a distant future something like this will be the way to surf just 
+like cyberpunk prophet William Gibson predicted 23 years ago in the excellent novel Neuromancer.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;7 years later and it has not come true. Yet. I haven’t really followed the area lately so when the news of Facebook buying &lt;a href="http://www.oculusvr.com/"&gt;Oculus VR&lt;/a&gt; (along with Sony releasing a similar device) appeared on my radar I thought it fun to explore a bit more. Apparently indie game superstars Mojang &lt;a href="http://notch.net/2014/03/virtual-reality-is-going-to-change-the-world/"&gt;were in talks with Oculus to launch minecraft&lt;/a&gt; into their virtual environment. It seems like these talks were in an early phase and naturally notch et al did not like the idea of talking with facebook instead and ended to collaboration efforts right away. That is sad because getting minecraft into a VR platform would certainly kick start things right away. On the other hand - facebook clearly see the technology as mature enough to bet on and that may be a good sign for virtual reality overall. &lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://farm6.staticflickr.com/5536/10187117474_ee7e0e8bbd_c.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The guy above is trying out the Oculus Rift. Isn’t it still a bit big? I get steampunkish feelings! Something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://farm5.staticflickr.com/4154/4989019868_d23e79b65c_z.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Oculus was &lt;a href="https://www.kickstarter.com/"&gt;kickstarted&lt;/a&gt; into existance. Some of its backers may feel a bit disillusioned after the facebook acquisition as &lt;a href="https://twitter.com/avestal"&gt;Andrew Vestal&lt;/a&gt; summed up over on twitter:&lt;/p&gt;
+
+&lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p&gt;&amp;quot;I Kickstarted the Oculus Rift, what do I get?&amp;quot; You get a lesson in how capitalism works.&lt;/p&gt;&amp;mdash; Andrew Vestal (@avestal) &lt;a href="https://twitter.com/avestal/statuses/448603100387872768"&gt;March 25, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;Not unsurprisingly Sony is on the move and unveiled Morpheus at GDC just some weeks ago. It looks slicker (as you would expect) but is basically the same deal conceptually and technically. While it is now possible to get virtual reality visuals there is still lots of work to be done when it comes to interacting with this world. Most of the examples I have seen in my short googling session involves either a classic console controller or some kind of wii-like pointer thing.&lt;/p&gt;
+
+&lt;p&gt;Another fun post to reread 7 years later is &lt;a href="/2007/04/gartner-on-virtual-worlds.html"&gt;&lt;em&gt;Gartner on virtual worlds&lt;/em&gt;&lt;/a&gt; where I bashed a ridiculous prophecy by gartner that by 2011 80% of internet users will have a second life in one of the emerging virtual reality platforms. That didn’t come true - not because it is a bad idea but because interface technologies weren’t mature enough for it. the average user is not impressed by a virtual world accessed via the standard keyboard/mouse/screen peripherals. New ways to interact with computer and cloud is a must to get somewhere when it comes to virtual reality. Also important is the killer application that makes us all want to get inside. I doubt that it will be facebook that delivers this killer application but you never know. Given their huge user base anything can happen. And we will surely continue the &lt;a href="/2013/08/freedom.html"&gt;miserable path of proprietary protocols&lt;/a&gt; for human interaction.&lt;/p&gt;
+
+&lt;p&gt;I leave you with this good overview of the current state of affairs compiled by the verge:&lt;/p&gt;
+
+&lt;iframe width="560" height="315" src="//www.youtube.com/embed/ZZDizTLX3Rc" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-03-05:/2014/03/back-in-javaland.html</id>
     <title type="html">Back in Javaland</title>
@@ -218,46 +253,6 @@ crontab -e
 &lt;p&gt;Keep in mind that cron executes with &lt;code&gt;/bin/sh&lt;/code&gt; so make sure to test your command under those circumstances. Cron is supposed to send mails when it fails. That remains to set up. I will probably rather hook the job up with nagios once I get that up and running for monitoring.&lt;/p&gt;
 
 &lt;p&gt;Thats it for now. I will come back with more server side tips further on.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2013-12-05:/2013/12/arch.html</id>
-    <title type="html">finally on linux</title>
-    <published>2013-12-05T21:01:00Z</published>
-    <updated>2013-12-05T21:01:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2013/12/arch.html"/>
-    <content type="html">&lt;p&gt;&lt;a href="https://www.archlinux.org/" style="float:right"&gt;&lt;img src="https://d11xdyzr0div58.cloudfront.net/static/logos/archlinux-logo-dark-90dpi.ebdee92a15b3.png" alt="" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;So I have finally made the step from proprietary software to the free world of linux. I have had to use Windows for many years at several customers but started to used MacOS for my personal things some 6 or 7 years ago. 3 laptops later and it is time to switch again. A gig involving Java is coming up and my almost 3 years old Air is not up for it. Coding Rails and Go has been no problem at all but I fear Java will need some serious powers. So this time I decided to go Linux. The one thing that really made me decide was the NSA findings earlier this year. It is now obvious that closed software can not be trusted to uphold my personal integrity. And it is not that I care that much for my own integrity. I have nothing to hide. It is a matter of principals. Read more about this in my &lt;a href="/2013/08/freedom.html"&gt;freedom rant from august&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;So Linux it is then but what kind. It seems like the most popular distros are bloated and may give an experience akin to Mac or Windows but I wanted something different and the simplest thing that can possible work. So I got my eyes on &lt;a href="https://www.archlinux.org/"&gt;Arch&lt;/a&gt;. Two fellow hackers, &lt;a href="https://twitter.com/dahankzter"&gt;Henrik Johansson&lt;/a&gt; and &lt;a href="https://twitter.com/jimlar"&gt;Jimmy Larsson&lt;/a&gt; were already on the distro and as I read up on it I decided that this is what I want to use. From &lt;a href="https://wiki.archlinux.org/index.php/The_Arch_Way"&gt;the arch way&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Arch Linux defines simplicity as without unnecessary additions, modifications, or complications, 
-and provides a lightweight UNIX-like base structure that allows an individual user to shape the 
-system according to their own needs. In short: an elegant, minimalist approach.&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;p&gt;A lightweight base structure built with high programming standards will tend to have lower 
-system resource demands. The base system is devoid of all clutter that may obscure important 
-parts of the system, or make access to them difficult or convoluted. It has a streamlined set of 
-succinctly commented, clean configuration files that are arranged for quick access and editing, 
-with no cumbersome graphical configuration tools to hide possibilities from the user. An Arch 
-Linux system is therefore readily configurable to the very last detail.&lt;/p&gt;
-
-  &lt;p&gt;&lt;strong&gt;Complexity without complication.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I like it.&lt;/p&gt;
-
-&lt;p&gt;So I decided on Arch before even buying a piece of hardware. After looking around for a while I settled for a &lt;a href="http://shop.lenovo.com/us/en/laptops/thinkpad/x-series/x230/"&gt;Lenovo ThinkPad X230&lt;/a&gt;. It is small though not as small as the Air. It got the powers and comes with a built-in 3G modem (that I actually got working!). It has a nice keyboard and a track pad that is ok but not as good as the Airs. Keyboard backlight that I finally found out that you can turn on with Fn-Space. (I accidentally lit it when missing a Ctrl-Space sequence trying to complete something in Sublime.)&lt;/p&gt;
-
-&lt;p&gt;It is not easy to get started with Linux and Arch is probably even harder. I followed the noob guide to get disks formatted and the distro installed. It took me a couple of hours and I learned a lot. &lt;/p&gt;
-
-&lt;p&gt;Then the tricky decision to decide to have a desktop or not. I decided to go simple and avoided KDE and Gnome in favour of a plain window manager - openbox. It does windows and not much more. And when you start using it you soon realize that you don’t really need anything more when you are literate on the comman line. At the moment I have a plain openbox configuration and I run stalonetray for network and battery icons. I also have conky running in default mode with plans to learn how to configure it sometime in the future.&lt;/p&gt;
-
-&lt;p&gt;I still have some things to tweek. Stuff like pdf viewing, file extension management and printing has not been resolved yet. But I haven’t really tried. I will need to get used to replacements for a couple of programs, omnigraffle and iphoto being the most important ones probably. Apart from that it is mostly the same software here as on Apple. I tried with Firefox for a while but it turned out Chromium is better at making all web pages look good. It is likely a font issue with firefox (helvetica) but that is for some other rainy day. &lt;/p&gt;
-
-&lt;p&gt;That’s it for now. I will likely be back with more detailed tales of the linux user.&lt;/p&gt;
 </content>
   </entry>
 </feed>
