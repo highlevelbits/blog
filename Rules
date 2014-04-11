@@ -13,6 +13,25 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+preprocess do
+  require 'set'
+  require 'uri'
+  
+  tags = Set.new
+  items.each do |item|
+    if item[:tags]
+      item[:tags].split(',').each do |t| 
+        processed_tag = URI.escape t.strip.downcase
+        tags.add(processed_tag)
+      end 
+    end
+  end
+
+  tags.each do |tag|
+    items << Nanoc::Item.new("", { tag: tag, kind: 'tag' }, "/tags/#{tag}/")
+  end    
+end
+
 compile '*' do
   if item.binary? or bypass? item[:extension]
   elsif item.identifier == '/atom/' or item.identifier == '/rss/' or item.identifier == '/feeds/posts/default/'
@@ -26,8 +45,8 @@ compile '*' do
     when 'haml'
       filter :haml
     end
-    if item[:kind] == 'article'
-      layout 'article'
+    if item[:kind] =~ /(article|tag)/
+      layout item[:kind]
     end
     layout 'default'
     filter( :relativize_paths, :type => :html )
