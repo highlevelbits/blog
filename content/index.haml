@@ -3,34 +3,23 @@ title: home
 author_name: low level mechanizer
 ---
 
-:markdown
-  This is the blog of **Hardy Ferentschik** and **Fredrik Rubensson**. We started this adventure back in 2007 and boldly stated that: *We are not sure where this journey is going, but you are welcome to the ride*. We are still riding on after seven years.
+.row
+  :markdown
+    This is the blog of **Hardy Ferentschik** and **Fredrik Rubensson**. We started this adventure back in 2007 and boldly stated that: *We are not sure where this journey is going, but you are welcome to the ride*. We are still riding on after seven years.
 
 .start-page
-  - sorted_articles[0..49].each do |article|
-    .row
-      = article[:created_at].strftime '%F'
-      = '-'
-      = link_to article[:title], article
-      by
-      = article[:author]
-  - sorted_articles[0..2].each do |article|
-    .start-page-article
-      .row
-        %h2.article-header
-          = link_to article[:title], article
-        .byline
-          by
-          = article[:author]
-          on
+  .start-page-section
+    %h2.article-header
+      Last 42 articles
+    - sorted_articles[0..41].each do |article|
+      .row.article-entry
+        %code
           = article[:created_at].strftime '%F'
-    = preserve article.compiled_content
-    %center="------"
-    .outro
-      %i
-        Even though this was the entire post you may want to leave a comment on the
-        = link_to 'post page', article
-        = '.'
+        = '-'
+        %b
+          = link_to article[:title], article
+        by
+        = article[:author]
   %center="------"
   .outro
     %i
