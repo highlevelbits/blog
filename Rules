@@ -15,13 +15,12 @@
 
 preprocess do
   require 'set'
-  require 'uri'
   
   tags = Set.new
   items.each do |item|
     if item[:tags]
       item[:tags].split(',').each do |t| 
-        processed_tag = URI.escape t.strip.downcase
+        processed_tag = t.strip.downcase
         tags.add(processed_tag)
       end 
     end

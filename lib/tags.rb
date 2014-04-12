@@ -22,3 +22,7 @@ def tags_with_sibling_articles_for item
     end
   end
 end
+
+def link_to_tag tag
+  "/tags/#{tag}.html"
+end

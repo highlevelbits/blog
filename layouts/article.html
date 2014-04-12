@@ -5,7 +5,7 @@
 <% if @item[:tags] %>
   <span class="tags">
     <% tags_with_sibling_articles_for @item do |one_tag, similar_articles| %>
-      <a class="one-tag" href="#<%= one_tag %>"><span class="icon-tag" /><%= one_tag %></a>
+      <a class="one-tag" href="<%= link_to_tag one_tag %>"><span class="icon-tag" /><%= one_tag %></a>
     <% end %>
   </span>
 <% end %>
@@ -29,18 +29,3 @@
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->
 </div>
-
-<% if tags_for( @item ).any? %>
-  <div class="dashed-top-border">
-    <% tags_with_sibling_articles_for @item do |one_tag, similar_articles| %>
-      <h4><a name="<%= one_tag %>"><%= "Other articles tagged #{one_tag}" %></a></h4>
-      <ul>
-        <% similar_articles.each do |item| %>
-          <li>
-            <%= link_to item[:title], item %> by <%= item[:author] %> on <%= item[:created_at].strftime '%F' %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
-<% end %>
