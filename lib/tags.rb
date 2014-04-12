@@ -24,5 +24,5 @@ def tags_with_sibling_articles_for item
 end
 
 def link_to_tag tag
-  "/tags/#{tag}.html"
+  "/tags/#{tag.gsub(' ', '-')}.html"
 end
