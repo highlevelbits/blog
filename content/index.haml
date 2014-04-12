@@ -12,14 +12,7 @@ author_name: low level mechanizer
     %h2.article-header
       Last 42 articles
     - sorted_articles[0..41].each do |article|
-      .row.article-entry
-        %code
-          = article[:created_at].strftime '%F'
-        = '-'
-        %b
-          = link_to article[:title], article
-        by
-        = article[:author]
+      = short article
   %center="------"
   .outro
     %i

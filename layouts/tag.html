@@ -1,6 +1,4 @@
-<h1><%= @item[:tag] %></h1>
-<ul>
-  <% items_tagged_with( @item[:tag] ).each do |item| %>
-    <li><%= link_to item[:title], item %></li>
-  <% end %>
-</ul>
+<h2>Posts tagged <%= @item[:tag] %></h2>
+<% items_tagged_with( @item[:tag] ).each do |item| %>
+  <%= short item %>
+<% end %>
