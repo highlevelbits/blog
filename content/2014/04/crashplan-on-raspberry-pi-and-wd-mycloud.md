@@ -6,7 +6,7 @@ author: hardy
 tags: backup, crashplan, pi,
 ---
 
-## Background
+### Background
 
 Not so long ago I witnessed complete disk crashes by some of my
  colleagues. Everything was lost and a full reinstall was at order.
@@ -78,6 +78,7 @@ hurdles you have to jump prior to running CrashPlan on a Pi:
 Let's address these things, in this order.
 
 <a name="install-java"></a>
+
 ### Install Java
 
 Installing Java via the package manager is actually quite easy. You need some other libraries as well, but that's not hard.
@@ -85,6 +86,7 @@ Installing Java via the package manager is actually quite easy. You need some ot
     $ sudo apt-get install openjdk-7-jre-headless build-essential libjna-java
 
 <a name="install-crashplan"></a>
+
 ### Install and patch CrashPlan
 
 Now that you have Java installed it is time to download and install the
@@ -124,6 +126,7 @@ Or if you want more details check the _/usr/local/crashplan/log_
 directory which contains multiple log files.
 
 <a name="headless-client"></a>
+
 ### Run CrashPlan on a headless client
 
 Now that CrashPlan is running you need to configure it and setup the
@@ -155,6 +158,7 @@ following to your _~/.ssh/config_ file:
 ## Crashplan on WD My Cloud
 
 <a name="friend-to-friend"></a>
+
 ### Friend to friend backup
 
 So, now I had a a backup on my USB disc attached to the PI and a
@@ -194,7 +198,7 @@ still occur, but don't bother me too much at the moment:
      if 5 restarts within 5 cycles then timeout
 
 
-### Summary
+## Summary
 
 Overall I am happy with my new backup solution. From local USB
 only, to two off-site backups, all fully automated, that's not too bad.
