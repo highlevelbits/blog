@@ -51,6 +51,29 @@ File type support
 
 Currently content can be written in markdown, erb or haml. Check (or change) the [Rules](https://github.com/highlevelbits/blog/blob/master/Rules) file for the most up to date definitions. To add support for another markup engine should be as easy as adding a `when` to the `case` in the Rules `compile` part and adding the corresponding gem to the Gemfile. (Also - run `bundle install`.)
 
+Posts
+-----
+
+All files that are articles have to have a nanoc header. Here is an example for posts:
+
+    ---
+    title: "Back in Javaland"
+    kind: article
+    created_at: 2014-03-05 07:00:00
+    author: fredrik
+    tags: java
+    ---
+
+The title makes it on to lists of posts. 
+
+The kind decides how to process it in the Rules file - this typically affect what layout to use. At the moment there are `article`, `tag`  and default behaviour. Here we could add other types for special parts of the site.
+
+The date decides where in the post list an entry will appear and is also shown in the post header.
+
+Author is author.
+
+Tags are a comma separated list of tags. They are listed on each post and also got their own page. Tags with only one article are not shown.
+
 Contribute
 ----------
 
