@@ -54,11 +54,7 @@
     
   </span>
 
-<<<<<<< HEAD
 <h3 id="background">Background</h3>
-=======
-<h2 id="background">Background</h2>
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 <p>Not so long ago I witnessed complete disk crashes by some of my
  colleagues. Everything was lost and a full reinstall was at order.
@@ -132,28 +128,18 @@ hurdles you have to jump prior to running CrashPlan on a Pi:</p>
 </ul>
 <p>Let’s address these things, in this order.</p>
 
-<<<<<<< HEAD
 <p><a name="install-java"></a></p>
 
 <h3 id="install-java">Install Java</h3>
-=======
-<p><a name="install-java"></a>
-### Install Java</p>
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 <p>Installing Java via the package manager is actually quite easy. You need some other libraries as well, but that’s not hard.</p>
 
 <pre><code>$ sudo apt-get install openjdk-7-jre-headless build-essential libjna-java
 </code></pre>
 
-<<<<<<< HEAD
 <p><a name="install-crashplan"></a></p>
 
 <h3 id="install-and-patch-crashplan">Install and patch CrashPlan</h3>
-=======
-<p><a name="install-crashplan"></a>
-### Install and patch CrashPlan</p>
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 <p>Now that you have Java installed it is time to download and install the
 CrashPlan installer (check the website for the latest version):</p>
@@ -195,14 +181,9 @@ whether the process is running via:</p>
 <p>Or if you want more details check the <em>/usr/local/crashplan/log</em>
 directory which contains multiple log files.</p>
 
-<<<<<<< HEAD
 <p><a name="headless-client"></a></p>
 
 <h3 id="run-crashplan-on-a-headless-client">Run CrashPlan on a headless client</h3>
-=======
-<p><a name="headless-client"></a>
-### Run CrashPlan on a headless client</p>
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 <p>Now that CrashPlan is running you need to configure it and setup the
 backup sets. Provided your Pi runs headless (as in my case,)
@@ -233,14 +214,9 @@ following to your <em>~/.ssh/config</em> file:</p>
 
 <h2 id="crashplan-on-wd-my-cloud">Crashplan on WD My Cloud</h2>
 
-<<<<<<< HEAD
 <p><a name="friend-to-friend"></a></p>
 
 <h3 id="friend-to-friend-backup">Friend to friend backup</h3>
-=======
-<p><a name="friend-to-friend"></a>
-### Friend to friend backup</p>
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 <p>So, now I had a a backup on my USB disc attached to the PI and a
 remote backup on the CrashPlan servers. But why stop there? It happened
@@ -253,11 +229,7 @@ sign up for another free CrashPlan account and use it to share you
 backup device. How this works
 in detail is described on the CrashPlan support site - <a href="https://support.code42.com/CrashPlan/Latest/Backup/Backing_Up_To_A_Friends_Computer">Backing Up To A Friends Computer</a>.</p>
 
-<<<<<<< HEAD
 <h3 id="install-and-patch-crashplan-1">Install and patch CrashPlan</h3>
-=======
-<h3 id="install-and-patch-crashplan">Install and patch CrashPlan</h3>
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 <p>However, to use friend to friend backup, I needed to install first
 CrashPlan on the WD My Cloud. Luckily it is also an ARM based
@@ -284,11 +256,7 @@ still occur, but don’t bother me too much at the moment:</p>
  if 5 restarts within 5 cycles then timeout
 </code></pre>
 
-<<<<<<< HEAD
 <h2 id="summary">Summary</h2>
-=======
-<h3 id="summary">Summary</h3>
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 <p>Overall I am happy with my new backup solution. From local USB
 only, to two off-site backups, all fully automated, that’s not too bad.

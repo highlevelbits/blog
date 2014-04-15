@@ -15,11 +15,7 @@
     <published>2014-04-14T22:00:00Z</published>
     <updated>2014-04-14T22:00:00Z</updated>
     <link rel="alternate" href="http://www.highlevelbits.com/2014/04/crashplan-on-raspberry-pi-and-wd-mycloud.html"/>
-<<<<<<< HEAD
     <content type="html">&lt;h3 id="background"&gt;Background&lt;/h3&gt;
-=======
-    <content type="html">&lt;h2 id="background"&gt;Background&lt;/h2&gt;
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 &lt;p&gt;Not so long ago I witnessed complete disk crashes by some of my
  colleagues. Everything was lost and a full reinstall was at order.
@@ -96,28 +92,18 @@ hurdles you have to jump prior to running CrashPlan on a Pi:&lt;/p&gt;
 
 &lt;p&gt;Let’s address these things, in this order.&lt;/p&gt;
 
-<<<<<<< HEAD
 &lt;p&gt;&lt;a name="install-java"&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id="install-java"&gt;Install Java&lt;/h3&gt;
-=======
-&lt;p&gt;&lt;a name="install-java"&gt;&lt;/a&gt;
-### Install Java&lt;/p&gt;
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 &lt;p&gt;Installing Java via the package manager is actually quite easy. You need some other libraries as well, but that’s not hard.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ sudo apt-get install openjdk-7-jre-headless build-essential libjna-java
 &lt;/code&gt;&lt;/pre&gt;
 
-<<<<<<< HEAD
 &lt;p&gt;&lt;a name="install-crashplan"&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id="install-and-patch-crashplan"&gt;Install and patch CrashPlan&lt;/h3&gt;
-=======
-&lt;p&gt;&lt;a name="install-crashplan"&gt;&lt;/a&gt;
-### Install and patch CrashPlan&lt;/p&gt;
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 &lt;p&gt;Now that you have Java installed it is time to download and install the
 CrashPlan installer (check the website for the latest version):&lt;/p&gt;
@@ -159,14 +145,9 @@ whether the process is running via:&lt;/p&gt;
 &lt;p&gt;Or if you want more details check the &lt;em&gt;/usr/local/crashplan/log&lt;/em&gt;
 directory which contains multiple log files.&lt;/p&gt;
 
-<<<<<<< HEAD
 &lt;p&gt;&lt;a name="headless-client"&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id="run-crashplan-on-a-headless-client"&gt;Run CrashPlan on a headless client&lt;/h3&gt;
-=======
-&lt;p&gt;&lt;a name="headless-client"&gt;&lt;/a&gt;
-### Run CrashPlan on a headless client&lt;/p&gt;
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 &lt;p&gt;Now that CrashPlan is running you need to configure it and setup the
 backup sets. Provided your Pi runs headless (as in my case,)
@@ -197,14 +178,9 @@ following to your &lt;em&gt;~/.ssh/config&lt;/em&gt; file:&lt;/p&gt;
 
 &lt;h2 id="crashplan-on-wd-my-cloud"&gt;Crashplan on WD My Cloud&lt;/h2&gt;
 
-<<<<<<< HEAD
 &lt;p&gt;&lt;a name="friend-to-friend"&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id="friend-to-friend-backup"&gt;Friend to friend backup&lt;/h3&gt;
-=======
-&lt;p&gt;&lt;a name="friend-to-friend"&gt;&lt;/a&gt;
-### Friend to friend backup&lt;/p&gt;
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 &lt;p&gt;So, now I had a a backup on my USB disc attached to the PI and a
 remote backup on the CrashPlan servers. But why stop there? It happened
@@ -217,11 +193,7 @@ sign up for another free CrashPlan account and use it to share you
 backup device. How this works
 in detail is described on the CrashPlan support site - &lt;a href="https://support.code42.com/CrashPlan/Latest/Backup/Backing_Up_To_A_Friends_Computer"&gt;Backing Up To A Friends Computer&lt;/a&gt;.&lt;/p&gt;
 
-<<<<<<< HEAD
 &lt;h3 id="install-and-patch-crashplan-1"&gt;Install and patch CrashPlan&lt;/h3&gt;
-=======
-&lt;h3 id="install-and-patch-crashplan"&gt;Install and patch CrashPlan&lt;/h3&gt;
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 &lt;p&gt;However, to use friend to friend backup, I needed to install first
 CrashPlan on the WD My Cloud. Luckily it is also an ARM based
@@ -248,11 +220,7 @@ still occur, but don’t bother me too much at the moment:&lt;/p&gt;
  if 5 restarts within 5 cycles then timeout
 &lt;/code&gt;&lt;/pre&gt;
 
-<<<<<<< HEAD
 &lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
-=======
-&lt;h3 id="summary"&gt;Summary&lt;/h3&gt;
->>>>>>> f61e86c987814382b7599e91a4d1d1a0b7c75d50
 
 &lt;p&gt;Overall I am happy with my new backup solution. From local USB
 only, to two off-site backups, all fully automated, that’s not too bad.
