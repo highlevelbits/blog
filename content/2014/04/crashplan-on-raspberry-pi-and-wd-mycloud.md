@@ -1,4 +1,10 @@
-# Building my own backup solution
+---
+title: "Building my own backup solution"
+kind: article
+created_at: 2014-04-15
+author: hardy
+tags: backup, crashplan, pi,
+---
 
 ## Background
 
@@ -65,7 +71,7 @@ hurdles you have to jump prior to running CrashPlan on a Pi:
 
 <a name="arm-install"></a>
 
-* [Install the right version of Java](#install-java)
+* [Install Java](#install-java)
 * [Install and *patch* Crashplan](#install-crashplan)
 * [Configure CrashPlan to run on a headless client](#headless-client)
 
