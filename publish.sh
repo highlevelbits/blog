@@ -1,8 +1,9 @@
 #! /usr/bin/env bash
 
+rm -rf output/*
 nanoc
 cd output
-git pull -f origin gh-pages
+echo highlevelbits.com > CNAME
 git add .
 git commit -am "high level bits automatic deploy"
 git push -f origin gh-pages
