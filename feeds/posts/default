@@ -2,13 +2,124 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2014-04-14T22:00:00Z</updated>
+  <updated>2014-04-25T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-04-26:/2014/04/zoo-city.html</id>
+    <title type="html">Zoo city</title>
+    <published>2014-04-25T22:00:00Z</published>
+    <updated>2014-04-25T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/04/zoo-city.html"/>
+    <content type="html">&lt;p&gt;In the middle of reading the immense Game of Thrones serie 
+I decided to take a break and read something else and my 
+eyes fell on &lt;a href="https://www.goodreads.com/book/show/7163862-zoo-city"&gt;Zoo City&lt;/a&gt; 
+by Lauren Beukes that I bought as part of a 
+&lt;a href="https://www.humblebundle.com/"&gt;Humble Bundle&lt;/a&gt; a while ago.
+It turned out to be a nice break from high fantasy. In Zoo City
+lives people that somehow did something wrong and as a result ended
+up being attached to an animal. The main character Zinzi carries around a
+sloth.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://farm1.staticflickr.com/23/30950009_8c828d1e1d_b.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The stories nemesis is attached to a huge alligator and so on. Having an animal
+is seen as a stigma by other persons in society so they tend to live 
+in their own areas. Zinzi gets a lot of help from her sloth.
+Whenever she is embarking in dubious directions the sloth tries to stop her.
+With the animals (I think) also comes a magical skill. Zinzi 
+can feel persons missed things so she makes a living out of helping people
+find stuff that they have lost. The main story evolves around finding a
+missing person and all kinds of intricate turns of events that such a 
+weird setting can offer. Enough said about that - read it to find out 
+what happens….&lt;/p&gt;
+
+&lt;p&gt;An interesting side plot is Zinzis other work. Being in debt to some criminal
+element she works it off by reading and answering scam email replies. She
+also impersonate persons that is described in the scam to get more money
+out of scam victims. Normally this line of work is seen as something done
+by the scum of the earth. But Zinzi is the hero in this story so this 
+makes the scam work feel like a normal work. Brillantly done.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="https://www.flickr.com/photos/praziquantel/30950009/"&gt;excellent sloth picture&lt;/a&gt; 
+is  by &lt;a href="https://www.flickr.com/photos/praziquantel/"&gt;Carol Schaffer&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-04-23:/2014/04/sublime-and-asciidoc.html</id>
+    <title type="html">Making symbols available for AsciiDoc syntax in Sublime Text 3</title>
+    <published>2014-04-22T22:00:00Z</published>
+    <updated>2014-04-22T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/04/sublime-and-asciidoc.html"/>
+    <content type="html">&lt;p&gt;&lt;a href="http://www.sublimetext.com/"&gt;Sublime Text&lt;/a&gt; has become my favorite editor on Mac. It is fast, flexible,
+has tons of useful plugins and I can open any file or directory from the command line using &lt;em&gt;subl&lt;/em&gt;.
+There are many blog post out there describing the strength of Sublime, so today I just wanted
+to focus on a problem for which I could not find a solution out of the box.&lt;/p&gt;
+
+&lt;p&gt;Sublime has become my default editor for Markdown and AsciiDoc. Whereas the symbol navigation via
+&lt;em&gt;&amp;lt;ctrl+r&amp;gt;&lt;/em&gt; works just fine for the Markdown plugin, it is not working for AsciiDoc. This is
+especially painful when editing long documents where the symbol list gives a fast overview over the
+file. In fact the missing symbols were nagging me so much, that I decided to embark into a discovery
+journey into the inner workings of Sublime Text.&lt;/p&gt;
+
+&lt;p&gt;In Sublime Text 3 language support (syntax highlighting, snippets, etc) is bundled in a file with the
+postfix &lt;em&gt;sublime-package&lt;/em&gt;. Effectively it is just a zip file which you can expand to view its contents.
+The main file is &lt;language&gt;.tmLanguage. It contains a whole bunch of regular expressions which capture
+and name different parts of the syntax of the language in question. To make symbols work you also need
+a file called *Symbol List.tmPreferences* (the name is not relevant I think), which tells Sublime
+which of the named syntax parts should be made available via symbols. Exactly this symbol list is missing
+in the AsciiDoc plugin (http://github.com/SublimeText/AsciiDoc). After looking at *AsciiDoc.tmLanguage*,
+I thought the following should work:&lt;/language&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&amp;gt;
+&amp;lt;plist version="1.0"&amp;gt;
+&amp;lt;dict&amp;gt;
+   &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+   &amp;lt;string&amp;gt;Symbol List&amp;lt;/string&amp;gt;
+   &amp;lt;key&amp;gt;scope&amp;lt;/key&amp;gt;
+   &amp;lt;string&amp;gt;markup.heading.asciidoc&amp;lt;/string&amp;gt;
+   &amp;lt;key&amp;gt;settings&amp;lt;/key&amp;gt;
+   &amp;lt;dict&amp;gt;
+      &amp;lt;key&amp;gt;showInSymbolList&amp;lt;/key&amp;gt;
+      &amp;lt;string&amp;gt;1&amp;lt;/string&amp;gt;
+   &amp;lt;/dict&amp;gt;
+   &amp;lt;key&amp;gt;uuid&amp;lt;/key&amp;gt;
+   &amp;lt;string&amp;gt;954ecd40-ca54-11e3-9c1a-0800200c9a66&amp;lt;/string&amp;gt;
+&amp;lt;/dict&amp;gt;
+&amp;lt;/plist&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;markup.heading.asciidoc&lt;/em&gt; is one of the named elements from the tmLanguage file matching a heading line
+(including the ‘=’ signs). That was good enough for me.&lt;/p&gt;
+
+&lt;p&gt;The remaining question was, how to add this symbol list to the existing AsciiDoc sublime-package?
+Did I have to re-package the zip? Turns out I don’t have to.
+Zipped packages are installed under&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Application Support/Sublime Text 3/Installed Packages/\&amp;lt;Package Name\&amp;gt;*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To override a file in any of these zip files or add a new file, create&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Application Support/Sublime Text 3/Packages/\&amp;lt;Package Name\&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and place your file in there.
+In case of AsciiDoc this means&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Application Support/Sublime Text 3/Packages/AsciiDoc/Symbol List.tmPreferences
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is all very well explained &lt;a href="http://www.sublimetext.com/docs/3/packages.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Enjoy!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-04-15:/2014/04/crashplan-on-raspberry-pi-and-wd-mycloud.html</id>
     <title type="html">Building my own backup solution</title>
@@ -313,82 +424,6 @@ like cyberpunk prophet William Gibson predicted 23 years ago in the excellent no
 &lt;p&gt;I also found out that there is a &lt;a href="http://www.javaland.eu/en/javaland-2014.html"&gt;german conference&lt;/a&gt; called Javaland. Not for me but in case you want to go I give you a nice banner.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src="http://www.javaland.eu/typo3temp/pics/8e30c2bb4b.jpg" alt="" /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-02-16:/2014/02/using-redis-as-cache-with-ruby.html</id>
-    <title type="html">Using redis as a cache with Ruby</title>
-    <published>2014-02-16T07:00:00Z</published>
-    <updated>2014-02-16T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/02/using-redis-as-cache-with-ruby.html"/>
-    <content type="html">&lt;p&gt;For one sinatra based web site I am messing with I needed a cache for calls to third party APIs. I had used &lt;a href="http://redis.io/"&gt;redis&lt;/a&gt; before together with &lt;a href="http://resquework.org/"&gt;resque&lt;/a&gt; at a client gig so it was a natural choice for this task. Essentially I needed to use URLs as keys and the returned content for that URL as the value.&lt;/p&gt;
-
-&lt;p&gt;Installing redis is easy on arch: &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pacman -S redis 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;It hooks in nicely with &lt;code&gt;systemctl&lt;/code&gt; so you can &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;systemctl start redis
-systemctl enable redis 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;to have it up and running after reboots.&lt;/p&gt;
-
-&lt;p&gt;For integrating with Ruby there is a nice gem called &lt;code&gt;redis&lt;/code&gt;. Install it with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;gem install redis
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;or put it in your Gemfile for use with bundler.&lt;/p&gt;
-
-&lt;p&gt;Now we are ready to start using &lt;code&gt;redis&lt;/code&gt;. My use case is the simplest possible with strings for both keys and values. To start interacting with redis you need a client instance:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;redis = Redis.new host: '127.0.0.1'
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This creates a client with all the defaults trying to connect with redis on the default port &lt;code&gt;6379&lt;/code&gt;. On my server I have a restrictive firewall running so I had to specify talking to an IP address rather than the default &lt;code&gt;localhost&lt;/code&gt;. It is also possible to start redis listening to a socket instead of a port. This may be a bit faster.&lt;/p&gt;
-
-&lt;p&gt;Now we can put some stuff into the database:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;redis.set 'some_random_key', 'value'
-redis.expire 'some_random_key', 60 * 60 * 24
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If I want to save the value forever only the first line is needed. But since this is a cache I had to add the second line to get a 24 hour expiry time on the item.&lt;/p&gt;
-
-&lt;p&gt;Now the key will be available for 24 hours and the be removed. To retrieve the value is just as easy:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;redis.get 'some_random_key'
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I coded this up on the commute to work one day and installed it on the server the next. Really easy and useful. I certainly will consider redis as a database candidate for real work in the future. Using it as a cache is nice but it seems capable of being you main persistance store if you are into NoSQL stuff.&lt;/p&gt;
-
-&lt;p&gt;Also - it is really fast.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-01-02:/2014/01/notes-on-my-nexus-5.html</id>
-    <title type="html">Notes on my Nexus 5</title>
-    <published>2014-01-02T07:00:00Z</published>
-    <updated>2014-01-02T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/01/notes-on-my-nexus-5.html"/>
-    <content type="html">&lt;p&gt;I got myself a &lt;strong&gt;Nexus 5&lt;/strong&gt; just before christmas. It was about time to replace me Nexus S - a phone that I have been happy with and not really saw a reason to switch out. Since there is no truly open choice when it comes to mobiles (not one that seems to also work….) I decided to continue with Nexus. This is my third. I also had a Nexus One before the S. I posted &lt;a href="http://highlevelbits.com/2010/03/notes-on-my-nexus-one.html"&gt;some notes on the Nexus One&lt;/a&gt; back in january 2010. It was my first Android so there is a lot in there that may seem self evident nowadays. Still - it has only been 4 years… One wonders where mobiles will be in 2018? Now I will just stick to the differences between my previous two nexuses and this new one.&lt;/p&gt;
-
-&lt;p&gt;It is &lt;strong&gt;big&lt;/strong&gt;. I can barely use it with one hand which kind of sucks. When holding it in one hand I can not reach the opposite upper corner with my thumb. It turns out that this is ok when using it with my left hand but in the right hand there are several apps that got a menu top left that is unreachable. Another effect of this is that you’ll have to place the desktop icons you actually use to the bottom of the screen.&lt;/p&gt;
-
-&lt;p&gt;It is &lt;strong&gt;fast&lt;/strong&gt;. Everything is much faster. Browser, GPS, music streaming, app starting - it all is much faster.&lt;/p&gt;
-
-&lt;p&gt;The &lt;strong&gt;screen&lt;/strong&gt; is also big. This is the biggest advantage of the phone. It is actually meningful to watch video in this device. The resolution is good enough to make it a good alternative to the television set. When I lay down in my sofa and hold the phone in front of me it is the same &lt;em&gt;visual&lt;/em&gt; size as the television set. No difference there. The screen size also makes the device better for reading. This is mostly because you don’t need tyo scroll as often.&lt;/p&gt;
-
-&lt;p&gt;The &lt;strong&gt;battery&lt;/strong&gt; is internal which worried me a bit initially. I bought an extra battery for my Nexus S to make it possible to go on long geocaching trips. However the battery time of this phone is really good. I haven’t had one case of it running out yet despite doing many battery intensive things in a day.&lt;/p&gt;
-
-&lt;p&gt;The &lt;strong&gt;camera&lt;/strong&gt; is good and fast. I may actually start to use it. I did snap a lot with a Nokia I had way back but since then I haven’t had the inspiration - just the occasional ‘must take’ pic. I bring my &lt;em&gt;real&lt;/em&gt; camera whenever I want to take proper shots. It is a bit limiting to be sure so maybe that will change. The nice (if I may say so) &lt;a href="http://www.flickr.com/photos/froderik/11684236696/"&gt;photo below&lt;/a&gt; is taken with the camera on a walk yesterday.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://farm4.staticflickr.com/3801/11684236696_7a7a4c6121_b.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;As it should be - this is the best phone I have had.&lt;/p&gt;
 </content>
   </entry>
 </feed>
