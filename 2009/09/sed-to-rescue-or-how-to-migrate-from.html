@@ -49,14 +49,23 @@
 <span class="byline">2009-09-16 by fredrik</span>
 
   <span class="tags">
-    
-      <a class="one-tag" href="../../tags/sed.html"><span class="icon-tag"></span>sed</a>
-    
-      <a class="one-tag" href="../../tags/logging.html"><span class="icon-tag"></span>logging</a>
-    
-      <a class="one-tag" href="../../tags/java.html"><span class="icon-tag"></span>java</a>
-    
-  </span>
+  <a class="one-tag" href="../../tags/sed.html">
+    <span class="icon-tag">
+      sed
+    </span>
+  </a>
+  <a class="one-tag" href="../../tags/logging.html">
+    <span class="icon-tag">
+      logging
+    </span>
+  </a>
+  <a class="one-tag" href="../../tags/java.html">
+    <span class="icon-tag">
+      java
+    </span>
+  </a>
+</span>
+
 
 <p>I got the task to migrate all our code - some 100 classes - from standard <a href="http://java.sun.com/javase/6/docs/api/index.html?java/util/logging/package-summary.html">JDK logging</a> to the logging facade framework <a href="http://www.slf4j.org/">slf4j</a>. (I am not sure if there are any real benefits from such a migration but the deploying organization has decided that this is the way to go so the best approach i to just look happy and accept. They also claim that there may be performance issues with the way we log now. It sounds a bit far-fetched to me....) A fast analysis of the task made me conclude that I needed to replace:</p>
 <div>

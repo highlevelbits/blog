@@ -49,12 +49,18 @@
 <span class="byline">2009-10-15 by hardy</span>
 
   <span class="tags">
-    
-      <a class="one-tag" href="../../tags/java.html"><span class="icon-tag"></span>java</a>
-    
-      <a class="one-tag" href="../../tags/maven.html"><span class="icon-tag"></span>maven</a>
-    
-  </span>
+  <a class="one-tag" href="../../tags/java.html">
+    <span class="icon-tag">
+      java
+    </span>
+  </a>
+  <a class="one-tag" href="../../tags/maven.html">
+    <span class="icon-tag">
+      maven
+    </span>
+  </a>
+</span>
+
 
 <p>Just recently I struggled again with <a href="http://maven.apache.org/">Maven</a>.Don't get me wrong, it's a great build tool, but it is sometimes frustrating that due to the lack of scripting capabilities you are limited to whatever use-cases the developers envisioned. Often things feel a little like:"My way or the highway!"<br><br>Here is my current problem. Say you are developing a library and you have an optional dependency to another library. Depending on whether this optional library is available at runtime your own library behaves differently. For example a factory class could check whether a the optional dependency is available and if so create a different type of service class.<br><br>As a developer of this library I would like to have two test sets. One where the tests are run with the optional dependency on the classpath and one without. It is already possible two configure two executions of the surefire plugin, but I cannot remove an optional dependency. Admittedly, you can solve this use case using profiles, but the POM becomes very long and the dependency management is confusing in this case :(<br><br>I created a Jira issue - <a href="http://jira.codehaus.org/browse/SUREFIRE-576">SUREFIRE-576</a> - for it. Let's see what's going to happen. However, what's the best solution for now? Try to patch surefire yourself and host the patched version until the patch (hopefully) gets integrated and released. Seems very tedious. If I just would have the possibility to modify the test classpath ;-)<br><br>I wonder whether this use-case would be easier to handle in the latest hot build tool - <a href="http://www.gradle.org/">Gradle</a>.<br><br>enjoy!<br><br>--hardy</p>
 

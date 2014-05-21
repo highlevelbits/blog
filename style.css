@@ -245,3 +245,7 @@ img {
   margin: 30px;
   text-align: center;
 }
+
+.article-entry {
+  border-top: solid 1px #f2f2f2;
+}

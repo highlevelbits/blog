@@ -49,10 +49,13 @@
 <span class="byline">2009-04-05 by hardy</span>
 
   <span class="tags">
-    
-      <a class="one-tag" href="../../tags/sed.html"><span class="icon-tag"></span>sed</a>
-    
-  </span>
+  <a class="one-tag" href="../../tags/sed.html">
+    <span class="icon-tag">
+      sed
+    </span>
+  </a>
+</span>
+
 
 I have to start this blog with a rant. I am currently working at <a href="http://www.hibernate.org/412.html" id="supl" title="Hibernate's reference implementation">Hibernate's reference implementation</a>  of <a href="http://jcp.org/aboutJava/communityprocess/edr/jsr303/index.html" id="po9_" title="JSR 303">JSR 303</a>. I started out using <a href="http://www.junit.org/" id="cnko" title="Junit 4">Junit 4</a>  for unit tests.  However, in order to leverage from some other framework I had to switch to <a href="http://testng.org/" id="m3yl" title="TestNG">TestNG</a>. I thought it should be quite easy to change from one framework to the other - basically just switch the import statements. Turns out is was more difficult than that. After a global find and replace in the test files replacing the package statement I ended up with multiple compilation errors. The problem was that in Junit the assertEquals method has the signature <i>assertEquals(String message, Object expected, Object actual)</i> whereas TestNG's assertEquals is <i>assertEquals(Object expected, Object actual, String message). </i>WTF! Given that TestNG came later - which reason did they have to swap the arguments? Just to make it harder to migrate from one to the other? This applies of course for all assert statements. I am just using assertEquals as an exmaple.<br><br>Anyways, I started manually changing the calls, but that was just too tedious. It was time to get <a href="http://www.gnu.org/software/sed/manual/sed.htm" id="bf60" title="sed">sed</a>  out again, but soon I realized that sed was not going to cut it this time, because there is no way do non <a href="http://en.wikipedia.org/wiki/Regular_expression" id="us_t" title="greedy regular expressions">greedy regular expressions</a> . The expression also had to take care of single and multi line statements. An example for a multi line statement would be:<br><blockquote>
 <br>assertEquals(                              <br>       "Wrong propertyPath",  <br>       propertyPath,   <br>       violation.getPropertyPath()<br>   );<br>

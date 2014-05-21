@@ -49,12 +49,18 @@
 <span class="byline">2011-11-17 by hardy</span>
 
   <span class="tags">
-    
-      <a class="one-tag" href="../../tags/gollum.html"><span class="icon-tag"></span>gollum</a>
-    
-      <a class="one-tag" href="../../tags/openshift.html"><span class="icon-tag"></span>openshift</a>
-    
-  </span>
+  <a class="one-tag" href="../../tags/gollum.html">
+    <span class="icon-tag">
+      gollum
+    </span>
+  </a>
+  <a class="one-tag" href="../../tags/openshift.html">
+    <span class="icon-tag">
+      openshift
+    </span>
+  </a>
+</span>
+
 
 In my <a href="http://www.highlevelbits.com/2011/11/my-precious-wiki.html">last post</a> I described how to setup a <a href="https://github.com/github/gollum/">gollum</a> wiki on <a href="https://openshift.redhat.com/app">OpenShift</a>. I realized that there was quite some editing involved and especially the need to deploy twice in order to determine the git repo location bugged me. I decided to improve on this. The outcome is the GitHub repo <a href="https://github.com/hferentschik/gollum-openshifted">gollum-openshifted</a>. All required files are checked in and all you have to do is follow the simple instructions in the <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/README.md">README</a>.<br><br>The key for not having to manually edit <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/config.ru">config.ru</a> is a little perl magic in <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/.openshift/action_hooks/build">.openshift/action_hooks/build</a> and some regular expression replacement with some OpenShift variables.<br><br>Let me know how it goes,<br>Hardy<br><br><br><br><br><div class="dashed-top-border">
   <!-- disqus -->
