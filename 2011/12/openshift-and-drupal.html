@@ -49,18 +49,12 @@
 <span class="byline">2011-12-29 by hardy</span>
 
   <span class="tags">
-  <a class="one-tag" href="../../tags/openshift.html">
-    <span class="icon-tag">
-      openshift
-    </span>
-  </a>
-  <a class="one-tag" href="../../tags/drupal.html">
-    <span class="icon-tag">
-      drupal
-    </span>
-  </a>
-</span>
-
+    
+      <a class="one-tag" href="../../tags/openshift.html"><span class="icon-tag"></span>openshift</a>
+    
+      <a class="one-tag" href="../../tags/drupal.html"><span class="icon-tag"></span>drupal</a>
+    
+  </span>
 
 <p>Over the Christmas holidays I had some more time for <a href="https://openshift.redhat.com/">OpenShift</a> Express experiments. This time I experimented with <a href="http://drupal.org/">Drupal</a> based on this <a href="https://github.com/openshift/drupal-example">template</a>.<br><br>After a slightly bumpy start and a quick <a href="https://github.com/openshift/drupal-example/pull/3">pull request</a> I got the basic installation up and running. One problem I encountered now, however, was that there is no easy way to manage data created by the application once running.<br><br>For example, Drupal users can upload images (per default into <i>sites/default/files</i>). Naturally I would like to add these uploaded resources under version control as well. However, that's not possible at the moment. OpenShift Express had the notion of a <i><b>OPENSHIFT_DATA_DIR</b></i> directory whose content is preserved between redeploys, but this directory is outside of the git repository. What I really want is to be able to use the same resource directory for my local development as well as on the remote site and manage the resources via git.<br><br>Locally I can add resources created in <i>sites/default/files </i>directly to git, but how to solve this on the sever side? The first problem I had, which I already encountered when installing <a href="http://www.highlevelbits.com/2011/11/gollum-wiki-reloaded.html">Gollum</a> on OpenShift, was that the repo directory from which the application is run from is not a git <a href="http://linux.die.net/man/1/git-clone">clone</a>, but an git <a href="http://linux.die.net/man/1/git-archive">archive</a> which means that there are no git control files. If <i><b>OPENSHIFT_REPO_DIR</b></i> were a git clone I could somehow add created files to the git repo, commit, push and finally pull it into my local environment. Unfortunately, the OpenShift gang decided for now against a full git clone mainly (afaik) due to size concerns. The good news is that there is a way to fix this yourself with some lines in the <i>.openshift/action_hooks/build</i> hook:</p>
 <pre class="code">

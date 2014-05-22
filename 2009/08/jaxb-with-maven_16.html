@@ -49,23 +49,14 @@
 <span class="byline">2009-08-16 by hardy</span>
 
   <span class="tags">
-  <a class="one-tag" href="../../tags/java.html">
-    <span class="icon-tag">
-      java
-    </span>
-  </a>
-  <a class="one-tag" href="../../tags/xml.html">
-    <span class="icon-tag">
-      xml
-    </span>
-  </a>
-  <a class="one-tag" href="../../tags/maven.html">
-    <span class="icon-tag">
-      maven
-    </span>
-  </a>
-</span>
-
+    
+      <a class="one-tag" href="../../tags/java.html"><span class="icon-tag"></span>java</a>
+    
+      <a class="one-tag" href="../../tags/xml.html"><span class="icon-tag"></span>xml</a>
+    
+      <a class="one-tag" href="../../tags/maven.html"><span class="icon-tag"></span>maven</a>
+    
+  </span>
 
 <p>Fredrik was recently blogging about "<a href="http://www.highlevelbits.com/2009/06/two-way-ssl-with-java.html">Two way SSL with Java</a>" and about his frustration about the lack of knowledge and documentation. This time I want to blog about another area of software development where frustration is running high - XML processing. On the surface things looks easy, but who does not remember the classpath problems around XML parsing in the early days (SAX vs XERCES vs DOM, etc). And who really fully understands the XSD syntax and is able to create a properly designed xsd? And documentation - let's just not talk about it!<br><br>But let's get to the actual problem. I wanted to use <a href="https://jaxb.dev.java.net/">JAXB</a> to write a parser for XML files matching a given xsd. Given that Sun introduced JAXB as official XML binding framework for Java it seems the obvious choice for the task. Unfortunately, another requirement was that the code would work under JDK 5 and 6. However, the JAXB API is only offical part of the JDK since version 6. To solve this problem a little trick is needed. Let's take it step by step using <a href="http://maven.apache.org/">Maven</a> as build system. First we have to include the <a href="http://mojo.codehaus.org/jaxb2-maven-plugin/">plugin</a> by adding the following to the <a href="http://maven.apache.org/pom.html">POM</a>:</p>
 <pre class="brush: xml">

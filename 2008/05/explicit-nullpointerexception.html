@@ -49,13 +49,10 @@
 <span class="byline">2008-05-20 by fredrik</span>
 
   <span class="tags">
-  <a class="one-tag" href="../../tags/java.html">
-    <span class="icon-tag">
-      java
-    </span>
-  </a>
-</span>
-
+    
+      <a class="one-tag" href="../../tags/java.html"><span class="icon-tag"></span>java</a>
+    
+  </span>
 
 <p>I am reading a book on JavaServer Faces (The Complete Reference.....) since I am supposed to teach the subject next week at a course on Java and web programming. One code example got me started on one of my favorite subjects - the abundance of null checks in source code. This is the example code I saw inside a custom converter example class:<br><br><code>public String getAsString(FacesContext context,<br>    UIComponent component,<br>    Object value)<br>{<br>    if( context == null || component == null )<br>    {<br>        throw new NullPointerException();<br>    }<br>    // and obviously some more code here....<br>}</code><br><br>This doesn't make sense at all since if the params are null there will eventuelly be a NullPointerException raised anyway. This method is supposed to be called by the JSF framework so it makes even less sense. Why would a framework call a custom converter class with null values? I saw similar code yesterday in the huge code pile I am working with now for a customer. The difference was that a checked exception was thrown instead of an unchecked. That is even worse since every caller of the method need to deal with that exception and - in this case - the source fault (null value of a param) was not mentioned at all. Just a generic "this was not good" message. I suggest that null values can take care of themselves. If someone passes in null for a param that never should be null a NullPointerException is a brilliant outcome with the stack trace showing us exactly where the null value was discovered. </p>
 <div class="old-comments">

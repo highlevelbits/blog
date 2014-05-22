@@ -49,13 +49,10 @@
 <span class="byline">2007-10-07 by hardy</span>
 
   <span class="tags">
-  <a class="one-tag" href="../../tags/maven.html">
-    <span class="icon-tag">
-      maven
-    </span>
-  </a>
-</span>
-
+    
+      <a class="one-tag" href="../../tags/maven.html"><span class="icon-tag"></span>maven</a>
+    
+  </span>
 
 <p>Ever used <a href="http://maven.apache.org/guides/introduction/introduction-to-profiles.html" id="qa.l" title="profiles">profiles</a> in <a href="http://maven.apache.org/" id="w263" title="maven">maven</a>? Great stuff. Ever tried to trigger multiple profiles? Great in theory, but unfortunately in this case maven is not delivering what one would expect - especially when you have the the same properties in multiple profiles and you want the values of the 'last' profile activated to be the effective ones. This is exactly how <i>settings.xml </i>works. If a profile in <i>settings.xml</i> is activated and it defines a property which was already set by another profile it overrides its value. Not so with multiple profiles defined in <i>pom.xml</i>. Say we have to two profiles default and override defined as follows in <i>pom.xml</i>:</p>
 <pre>

@@ -49,18 +49,12 @@
 <span class="byline">2009-10-05 by hardy</span>
 
   <span class="tags">
-  <a class="one-tag" href="../../tags/java.html">
-    <span class="icon-tag">
-      java
-    </span>
-  </a>
-  <a class="one-tag" href="../../tags/mac.html">
-    <span class="icon-tag">
-      mac
-    </span>
-  </a>
-</span>
-
+    
+      <a class="one-tag" href="../../tags/java.html"><span class="icon-tag"></span>java</a>
+    
+      <a class="one-tag" href="../../tags/mac.html"><span class="icon-tag"></span>mac</a>
+    
+  </span>
 
 Hi again,<br><br>in the previous post I forgot to mention one thing. Ever noticed the useless java bean icon in your Dock when running java processes? Here is how you control their behavior.<br><br>If you want to avoid them completely (like for services, eg Tomcat or JBoss) you can just pass the java.awt.property to the JVM. Something like<br><pre><br>java -D java.awt.headless=true ...<br></pre>
 <br>Just find the right way of doing this in your startup script or in case you are using launchd add it to your plist file.<br><br>In the case you actually want to have an icon, but want to have something which actually represents your application you can use the following JVM options:<br><pre><br>java -Xdock:name=MyApp -Xdock:icon=/path/to/custom/icon.png ...<br></pre>

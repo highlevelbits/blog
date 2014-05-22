@@ -49,13 +49,10 @@
 <span class="byline">2008-03-25 by fredrik</span>
 
   <span class="tags">
-  <a class="one-tag" href="../../tags/java.html">
-    <span class="icon-tag">
-      java
-    </span>
-  </a>
-</span>
-
+    
+      <a class="one-tag" href="../../tags/java.html"><span class="icon-tag"></span>java</a>
+    
+  </span>
 
 <p><a href="http://www.theserverside.com/news/thread.tss?thread_id=48810">TheServerSide reports</a> that JSR 303 will solve the problem of validating beans in several tiers in the typical J2EE stack. A developer is supposed to annotate his bean with validation rules rather than code it in controller classes all over the system. This is probably a very nice effort to sort out one of the problems with the whole J2EE thing. It starts me wondering though. It seems like Java is moving from actual code towards more and more of the annotation stuff. (Which I don't like at all from the artistic perspective....) Annotations make sense for many things - mostly for matters concerning infrastructural issues. It also makes sense to annotate in order to validate proper values in a Java bean. And it highlights a problem that has been there all the time since Java beans appeared. The Java beans standard isn't really object oriented. It kind of assumes that a get/set pair encapsulates one field. The requirement of having an empty constructor also emphasizes that you can never trust a Java bean instance. The values can be whatever. And that is the reason you need a validation annotation framework. I think it is sad that a nice object oriented language like Java is used mostly for functional programming. Also sad is the complexity that is added when making workarounds for solving these issues.</p>
 <div class="old-comments">
