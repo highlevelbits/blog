@@ -250,3 +250,8 @@ img {
   border-top: solid 1px #f2f2f2;
   padding: 3px;
 }
+
+.article-entry .tags {
+  font-size: smaller;
+  float: none;
+}
