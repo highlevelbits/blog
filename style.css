@@ -255,3 +255,8 @@ img {
   font-size: smaller;
   float: none;
 }
+
+.article-entry .tags a:link,
+.article-entry .tags a:visited {
+  color: #b8cfce;
+}
