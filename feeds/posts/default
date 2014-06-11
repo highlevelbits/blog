@@ -2,13 +2,130 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2014-04-25T22:00:00Z</updated>
+  <updated>2014-06-10T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-06-11:/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html</id>
+    <title type="html">Mutiple unicorn servers with SSL on nginx</title>
+    <published>2014-06-10T22:00:00Z</published>
+    <updated>2014-06-10T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html"/>
+    <content type="html">&lt;p&gt;A while ago I set up my own &lt;a href="https://www.archlinux.org/"&gt;arch linux&lt;/a&gt; server at &lt;a href="https://www.digitalocean.com/"&gt;digital ocean&lt;/a&gt;. It was some work and I learned a lot in the process. At the moment I have three &lt;a href="http://unicorn.bogomips.org/"&gt;unicorn&lt;/a&gt;-based ruby things running behind &lt;a href="http://nginx.org/"&gt;nginx&lt;/a&gt; on the server. One is built with &lt;a href="http://rubyonrails.org/"&gt;rails&lt;/a&gt; and the other two with &lt;a href="http://www.sinatrarb.com/"&gt;sinatra&lt;/a&gt;. The one with rails is SSL-only. The work of setting up nginx was pretty straightforward but still I had to understand things from several sources so here is a rundown of how I accomplished this.&lt;/p&gt;
+
+&lt;p&gt;nginx is easy to configure. Compared with &lt;a href="https://httpd.apache.org/"&gt;apache&lt;/a&gt; it is a breeze. The configuration is typically placed in &lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt;. The syntax is basically:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;key&amp;gt; {
+    &amp;lt;key&amp;gt; &amp;lt;value&amp;gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And there can be nested blocks inside another block. When configuring a server it seems to me that the freedom about how to nest things is rather high as long as it makes sense to the configuration.&lt;/p&gt;
+
+&lt;p&gt;My server is defined inside a &lt;code&gt;http&lt;/code&gt; block that contains all the domains I want to configure for the server. It then got some sensible defaults that I copied from somewhere:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    ssl_session_cache builtin:1000 shared:SSL:10m;
+
+    sendfile        on;
+    tcp_nopush     on;
+
+    keepalive_timeout  120;
+
+    gzip  on;
+    gzip_vary on;
+    gzip_min_length 500;
+
+    gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+    gzip_types text/plain text/xml text/css
+       text/comma-separated-values
+       text/javascript application/x-javascript
+       application/atom+xml image/x-icon;
+
+    ....
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see this is some reasonable stuff that I want to have for all my domains. But it is not the focus of this post so you’ll have to read up on it elsewhere. Then I configured the upstream unicorn connection for each domain like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http {
+    ....
+    upstream oneofmydomains_unicorn_server {
+        server unix:/var/rack/oneofmydomains/tmp/sockets/unicorn.sock
+    }
+    ....
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;oneofmydomains_unicorn_server&lt;/code&gt; is just a name that will be used later to bind a domain to this unicorn socket. The file name coming after &lt;code&gt;unix:&lt;/code&gt; should be the one in your unicorn config for that particular server.&lt;/p&gt;
+
+&lt;p&gt;Then comes a &lt;code&gt;server&lt;/code&gt; section for each domain. Lets start with the plain HTTP variant:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http {
+    ....
+    server {
+        listen 80;
+        server_name .oneofmydomains.com;
+
+        location / {
+            root /var/rack/oneofmydomains/public;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_redirect off;
+            proxy_pass http://oneofmydomains_unicorn_server;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This section starts with the port to listen on this should be 80 in most cases. Then comes the server name describing what domain requests to listen to for this server. This is the part that makes it possible to have several domains running on the same nginx instance. After that another block called &lt;code&gt;location&lt;/code&gt;. It starts with where to find static content. So for each request it will look for files in this folder and serving them - if none is found it will move on to the &lt;code&gt;proxy_pass&lt;/code&gt; unicorn server that should match the name given in the upstream section above. The other &lt;code&gt;proxy_*&lt;/code&gt; directives is needed to give the unicorn server a useful environment.&lt;/p&gt;
+
+&lt;p&gt;So onwards to SSL. One might think that here is where you put in a &lt;code&gt;https&lt;/code&gt; section instead of &lt;code&gt;http&lt;/code&gt; and there is such a construct. I didn’t try it since I got it to work in another way. There are probably several ways to do this.&lt;/p&gt;
+
+&lt;p&gt;To enable SSL you need to get a certificate. If your site is serious you want to buy it from a trusted signatory but if you don’t care about users getting warnings about untrusted certificates you can generate one yourself.&lt;/p&gt;
+
+&lt;p&gt;I used a variant of the server section to setup SSL. Like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http {
+    ....
+    server {
+        listen 443;
+        server_name .oneofmydomains.com;
+
+        ssl on;
+
+        ssl_certificate     /etc/nginx/www.oneofmydomains.com.cert;
+        ssl_certificate_key /etc/nginx/www.oneofmydomains.com.key;
+        ssl_protocols        SSLv3 TLSv1 TLSv1.1 TLSv1.2;       # default on newer versions
+        ssl_ciphers          ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-RC4-SHA:ECDHE-RSA-AES128-SHA:RC4-SHA:RC4-MD5:ECDHE-RSA-AES256-SHA:AES256-SHA:ECDHE-RSA-DES-CBC3-SHA:DES-CBC3-SHA:AES128-SHA;
+        ssl_prefer_server_ciphers on;
+
+        root /var/rack/oneofmydomains/public;
+
+        location / {
+            proxy_set_header Host $http_host;
+            proxy_set_header X-FORWARDED-PROTO https;
+            # pass to the upstream unicorn server mentioned above
+            proxy_pass http://memberaid_unicorn_server;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see most of the server section is the same. The default port for SSL is 443 so if you want your users to be able to use https://oneofmydomains.com without a port number - this is the way to go. (Just like 80 in the case of normal http.)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ssl&lt;/code&gt; is &lt;code&gt;on&lt;/code&gt; and the certificate and its key is specified. Then there are lists of protocols and ciphers. This is used when a calling client handshakes with the server. It is just to decide a protocol and cipher to use for the interaction. If there is no match you may have a problem…. The location part is a bit different also with a somewhat different proxy header setup. &lt;/p&gt;
+
+&lt;p&gt;And there you go. Once &lt;code&gt;nginx.conf&lt;/code&gt; is edited you need to restart or reload nginx in order to make the changes effectual. I have enjoyed working with nginx. It is not so hard to understand what to do and the number of pitfalls are kept at a minimum.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-04-26:/2014/04/zoo-city.html</id>
     <title type="html">Zoo city</title>
@@ -397,33 +514,6 @@ like cyberpunk prophet William Gibson predicted 23 years ago in the excellent no
 &lt;p&gt;I leave you with this good overview of the current state of affairs compiled by the verge:&lt;/p&gt;
 
 &lt;iframe width="560" height="315" src="//www.youtube.com/embed/ZZDizTLX3Rc" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-03-05:/2014/03/back-in-javaland.html</id>
-    <title type="html">Back in Javaland</title>
-    <published>2014-03-05T07:00:00Z</published>
-    <updated>2014-03-05T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/03/back-in-javaland.html"/>
-    <content type="html">&lt;p&gt;So I am currently back coding Java. It is two months into the current assignment and about time to report some findings. The product I work on (yes - a real product that is &lt;strong&gt;released&lt;/strong&gt;) is a desktop application written with &lt;a href="https://en.wikipedia.org/wiki/Swing_%28Java%29"&gt;Swing&lt;/a&gt; - this GUI framework of Java that seems to be almost abandoned. But it is the choice you have when doing desktop with Java. (I have no idea whethere this is better or worse with other languages. Probably not for cross platform stuff. This &lt;a href="http://qt-project.org/"&gt;qt&lt;/a&gt; thing might be a contender though.) It sure is possible to do good stuff with it. In this code base I have mostly been saved from interacting directly with Swing due to several abstractions (of varying quality) built on top of it. Some things have been really nice to use. Adding another menu item is done in no time at all. Sometimes it goes in the way. We tried to remove a tab from an editor window and it wasn’t possible to even understand how to do it in a couple of hours. The code base is a bit old but still remarkable stable despite a clear lack of automated tests. (Yes - we are increasing the numbers.) So that is a little background to what I am doing at the moment. A couple of reflections on this:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Java is the language I know best and it is really easy to just get going with it despite not having coding it for more than a year. Some skills seem to stick.&lt;/li&gt;
-  &lt;li&gt;inheritance sucks.&lt;/li&gt;
-  &lt;li&gt;interfaces may be handy if you use them consistently.&lt;/li&gt;
-  &lt;li&gt;the lack of enforced dependencies between packages in Java makes any code base a big soap.&lt;/li&gt;
-  &lt;li&gt;abstractions may make you go faster once you understand them.&lt;/li&gt;
-  &lt;li&gt;testing is hard. We tried to use &lt;a href="https://code.google.com/p/fest/"&gt;Fest&lt;/a&gt; underneath the &lt;a href="https://github.com/cucumber/cucumber-jvm"&gt;JVM flavour of Cucumber&lt;/a&gt;. It looked promising but than we got weird problems with running tests on the build server so we abandoned it for a while in favor of automated tests under the hood instead. &lt;/li&gt;
-  &lt;li&gt;the current code base is entangled so we always need to do a fair bit of mocking when setting up a test.&lt;/li&gt;
-  &lt;li&gt;since most of the code is uncovered by test we try to write unit tests for bigger units then classes so we cover as much as ground as possible with a single test. This has been working really fine. It is important to put the mocks in the right place for an interaction under test. &lt;/li&gt;
-  &lt;li&gt;in a statically typed, compiled language even a system that has too few tests can have a some stability.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I will stay in Javaland for another 2 months. It is nicer than I expected. &lt;/p&gt;
-
-&lt;p&gt;I also found out that there is a &lt;a href="http://www.javaland.eu/en/javaland-2014.html"&gt;german conference&lt;/a&gt; called Javaland. Not for me but in case you want to go I give you a nice banner.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://www.javaland.eu/typo3temp/pics/8e30c2bb4b.jpg" alt="" /&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
