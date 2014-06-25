@@ -2,13 +2,33 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2014-06-10T22:00:00Z</updated>
+  <updated>2014-06-24T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/rss.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-06-25:/2014/06/mariadb-skip-grant-tables-with-systemctl.html</id>
+    <title type="html">How to make systemctl on arch linux start mariadb (mysql) with the --skip-grant-tables flag</title>
+    <published>2014-06-24T22:00:00Z</published>
+    <updated>2014-06-24T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/06/mariadb-skip-grant-tables-with-systemctl.html"/>
+    <content type="html">&lt;p&gt;I have had the opportunity to familiarize myself with mariadb lately. Mariadb is an open source clone of the popular mysql relational database - now owned by oracle. It was very easy to get up and running on arch linux. Just a matter of:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S mariadb
+sudo systemctl enable mysqld
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it was up and running. However after a while I was unable to log on with the command line tool. I learned how to start the database with the &lt;code&gt;--skip-grant-tables&lt;/code&gt; and found out that the &lt;code&gt;user&lt;/code&gt; table mariadb uses for authentication was empty. Since my use of mariadb is only temporary I decided to not care so much about why this happen. Instead I decided to make sure that the database always starts with the mentioned flag. To do this you need to find the files &lt;code&gt;systemctl&lt;/code&gt; uses for managing its tasks. They (some of them at least) are located in &lt;code&gt;/usr/lib/systemd/system&lt;/code&gt;. There seems to be one file for each thing &lt;code&gt;systemctl&lt;/code&gt; is managing. I found &lt;code&gt;mysqld.service&lt;/code&gt; and added the &lt;code&gt;--skip-grant-tables&lt;/code&gt; flag to the &lt;code&gt;ExecStart&lt;/code&gt; key. Like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ExecStart=/usr/bin/mysqld --pid-file=/run/mysqld/mysqld.pid --skip-grant-tables 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So now my database starts without wanting authentication for connections. This is practical in a local development environment but should of course never be used in production.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-06-11:/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html</id>
     <title type="html">Multiple unicorn servers with SSL on nginx</title>
@@ -479,41 +499,6 @@ Raspberry Pi or a WD My Cloud. If you have problems with the
 instructions or find other problems with my solution, leave a message.&lt;/p&gt;
 
 &lt;p&gt;Enjoy!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-03-30:/2014/03/current-state-of-virtual-reality.html</id>
-    <title type="html">current state of virtual reality</title>
-    <published>2014-03-30T07:00:00Z</published>
-    <updated>2014-03-30T07:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/03/current-state-of-virtual-reality.html"/>
-    <content type="html">&lt;p&gt;As our loyal readers surely remembers we have touched upon the subject of virtual reality and alternative input devices before. This was a common theme in the first year of this web log. Back in february 2007 when we launched I posted &lt;a href="/2007/02/whats-that-noise-about-second-life.html"&gt;&lt;em&gt;Whats that noise about Second Life?&lt;/em&gt;&lt;/a&gt; with this analysis:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;I am pretty sure that this is overhyped now but in a distant future something like this will be the way to surf just 
-like cyberpunk prophet William Gibson predicted 23 years ago in the excellent novel Neuromancer.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;7 years later and it has not come true. Yet. I haven’t really followed the area lately so when the news of Facebook buying &lt;a href="http://www.oculusvr.com/"&gt;Oculus VR&lt;/a&gt; (along with Sony releasing a similar device) appeared on my radar I thought it fun to explore a bit more. Apparently indie game superstars Mojang &lt;a href="http://notch.net/2014/03/virtual-reality-is-going-to-change-the-world/"&gt;were in talks with Oculus to launch minecraft&lt;/a&gt; into their virtual environment. It seems like these talks were in an early phase and naturally notch et al did not like the idea of talking with facebook instead and ended to collaboration efforts right away. That is sad because getting minecraft into a VR platform would certainly kick start things right away. On the other hand - facebook clearly see the technology as mature enough to bet on and that may be a good sign for virtual reality overall. &lt;/p&gt;
-
-&lt;p&gt;&lt;img src="https://farm6.staticflickr.com/5536/10187117474_ee7e0e8bbd_c.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The guy above is trying out the Oculus Rift. Isn’t it still a bit big? I get steampunkish feelings! Something like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="https://farm5.staticflickr.com/4154/4989019868_d23e79b65c_z.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Oculus was &lt;a href="https://www.kickstarter.com/"&gt;kickstarted&lt;/a&gt; into existance. Some of its backers may feel a bit disillusioned after the facebook acquisition as &lt;a href="https://twitter.com/avestal"&gt;Andrew Vestal&lt;/a&gt; summed up over on twitter:&lt;/p&gt;
-
-&lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p&gt;&amp;quot;I Kickstarted the Oculus Rift, what do I get?&amp;quot; You get a lesson in how capitalism works.&lt;/p&gt;&amp;mdash; Andrew Vestal (@avestal) &lt;a href="https://twitter.com/avestal/statuses/448603100387872768"&gt;March 25, 2014&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-
-&lt;p&gt;Not unsurprisingly Sony is on the move and unveiled Morpheus at GDC just some weeks ago. It looks slicker (as you would expect) but is basically the same deal conceptually and technically. While it is now possible to get virtual reality visuals there is still lots of work to be done when it comes to interacting with this world. Most of the examples I have seen in my short googling session involves either a classic console controller or some kind of wii-like pointer thing.&lt;/p&gt;
-
-&lt;p&gt;Another fun post to reread 7 years later is &lt;a href="/2007/04/gartner-on-virtual-worlds.html"&gt;&lt;em&gt;Gartner on virtual worlds&lt;/em&gt;&lt;/a&gt; where I bashed a ridiculous prophecy by gartner that by 2011 80% of internet users will have a second life in one of the emerging virtual reality platforms. That didn’t come true - not because it is a bad idea but because interface technologies weren’t mature enough for it. the average user is not impressed by a virtual world accessed via the standard keyboard/mouse/screen peripherals. New ways to interact with computer and cloud is a must to get somewhere when it comes to virtual reality. Also important is the killer application that makes us all want to get inside. I doubt that it will be facebook that delivers this killer application but you never know. Given their huge user base anything can happen. And we will surely continue the &lt;a href="/2013/08/freedom.html"&gt;miserable path of proprietary protocols&lt;/a&gt; for human interaction.&lt;/p&gt;
-
-&lt;p&gt;I leave you with this good overview of the current state of affairs compiled by the verge:&lt;/p&gt;
-
-&lt;iframe width="560" height="315" src="//www.youtube.com/embed/ZZDizTLX3Rc" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
 </content>
   </entry>
 </feed>
