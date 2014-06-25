@@ -1,5 +1,5 @@
 ---
-title: "Mutiple unicorn servers with SSL on nginx"
+title: "Multiple unicorn servers with SSL on nginx"
 kind: article
 created_at: 2014-06-11
 author: fredrik
