@@ -27,7 +27,7 @@ def short article
       - similarly_tagged = items_tagged_with( one_tag )
       - similarly_tagged.delete(article)
       - if similarly_tagged.any?
-        %a.one-tag{ href: link_to_tag( one_tag ) }
+        %a.one-tag{ href: link_to_tag( one_tag ), rel: 'tag' }
           %span
             %i.icon-tag
             = one_tag

@@ -5,7 +5,7 @@
 <% if @item[:tags] %>
   <span class="tags">
     <% tags_with_sibling_articles_for @item do |one_tag, similar_articles| %>
-      <a class="one-tag" href="<%= link_to_tag one_tag %>"><span class="icon-tag" /><%= one_tag %></a>
+      <a class="one-tag" href="<%= link_to_tag one_tag %>" rel="tag"><span class="icon-tag" /><%= one_tag %></a>
     <% end %>
   </span>
 <% end %>
