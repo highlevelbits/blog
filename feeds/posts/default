@@ -2,13 +2,30 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2014-06-24T22:00:00Z</updated>
+  <updated>2014-07-20T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-07-21:/2014/07/visions-about-photography.html</id>
+    <title type="html">1945 is calling about photography</title>
+    <published>2014-07-20T22:00:00Z</published>
+    <updated>2014-07-20T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/07/visions-about-photography.html"/>
+    <content type="html">&lt;p&gt;This is a small part of the paper &lt;a href="http://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/?single_page=true"&gt;&lt;em&gt;As We May Think&lt;/em&gt; by Vannevar Bush&lt;/a&gt;. Written in 1945 it hinted at hypertext (why I read it) but also this little vision about photography.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The camera hound of the future wears on his forehead a lump a little larger than a walnut. It takes pictures 3 millimeters square, later to be projected or enlarged, which after all involves only a factor of 10 beyond present practice. The lens is of universal focus, down to any distance accommodated by the unaided eye, simply because it is of short focal length. There is a built-in photocell on the walnut such as we now have on at least one camera, which automatically adjusts exposure for a wide range of illumination. There is film in the walnut for a hundred exposures, and the spring for operating its shutter and shifting its film is wound once for all when the film clip is inserted. It produces its result in full color. It may well be stereoscopic, and record with two spaced glass eyes, for striking improvements in stereoscopic technique are just around the corner.&lt;/p&gt;
+
+  &lt;p&gt;The cord which trips its shutter may reach down a man’s sleeve within easy reach of his fingers. A quick squeeze, and the picture is taken. On a pair of ordinary glasses is a square of fine lines near the top of one lens, where it is out of the way of ordinary vision. When an object appears in that square, it is lined up for its picture. As the scientist of the future moves about the laboratory or the field, every time he looks at something worthy of the record, he trips the shutter and in it goes, without even an audible click.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src="https://farm4.staticflickr.com/3809/11760123293_30c54230d8_b.jpg" alt="" /&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-06-25:/2014/06/mariadb-skip-grant-tables-with-systemctl.html</id>
     <title type="html">How to make systemctl on arch linux start mariadb (mysql) with the --skip-grant-tables flag</title>
@@ -253,250 +270,6 @@ In case of AsciiDoc this means&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is all very well explained &lt;a href="http://www.sublimetext.com/docs/3/packages.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Enjoy!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-04-15:/2014/04/crashplan-on-raspberry-pi-and-wd-mycloud.html</id>
-    <title type="html">Building my own backup solution</title>
-    <published>2014-04-14T22:00:00Z</published>
-    <updated>2014-04-14T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/04/crashplan-on-raspberry-pi-and-wd-mycloud.html"/>
-    <content type="html">&lt;h3 id="background"&gt;Background&lt;/h3&gt;
-
-&lt;p&gt;Not so long ago I witnessed complete disk crashes by some of my
- colleagues. Everything was lost and a full reinstall was at order.
-Ironically, one of my colleagues was even running a backup software,
-but it was so out of date, that once he had an updated version of the
-OS installed, he could not find and install a suitable version of the
-backup software to restore lost data.&lt;/p&gt;
-
-&lt;p&gt;Initially I smiled, but then I realized that I was in danger as well.
-These guys where not technology savvy, but for me working with data
-is my daily bread. Still, my disaster backup solution sucked, not to
-say was non existent.&lt;/p&gt;
-
-&lt;p&gt;All I had was a USB drive attached to a
-&lt;a href="http://www.raspberrypi.org/"&gt;Raspberry Pi&lt;/a&gt; available as Samba drive
-on my network.&lt;/p&gt;
-
-&lt;h2 id="crashplan"&gt;CrashPlan&lt;/h2&gt;
-
-&lt;p&gt;As a first step I investigated cloud based backup services. I was
-hoping that this could easily be setup without any new hardware. Of course having the backup off-site, sounded like a good idea as well. I
-investigated several services and the choice is for sure huge our-days.
-To get started start with one of comparisons sites out there (like
-&lt;a href="http://www.top10cloudstorage.com/review/justcloud/"&gt;this one&lt;/a&gt;).
-They offer a good starting point, but if course their rankings have
-to be taken with a grain of salt.&lt;/p&gt;
-
-&lt;p&gt;Another thing I noticed - it seems quite custom for these cloud
-backup providers to hide their pricing information. Sometimes you have to click around for ages to find it, but other
-times I was just unable to find any at all. Take
-&lt;a href="http://www.justcloud.com/"&gt;justcloud.com&lt;/a&gt; for example. Where the
-heck is the pricing information? To me that’s already a no go zone,
-even if the service is good.&lt;/p&gt;
-
-&lt;p&gt;Anyways, I ended up with &lt;a href="http://www.code42.com/crashplan/"&gt;CrashPlan&lt;/a&gt;. Not because I think it is the best service, but more because it offered feature wise the minimum I expected for a reasonable price.&lt;/p&gt;
-
-&lt;p&gt;The strong points for me were:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Price - 4 USD / month, if bound for 4 years&lt;/li&gt;
-  &lt;li&gt;Unlimited data - that was one of the determining features&lt;/li&gt;
-  &lt;li&gt;Free friend to friend backup - a very nice feature which comes in
-handy as we’ll &lt;a href="#friend-to-friend"&gt;see later&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;On the weak side:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Very basic Web UI which just allows you do download backed up
-files. I was hoping for some more features, for example the ability to view and organize pictures on-line.&lt;/li&gt;
-  &lt;li&gt;The client to configure the backup is Java based and needs to run as a GUI&lt;/li&gt;
-  &lt;li&gt;Upload speed is not very high. My initial upload (~110 GB) took me
-several weeks. The problem might be data
-center location related or a
-&lt;a href="http://networkrockstar.ca/2013/09/speeding-up-crashplan-backups/"&gt;problem of the software&lt;/a&gt;.
-The verdict is still out on this one.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="crashplan-on-raspberry-pi"&gt;CrashPlan on Raspberry Pi&lt;/h2&gt;
-
-&lt;p&gt;Once I decided to use Crashplan it was at the time to install it on
-my PI. For evaluation purposes I first installed CrashPlan on my
-notebook, but in the long run my plan had always been to run Crashplan on the Pi.
-Unfortunately, there is where the pain begun. Basically there three
-hurdles you have to jump prior to running CrashPlan on a Pi:&lt;/p&gt;
-
-&lt;p&gt;&lt;a name="arm-install"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="#install-java"&gt;Install Java&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="#install-crashplan"&gt;Install and &lt;em&gt;patch&lt;/em&gt; Crashplan&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="#headless-client"&gt;Configure CrashPlan to run on a headless client&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Let’s address these things, in this order.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name="install-java"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id="install-java"&gt;Install Java&lt;/h3&gt;
-
-&lt;p&gt;Installing Java via the package manager is actually quite easy. You need some other libraries as well, but that’s not hard.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install openjdk-7-jre-headless build-essential libjna-java
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a name="install-crashplan"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id="install-and-patch-crashplan"&gt;Install and patch CrashPlan&lt;/h3&gt;
-
-&lt;p&gt;Now that you have Java installed it is time to download and install the
-CrashPlan installer (check the website for the latest version):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; curl -O http://download.crashplan.com/installs/linux/install/CrashPlan/CrashPlan_3.6.3_Linux.tgz
-&amp;gt; tar -zxvf CrashPlan_3.6.3_Linux.tgz
-&amp;gt; cd CrashPlan-install
-&amp;gt; sudo ./install.sh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can choose the default installation options which will install
-CrashPlan into &lt;em&gt;/usr/local/crashplan&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Now it at the time to patch
-the installation. The library &lt;em&gt;libjtux.so&lt;/em&gt;, which get extracted
-into the installation directory does not work on
-&lt;a href="http://en.wikipedia.org/wiki/ARM_architecture"&gt;ARM processors&lt;/a&gt;. You
-will need to replace it with an ARM compatible version. You can try
-to compile a patched
-&lt;a href="http://www.basepath.com/aup/jtux"&gt;Jtux&lt;/a&gt; yourself as suggested
-&lt;a href="https://0x539.se/crashplan-pa-din-raspberry-pi"&gt;here&lt;/a&gt; or you can downloaded the pre-compiled binary from &lt;a href="http://goo.gl/kYqCLD"&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ cd /usr/local/crashplan
-$ mv libjtux.so libjtux.so.orig
-$ cp &amp;lt;download-dir&amp;gt;/libjtux.so .
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you are ready to run CrashPlan on your Pi.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; $ sudo service crashplan start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The first startup takes a long time, so be patient. You can check
-whether the process is running via:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo service crashplan status
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or if you want more details check the &lt;em&gt;/usr/local/crashplan/log&lt;/em&gt;
-directory which contains multiple log files.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name="headless-client"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id="run-crashplan-on-a-headless-client"&gt;Run CrashPlan on a headless client&lt;/h3&gt;
-
-&lt;p&gt;Now that CrashPlan is running you need to configure it and setup the
-backup sets. Provided your Pi runs headless (as in my case,)
-you will have to solve now the last piece of the puzzle. Setting
-up configuration via a headless client. To do so, you will have to
-install CrashPlan on your computer as well and then follow the
-instructions provided from the CrashPlan support pages on how to
-&lt;a href="http://support.code42.com/CrashPlan/Latest/Configuring/Configuring_A_Headless_Client"&gt;Configuring a Headless Client&lt;/a&gt;.
-Basically this is done via SSH tunneling and looks something like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; ssh -L 4200:localhost:4243 pi@my.pi.ip
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;(Don’t forget to update the &lt;em&gt;ui.properties&lt;/em&gt; file as explained on
-the help page).&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;TIP&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;p&gt;If you are like me and cannot remember all these options, add the
-following to your &lt;em&gt;~/.ssh/config&lt;/em&gt; file:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Host pi
-    HostName &amp;lt;my.pi.ip&amp;gt;
-    User pi
-    IdentityFile ~/.ssh/id_rsa.pub
-    LocalForward 4200 127.0.0.1:4243
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="crashplan-on-wd-my-cloud"&gt;Crashplan on WD My Cloud&lt;/h2&gt;
-
-&lt;p&gt;&lt;a name="friend-to-friend"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id="friend-to-friend-backup"&gt;Friend to friend backup&lt;/h3&gt;
-
-&lt;p&gt;So, now I had a a backup on my USB disc attached to the PI and a
-remote backup on the CrashPlan servers. But why stop there? It happened
-that I also bought a &lt;a href="http://www.wdc.com/en/products/products.aspx?id=1140"&gt;WD My Cloud&lt;/a&gt;
-for my office. Given that it is running Linux and you can get root
-access, it was not so far fetched to utilize it for CrashPlan as well.
-CrashPlan allows friends to share their backup storage with each other
-and the beauty is that this feature is free. All you have to do is to
-sign up for another free CrashPlan account and use it to share you
-backup device. How this works
-in detail is described on the CrashPlan support site - &lt;a href="https://support.code42.com/CrashPlan/Latest/Backup/Backing_Up_To_A_Friends_Computer"&gt;Backing Up To A Friends Computer&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id="install-and-patch-crashplan-1"&gt;Install and patch CrashPlan&lt;/h3&gt;
-
-&lt;p&gt;However, to use friend to friend backup, I needed to install first
-CrashPlan on the WD My Cloud. Luckily it is also an ARM based
-processor, so the steps for installing CrashPlan are identical to
-installing on the Pi. So back to &lt;a href="#arm-install"&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id="monit"&gt;Monit&lt;/h3&gt;
-
-&lt;p&gt;Almost there. A last thing I did was to installed
-&lt;a href="http://mmonit.com/monit/"&gt;Monit&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; apt-get install monit
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The reason for installing it was
-that I had several JRE crashes with CrashPlan not restarting. Adding
-Monit with the following configuration (under &lt;em&gt;/etc/monit/conf.d/crashplan&lt;/em&gt;)
-fixed that problem. The crashes
-still occur, but don’t bother me too much at the moment:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;check process chrashplan with pidfile /usr/local/crashplan/CrashPlanEngine.pid
- start program = "/etc/init.d/crashplan start"
- stop  program = "/etc/init.d/crashplan stop"
- if 5 restarts within 5 cycles then timeout
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
-
-&lt;p&gt;Overall I am happy with my new backup solution. From local USB
-only, to two off-site backups, all fully automated, that’s not too bad.
-Price-wise I am also happy. For 4 USD per month, I get a unlimited
-off-site storage at one of CrashPlan’s servers, plus a free friend to
-friend backup using the same technology and configuration.&lt;/p&gt;
-
-&lt;p&gt;I am still disappointed on what I can do with my backup data. I would
-expect more from the CrashPlan web and tablet apps.&lt;/p&gt;
-
-&lt;p&gt;The biggest disappointment, however, is the Java client. It feels to
-bulky and not flexible to fire up an UI to manage and configure
-you backups. Maybe for recovery, but for simple configuration a
-command line tool would be of great help. Maybe just as a supplementary
-tool. On top of this, I need to keep CrashPlan around on my notebook,
-just for running the GUI connecting to my PI.
-That would be “ok”, if I could just
-use the GUI, but the installation of CrashPlan also installs some
-services which I have not been able to turn off yet. Last, but not
-least, the use of something like &lt;em&gt;libjtux&lt;/em&gt; is imo questionable. It’s
-poor to include something into your Linux distribution package which does then not even run on all installations. This whole fiddling with
-the Java GUI became almost a deal breaker for me, but since I worked
-it out in the end I’ll stick to it for now. I would love
-ChrashPlan to work on this part.&lt;/p&gt;
-
-&lt;p&gt;I hope this helps a few people trying to get CrashPlan to work on a
-Raspberry Pi or a WD My Cloud. If you have problems with the
-instructions or find other problems with my solution, leave a message.&lt;/p&gt;
 
 &lt;p&gt;Enjoy!&lt;/p&gt;
 </content>
