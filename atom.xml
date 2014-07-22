@@ -2,13 +2,34 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2014-07-20T22:00:00Z</updated>
+  <updated>2014-07-21T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-07-22:/2014/07/addicted-to-complexity.html</id>
+    <title type="html">you are addicted to complexity</title>
+    <published>2014-07-21T22:00:00Z</published>
+    <updated>2014-07-21T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/07/addicted-to-complexity.html"/>
+    <content type="html">&lt;p&gt;I keep coming back to this quote from William Gibsons &lt;a href="https://en.wikipedia.org/wiki/All_Tomorrow%27s_Parties_%28novel%29"&gt;&lt;em&gt;All tomorrow’s parties&lt;/em&gt;&lt;/a&gt; again and again. It sums up life neatly.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“I do not deal in outcomes.”&lt;/p&gt;
+
+  &lt;p&gt;“But you do,” the voice says. “You’ve dealt a few for me, after all. You become an outcome.”&lt;/p&gt;
+
+  &lt;p&gt;“No,” the man says, “I simply discover that place where I am supposed to be.”&lt;/p&gt;
+
+  &lt;p&gt;“You make it sound so simple. I wish that it were that simple for me.”&lt;/p&gt;
+
+  &lt;p&gt;“It could be,” the man says, “but you are addicted to complexity”&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-07-21:/2014/07/visions-about-photography.html</id>
     <title type="html">1945 is calling about photography</title>
@@ -203,77 +224,6 @@ makes the scam work feel like a normal work. Brillantly done.&lt;/p&gt;
 
 &lt;p&gt;The &lt;a href="https://www.flickr.com/photos/praziquantel/30950009/"&gt;excellent sloth picture&lt;/a&gt; 
 is  by &lt;a href="https://www.flickr.com/photos/praziquantel/"&gt;Carol Schaffer&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-04-23:/2014/04/sublime-and-asciidoc.html</id>
-    <title type="html">Making symbols available for AsciiDoc syntax in Sublime Text 3</title>
-    <published>2014-04-22T22:00:00Z</published>
-    <updated>2014-04-22T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/04/sublime-and-asciidoc.html"/>
-    <content type="html">&lt;p&gt;&lt;a href="http://www.sublimetext.com/"&gt;Sublime Text&lt;/a&gt; has become my favorite editor on Mac. It is fast, flexible,
-has tons of useful plugins and I can open any file or directory from the command line using &lt;em&gt;subl&lt;/em&gt;.
-There are many blog post out there describing the strength of Sublime, so today I just wanted
-to focus on a problem for which I could not find a solution out of the box.&lt;/p&gt;
-
-&lt;p&gt;Sublime has become my default editor for Markdown and AsciiDoc. Whereas the symbol navigation via
-&lt;em&gt;&amp;lt;ctrl+r&amp;gt;&lt;/em&gt; works just fine for the Markdown plugin, it is not working for AsciiDoc. This is
-especially painful when editing long documents where the symbol list gives a fast overview over the
-file. In fact the missing symbols were nagging me so much, that I decided to embark into a discovery
-journey into the inner workings of Sublime Text.&lt;/p&gt;
-
-&lt;p&gt;In Sublime Text 3 language support (syntax highlighting, snippets, etc) is bundled in a file with the
-postfix &lt;em&gt;sublime-package&lt;/em&gt;. Effectively it is just a zip file which you can expand to view its contents.
-The main file is &lt;language&gt;.tmLanguage. It contains a whole bunch of regular expressions which capture
-and name different parts of the syntax of the language in question. To make symbols work you also need
-a file called *Symbol List.tmPreferences* (the name is not relevant I think), which tells Sublime
-which of the named syntax parts should be made available via symbols. Exactly this symbol list is missing
-in the AsciiDoc plugin (http://github.com/SublimeText/AsciiDoc). After looking at *AsciiDoc.tmLanguage*,
-I thought the following should work:&lt;/language&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
-&amp;lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&amp;gt;
-&amp;lt;plist version="1.0"&amp;gt;
-&amp;lt;dict&amp;gt;
-   &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-   &amp;lt;string&amp;gt;Symbol List&amp;lt;/string&amp;gt;
-   &amp;lt;key&amp;gt;scope&amp;lt;/key&amp;gt;
-   &amp;lt;string&amp;gt;markup.heading.asciidoc&amp;lt;/string&amp;gt;
-   &amp;lt;key&amp;gt;settings&amp;lt;/key&amp;gt;
-   &amp;lt;dict&amp;gt;
-      &amp;lt;key&amp;gt;showInSymbolList&amp;lt;/key&amp;gt;
-      &amp;lt;string&amp;gt;1&amp;lt;/string&amp;gt;
-   &amp;lt;/dict&amp;gt;
-   &amp;lt;key&amp;gt;uuid&amp;lt;/key&amp;gt;
-   &amp;lt;string&amp;gt;954ecd40-ca54-11e3-9c1a-0800200c9a66&amp;lt;/string&amp;gt;
-&amp;lt;/dict&amp;gt;
-&amp;lt;/plist&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;markup.heading.asciidoc&lt;/em&gt; is one of the named elements from the tmLanguage file matching a heading line
-(including the ‘=’ signs). That was good enough for me.&lt;/p&gt;
-
-&lt;p&gt;The remaining question was, how to add this symbol list to the existing AsciiDoc sublime-package?
-Did I have to re-package the zip? Turns out I don’t have to.
-Zipped packages are installed under&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;~/Library/Application Support/Sublime Text 3/Installed Packages/\&amp;lt;Package Name\&amp;gt;*
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To override a file in any of these zip files or add a new file, create&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;~/Library/Application Support/Sublime Text 3/Packages/\&amp;lt;Package Name\&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and place your file in there.
-In case of AsciiDoc this means&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;~/Library/Application Support/Sublime Text 3/Packages/AsciiDoc/Symbol List.tmPreferences
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is all very well explained &lt;a href="http://www.sublimetext.com/docs/3/packages.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Enjoy!&lt;/p&gt;
 </content>
   </entry>
 </feed>
