@@ -100,7 +100,7 @@ I used a variant of the server section to setup SSL. Like this:
                 proxy_set_header Host $http_host;
                 proxy_set_header X-FORWARDED-PROTO https;
                 # pass to the upstream unicorn server mentioned above
-                proxy_pass http://memberaid_unicorn_server;
+                proxy_pass http://oneofmydomains_unicorn_server;
             }
         }
     }
