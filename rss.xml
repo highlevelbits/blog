@@ -2,13 +2,70 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2014-07-21T22:00:00Z</updated>
+  <updated>2014-08-19T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/rss.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-08-20:/2014/08/hero-driven-development.html</id>
+    <title type="html">Hero Driven Development - and what you can do about it</title>
+    <published>2014-08-19T22:00:00Z</published>
+    <updated>2014-08-19T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/08/hero-driven-development.html"/>
+    <content type="html">&lt;p&gt;It happens rather often that I found myself in a negative organizational pattern that I will call &lt;em&gt;hero driven development&lt;/em&gt; in this post. It has several other names: I often call it &lt;em&gt;firefighting&lt;/em&gt; and I have also seen &lt;em&gt;dragon slayer&lt;/em&gt; and &lt;em&gt;cowboy shooting from the hip&lt;/em&gt;. I am sure there are other names. Add yours in the comments!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://farm1.staticflickr.com/117/384464432_e373fb5f2d_o.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Main characteristics of this pattern:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;a significant hoarded technical debt.&lt;/li&gt;
+  &lt;li&gt;a select few able to deal with that debt.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;business as usual&lt;/em&gt; is not normally premiered.&lt;/li&gt;
+  &lt;li&gt;the technical debt causes regular crises. A system goes down, some important functionality is broken or something like this.&lt;/li&gt;
+  &lt;li&gt;a hero puts his &lt;em&gt;ordinary&lt;/em&gt; work aside for a while and gloriously solves the crises, slays the dragon and puts out the fire.&lt;/li&gt;
+  &lt;li&gt;everyone is happy until the next crises.&lt;/li&gt;
+  &lt;li&gt;a deficit in reflective exercises ensures that it happens again soon.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So what can we do about it? It is hard to change an organization that has settled on this pattern. The satisfaction of saving the organization whenever there is a crises is impossible to match with &lt;em&gt;business as usual&lt;/em&gt;. It is also important to recognize that this kind of culture rarely is explicit. When asked, no one likes the cycle of crises and salvation. It is stuck on a subconscious level. Here are a number of things to focus on if you find yourself inside this pattern.&lt;/p&gt;
+
+&lt;h3 id="team-solves-crises"&gt;Team solves crises&lt;/h3&gt;
+&lt;p&gt;The main problem with hero driven development is that single individuals step in and solve crises when needed. They may even often come from outside the team that normally should be responsible for solving the crises. Decide that the responsibility for solving any crises is the entire team. Make these tasks visible in/on whatever tool you are using for task management. (Preferably a physical board…..)&lt;/p&gt;
+
+&lt;h3 id="pairing"&gt;Pairing&lt;/h3&gt;
+&lt;p&gt;This is a good strategy for the long term. If all work happens in pairs the knowledge needed for solving a crises will slowly spread throughout the team. It is also a good tactic for the short term. Decide that no hero solves a crises on his/her own but has to work with someone else so solve it. &lt;/p&gt;
+
+&lt;h3 id="insist-on-retrospectives"&gt;Insist on retrospectives&lt;/h3&gt;
+&lt;p&gt;When a pattern like this settles itself solidly it often proves hard to change it. Whenever a crises has been solved, everyone just moves forward, without reflecting on changes to avoid a similar crises in the future. To make the hero pattern visible, retrospectives can be a good tool. Focus on what to improve rather than the failure that caused the crises. Pick one or two things to improve in whatever time frame you are working in. Two weeks may be a good interval. Also, keep retrospectives short. An hour is enough if they are done regularly.&lt;/p&gt;
+
+&lt;h3 id="acknowledge-hero-skills"&gt;Acknowledge hero skills&lt;/h3&gt;
+&lt;p&gt;It is important to acknowledge that the heroes excellent skills is not a problem, it is an asset. Find a way to make sure that this skill set comes to good use when working to avoid future crises. Heroes may feel threatened by the disappearance of his/her natural arena. Try to create another arena for the hero to excel in his/her brilliancy.&lt;/p&gt;
+
+&lt;h3 id="workplace-locations"&gt;Workplace locations&lt;/h3&gt;
+&lt;p&gt;Behavioral patterns like hero driven development can be inhibited by a conscious placement of workplaces. Put people that can benefit from each other together. Don’t keep the same placement for long periods of time. Changes means that new constellations of people can start interact naturally. Where to put the hero? It probably depends a bit on how you want to solve crises further on. If the hero will be involved than he/she should be located in the midst of things. If not, located out of reach.&lt;/p&gt;
+
+&lt;p&gt;Also, never put several heroes together - spread them out as far away from each other as possible.&lt;/p&gt;
+
+&lt;h3 id="make-the-technical-debt-visible-and-start-reducing-it"&gt;Make the technical debt visible and start reducing it&lt;/h3&gt;
+&lt;p&gt;The need for a hero is often caused by an unmanaged technical debt. Try to make this debt as visible as possible in the form of tasks that can be done. They should be as small as possible. This may be really hard but given some thought it is often possible to break the work into smaller bits. When a crises happens, try to think of what parts of the technical debt that caused it and try to prioritize those tasks.&lt;/p&gt;
+
+&lt;p&gt;If nothing else, a start can be to put automated tests on vital parts of the system. It is good for many things:
+- it gives you feedback about how the system is feeling
+- it makes it possible to refactor
+- it increases the understanding, good tests can double as documentation&lt;/p&gt;
+
+&lt;h3 id="measure-absence-of-crises"&gt;Measure absence of crises&lt;/h3&gt;
+&lt;p&gt;Finally - it is crises we want to avoid. Introduce metrics. It can be uptime, availability, number of crises a week, magnitude of a crises and so forth. Visibility of progress is very important. This is especially true in an organization that normally don’t acknowledge &lt;em&gt;business as usual&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;
+Mighty &lt;a href="https://www.flickr.com/photos/mugley/384464432"&gt;dragon photo&lt;/a&gt; by &lt;a href="https://www.flickr.com/photos/mugley/"&gt;Jes&lt;/a&gt;.
+&lt;/small&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-07-22:/2014/07/addicted-to-complexity.html</id>
     <title type="html">you are addicted to complexity</title>
@@ -184,46 +241,6 @@ sudo systemctl enable mysqld
 &lt;p&gt;&lt;code&gt;ssl&lt;/code&gt; is &lt;code&gt;on&lt;/code&gt; and the certificate and its key is specified. Then there are lists of protocols and ciphers. This is used when a calling client handshakes with the server. It is just to decide a protocol and cipher to use for the interaction. If there is no match you may have a problem…. The location part is a bit different also with a somewhat different proxy header setup. &lt;/p&gt;
 
 &lt;p&gt;And there you go. Once &lt;code&gt;nginx.conf&lt;/code&gt; is edited you need to restart or reload nginx in order to make the changes effectual. I have enjoyed working with nginx. It is not so hard to understand what to do and the number of pitfalls are kept at a minimum.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-04-26:/2014/04/zoo-city.html</id>
-    <title type="html">Zoo city</title>
-    <published>2014-04-25T22:00:00Z</published>
-    <updated>2014-04-25T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/04/zoo-city.html"/>
-    <content type="html">&lt;p&gt;In the middle of reading the immense Game of Thrones serie 
-I decided to take a break and read something else and my 
-eyes fell on &lt;a href="https://www.goodreads.com/book/show/7163862-zoo-city"&gt;Zoo City&lt;/a&gt; 
-by Lauren Beukes that I bought as part of a 
-&lt;a href="https://www.humblebundle.com/"&gt;Humble Bundle&lt;/a&gt; a while ago.
-It turned out to be a nice break from high fantasy. In Zoo City
-lives people that somehow did something wrong and as a result ended
-up being attached to an animal. The main character Zinzi carries around a
-sloth.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="https://farm1.staticflickr.com/23/30950009_8c828d1e1d_b.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The stories nemesis is attached to a huge alligator and so on. Having an animal
-is seen as a stigma by other persons in society so they tend to live 
-in their own areas. Zinzi gets a lot of help from her sloth.
-Whenever she is embarking in dubious directions the sloth tries to stop her.
-With the animals (I think) also comes a magical skill. Zinzi 
-can feel persons missed things so she makes a living out of helping people
-find stuff that they have lost. The main story evolves around finding a
-missing person and all kinds of intricate turns of events that such a 
-weird setting can offer. Enough said about that - read it to find out 
-what happens….&lt;/p&gt;
-
-&lt;p&gt;An interesting side plot is Zinzis other work. Being in debt to some criminal
-element she works it off by reading and answering scam email replies. She
-also impersonate persons that is described in the scam to get more money
-out of scam victims. Normally this line of work is seen as something done
-by the scum of the earth. But Zinzi is the hero in this story so this 
-makes the scam work feel like a normal work. Brillantly done.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href="https://www.flickr.com/photos/praziquantel/30950009/"&gt;excellent sloth picture&lt;/a&gt; 
-is  by &lt;a href="https://www.flickr.com/photos/praziquantel/"&gt;Carol Schaffer&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>
