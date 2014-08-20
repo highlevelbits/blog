@@ -1,0 +1,10 @@
+/* css for styling form elements */
+
+.form-row {
+  width: 100%;
+  padding: 10px;
+}
+
+form {
+  padding: 40px;
+}

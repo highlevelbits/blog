@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - svn changelists</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  svn changelists
+</h2>
+<span class="byline">2009-03-20 by hardy</span>
+
+  <span class="tags">
+    
+      <a class="one-tag" href="../../tags/svn.html" rel="tag"><span class="icon-tag"></span>svn</a>
+    
+  </span>
+
+<p>While I am on the 'discovering trip'. Here is another thing I found out this week. This time I actually knew that this particular feature existed, but I never really knew how to use it and how it actually works. I am talking about <a href="http://svnbook.red-bean.com/en/1.5/svn-book.html#svn.advanced.changelists">svn changelists</a>. They are part of subversion since version 1.5 and so far were only something I read about. However, this week I discovered by accident the 'move to changelist' button in the Intellij Idea svn plugin. I just tried it and immediately it dawned on my how useful this feature is. It allows me for example to move some files, which I always change, but never commit into a seperate changeset. This way I don't have to remember to either revert or not commit these files. You probably think that such files should not exists in a properly setup project, but what about for example log4j.properties. I personally like to collect log4j output in <a href="http://logging.apache.org/chainsaw/index.html">Chainsaw</a> , but on the other hand I don't want to commit the log4j configuration file with the required socket appender enabled. Well, now I just moved log4j.properties into its own changelist and I don't have to think about it anymore.<br>From the command line you are using the changelist feature via the '--changelist' options which can be passed to most of the svn sub-commands. For example a checkin would look like this:</p>
+<blockquote>svn commit -m "my log message" --changelist myChangeList</blockquote>
+<p>One caveat though. I was assuming that committing without specifying a changelist would only commit the files which are not specifically in a changelist. Unfortunately, that's not the case. Instead all changes are committed. That's a clear drawback for me, but at least it is hidden from me when using the Idea plugin.<br><br>Time to hand-over to Fredrik again for a less technical blog entry :)<br><br>--Hardy</p>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2009-03-23</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">I would love to be in a position to write technical blog entries but it seems that I am stuck in the meetings and documents marsh land with no hope of getting away for quite some time.</div>
+</div>
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

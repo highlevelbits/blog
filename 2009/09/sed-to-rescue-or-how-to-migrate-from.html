@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - sed to the rescue (or how to migrate from java.util.logging to org.slf4j)</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  sed to the rescue (or how to migrate from java.util.logging to org.slf4j)
+</h2>
+<span class="byline">2009-09-16 by fredrik</span>
+
+  <span class="tags">
+    
+      <a class="one-tag" href="../../tags/sed.html" rel="tag"><span class="icon-tag"></span>sed</a>
+    
+      <a class="one-tag" href="../../tags/logging.html" rel="tag"><span class="icon-tag"></span>logging</a>
+    
+      <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+    
+  </span>
+
+<p>I got the task to migrate all our code - some 100 classes - from standard <a href="http://java.sun.com/javase/6/docs/api/index.html?java/util/logging/package-summary.html">JDK logging</a> to the logging facade framework <a href="http://www.slf4j.org/">slf4j</a>. (I am not sure if there are any real benefits from such a migration but the deploying organization has decided that this is the way to go so the best approach i to just look happy and accept. They also claim that there may be performance issues with the way we log now. It sounds a bit far-fetched to me....) A fast analysis of the task made me conclude that I needed to replace:</p>
+<div>
+<ul>
+<li>the import of java.util.logging.Logger with org.slf4j.*</li>
+<li>the line constructing the Logger instance to use the slf4j LoggerFactory instead</li>
+<li>.fine, .finer and .finest with .debug (for some reason .debug is the finest level in the slf4j API)</li>
+<li>.warning with .warn</li>
+<li>.severe with .error</li>
+</ul>A tedious work to do by hand. Thankfully there is a nice little unix command called <a href="http://www.grymoire.com/Unix/Sed.html">sed</a> that together with find does the trick almost perfectly. Here is the script I used:</div>
+<pre>
+#/bin/ksh
+for file in `find . -name '*.java'`
+do
+ cleartool co -c "Changing log framework thingie." $file
+ sed -e 's/java.util.logging.Logger/org.slf4j.*/' \
+     -e 's/= Logger.getLogger/= LoggerFactory.getLogger/' \
+     -e 's/.fine(/.debug(/'  \
+     -e 's/.finer(/.debug(/' \
+     -e 's/.warning(/.warn(/' \
+     -e 's/.severe(/.error(/' \
+     $file &gt; $file.tmp
+ mv $file.tmp $file
+done</pre>
+<div>As you can see I also added a line to check out the file from Clearcase. If you are using CVS, <a href="http://subversion.tigris.org/">subversion</a> or even <a href="http://git-scm.com/">git</a> (as any developer would given a free choice....) there is no need.</div>
+<div> </div>
+<div>A couple of files failed to compile after the migration. <a href="http://en.wikipedia.org/wiki/Bracket#Curly_brackets_or_braces_.7B_.7D">Curly braces</a> disappeared at the end of some classes and in one case the logger was instantiated on 2 lines instead of one but overall it worked nicely.</div>
+<div> </div>
+<div>This way of working comes rather natural to me but I gather that not all developers think of the command line as a helpful tool and thus this blog post.</div>
+<div> </div>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2009-09-16</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Sweet :) What would life be without sed, awk, find and grep. Any developer should have these tools in his toolbox.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2009-09-17</span><span class="commenter-name">Ceki</span><div class="comment-body">This post has been removed by the author.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2009-09-17</span><span class="commenter-name">Ceki</span><div class="comment-body">Have you looked at the <a href="http://www.slf4j.org/migrator.html" rel="nofollow">SLF4J migrator</a>? It accomplishes what you describe, except for the fine/finer/finest to debug mapping.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2009-09-17</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Seems like my 10 line script was a bit better than the migrator then! Sometimes a few lines of unix scripting is all you need. But it is of course good that there are tools since many developers don't have a clue about unix.</div>
+</div>
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

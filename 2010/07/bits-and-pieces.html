@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - Bits and pieces</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Bits and pieces
+</h2>
+<span class="byline">2010-07-18 by hardy</span>
+
+  <span class="tags">
+    
+      <a class="one-tag" href="../../tags/mac.html" rel="tag"><span class="icon-tag"></span>mac</a>
+    
+      <a class="one-tag" href="../../tags/android.html" rel="tag"><span class="icon-tag"></span>android</a>
+    
+      <a class="one-tag" href="../../tags/svn.html" rel="tag"><span class="icon-tag"></span>svn</a>
+    
+  </span>
+
+<p>A few quick notes before heading of into vacation.<br><br><b>Postgres</b><br><br>Ever seen this or a similar error message on your Mac?</p>
+<pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;">
+<code>could not create shared memory segment: Invalid argument  </code></pre>
+<p>This happened to me when I tried to increase the number of <i><a href="http://www.postgresql.org/docs/current/static/runtime-config-connection.html#GUC-MAX-CONNECTIONS">max_connections</a> </i>parameter in the postgres configuration file. After increasing the maximum connections I got another error message which told me to increase the <a href="http://www.postgresql.org/docs/current/static/runtime-config-resource.html#GUC-SHARED-BUFFERS"><i>shared_buffers</i></a> size as well. And finally, after that I got the error message above. After some research I found out that for some reason the system shared memory value on Mac OS X is out of historic reasons very low. Go figure.<br><br>The thing to do is to edit <i>/etc/sysctl.conf</i> and add something like this:</p>
+<pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;">
+<code>kern.sysv.shmmax=524288000
+kern.sysv.shmmin=1
+kern.sysv.shmmni=64
+kern.sysv.shmseg=16
+kern.sysv.semmns=130
+kern.sysv.shmall=131072000
+kern.sysv.maxproc=2048
+kern.maxprocperuid=512
+</code></pre>
+<p>The parameter which is important is <i>kern.sysv.shmmax</i>. You can view the current setting via <i>sysctl -A</i> or more specifically <i>sysctl kern.sysv.shmmax. </i>I had to restart my computer to get the values to take effect.<br><br><b>Git</b><br><br>I started to use <a href="http://git-scm.com/">git</a> more and I must say it is growing on me. However, since most of the projects I am working with are still on <a href="http://subversion.tigris.org/">svn</a> I have to use git-svn. Most of the time everything works just fine, but one thing I am looking for is a tool which converts a git patch to a svn patch. Unfortunately, a git patch will not directly apply into a svn repo. Problematic are especially file additions and removals. So far I haven't found a satisfactory solution. Anyone?<br><br><b>RubyGem</b><br><br>I thought I pass on this cool little ruby gem I found and started using - <a href="http://cheat.errtheblog.com/">Cheat Sheets.</a> Just install it via <i>sudo gem install cheat</i> and then you can access any of the built-in cheat sheets, for example <i>cheat git</i>. And of course you can simple add your own cheat sheets. Sweet.<br><br><b>Android</b><br><br>More of a question really. Does you Android phone shuts down properly? I had several occasions now where my phone shut down, because it was running out of power (well, we all know how great the battery life time is :( ). In each case I had to pull out the battery in the end, because the shutdown would never complete. Does anyone have similar experiences?<br><br>--Enjoy</p>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

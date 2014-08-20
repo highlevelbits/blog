@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - single point logging with go</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  single point logging with go
+</h2>
+<span class="byline">2013-10-03 by fredrik</span>
+
+  <span class="tags">
+    
+      <a class="one-tag" href="../../tags/golang.html" rel="tag"><span class="icon-tag"></span>golang</a>
+    
+      <a class="one-tag" href="../../tags/coding.html" rel="tag"><span class="icon-tag"></span>coding</a>
+    
+      <a class="one-tag" href="../../tags/logging.html" rel="tag"><span class="icon-tag"></span>logging</a>
+    
+  </span>
+
+<p>I’ll continue to spam you with <a href="http://golang.org/">go</a> related posts. I am working on a rather small webapp built with go. Despite it being small we have still managed to code differently in different parts of the application. Logging is one such issue that we decided to do something about the other day. At the same time it was good to improve on the error handling which often goes hand in hand with logging. In the midst of this some external forces (operations….) tells us that we should use a <strong>logging server</strong> for logging. Not right away mayhaps but eventually. This led us to go for our own logging functions so that we can change the implementation in one place. So we needed to get some common things into the log. User name (or some way to keep track of one call to the system), a timestamp, the code line where the logging occurred and the message itself. A normal application log file more or less. </p>
+
+<p>To call our own logger we thought something like <code>LogInfo(user User, message string, args... interface{})</code> looked nice with corresponding functions for Error and Debug. The first implementation was easy enough:</p>
+
+<pre><code>func LogInfo(message string, args ...interface{}) {
+  log.Printf("INFO | " + message, args...)
+}
+</code></pre>
+
+<p>But wait? What happens with the code line number? It will point to our logger function and that is not what we intended. We would like the line nubmer to be where the call to LogInfo occurred. At this point in time it was very handy to have the source code available for the standard library. <code>Printf</code> does not care about line numbers and such - it just prints whatever line it is invoked on. Underneath the <code>Printf</code> function there are a <code>Logger</code> type that defines an <code>Output</code> function called by printf. So lets start with constructing a <code>Logger</code>:</p>
+
+<pre><code>func Logger() *log.Logger {
+  return log.New( os.Stderr, "", log.Lshortfile | log.Ldate | log.Ltime )
+}
+</code></pre>
+
+<p>The first argument to <code>New</code> is a writer. For now we are happy to write to Stderr. The second is a prefix to use when logging - we don’t care about it now - probably useful when you log from several things to the same file. Lastly we tell the standard library what we want to log - a short file description with line number and a timestamp. Find the available options under the <em>const</em> part in the log package documentation. Now all we need to do is to call the <code>Output</code> function on the logger.</p>
+
+<pre><code>func LogInfo(message string, args ...interface{}) {
+  calldepth := 3 // the distance to the actual call for logging
+  Logger().Output(calldepth, "INFO | " + fmt.Sprintf(message, args...))
+}
+</code></pre>
+
+<p>and use it to log some stuff:</p>
+
+<pre><code>LogInfo("%s %s", "some", "stuff")
+</code></pre>
+
+<p>The <code>calldepth</code> here is basically what part of the stack that makes it as a code line into the block. The standard library uses 2 so it made sense to add one to get to the right position for us. The standard library uses <code>runtime.Caller</code> to get to this information. There are other functions to get to the stack also in the <code>runtime</code> package.</p>
+
+<p>In the real world we passed in info about our user, extracted log message creation to its own function and added functions for error and debug. We also had one set of functions accepting a user and one set not accepting a user. We also did <a href="http://stackoverflow.com/q/19115273/135673">some thinking</a> about if it was possible to log something like a thread id and came to the conclusion that it isn’t possible in go. I got a <a href="http://stackoverflow.com/a/19116962/135673">nice answer</a> from <a href="http://stackoverflow.com/users/41344/rog">rog</a> and here is the first part:</p>
+
+<blockquote>
+  <p>Because of the high potential for abuse, there is no way to access an identifier for the current goroutine in Go. This may 
+seem draconian, but this actually preserves an important property of the Go package ecosystem: <em>it does not matter if you 
+start a new goroutine to do something</em>.</p>
+</blockquote>
+
+<p>A good explanation and in line with the go way of doing things. I can find it a bit limiting at times but it is almost always for a good reason which makes it easier to accept.</p>
+
+<p>As a side note - the go community is very helpful. Using the #golang tag on twitter for asking questions renders some nice answers and discussions. Very useful. And <a href="http://stackoverflow.com">stackoverflow</a> is a good resource as always.</p>
+
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

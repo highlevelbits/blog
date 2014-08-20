@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - Using redis as a cache with Ruby</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Using redis as a cache with Ruby
+</h2>
+<span class="byline">2014-02-16 by fredrik</span>
+
+  <span class="tags">
+    
+      <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
+    
+  </span>
+
+<p>For one sinatra based web site I am messing with I needed a cache for calls to third party APIs. I had used <a href="http://redis.io/">redis</a> before together with <a href="http://resquework.org/">resque</a> at a client gig so it was a natural choice for this task. Essentially I needed to use URLs as keys and the returned content for that URL as the value.</p>
+
+<p>Installing redis is easy on arch: </p>
+
+<pre><code>pacman -S redis 
+</code></pre>
+
+<p>It hooks in nicely with <code>systemctl</code> so you can </p>
+
+<pre><code>systemctl start redis
+systemctl enable redis 
+</code></pre>
+
+<p>to have it up and running after reboots.</p>
+
+<p>For integrating with Ruby there is a nice gem called <code>redis</code>. Install it with:</p>
+
+<pre><code>gem install redis
+</code></pre>
+
+<p>or put it in your Gemfile for use with bundler.</p>
+
+<p>Now we are ready to start using <code>redis</code>. My use case is the simplest possible with strings for both keys and values. To start interacting with redis you need a client instance:</p>
+
+<pre><code>redis = Redis.new host: '127.0.0.1'
+</code></pre>
+
+<p>This creates a client with all the defaults trying to connect with redis on the default port <code>6379</code>. On my server I have a restrictive firewall running so I had to specify talking to an IP address rather than the default <code>localhost</code>. It is also possible to start redis listening to a socket instead of a port. This may be a bit faster.</p>
+
+<p>Now we can put some stuff into the database:</p>
+
+<pre><code>redis.set 'some_random_key', 'value'
+redis.expire 'some_random_key', 60 * 60 * 24
+</code></pre>
+
+<p>If I want to save the value forever only the first line is needed. But since this is a cache I had to add the second line to get a 24 hour expiry time on the item.</p>
+
+<p>Now the key will be available for 24 hours and the be removed. To retrieve the value is just as easy:</p>
+
+<pre><code>redis.get 'some_random_key'
+</code></pre>
+
+<p>I coded this up on the commute to work one day and installed it on the server the next. Really easy and useful. I certainly will consider redis as a database candidate for real work in the future. Using it as a cache is nice but it seems capable of being you main persistance store if you are into NoSQL stuff.</p>
+
+<p>Also - it is really fast.</p>
+
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - It's still fun</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  It's still fun
+</h2>
+<span class="byline">2008-04-17 by hardy</span>
+
+<p>When I was a student at the <a href="http://www.uni-karlsruhe.de/" id="m4v1" title="University of Karlsruhe">University of Karlsruhe</a> I spend a lot of time maintaining and administrating a heterogeneous Linux/Solaris/Irix/Windows environment at the <a href="http://i31www.ira.uka.de/" id="j0ug" title="Institute of Human Computer Interaction">Institute of Human Computer Interaction</a>. I remember the long hours trying to compile and install custom software. At the time there were just Makefiles one had to manually configure. If you were lucky you had some <i id="wm1e">configure</i> scripts. Package management systems like <i id="ztra">dpkg</i> and <i id="mp2g">rpm</i> were just becoming popular. And just to defend myself from all the old time veterans - yes I did not have to work with punch cards, put at times it almost felt this way. Hours past trying to find out why something would not compile or why <i id="d8zo">this</i> Makefile would not work on an Irix machine. On the other hand, I believe that to the day I benefit from all the hours spend on these tasks. Not that my software development skills improved that much, but one develops almost something like a sixth sense for determining what's wrong. It's not knowing what's wrong, but rather having a hunch. It's also about doing research to find a solution and then discarding all recommendations, because you really believe in your hunch :) Since I started to work as professional software developer though, I kind of forgot about these times. I guess it is only fair enough to expect that infrastructural things just work. You spend enough time troubleshooting your own code. Once you spend 8 hours a day, 5 days a week in front of a computer it is not really fun anymore to find out why some software does not install or work. You give it a one time shot and if it does not work it goes! Yesterday, however, I had a little trip down memory lane. I am a proud owner of a <a href="http://www.slimdevices.com/" id="im1e" title="Squeezebox">Squeezebox</a> and I must say it is probably one of the best gadgets I bought for a long time. Unfortunately, my little mp3 server feeding my squeezebox with music failed me yesterday and all attempts to resurrect were in vain. The only way out was to find a new server. And was there not somewhere an old Dell Inspiron 5000 notebook in the cellar? That should work right? It does, but it took me 5 hours to get it working. Installing the latest <a href="http://www.ubuntu.com/getubuntu/download" id="nkwn" title="Ubuntu Server edition">Ubuntu Server Edition</a> was still quite painless (even though I first tried with the desktop version and failed). Since the notebook only had a build in 56K modem, I had to plug in a old PCMCIA wireless network card - a <a href="http://support.dlink.com/products/view.asp?productid=DWL-650%2B" id="mz8d" title="DLINK DWL-650+">DLINK DWL-650+</a> (by now a discontinued product). Here the trouble started. I could not get the card to work, even though some people claim that the Ubuntu installer recognized this card out of the box. No such luck for me. After some research I thought the solution was to compile and install the <a href="https://help.ubuntu.com/community/WifiDocs/Driver/acx100" id="wvsr" title="ACX100 driver">ACX100 driver</a> source. So I did. An hour later the driver was compiled and installed and the card detected, but no luck with actually connecting to the network. Back to the drawing board. Apparently there is a project called <a href="http://hansengel.wordpress.com/2007/11/10/installing-a-wireless-driver-with-ndiswrapper/" id="ezm4" title="NDISWrapper">NDISWrapper</a> which allows you to use windows drivers on Linux (wau - I did not know that this exists!). Interestingly enough several users where actually discouraging you from using this driver in case of a acx100 chip-set. The ACX stuff should really work. But I've been there done that. I decided to give <a href="http://hansengel.wordpress.com/2007/11/10/installing-a-wireless-driver-with-ndiswrapper/" id="boud" title="NDISWrapper">NDISWrapper</a> a go. Download and compilation went well, but after an <i id="nbo1">make install</i> nothing happened. More troubleshooting lay ahead of me. Another hour later it was clear that somehow the Makefile did not work in my case. The kernel module was build, but not installed in the right location. Go figure!? After some manual copying the module was loaded and the network interface up. Now it was time to learn about <i id="o65o">iwconfig</i> which I haven't used before. That was quite painless and 15 minutes later I was connected to my wireless network. Things became much easier from there. Not much one can do our-days on a computer which is not connected to the net. Installing <a href="http://wiki.slimdevices.com/index.cgi?SqueezeCenter" id="tn4c" title="squeezecenter">squeezecenter</a> was a breeze - just a question of adding the right source repository to <i id="uf5e">sources.list</i> and a simple <i id="j4or">apt-get install</i>. At the time I was quite frustrated about the time it took me to get things going, but in hindsight I am quite proud. Not only reminds me the experience now of my old study times, I also refreshed my memory regarding Linux, network configuration, module compilation, apt. Overall a good experience, but it will have to last for a while now again :)</p>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

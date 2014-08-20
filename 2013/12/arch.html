@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - finally on linux</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  finally on linux
+</h2>
+<span class="byline">2013-12-05 by fredrik</span>
+
+  <span class="tags">
+    
+      <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+    
+      <a class="one-tag" href="../../tags/linux.html" rel="tag"><span class="icon-tag"></span>linux</a>
+    
+      <a class="one-tag" href="../../tags/freedom.html" rel="tag"><span class="icon-tag"></span>freedom</a>
+    
+  </span>
+
+<p><a href="https://www.archlinux.org/" style="float:right"><img src="https://d11xdyzr0div58.cloudfront.net/static/logos/archlinux-logo-dark-90dpi.ebdee92a15b3.png" alt=""></a></p>
+
+<p>So I have finally made the step from proprietary software to the free world of linux. I have had to use Windows for many years at several customers but started to used MacOS for my personal things some 6 or 7 years ago. 3 laptops later and it is time to switch again. A gig involving Java is coming up and my almost 3 years old Air is not up for it. Coding Rails and Go has been no problem at all but I fear Java will need some serious powers. So this time I decided to go Linux. The one thing that really made me decide was the NSA findings earlier this year. It is now obvious that closed software can not be trusted to uphold my personal integrity. And it is not that I care that much for my own integrity. I have nothing to hide. It is a matter of principals. Read more about this in my <a href="../08/freedom.html">freedom rant from august</a>.</p>
+
+<p>So Linux it is then but what kind. It seems like the most popular distros are bloated and may give an experience akin to Mac or Windows but I wanted something different and the simplest thing that can possible work. So I got my eyes on <a href="https://www.archlinux.org/">Arch</a>. Two fellow hackers, <a href="https://twitter.com/dahankzter">Henrik Johansson</a> and <a href="https://twitter.com/jimlar">Jimmy Larsson</a> were already on the distro and as I read up on it I decided that this is what I want to use. From <a href="https://wiki.archlinux.org/index.php/The_Arch_Way">the arch way</a>:</p>
+
+<blockquote>
+  <p><strong>Arch Linux defines simplicity as without unnecessary additions, modifications, or complications, 
+and provides a lightweight UNIX-like base structure that allows an individual user to shape the 
+system according to their own needs. In short: an elegant, minimalist approach.</strong></p>
+
+  <p>A lightweight base structure built with high programming standards will tend to have lower 
+system resource demands. The base system is devoid of all clutter that may obscure important 
+parts of the system, or make access to them difficult or convoluted. It has a streamlined set of 
+succinctly commented, clean configuration files that are arranged for quick access and editing, 
+with no cumbersome graphical configuration tools to hide possibilities from the user. An Arch 
+Linux system is therefore readily configurable to the very last detail.</p>
+
+  <p><strong>Complexity without complication.</strong></p>
+</blockquote>
+
+<p>I like it.</p>
+
+<p>So I decided on Arch before even buying a piece of hardware. After looking around for a while I settled for a <a href="http://shop.lenovo.com/us/en/laptops/thinkpad/x-series/x230/">Lenovo ThinkPad X230</a>. It is small though not as small as the Air. It got the powers and comes with a built-in 3G modem (that I actually got working!). It has a nice keyboard and a track pad that is ok but not as good as the Airs. Keyboard backlight that I finally found out that you can turn on with Fn-Space. (I accidentally lit it when missing a Ctrl-Space sequence trying to complete something in Sublime.)</p>
+
+<p>It is not easy to get started with Linux and Arch is probably even harder. I followed the noob guide to get disks formatted and the distro installed. It took me a couple of hours and I learned a lot. </p>
+
+<p>Then the tricky decision to decide to have a desktop or not. I decided to go simple and avoided KDE and Gnome in favour of a plain window manager - openbox. It does windows and not much more. And when you start using it you soon realize that you don’t really need anything more when you are literate on the comman line. At the moment I have a plain openbox configuration and I run stalonetray for network and battery icons. I also have conky running in default mode with plans to learn how to configure it sometime in the future.</p>
+
+<p>I still have some things to tweek. Stuff like pdf viewing, file extension management and printing has not been resolved yet. But I haven’t really tried. I will need to get used to replacements for a couple of programs, omnigraffle and iphoto being the most important ones probably. Apart from that it is mostly the same software here as on Apple. I tried with Firefox for a while but it turned out Chromium is better at making all web pages look good. It is likely a font issue with firefox (helvetica) but that is for some other rainy day. </p>
+
+<p>That’s it for now. I will likely be back with more detailed tales of the linux user.</p>
+
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

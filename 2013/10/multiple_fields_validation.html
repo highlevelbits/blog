@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - multiple fields validation with javascript</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  multiple fields validation with javascript
+</h2>
+<span class="byline">2013-10-15 by fredrik</span>
+
+  <span class="tags">
+    
+      <a class="one-tag" href="../../tags/jquery.html" rel="tag"><span class="icon-tag"></span>jquery</a>
+    
+      <a class="one-tag" href="../../tags/javascript.html" rel="tag"><span class="icon-tag"></span>javascript</a>
+    
+      <a class="one-tag" href="../../tags/coding.html" rel="tag"><span class="icon-tag"></span>coding</a>
+    
+      <a class="one-tag" href="../../tags/web.html" rel="tag"><span class="icon-tag"></span>web</a>
+    
+  </span>
+
+<p>
+  I have encountered one particular kind of requirement several times now and made a couple of different implementations of it. This last implementation is generic and can be reused in several places. The task is to make a form submit button active only when all fields in a form validates. It helps the user to understand that they have entered something wrong without the roundtrip to a server. It should be combined with useful error messages next to the fields but I won't go in to that now.
+</p>
+<p>
+  In the form below there are 3 different inputs with different validation requirements and the submit button only activates when all of them are validated. There need to be something in the text area and the date and time fields should be on the format dddd-dd-dd and dd:dd and only then will the button become activated.
+</p>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script>
+  function buttonEnabling(buttonSelector, isEnabled){
+    if(isEnabled) {
+      $(buttonSelector).removeAttr("disabled");
+    } else {
+      $(buttonSelector).attr("disabled", "disabled")
+    }
+  }
+  
+  function validateFields(selectorsWithFunctions, buttonSelector) {
+    var isValid = true
+    for (var i = selectorsWithFunctions.length - 1; i >= 0; i--) {
+      var selector = selectorsWithFunctions[i][0];
+      var func = selectorsWithFunctions[i][1];
+  
+      if( !func(selector) ) {
+        isValid = false;
+        break;
+      }
+    };
+    buttonEnabling(buttonSelector, isValid);
+  }
+  
+  function validateTime(selector) {
+    var fieldValue = $(selector).val();
+    return /^\d\d:\d\d$/.test(fieldValue.trim());
+  }
+  
+  function validateDate(selector) {
+    var fieldValue = $(selector).val();
+    return /^\d\d\d\d-\d\d-\d\d$/.test(fieldValue.trim());
+  }
+  
+  function validatePresence(selector) {
+    var fieldValue = $(selector).val();
+    return fieldValue.length > 0
+  }
+  
+  function runFieldValidations() {
+    validators = [
+      ["#some-text", validatePresence],
+      ["#date", validateDate],
+      ["#time", validateTime]
+    ];
+    validateFields(validators, "#submit-button")
+  }
+  
+  $(document).ready(function(){
+    $("#some-text").keyup(runFieldValidations);
+    $("#date").keyup(runFieldValidations);
+    $("#time").keyup(runFieldValidations);
+    runFieldValidations();
+  });
+</script><p>
+  </p>
+<form>
+    <div class="form-row">
+      <div class="label">
+        <label>
+          Some mandatory text
+        </label>
+      </div>
+      <textarea id="some-text"></textarea>
+</div>
+    <div class="form-row">
+      <div class="label">
+        <label>
+          A date (yyyy-mm-dd)
+        </label>
+      </div>
+      <input id="date" type="text">
+</div>
+    <div class="form-row">
+      <div class="label">
+        <label>
+          A time (hh:mm)
+        </label>
+      </div>
+      <input id="time" type="text">
+</div>
+    <div class="form-row">
+      <input disabled id="submit-button" type="submit">
+</div>
+  </form>
+
+<p>
+  Lets go top down through the code that does this. I am using jquery in the example but it shouldn't be a problem doing the same thing with vanilla javascript or your framework of choice. First - set up event listeners on keyboard events triggered in our 3 widgets. (Widgets! Sound of the 90s!) For this the ready function of jquery is convenient:
+</p>
+<pre><code>$(document).ready(function(){
+  $("#some-text").keyup(runFieldValidations);
+  $("#date").keyup(runFieldValidations);
+  $("#time").keyup(runFieldValidations);
+  runFieldValidations();
+}</code></pre>
+<p>
+  Three widgets means three event bindings to the function
+  <code>runFieldValidations</code>
+  that does the actual validations. Finally it is called once to make sure the button is in the correct state when entering the document. If it has been disabled to start with we can still end up with a bit of data entered by the browser from a previous session. The runFieldValidations function takes care of setting up the validation used for each widget.
+</p>
+<pre><code>  function runFieldValidations() {
+    validators = [
+      ["#some-text", validatePresence],
+      ["#date", validateDate],
+      ["#time", validateTime]
+    ];
+    validateFields(validators, "#submit-button")
+  }</code></pre>
+<p>
+  It calls a generic function called
+  <code>validateFields</code>
+  that accepts an array of tuples each of which is a css selector (pointing to the widget we want to validate) and a function that should be called to validate it. As its second argument it accepts a css selector for the button that is to be (dis|en)abled. It loops over the tuples and calls the function to decide if the validation passes or not. As soon as something doesn't validate it breaks out of the loops and disables the button. In my first version button enabling was inline in the function but I decided that breaking it out would increase readability. The button enabling itself is as easy as setting or removing the attribute disabled.
+</p>
+<pre><code>function buttonEnabling(buttonSelector, isEnabled){
+  if(isEnabled) {
+    $(buttonSelector).removeAttr("disabled");
+  } else {
+    $(buttonSelector).attr("disabled", "disabled")
+  }
+}
+
+function validateFields(selectorsWithFunctions, buttonSelector) {
+  var isValid = true
+  for (var i = selectorsWithFunctions.length - 1; i &gt;= 0; i--) {
+    var selector = selectorsWithFunctions[i][0];
+    var func = selectorsWithFunctions[i][1];
+
+    if( !func(selector) ) {
+      isValid = false;
+      break;
+    }
+  };
+  buttonEnabling(buttonSelector, isValid);
+}</code></pre>
+<p>
+  This is the engine of the solution. Now the only thing left is to show the functions that does the actual validation. They accept a selector and does some easy checking on the value. In the date and time cases this is done with regular expressions. They look like this:
+</p>
+<pre><code>function validateTime(selector) {
+  var fieldValue = $(selector).val();
+  return /^\d\d:\d\d$/.test(fieldValue.trim());
+}
+
+function validateDate(selector) {
+  var fieldValue = $(selector).val();
+  return /^\d\d\d\d-\d\d-\d\d$/.test(fieldValue.trim());
+}
+
+function validatePresence(selector) {
+  var fieldValue = $(selector).val();
+  return fieldValue.length &gt; 0
+}</code></pre>
+<p>
+  I am actually getting to like Javascript. It is rather easy to create small lightweight pieces of code. In this example we send around pointers to functions (a language feature that made this blog post possible). I think many script developers lack a bit in discipline and end up with high complexity and low readability. But this is clearly not the fault of javascript. As always - with higher levels of freedom comes a greater burden of responsibility.
+</p>
+
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

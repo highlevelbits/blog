@@ -1,0 +1,262 @@
+/* inspiration from the colorpicker: http://colorschemedesigner.com/#5C31TqVqV---- */
+
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: Volkhov, 'Times New Roman', sans-serif;
+}
+
+body {
+  background:url(bits.png);
+  font-family: Volkhov, 'Times New Roman', sans-serif;
+}
+
+p {
+  margin-top: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  color: #15827e;
+}
+
+a:hover {
+  color: #d52226;
+}
+
+pre, code {
+  font-family: Courier New;
+  font-size: 15px;
+  white-space: pre-wrap;
+}
+
+pre {
+  border-radius: 5px;
+  padding: 8px;
+  margin-left: 40px;
+  margin-bottom: 10px;
+  margin-right: 40px;
+  border: dashed 2px lightgray;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+blockquote {
+  font-style: italic;
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+img {
+  border: solid 2px;
+  margin: 10px;
+  display: block;
+  max-width: 97%;
+}
+
+.menu {
+  padding-bottom: 1em;
+  text-align: center;
+  color: #264140;
+}
+
+.main {
+  background: white;
+  color: #400002;
+
+  width: 90%;
+  max-width: 1000px;
+  margin: 50px auto;
+
+  padding: 20px;
+
+  border-radius: 40px;
+}
+
+.main h1 {
+  font-family: Iceland, sans-serif;
+  font-size: 30px;
+  font-weight: normal;
+
+  line-height: 40px;
+
+  letter-spacing: -1px;
+}
+
+.content {
+  width: 100%;
+}
+
+.content h2, .content h2 a {
+  font-size: 30px;
+}
+
+.content h3 {
+  margin-top: 20px;
+}
+
+.article-header {
+  margin-bottom: 0.25em;
+  margin-top: 2em;
+}
+
+.header h1 {
+  font-size: 70px;
+  color: #264140;
+  margin-bottom: 20px;
+}
+
+.main ul, .main ol {
+  margin-top: 0;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.footer {
+  border-top: dashed;
+  border-top-color: #264140;
+  margin-top: 20px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: smaller;
+  color: #264140;
+}
+
+.old-comments {
+  border-top: dashed;
+  border-top-color: #264140;
+  margin-top: 20px;
+  padding-top: 5px;
+}
+
+.start-page .old-comments {
+  display: none;
+}
+
+.old-comments h2 {
+  font-size: 25px;
+}
+
+.one-old-comment {
+  margin-bottom: 20px;
+}
+
+.comment-date {
+  color: #264140;
+  margin-right: 10px;
+}
+
+.comment-body, p {
+  font-family: Volkhov, 'Times New Roman', sans-serif;
+}
+
+.comment-body {
+  font-size: smaller;
+  margin-top: 5px;
+}
+
+.byline {
+  font-size: 22px;
+}
+
+.archive li{
+  list-style-type: none;
+}
+
+.tags {
+  margin-bottom: 5px;
+  float: right;
+}
+
+.one-tag {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+
+.tags a:link,
+.tags a:visited {
+  color: #400002;
+}
+
+.one-tag a:hover {
+  color: white;
+}
+
+.dashed-top-border {
+  border-top: dashed 2px #400002;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+.twitter-window {
+  float: right;
+}
+
+.start-page-section, .archive {
+  border-top: dashed 2px lightgray;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.archive input[type=checkbox] ~ .uncollapsed {
+  display:none;
+}
+
+.archive input[type=checkbox] ~ .collapsed {
+  display:block;
+}
+
+.archive input[type=checkbox] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.archive input[type=checkbox]:checked ~ .uncollapsed {
+  display:block;
+}
+
+.archive input[type=checkbox]:checked ~ .collapsed {
+  display:none;
+}
+
+.archive .one-year {
+  margin-top: 20px;
+}
+
+.outro {
+  color: #400002;
+  text-align: center;
+  font-size: smaller;
+}
+
+.intro {
+  margin: 30px;
+  text-align: center;
+}
+
+.article-entry {
+  border-top: solid 1px #f2f2f2;
+  padding: 3px;
+}
+
+.article-entry .tags {
+  font-size: smaller;
+  float: none;
+}
+
+.article-entry .tags a:link,
+.article-entry .tags a:visited {
+  color: #b8cfce;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - jfokus 2010 day 1 summary</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <h1>h1ghlevelb1ts</h1>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  jfokus 2010 day 1 summary
+</h2>
+<span class="byline">2010-01-27 by fredrik</span>
+
+  <span class="tags">
+    
+      <a class="one-tag" href="../../tags/jfokus.html" rel="tag"><span class="icon-tag"></span>jfokus</a>
+    
+      <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+    
+      <a class="one-tag" href="../../tags/conference.html" rel="tag"><span class="icon-tag"></span>conference</a>
+    
+  </span>
+
+<p>It is hard to top the exotic blog posts from my argentinian coblogger. Nevertheless it may make sense to write up a summary of jfokus - the yearly Java conference in Stockholm. Yet again the venue is Filmstaden Sergel and I won't report anymore on this as compared to <a href="http://www.highlevelbits.com/2009/01/jfokus-summary.html">last years report</a>.</p>
+<div>
+<br>The day started badly with a 40 minute delay on the commuter trains from the <a href="http://en.wikipedia.org/wiki/Sollentuna_Municipality">northern suburbs</a>. This made me late to the first tutorial. The first day of two is tutorial day - one before and one after lunch. 4 to choose from. I started with a nice talk on Good Object-Oriented Development by Kevlin Henney. Kevlin went through a lot of basic stuff related to object oriented development. Nothing new really but it is good to get this kind of confirmation know and then. He made some nice examples on encapsulation and showed us some real life code that was just not very good. I see similar stuff often in the systems I work with. One reason for this kind of code is that many developers learn a set of have-tos that they stick to. Some of them should probably be considered harmful. One example: always provide a default constructor. This may be useful if there is such thing as a default state for instances of the class but in many cases it results in objects with undefined state and leads to error prone code. Later on Kevlin removed 'get' from some code with a bunch of getters and I felt like FINALLY. I have never understood the point with the <a href="http://java.sun.com/javase/technologies/desktop/javabeans/index.jsp">JavaBeans</a> standard (ok - tooling but what else?) getters and setters really suck. (Ruby has a much nicer way to go about it. No big surprise there.....) He also talked for a while about unit testing and a feeling I have had lately that writing tests per method is darn wrong was firmly confirmed. It is much better to name methods after what they test. A method is often tested with several test cases while other simpler methods can be tested indirectly without a dedicated test case. The readability of tests is often low and I know I have failed with this on several occasions but it is not hard to argue that test code should be as readable as the main code. It will all live for a while and it will all be maintained so it should all be in as good shape as possible.<br><br>After lunch Anders Hammar delved into the depths of maven. Not the funniest subject but since I have some maven skills and don't work with it currently I felt that it was the best choice of the afternoon. (A kind of attempt to refresh a fading skill set.) Anders mixed slides and live demonstrations which is a very nice way to go about it. He started with lots of examples of the eclipse maven plugin m2eclipse. Looks really nice and I have tried it on a side project also. I didn't realize that m2eclipse runs on maven 3 but apparently it is compatible with maven 2 so you can use m2eclipse and maven 2 on the command line with the same configuration files. The part on dependency management didn't add anything new. More interesting then was the next part on life cycle customization. This is perhaps the area where maven has some serious problems. There are 3 built in lifecycles: default, clean and site. They are built up from phases where each phase has its default plugin that is executed. A problem with this is that this lifecycle view of a system build doesn't always fit all systems. If your plugin doesn't fit nicely into the phases you can run into all sorts of problems. A possiple way out of this problem is to <a href="http://www.sonatype.com/books/mvnref-book/reference/writing-plugins-sect-plugins-lifecycle.html">create your own lifecycle</a>. I am not sure whether this is good or not. Maybe Hardy knows more about it? The tutorial was labelled "advanced" but to me it was closer to basics. My needs for repetition of forgotten knowledge were thus satisfactorily filled!</div>
+<div> </div>
+<div>The day ended nicely with dinner at texas longhorn kungsholmen and then some more beverages at bishops arms centralen. Expect a second report after tomorrow!</div>
+<div> </div>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2010-01-27</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Nice summary. Wished I were at the maven tutorial. I would have had a few questions ;-)<br><br>Regarding Maven 3, I am using it for a while now. It seems to be fully backward compatible to Maven 2. I haven't tried any of the new features yet though. <br><br>Defining your own life cycle is an option for a long time, for example the docbook plugin goes that way. The problem is that it is just too hard.  Forcing all projects into a square box is just not working and that's somehow the problem with Maven as it stands.</div>
+</div>
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>
