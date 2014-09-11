@@ -2,13 +2,40 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2014-08-19T22:00:00Z</updated>
+  <updated>2014-09-10T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-09-11:/2014/09/decentralize.html</id>
+    <title type="html">decentralize.js - shaping the internet of tomorrow</title>
+    <published>2014-09-10T22:00:00Z</published>
+    <updated>2014-09-10T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/09/decentralize.html"/>
+    <content type="html">&lt;p&gt;&lt;img src="https://farm3.staticflickr.com/2871/8810637962_96e44d2c68_k_d.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;So here I am finding myself in between gigs in september. What to do? Of course, the main javascript event (jsconf.eu) has been sold out for ages. But it turns out that there is a &lt;a href="http://jsfest.berlin/"&gt;javascript fest&lt;/a&gt; going on the entire week as a precursor to the main event. So I swiftly booked myself on &lt;a href="http://lanyrd.com/2014/decentralizejs/"&gt;decentralize.js&lt;/a&gt; and &lt;a href="http://rejectjs.org/"&gt;reject.js&lt;/a&gt; and also made sure that I get a couple of days to &lt;em&gt;do&lt;/em&gt; Berlin. Here are some thoughts from decentralize.js. There may or may not appear a similar post about reject.js…..&lt;/p&gt;
+
+&lt;p&gt;When thinking about the current state of the web and also about where we are headed - this may be the most important event anywhere at the moment. The trend we have been seeing the last 15 years when we willingly give our own data away to for-profit companies to whatever they please with is distressing to say the least. I &lt;a href="/2013/08/freedom.html"&gt;mumbled about&lt;/a&gt; this a year ago.&lt;/p&gt;
+
+&lt;p&gt;Some 20 devs turned up at the really cool &lt;a href="http://www.betahaus.com/berlin/"&gt;betahaus cafe&lt;/a&gt;. Some getaways from this event:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;webrtc removes the need for a server when doing p2p real time interaction in the browser. Useful for any streaming between clients.&lt;/li&gt;
+  &lt;li&gt;the eXtensible Messaging and Presence Protocol (XMPP) has been around for ages and it is really cool. Albeit XML based it has all the things needed to decentralize micro messaging. Actually many proprietary solutions are based on XMPP but are not advertising it - for apparent reasons. It certainly looks possible to have a email like infrastructure for this if major &lt;em&gt;private&lt;/em&gt; players (like facebook, twitter and skype) would make up their minds. Shame on you….&lt;/li&gt;
+  &lt;li&gt;the &lt;a href="https://unhosted.org/"&gt;unhosted&lt;/a&gt; stuff is moving along. The problem of decentralizing storage is addressed with the &lt;a href="http://remotestorage.io/"&gt;remoteStorage protocol&lt;/a&gt;. There is also a messaging service thing called &lt;a href="http://sockethub.org/"&gt;sockethub&lt;/a&gt; that aims to make it easy to send messages to any platform out there. It takes a practical approach to the problem aiming for something that can be useful today. It feels a bit off to have a hub for doing this. It is probably needed at the moment but I feel that this kind of thing should be a part of the internet infrastructure of tomorrow. Sending a message should just be a matter of addressing. Just like email.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These things are increasingly important if we are ever are gonna get a nice open and free internet. I am really happy that people are working on this and a bit sad that I haven’t been able to contribute in anyway myself.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;
+Moroccan &lt;a href="https://secure.flickr.com/photos/39997856@N03/8810637962"&gt;remote living&lt;/a&gt; photo by &lt;a href="https://secure.flickr.com/photos/39997856@N03/"&gt;mariusz kluzniak&lt;/a&gt;.
+&lt;/small&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-08-20:/2014/08/hero-driven-development.html</id>
     <title type="html">Hero Driven Development - and what you can do about it</title>
@@ -124,123 +151,6 @@ sudo systemctl enable mysqld
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;So now my database starts without wanting authentication for connections. This is practical in a local development environment but should of course never be used in production.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-06-11:/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html</id>
-    <title type="html">Multiple unicorn servers with SSL on nginx</title>
-    <published>2014-06-10T22:00:00Z</published>
-    <updated>2014-06-10T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html"/>
-    <content type="html">&lt;p&gt;A while ago I set up my own &lt;a href="https://www.archlinux.org/"&gt;arch linux&lt;/a&gt; server at &lt;a href="https://www.digitalocean.com/"&gt;digital ocean&lt;/a&gt;. It was some work and I learned a lot in the process. At the moment I have three &lt;a href="http://unicorn.bogomips.org/"&gt;unicorn&lt;/a&gt;-based ruby things running behind &lt;a href="http://nginx.org/"&gt;nginx&lt;/a&gt; on the server. One is built with &lt;a href="http://rubyonrails.org/"&gt;rails&lt;/a&gt; and the other two with &lt;a href="http://www.sinatrarb.com/"&gt;sinatra&lt;/a&gt;. The one with rails is SSL-only. The work of setting up nginx was pretty straightforward but still I had to understand things from several sources so here is a rundown of how I accomplished this.&lt;/p&gt;
-
-&lt;p&gt;nginx is easy to configure. Compared with &lt;a href="https://httpd.apache.org/"&gt;apache&lt;/a&gt; it is a breeze. The configuration is typically placed in &lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt;. The syntax is basically:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;key&amp;gt; {
-    &amp;lt;key&amp;gt; &amp;lt;value&amp;gt;;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And there can be nested blocks inside another block. When configuring a server it seems to me that the freedom about how to nest things is rather high as long as it makes sense to the configuration.&lt;/p&gt;
-
-&lt;p&gt;My server is defined inside a &lt;code&gt;http&lt;/code&gt; block that contains all the domains I want to configure for the server. It then got some sensible defaults that I copied from somewhere:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;http {
-    include       mime.types;
-    default_type  application/octet-stream;
-
-    ssl_session_cache builtin:1000 shared:SSL:10m;
-
-    sendfile        on;
-    tcp_nopush     on;
-
-    keepalive_timeout  120;
-
-    gzip  on;
-    gzip_vary on;
-    gzip_min_length 500;
-
-    gzip_disable "MSIE [1-6]\.(?!.*SV1)";
-    gzip_types text/plain text/xml text/css
-       text/comma-separated-values
-       text/javascript application/x-javascript
-       application/atom+xml image/x-icon;
-
-    ....
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As you can see this is some reasonable stuff that I want to have for all my domains. But it is not the focus of this post so you’ll have to read up on it elsewhere. Then I configured the upstream unicorn connection for each domain like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;http {
-    ....
-    upstream oneofmydomains_unicorn_server {
-        server unix:/var/rack/oneofmydomains/tmp/sockets/unicorn.sock
-    }
-    ....
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;oneofmydomains_unicorn_server&lt;/code&gt; is just a name that will be used later to bind a domain to this unicorn socket. The file name coming after &lt;code&gt;unix:&lt;/code&gt; should be the one in your unicorn config for that particular server.&lt;/p&gt;
-
-&lt;p&gt;Then comes a &lt;code&gt;server&lt;/code&gt; section for each domain. Lets start with the plain HTTP variant:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;http {
-    ....
-    server {
-        listen 80;
-        server_name .oneofmydomains.com;
-
-        location / {
-            root /var/rack/oneofmydomains/public;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header Host $http_host;
-            proxy_redirect off;
-            proxy_pass http://oneofmydomains_unicorn_server;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This section starts with the port to listen on this should be 80 in most cases. Then comes the server name describing what domain requests to listen to for this server. This is the part that makes it possible to have several domains running on the same nginx instance. After that another block called &lt;code&gt;location&lt;/code&gt;. It starts with where to find static content. So for each request it will look for files in this folder and serving them - if none is found it will move on to the &lt;code&gt;proxy_pass&lt;/code&gt; unicorn server that should match the name given in the upstream section above. The other &lt;code&gt;proxy_*&lt;/code&gt; directives is needed to give the unicorn server a useful environment.&lt;/p&gt;
-
-&lt;p&gt;So onwards to SSL. One might think that here is where you put in a &lt;code&gt;https&lt;/code&gt; section instead of &lt;code&gt;http&lt;/code&gt; and there is such a construct. I didn’t try it since I got it to work in another way. There are probably several ways to do this.&lt;/p&gt;
-
-&lt;p&gt;To enable SSL you need to get a certificate. If your site is serious you want to buy it from a trusted signatory but if you don’t care about users getting warnings about untrusted certificates you can generate one yourself.&lt;/p&gt;
-
-&lt;p&gt;I used a variant of the server section to setup SSL. Like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;http {
-    ....
-    server {
-        listen 443;
-        server_name .oneofmydomains.com;
-
-        ssl on;
-
-        ssl_certificate     /etc/nginx/www.oneofmydomains.com.cert;
-        ssl_certificate_key /etc/nginx/www.oneofmydomains.com.key;
-        ssl_protocols        SSLv3 TLSv1 TLSv1.1 TLSv1.2;       # default on newer versions
-        ssl_ciphers          ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-RC4-SHA:ECDHE-RSA-AES128-SHA:RC4-SHA:RC4-MD5:ECDHE-RSA-AES256-SHA:AES256-SHA:ECDHE-RSA-DES-CBC3-SHA:DES-CBC3-SHA:AES128-SHA;
-        ssl_prefer_server_ciphers on;
-
-        root /var/rack/oneofmydomains/public;
-
-        location / {
-            proxy_set_header Host $http_host;
-            proxy_set_header X-FORWARDED-PROTO https;
-            # pass to the upstream unicorn server mentioned above
-            proxy_pass http://oneofmydomains_unicorn_server;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As you can see most of the server section is the same. The default port for SSL is 443 so if you want your users to be able to use https://oneofmydomains.com without a port number - this is the way to go. (Just like 80 in the case of normal http.)&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;ssl&lt;/code&gt; is &lt;code&gt;on&lt;/code&gt; and the certificate and its key is specified. Then there are lists of protocols and ciphers. This is used when a calling client handshakes with the server. It is just to decide a protocol and cipher to use for the interaction. If there is no match you may have a problem…. The location part is a bit different also with a somewhat different proxy header setup. &lt;/p&gt;
-
-&lt;p&gt;And there you go. Once &lt;code&gt;nginx.conf&lt;/code&gt; is edited you need to restart or reload nginx in order to make the changes effectual. I have enjoyed working with nginx. It is not so hard to understand what to do and the number of pitfalls are kept at a minimum.&lt;/p&gt;
 </content>
   </entry>
 </feed>
