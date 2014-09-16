@@ -2,13 +2,36 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2014-09-10T22:00:00Z</updated>
+  <updated>2014-09-15T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-09-16:/2014/09/berlin.html</id>
+    <title type="html">Berlin calling</title>
+    <published>2014-09-15T22:00:00Z</published>
+    <updated>2014-09-15T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/09/berlin.html"/>
+    <content type="html">&lt;p&gt;So I have spent a couple of days in Berlin. Due to its sad history the feeling I get in Berlin is that of a broken city. The former central parts that has been revitalized feels artificial. I am looking at you, Potsdamer Platz. The city seems to have many centers rather than one. The city isn’t one yet. But it is working hard to get there. Much construction. But also lost areas that no one will care for in a very long time. It is a city of progress and the future it belongs to. Contrary to cities like Paris and Stockholm it can still shape its destiny. This is probably why it has such traction among startups. So I like many things about Berlin and since it is election times in Sweden I give you a list of things that we should pick up back in Stockholm. Most of it concerning public transportation.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;public transportation can be cheap. A one day ticket is €6.70 - a bit more than a long distance single ticket in Stockholm.&lt;/li&gt;
+  &lt;li&gt;public transportation does not need to have barriers. I guess this means that more people travel for free but on other hand it feels very inclusive. Like public transportation is part of the city.&lt;/li&gt;
+  &lt;li&gt;there can be &lt;em&gt;fika&lt;/em&gt; in the subway.&lt;/li&gt;
+  &lt;li&gt;it is possible to bring bicycles in subway wagons smaller than stockholm ones.&lt;/li&gt;
+  &lt;li&gt;there can be enough public transportation. Not once was a train overfull despite traveling during rush hours. &lt;/li&gt;
+  &lt;li&gt;there can be different kinds of street food available for around €3-5. But it probably can’t in Sweden because taxes…&lt;/li&gt;
+  &lt;li&gt;a tasty beer typically lets you back some 3 or 4 euros. That is about half… Probably taxes in the way again…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’ll leave you with &lt;a href="https://secure.flickr.com/photos/carst/4177229/"&gt;this nice shot&lt;/a&gt; of the berliner subway by &lt;a href="https://secure.flickr.com/photos/carst/"&gt;Carst van der Molen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://farm1.staticflickr.com/3/4177229_5f20534f33_b.jpg" alt="" /&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-09-11:/2014/09/decentralize.html</id>
     <title type="html">decentralize.js - shaping the internet of tomorrow</title>
@@ -131,26 +154,6 @@ Mighty &lt;a href="https://www.flickr.com/photos/mugley/384464432"&gt;dragon pho
 &lt;p&gt;&lt;img src="https://farm4.staticflickr.com/3809/11760123293_30c54230d8_b.jpg" alt="" /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="https://www.flickr.com/photos/47222633@N05/11760123293"&gt;Photo&lt;/a&gt; by flickr user &lt;a href="https://www.flickr.com/photos/47222633@N05/"&gt;Avi Solomon&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-06-25:/2014/06/mariadb-skip-grant-tables-with-systemctl.html</id>
-    <title type="html">How to make systemctl on arch linux start mariadb (mysql) with the --skip-grant-tables flag</title>
-    <published>2014-06-24T22:00:00Z</published>
-    <updated>2014-06-24T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/06/mariadb-skip-grant-tables-with-systemctl.html"/>
-    <content type="html">&lt;p&gt;I have had the opportunity to familiarize myself with mariadb lately. Mariadb is an open source clone of the popular mysql relational database - now owned by oracle. It was very easy to get up and running on arch linux. Just a matter of:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S mariadb
-sudo systemctl enable mysqld
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and it was up and running. However after a while I was unable to log on with the command line tool. I learned how to start the database with the &lt;code&gt;--skip-grant-tables&lt;/code&gt; and found out that the &lt;code&gt;user&lt;/code&gt; table mariadb uses for authentication was empty. Since my use of mariadb is only temporary I decided to not care so much about why this happen. Instead I decided to make sure that the database always starts with the mentioned flag. To do this you need to find the files &lt;code&gt;systemctl&lt;/code&gt; uses for managing its tasks. They (some of them at least) are located in &lt;code&gt;/usr/lib/systemd/system&lt;/code&gt;. There seems to be one file for each thing &lt;code&gt;systemctl&lt;/code&gt; is managing. I found &lt;code&gt;mysqld.service&lt;/code&gt; and added the &lt;code&gt;--skip-grant-tables&lt;/code&gt; flag to the &lt;code&gt;ExecStart&lt;/code&gt; key. Like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ExecStart=/usr/bin/mysqld --pid-file=/run/mysqld/mysqld.pid --skip-grant-tables 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;So now my database starts without wanting authentication for connections. This is practical in a local development environment but should of course never be used in production.&lt;/p&gt;
 </content>
   </entry>
 </feed>
