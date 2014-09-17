@@ -2,13 +2,38 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2014-09-15T22:00:00Z</updated>
+  <updated>2014-09-16T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-09-17:/2014/09/fitting-the-role.html</id>
+    <title type="html">Do I fit the role or does the role fit me?</title>
+    <published>2014-09-16T22:00:00Z</published>
+    <updated>2014-09-16T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/09/fitting-the-role.html"/>
+    <content type="html">&lt;p&gt;I got a request for recruitment by email. And as usual the recruiter has determined that I fit a certain role very well. In this case and as always there are no consideration whether the role fits me. Here is an excerpt from the mail conversation:&lt;/p&gt;
+
+&lt;blockquote style="font-style: normal;"&gt;
+&lt;p style="border-left: solid; padding-left: 3px; font-family: Courier New"&gt;
+I believe that your profile matches the requirements for this role. And
+I´am contacting you to hear if this role is consistent with your
+background, and if so, are you interested to be presented to my client?
+&lt;/p&gt;
+
+&lt;p style="font-family: Courier New"&gt;
+It is indeed true that my profile matches this role. Also important to
+figure out is if the role matches me. (A thing recruiters seldom
+consider.) And in this case (as with a large number of similar requests
+over the years) it does not. Going from freelancing to being an employed
+gun for hire is not tempting at all.
+&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-09-16:/2014/09/berlin.html</id>
     <title type="html">Berlin calling</title>
@@ -135,25 +160,6 @@ Mighty &lt;a href="https://www.flickr.com/photos/mugley/384464432"&gt;dragon pho
 
   &lt;p&gt;“It could be,” the man says, “but you are addicted to complexity”&lt;/p&gt;
 &lt;/blockquote&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-07-21:/2014/07/visions-about-photography.html</id>
-    <title type="html">1945 is calling about photography</title>
-    <published>2014-07-20T22:00:00Z</published>
-    <updated>2014-07-20T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/07/visions-about-photography.html"/>
-    <content type="html">&lt;p&gt;This is a small part of the paper &lt;a href="http://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/?single_page=true"&gt;&lt;em&gt;As We May Think&lt;/em&gt; by Vannevar Bush&lt;/a&gt;. Written in 1945 it hinted at hypertext (why I read it) but also this little vision about photography.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The camera hound of the future wears on his forehead a lump a little larger than a walnut. It takes pictures 3 millimeters square, later to be projected or enlarged, which after all involves only a factor of 10 beyond present practice. The lens is of universal focus, down to any distance accommodated by the unaided eye, simply because it is of short focal length. There is a built-in photocell on the walnut such as we now have on at least one camera, which automatically adjusts exposure for a wide range of illumination. There is film in the walnut for a hundred exposures, and the spring for operating its shutter and shifting its film is wound once for all when the film clip is inserted. It produces its result in full color. It may well be stereoscopic, and record with two spaced glass eyes, for striking improvements in stereoscopic technique are just around the corner.&lt;/p&gt;
-
-  &lt;p&gt;The cord which trips its shutter may reach down a man’s sleeve within easy reach of his fingers. A quick squeeze, and the picture is taken. On a pair of ordinary glasses is a square of fine lines near the top of one lens, where it is out of the way of ordinary vision. When an object appears in that square, it is lined up for its picture. As the scientist of the future moves about the laboratory or the field, every time he looks at something worthy of the record, he trips the shutter and in it goes, without even an audible click.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src="https://farm4.staticflickr.com/3809/11760123293_30c54230d8_b.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://www.flickr.com/photos/47222633@N05/11760123293"&gt;Photo&lt;/a&gt; by flickr user &lt;a href="https://www.flickr.com/photos/47222633@N05/"&gt;Avi Solomon&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>
