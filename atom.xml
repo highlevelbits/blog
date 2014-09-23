@@ -30,22 +30,22 @@
     <published>2014-09-16T22:00:00Z</published>
     <updated>2014-09-16T22:00:00Z</updated>
     <link rel="alternate" href="http://www.highlevelbits.com/2014/09/fitting-the-role.html"/>
-    <content type="html">&lt;p&gt;I got a request for recruitment by email. And as usual the recruiter has determined that I fit a certain role very well. In this case and as always there are no consideration whether the role fits me. Here is an excerpt from the mail conversation:&lt;/p&gt;
+    <content type="html">&lt;p&gt;I got a request for recruitment by email. And as usual the recruiter has determined that I fit a certain role very well. In this case and as always there are no consideration whether the role fits me. The recruiter asked me:&lt;/p&gt;
 
-&lt;blockquote style="font-style: normal;"&gt;
-&lt;p style="border-left: solid; padding-left: 3px; font-family: Courier New"&gt;
-I believe that your profile matches the requirements for this role. And
+&lt;blockquote&gt;
+  &lt;p&gt;I believe that your profile matches the requirements for this role. And
 I´am contacting you to hear if this role is consistent with your
-background, and if so, are you interested to be presented to my client?
-&lt;/p&gt;
+background, and if so, are you interested to be presented to my client?&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p style="font-family: Courier New"&gt;
-It is indeed true that my profile matches this role. Also important to
+&lt;p&gt;and my response:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It is indeed true that my profile matches this role. Also important to
 figure out is if the role matches me. (A thing recruiters seldom
 consider.) And in this case (as with a large number of similar requests
 over the years) it does not. Going from freelancing to being an employed
-gun for hire is not tempting at all.
-&lt;/p&gt;
+gun for hire is not tempting at all.&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
   </entry>
