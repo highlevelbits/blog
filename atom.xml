@@ -2,13 +2,28 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2014-09-16T22:00:00Z</updated>
+  <updated>2014-09-22T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-09-23:/2014/09/mistakes.html</id>
+    <title type="html">The benefit of mistakes</title>
+    <published>2014-09-22T22:00:00Z</published>
+    <updated>2014-09-22T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/09/mistakes.html"/>
+    <content type="html">&lt;p&gt;I stumbled upon a great post over at &lt;a href="http://www.farnamstreetblog.com/"&gt;Farnam Street&lt;/a&gt; pointing out the importance of making mistakes. Nothing new here but really good to get a reminder now and then:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Just because we’ve lost our way doesn’t mean that we are lost forever. In the end, it’s not the failures that define us so much as how we respond.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Read more along these lines in &lt;a href="http://www.farnamstreetblog.com/2014/09/mistakes/"&gt;the post&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-09-17:/2014/09/fitting-the-role.html</id>
     <title type="html">Do I fit the role or does the role fit me?</title>
@@ -139,27 +154,6 @@ Moroccan &lt;a href="https://secure.flickr.com/photos/39997856@N03/8810637962"&g
 &lt;p&gt;&lt;small&gt;
 Mighty &lt;a href="https://www.flickr.com/photos/mugley/384464432"&gt;dragon photo&lt;/a&gt; by &lt;a href="https://www.flickr.com/photos/mugley/"&gt;Jes&lt;/a&gt;.
 &lt;/small&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-07-22:/2014/07/addicted-to-complexity.html</id>
-    <title type="html">you are addicted to complexity</title>
-    <published>2014-07-21T22:00:00Z</published>
-    <updated>2014-07-21T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/07/addicted-to-complexity.html"/>
-    <content type="html">&lt;p&gt;I keep coming back to this quote from William Gibsons &lt;a href="https://en.wikipedia.org/wiki/All_Tomorrow%27s_Parties_%28novel%29"&gt;&lt;em&gt;All tomorrow’s parties&lt;/em&gt;&lt;/a&gt; again and again. It sums up life neatly.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;“I do not deal in outcomes.”&lt;/p&gt;
-
-  &lt;p&gt;“But you do,” the voice says. “You’ve dealt a few for me, after all. You become an outcome.”&lt;/p&gt;
-
-  &lt;p&gt;“No,” the man says, “I simply discover that place where I am supposed to be.”&lt;/p&gt;
-
-  &lt;p&gt;“You make it sound so simple. I wish that it were that simple for me.”&lt;/p&gt;
-
-  &lt;p&gt;“It could be,” the man says, “but you are addicted to complexity”&lt;/p&gt;
-&lt;/blockquote&gt;
 </content>
   </entry>
 </feed>
