@@ -3,7 +3,7 @@ title: "Berlin calling"
 kind: article
 created_at: 2014-09-16
 author: fredrik
-tags: berlin, stockholm, progress, elections
+tags: berlin, stockholm, progress, elections, traveling
 ---
 
 So I have spent a couple of days in Berlin. Due to its sad history the feeling I get in Berlin is that of a broken city. The former central parts that has been revitalized feels artificial. I am looking at you, Potsdamer Platz. The city seems to have many centers rather than one. The city isn't one yet. But it is working hard to get there. Much construction. But also lost areas that no one will care for in a very long time. It is a city of progress and the future it belongs to. Contrary to cities like Paris and Stockholm it can still shape its destiny. This is probably why it has such traction among startups. So I like many things about Berlin and since it is election times in Sweden I give you a list of things that we should pick up back in Stockholm. Most of it concerning public transportation.
