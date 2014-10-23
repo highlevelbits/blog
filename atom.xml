@@ -2,13 +2,53 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2014-09-22T22:00:00Z</updated>
+  <updated>2014-10-22T22:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-10-23:/2014/10/smtp-mocking.html</id>
+    <title type="html">Mocking SMTP when testing a black box of software</title>
+    <published>2014-10-22T22:00:00Z</published>
+    <updated>2014-10-22T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/10/smtp-mocking.html"/>
+    <content type="html">&lt;p&gt;So I wrote a micro service that gets a REST call and sends a mail or a SMS and I wanted to have some nice black box tests in place. &lt;/p&gt;
+
+&lt;h3 id="the-test"&gt;The test&lt;/h3&gt;
+
+&lt;p&gt;So my test would &lt;code&gt;POST&lt;/code&gt; to a web service, then wait for a little while and then check if a mail was sent. The test runs remotely from a build server so everything it needs needs to be accesible over HTTP. So I decided to have a &lt;em&gt;real&lt;/em&gt; SMTP server running on the server writing files to a directory that a web server can pick up and show to the test. And a static web server serving the mail files in that directory. Pseudo code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;random_id = UUID.generate()
+message = subject: random_id, message: 'long rant'
+server.post message
+wait 1000
+list_of_mails = staticServer.get
+assert list_of_mails =~ random_ud
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="dummy-smtp-server"&gt;Dummy SMTP server&lt;/h3&gt;
+
+&lt;p&gt;I looked around on the Internet for a while. I used a Java based graphical dummy server locally called &lt;a href="https://nilhcem.github.io/FakeSMTP/"&gt;FakeSMTP&lt;/a&gt;. It is really useful when doing stuff in a graphical environment. Now I needed something headless instead. My eyes fell on a &lt;a href="https://github.com/maestrofjp/Dummy-SMTP"&gt;small Python script&lt;/a&gt; that did almost exactly what I wanted. The only thing missing was the naming of the files. In order to trace a mail through the server onto the SMTP server I needed something unique. I decided to put a UUID as the subject. The Python script needed &lt;a href="https://github.com/froderik/Dummy-SMTP"&gt;a little tweak&lt;/a&gt; to get the subject (as well as the timestamp) onto the filename.&lt;/p&gt;
+
+&lt;p&gt;The script only works with Python 2 so make sure you have it….. I am sure it is easy to change for Python 3 for a pythonista.&lt;/p&gt;
+
+&lt;h3 id="simple-file-serving-web-server"&gt;Simple file serving web server&lt;/h3&gt;
+
+&lt;p&gt;Since the system &lt;strong&gt;under test&lt;/strong&gt; lives in a tomcat I started out trying to make tomcat serve static files from the folder where the SMTP server stuffs mail files. It is supposed to work but I had some problems and gave up deciding to search for a simpler solution. And suddenly there it was. Look at &lt;a href="https://docs.python.org/2/library/simplehttpserver.html"&gt;this&lt;/a&gt; beauty:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;python -m SimpleHTTPServer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Get yourself into a directory from where you want to serve static files - type the above into the terminal and you are up and running on port &lt;code&gt;8000&lt;/code&gt;. &lt;/p&gt;
+
+&lt;h3 id="closing-rant-about-naming"&gt;Closing rant about naming&lt;/h3&gt;
+
+&lt;p&gt;Integration tests can mean many things. There seem to be no common vocabulary within the testing discipline. In Grails - the framework used in the micro service here - integration testing means talking directly to a controller and stubbing away third party dependencies. So the meaning here is to test the different parts and of a system together. (As opposite to unit testing.) For me integration testing normally means testing a couple of systems together and accessing it from the outside (normally with HTTP in some form). This confusion about names led me to use &lt;em&gt;black box testing&lt;/em&gt; in this article. Using another name for this does not really help but when talking about black boxes it is obvious that we are not testing or knows about any internals - a good thing.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-09-23:/2014/09/mistakes.html</id>
     <title type="html">The benefit of mistakes</title>
@@ -96,63 +136,6 @@ gun for hire is not tempting at all.&lt;/p&gt;
 
 &lt;p&gt;&lt;small&gt;
 Moroccan &lt;a href="https://secure.flickr.com/photos/39997856@N03/8810637962"&gt;remote living&lt;/a&gt; photo by &lt;a href="https://secure.flickr.com/photos/39997856@N03/"&gt;mariusz kluzniak&lt;/a&gt;.
-&lt;/small&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-08-20:/2014/08/hero-driven-development.html</id>
-    <title type="html">Hero Driven Development - and what you can do about it</title>
-    <published>2014-08-19T22:00:00Z</published>
-    <updated>2014-08-19T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/08/hero-driven-development.html"/>
-    <content type="html">&lt;p&gt;It happens rather often that I found myself in a negative organizational pattern that I will call &lt;em&gt;hero driven development&lt;/em&gt; in this post. It has several other names: I often call it &lt;em&gt;firefighting&lt;/em&gt; and I have also seen &lt;em&gt;dragon slayer&lt;/em&gt; and &lt;em&gt;cowboy shooting from the hip&lt;/em&gt;. I am sure there are other names. Add yours in the comments!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="https://farm1.staticflickr.com/117/384464432_e373fb5f2d_o.jpg" alt="" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Main characteristics of this pattern:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;a significant hoarded technical debt.&lt;/li&gt;
-  &lt;li&gt;a select few able to deal with that debt.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;business as usual&lt;/em&gt; is not normally premiered.&lt;/li&gt;
-  &lt;li&gt;the technical debt causes regular crises. A system goes down, some important functionality is broken or something like this.&lt;/li&gt;
-  &lt;li&gt;a hero puts his &lt;em&gt;ordinary&lt;/em&gt; work aside for a while and gloriously solves the crises, slays the dragon and puts out the fire.&lt;/li&gt;
-  &lt;li&gt;everyone is happy until the next crises.&lt;/li&gt;
-  &lt;li&gt;a deficit in reflective exercises ensures that it happens again soon.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So what can we do about it? It is hard to change an organization that has settled on this pattern. The satisfaction of saving the organization whenever there is a crises is impossible to match with &lt;em&gt;business as usual&lt;/em&gt;. It is also important to recognize that this kind of culture rarely is explicit. When asked, no one likes the cycle of crises and salvation. It is stuck on a subconscious level. Here are a number of things to focus on if you find yourself inside this pattern.&lt;/p&gt;
-
-&lt;h3 id="team-solves-crises"&gt;Team solves crises&lt;/h3&gt;
-&lt;p&gt;The main problem with hero driven development is that single individuals step in and solve crises when needed. They may even often come from outside the team that normally should be responsible for solving the crises. Decide that the responsibility for solving any crises is the entire team. Make these tasks visible in/on whatever tool you are using for task management. (Preferably a physical board…..)&lt;/p&gt;
-
-&lt;h3 id="pairing"&gt;Pairing&lt;/h3&gt;
-&lt;p&gt;This is a good strategy for the long term. If all work happens in pairs the knowledge needed for solving a crises will slowly spread throughout the team. It is also a good tactic for the short term. Decide that no hero solves a crises on his/her own but has to work with someone else so solve it. &lt;/p&gt;
-
-&lt;h3 id="insist-on-retrospectives"&gt;Insist on retrospectives&lt;/h3&gt;
-&lt;p&gt;When a pattern like this settles itself solidly it often proves hard to change it. Whenever a crises has been solved, everyone just moves forward, without reflecting on changes to avoid a similar crises in the future. To make the hero pattern visible, retrospectives can be a good tool. Focus on what to improve rather than the failure that caused the crises. Pick one or two things to improve in whatever time frame you are working in. Two weeks may be a good interval. Also, keep retrospectives short. An hour is enough if they are done regularly.&lt;/p&gt;
-
-&lt;h3 id="acknowledge-hero-skills"&gt;Acknowledge hero skills&lt;/h3&gt;
-&lt;p&gt;It is important to acknowledge that the heroes excellent skills is not a problem, it is an asset. Find a way to make sure that this skill set comes to good use when working to avoid future crises. Heroes may feel threatened by the disappearance of his/her natural arena. Try to create another arena for the hero to excel in his/her brilliancy.&lt;/p&gt;
-
-&lt;h3 id="workplace-locations"&gt;Workplace locations&lt;/h3&gt;
-&lt;p&gt;Behavioral patterns like hero driven development can be inhibited by a conscious placement of workplaces. Put people that can benefit from each other together. Don’t keep the same placement for long periods of time. Changes means that new constellations of people can start interact naturally. Where to put the hero? It probably depends a bit on how you want to solve crises further on. If the hero will be involved than he/she should be located in the midst of things. If not, located out of reach.&lt;/p&gt;
-
-&lt;p&gt;Also, never put several heroes together - spread them out as far away from each other as possible.&lt;/p&gt;
-
-&lt;h3 id="make-the-technical-debt-visible-and-start-reducing-it"&gt;Make the technical debt visible and start reducing it&lt;/h3&gt;
-&lt;p&gt;The need for a hero is often caused by an unmanaged technical debt. Try to make this debt as visible as possible in the form of tasks that can be done. They should be as small as possible. This may be really hard but given some thought it is often possible to break the work into smaller bits. When a crises happens, try to think of what parts of the technical debt that caused it and try to prioritize those tasks.&lt;/p&gt;
-
-&lt;p&gt;If nothing else, a start can be to put automated tests on vital parts of the system. It is good for many things:
-- it gives you feedback about how the system is feeling
-- it makes it possible to refactor
-- it increases the understanding, good tests can double as documentation&lt;/p&gt;
-
-&lt;h3 id="measure-absence-of-crises"&gt;Measure absence of crises&lt;/h3&gt;
-&lt;p&gt;Finally - it is crises we want to avoid. Introduce metrics. It can be uptime, availability, number of crises a week, magnitude of a crises and so forth. Visibility of progress is very important. This is especially true in an organization that normally don’t acknowledge &lt;em&gt;business as usual&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;small&gt;
-Mighty &lt;a href="https://www.flickr.com/photos/mugley/384464432"&gt;dragon photo&lt;/a&gt; by &lt;a href="https://www.flickr.com/photos/mugley/"&gt;Jes&lt;/a&gt;.
 &lt;/small&gt;&lt;/p&gt;
 </content>
   </entry>
