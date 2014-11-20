@@ -36,12 +36,10 @@ pre, code {
 }
 
 pre {
-  border-radius: 5px;
   padding: 8px;
   margin-left: 40px;
   margin-bottom: 10px;
   margin-right: 40px;
-  border: dashed 2px lightgray;
 }
 
 p {
