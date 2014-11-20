@@ -2,13 +2,69 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2014-11-10T23:00:00Z</updated>
+  <updated>2014-11-19T23:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-11-20:/2014/11/markdown-readme-from-grails.html</id>
+    <title type="html">Serving up that readme with grails</title>
+    <published>2014-11-19T23:00:00Z</published>
+    <updated>2014-11-19T23:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/11/markdown-readme-from-grails.html"/>
+    <content type="html">&lt;p&gt;So you wrote a nice readme for your grails project and realized that it would be nice to serve it at some or other URL on your site. Yeah - happened to me too. So here is what I did.&lt;/p&gt;
+
+&lt;p&gt;First we need to add markdown capabilities to our grails project. For that we use the &lt;a href="https://grails.org/plugin/markdown"&gt;markdown plugin&lt;/a&gt;. Put the following line in your &lt;code&gt;BuildConfig.groovy&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;compile ":markdown:1.1.1"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next - &lt;a href="https://stackoverflow.com/questions/12835568/using-markdown-as-a-grails-view"&gt;which may be tricky&lt;/a&gt; - we need to have the markdown file in our &lt;code&gt;views&lt;/code&gt; directory for grails to find them. The file also need to end with &lt;code&gt;gsp&lt;/code&gt;. The easiest way to accomplish this is to make a soft link (yes - git preserves soft links….. given your coworkers also is on some kind of unix):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd grails-app/views/readme
+ln -s ../../../readme.md readme.gsp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we need some kind of route. I decide to go for a &lt;code&gt;readme&lt;/code&gt; path with its own controller but this can be done in several ways. Put this in your &lt;code&gt;UrlMappings.groovy&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;"/readme"(controller:"readme")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and with that goes a &lt;code&gt;ReadmeController&lt;/code&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class ReadmeController {
+  def readme() {
+    render(layout: 'markdown', view: 'readme')
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We pass the view to &lt;code&gt;render&lt;/code&gt; and also a special layout needed to trigger markdown. Here is the essential part of the layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;body&amp;gt;
+    &amp;lt;markdown:renderHtml&amp;gt;
+        &amp;lt;g:layoutBody/&amp;gt;
+    &amp;lt;/markdown:renderHtml&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And there you go with a nice path to your readme.&lt;/p&gt;
+
+&lt;p&gt;This is admittedly a bit cumbersome but pretty straightforward. The other approach is to read the markdown programmatically and do the markup processing in a controller. Probably pros and cons with both approaches.&lt;/p&gt;
+
+&lt;p&gt;(On a side note. At times like this I miss Ruby. I did &lt;a href="https://github.com/froderik/anyrest/blob/master/anyrest.rb"&gt;pretty much the same thing&lt;/a&gt; with &lt;a href="http://www.sinatrarb.com/"&gt;sinatra&lt;/a&gt; a while ago. Add a gem and &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;get '/' do
+    markdown :README
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in the “controller”. Much easier.)&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-11-11:/2014/11/100-continue.html</id>
     <title type="html">Posting large files over SSL</title>
@@ -102,29 +158,6 @@ consider.) And in this case (as with a large number of similar requests
 over the years) it does not. Going from freelancing to being an employed
 gun for hire is not tempting at all.&lt;/p&gt;
 &lt;/blockquote&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-09-16:/2014/09/berlin.html</id>
-    <title type="html">Berlin calling</title>
-    <published>2014-09-15T22:00:00Z</published>
-    <updated>2014-09-15T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/09/berlin.html"/>
-    <content type="html">&lt;p&gt;So I have spent a couple of days in Berlin. Due to its sad history the feeling I get in Berlin is that of a broken city. The former central parts that has been revitalized feels artificial. I am looking at you, Potsdamer Platz. The city seems to have many centers rather than one. The city isn’t one yet. But it is working hard to get there. Much construction. But also lost areas that no one will care for in a very long time. It is a city of progress and the future it belongs to. Contrary to cities like Paris and Stockholm it can still shape its destiny. This is probably why it has such traction among startups. So I like many things about Berlin and since it is election times in Sweden I give you a list of things that we should pick up back in Stockholm. Most of it concerning public transportation.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;public transportation can be cheap. A one day ticket is €6.70 - a bit more than a long distance single ticket in Stockholm.&lt;/li&gt;
-  &lt;li&gt;public transportation does not need to have barriers. I guess this means that more people travel for free but on other hand it feels very inclusive. Like public transportation is part of the city.&lt;/li&gt;
-  &lt;li&gt;there can be &lt;em&gt;fika&lt;/em&gt; in the subway.&lt;/li&gt;
-  &lt;li&gt;it is possible to bring bicycles in subway wagons smaller than stockholm ones.&lt;/li&gt;
-  &lt;li&gt;there can be enough public transportation. Not once was a train overfull despite traveling during rush hours. &lt;/li&gt;
-  &lt;li&gt;there can be different kinds of street food available for around €3-5. But it probably can’t in Sweden because taxes…&lt;/li&gt;
-  &lt;li&gt;a tasty beer typically lets you back some 3 or 4 euros. That is about half… Probably taxes in the way again…&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I’ll leave you with &lt;a href="https://secure.flickr.com/photos/carst/4177229/"&gt;this nice shot&lt;/a&gt; of the berliner subway by &lt;a href="https://secure.flickr.com/photos/carst/"&gt;Carst van der Molen&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="https://farm1.staticflickr.com/3/4177229_5f20534f33_b.jpg" alt="" /&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
