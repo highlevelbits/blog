@@ -36,12 +36,10 @@ pre, code {
 }
 
 pre {
-  border-radius: 5px;
   padding: 8px;
   margin-left: 40px;
   margin-bottom: 10px;
   margin-right: 40px;
-  border: dashed 2px lightgray;
 }
 
 p {
@@ -73,12 +71,10 @@ img {
   color: #400002;
 
   width: 90%;
-  max-width: 1000px;
-  margin: 50px auto;
+  max-width: 800px;
+  margin: 0px auto;
 
-  padding: 20px;
-
-  border-radius: 40px;
+  padding: 50px;
 }
 
 .main h1 {
