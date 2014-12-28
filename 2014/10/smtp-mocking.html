@@ -48,18 +48,21 @@
         <h2 class="article-header">
   Mocking SMTP when testing a black box of software
 </h2>
-<span class="byline">2014-10-23 by fredrik</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/testing.html" rel="tag"><span class="icon-tag"></span>testing</a>
-    
-      <a class="one-tag" href="../../tags/software-development.html" rel="tag"><span class="icon-tag"></span>software development</a>
-    
-      <a class="one-tag" href="../../tags/naming.html" rel="tag"><span class="icon-tag"></span>naming</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2014-10-23 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/testing.html" rel="tag"><span class="icon-tag"></span>testing</a>
+      
+        <a class="one-tag" href="../../tags/software-development.html" rel="tag"><span class="icon-tag"></span>software development</a>
+      
+        <a class="one-tag" href="../../tags/naming.html" rel="tag"><span class="icon-tag"></span>naming</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>So I wrote a micro service that gets a REST call and sends a mail or a SMS and I wanted to have some nice black box tests in place. </p>
 
 <h3 id="the-test">The test</h3>
@@ -93,6 +96,7 @@ assert list_of_mails =~ random_ud
 
 <p>Integration tests can mean many things. There seem to be no common vocabulary within the testing discipline. In Grails - the framework used in the micro service here - integration testing means talking directly to a controller and stubbing away third party dependencies. So the meaning here is to test the different parts and of a system together. (As opposite to unit testing.) For me integration testing normally means testing a couple of systems together and accessing it from the outside (normally with HTTP in some form). This confusion about names led me to use <em>black box testing</em> in this article. Using another name for this does not really help but when talking about black boxes it is obvious that we are not testing or knows about any internals - a good thing.</p>
 
+</div>
 
 <div class="dashed-top-border">
   <!-- disqus -->

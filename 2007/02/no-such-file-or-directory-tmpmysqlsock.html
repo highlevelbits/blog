@@ -48,16 +48,19 @@
         <h2 class="article-header">
   No such file or directory - /tmp/mysql.sock
 </h2>
-<span class="byline">2007-02-13 by hardy</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
-    
-      <a class="one-tag" href="../../tags/mysql.html" rel="tag"><span class="icon-tag"></span>mysql</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2007-02-13 by hardy</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
+      
+        <a class="one-tag" href="../../tags/mysql.html" rel="tag"><span class="icon-tag"></span>mysql</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>Here comes a maybe not so high level bit, but it nevertheless cost me a lost of time the other day to figure out what was going on.<br><br>Long story short - I am recently experimenting with ruby on rails and and kept getting the following error message each single time I wanted to scaffold any of my database tables:<br><br><span style="font-style: italic;">No such file or directory - /tmp/mysql.sock</span><br><br>I am running Windows XP together with cygwin. Ruby is installed via cygwin and MySQL is installed via the MySQL windows installer.<br><br>It was pretty obvious ruby could not connect to my database, but I could not figure out why. The file <span style="font-style: italic;">mysql.sock</span> did not exist on my system and I could not figure out how to get ruby to access the database via tcp/ip. Some people suggested adding <span style="font-style: italic;">port: 3306</span> to <span style="font-style: italic;">database.yml</span> , but that did not change anything.<br><br>Then finally the breakthrough. I changed <span style="font-style: italic;">host: localhost </span>in <span style="font-style: italic;">database.yml </span>to <span style="font-style: italic;">host: 127.0.0.1 </span>and everything worked like a charm. It turns out that when specifying <span style="font-style: italic;">localhost</span> ruby tries to connect via a socket file whereas specifying a IP address switches to tcp/ip. Interesting.<br><br>So long,<br>--Hardy</p>
 <div class="old-comments">
 <h2>Old comments</h2>
@@ -79,6 +82,7 @@
 </div>
 <div class="one-old-comment">
 <span class="comment-date">2012-08-17</span><span class="commenter-name">Robert Malvern</span><div class="comment-body">I could have spend days trying to work this out!</div>
+</div>
 </div>
 </div>
 

@@ -48,14 +48,17 @@
         <h2 class="article-header">
   svn changelists
 </h2>
-<span class="byline">2009-03-20 by hardy</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/svn.html" rel="tag"><span class="icon-tag"></span>svn</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2009-03-20 by hardy</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/svn.html" rel="tag"><span class="icon-tag"></span>svn</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>While I am on the 'discovering trip'. Here is another thing I found out this week. This time I actually knew that this particular feature existed, but I never really knew how to use it and how it actually works. I am talking about <a href="http://svnbook.red-bean.com/en/1.5/svn-book.html#svn.advanced.changelists">svn changelists</a>. They are part of subversion since version 1.5 and so far were only something I read about. However, this week I discovered by accident the 'move to changelist' button in the Intellij Idea svn plugin. I just tried it and immediately it dawned on my how useful this feature is. It allows me for example to move some files, which I always change, but never commit into a seperate changeset. This way I don't have to remember to either revert or not commit these files. You probably think that such files should not exists in a properly setup project, but what about for example log4j.properties. I personally like to collect log4j output in <a href="http://logging.apache.org/chainsaw/index.html">Chainsaw</a> , but on the other hand I don't want to commit the log4j configuration file with the required socket appender enabled. Well, now I just moved log4j.properties into its own changelist and I don't have to think about it anymore.<br>From the command line you are using the changelist feature via the '--changelist' options which can be passed to most of the svn sub-commands. For example a checkin would look like this:</p>
 <blockquote>svn commit -m "my log message" --changelist myChangeList</blockquote>
 <p>One caveat though. I was assuming that committing without specifying a changelist would only commit the files which are not specifically in a changelist. Unfortunately, that's not the case. Instead all changes are committed. That's a clear drawback for me, but at least it is hidden from me when using the Idea plugin.<br><br>Time to hand-over to Fredrik again for a less technical blog entry :)<br><br>--Hardy</p>
@@ -63,6 +66,7 @@
 <h2>Old comments</h2>
 <div class="one-old-comment">
 <span class="comment-date">2009-03-23</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">I would love to be in a position to write technical blog entries but it seems that I am stuck in the meetings and documents marsh land with no hope of getting away for quite some time.</div>
+</div>
 </div>
 </div>
 

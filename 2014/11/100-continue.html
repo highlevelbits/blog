@@ -48,18 +48,21 @@
         <h2 class="article-header">
   Posting large files over SSL
 </h2>
-<span class="byline">2014-11-11 by fredrik</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
-    
-      <a class="one-tag" href="../../tags/apache.html" rel="tag"><span class="icon-tag"></span>apache</a>
-    
-      <a class="one-tag" href="../../tags/ssl.html" rel="tag"><span class="icon-tag"></span>ssl</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2014-11-11 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+      
+        <a class="one-tag" href="../../tags/apache.html" rel="tag"><span class="icon-tag"></span>apache</a>
+      
+        <a class="one-tag" href="../../tags/ssl.html" rel="tag"><span class="icon-tag"></span>ssl</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>When posting a file in a complex setup with several layers I encountered a problem in a Java-&gt;Apache interaction. I got this error message:</p>
 
 <pre><code>[Tue Nov 11 14:55:57 2014] [error] [client &lt;ip&gt;] request body exceeds maximum size (131072) for SSL buffer, referer: &lt;referrer-url&gt;
@@ -68,6 +71,7 @@
 
 <p>After some googling where <a href="https://stackoverflow.com/questions/14281628/ssl-renegotiation-with-client-certificate-causes-server-buffer-overflow">this stackoverflow post</a> proved the most informative I learned that the upper limit for file size over SSL is rather low - just some 131702 bytes. The post lists several ways of solving the problem. I thought the header way was the neatest. I just added the header <code>Expect: 100-continue</code> to the call and the problem disappeared. The value of the header is rather cryptic but well documented in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.20">the specs</a>. Basically it tells the server to finish SSL negotiations before downloading the full request body from the client.</p>
 
+</div>
 
 <div class="dashed-top-border">
   <!-- disqus -->

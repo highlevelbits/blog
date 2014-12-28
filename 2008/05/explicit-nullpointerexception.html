@@ -48,19 +48,23 @@
         <h2 class="article-header">
   Explicit NullPointerException
 </h2>
-<span class="byline">2008-05-20 by fredrik</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2008-05-20 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>I am reading a book on JavaServer Faces (The Complete Reference.....) since I am supposed to teach the subject next week at a course on Java and web programming. One code example got me started on one of my favorite subjects - the abundance of null checks in source code. This is the example code I saw inside a custom converter example class:<br><br><code>public String getAsString(FacesContext context,<br>    UIComponent component,<br>    Object value)<br>{<br>    if( context == null || component == null )<br>    {<br>        throw new NullPointerException();<br>    }<br>    // and obviously some more code here....<br>}</code><br><br>This doesn't make sense at all since if the params are null there will eventuelly be a NullPointerException raised anyway. This method is supposed to be called by the JSF framework so it makes even less sense. Why would a framework call a custom converter class with null values? I saw similar code yesterday in the huge code pile I am working with now for a customer. The difference was that a checked exception was thrown instead of an unchecked. That is even worse since every caller of the method need to deal with that exception and - in this case - the source fault (null value of a param) was not mentioned at all. Just a generic "this was not good" message. I suggest that null values can take care of themselves. If someone passes in null for a param that never should be null a NullPointerException is a brilliant outcome with the stack trace showing us exactly where the null value was discovered. </p>
 <div class="old-comments">
 <h2>Old comments</h2>
 <div class="one-old-comment">
 <span class="comment-date">2008-05-20</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Agreed - there always has been this huge discussion around checked vs unchecked exceptions and a lot of bogus code has been written. I like an article on ONJava a lot <a href="http://www.onjava.com/pub/a/onjava/2003/11/19/exceptions.html" rel="nofollow">Best Practices for Exception Handling</a>. To quote from this article:"Ask yourself, what action can the client code take when the exception occurs?<br>If the client can take some alternate action to recover from the exception, make it a checked exception. If the client cannot do anything useful, then make the exception unchecked. By useful, I mean taking steps to recover from the exception and not just logging the exception." <br>I think that's a very healthy approach.<br><br>Regarding the code example - there is a reason why one would like to fail early. Imagine only one of the passed in parameters is null, component. Now let your method modify initially the other object. What happens now if the method tries to call a method on null object. You will get a NullPointerException, but you also have already modified another object. This could in some scenarios have side unwanted side effects. I guess that would justify the guarding null check.<br><br>Admittedly the code looks silly. I would like to see  built in support for <b>Design By Contract</b> within Java - a la <a href="http://www.contract4j.org" rel="nofollow">Contract4J</a>.</div>
+</div>
 </div>
 </div>
 

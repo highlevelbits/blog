@@ -48,18 +48,21 @@
         <h2 class="article-header">
   How to make systemctl on arch linux start mariadb (mysql) with the --skip-grant-tables flag
 </h2>
-<span class="byline">2014-06-25 by fredrik</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/mysql.html" rel="tag"><span class="icon-tag"></span>mysql</a>
-    
-      <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
-    
-      <a class="one-tag" href="../../tags/linux.html" rel="tag"><span class="icon-tag"></span>linux</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2014-06-25 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/mysql.html" rel="tag"><span class="icon-tag"></span>mysql</a>
+      
+        <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+      
+        <a class="one-tag" href="../../tags/linux.html" rel="tag"><span class="icon-tag"></span>linux</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>I have had the opportunity to familiarize myself with mariadb lately. Mariadb is an open source clone of the popular mysql relational database - now owned by oracle. It was very easy to get up and running on arch linux. Just a matter of:</p>
 
 <pre><code>sudo pacman -S mariadb
@@ -73,6 +76,7 @@ sudo systemctl enable mysqld
 
 <p>So now my database starts without wanting authentication for connections. This is practical in a local development environment but should of course never be used in production.</p>
 
+</div>
 
 <div class="dashed-top-border">
   <!-- disqus -->

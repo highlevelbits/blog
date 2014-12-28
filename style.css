@@ -99,6 +99,11 @@ img {
   margin-top: 20px;
 }
 
+.inner-content {
+  clear: right;
+  padding-top: 20px;
+}
+
 .article-header {
   margin-bottom: 0.25em;
   margin-top: 2em;

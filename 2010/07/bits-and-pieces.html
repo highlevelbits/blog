@@ -48,18 +48,21 @@
         <h2 class="article-header">
   Bits and pieces
 </h2>
-<span class="byline">2010-07-18 by hardy</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/mac.html" rel="tag"><span class="icon-tag"></span>mac</a>
-    
-      <a class="one-tag" href="../../tags/android.html" rel="tag"><span class="icon-tag"></span>android</a>
-    
-      <a class="one-tag" href="../../tags/svn.html" rel="tag"><span class="icon-tag"></span>svn</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2010-07-18 by hardy</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/mac.html" rel="tag"><span class="icon-tag"></span>mac</a>
+      
+        <a class="one-tag" href="../../tags/android.html" rel="tag"><span class="icon-tag"></span>android</a>
+      
+        <a class="one-tag" href="../../tags/svn.html" rel="tag"><span class="icon-tag"></span>svn</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>A few quick notes before heading of into vacation.<br><br><b>Postgres</b><br><br>Ever seen this or a similar error message on your Mac?</p>
 <pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;">
 <code>could not create shared memory segment: Invalid argument  </code></pre>
@@ -75,6 +78,7 @@ kern.sysv.maxproc=2048
 kern.maxprocperuid=512
 </code></pre>
 <p>The parameter which is important is <i>kern.sysv.shmmax</i>. You can view the current setting via <i>sysctl -A</i> or more specifically <i>sysctl kern.sysv.shmmax. </i>I had to restart my computer to get the values to take effect.<br><br><b>Git</b><br><br>I started to use <a href="http://git-scm.com/">git</a> more and I must say it is growing on me. However, since most of the projects I am working with are still on <a href="http://subversion.tigris.org/">svn</a> I have to use git-svn. Most of the time everything works just fine, but one thing I am looking for is a tool which converts a git patch to a svn patch. Unfortunately, a git patch will not directly apply into a svn repo. Problematic are especially file additions and removals. So far I haven't found a satisfactory solution. Anyone?<br><br><b>RubyGem</b><br><br>I thought I pass on this cool little ruby gem I found and started using - <a href="http://cheat.errtheblog.com/">Cheat Sheets.</a> Just install it via <i>sudo gem install cheat</i> and then you can access any of the built-in cheat sheets, for example <i>cheat git</i>. And of course you can simple add your own cheat sheets. Sweet.<br><br><b>Android</b><br><br>More of a question really. Does you Android phone shuts down properly? I had several occasions now where my phone shut down, because it was running out of power (well, we all know how great the battery life time is :( ). In each case I had to pull out the battery in the end, because the shutdown would never complete. Does anyone have similar experiences?<br><br>--Enjoy</p>
+</div>
 
 <div class="dashed-top-border">
   <!-- disqus -->

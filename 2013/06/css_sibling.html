@@ -48,12 +48,15 @@
         <h2 class="article-header">
   css sibling operator (folding divs)
 </h2>
-<span class="byline">2013-06-05 by fredrik</span>
-
-  <span class="tags">
-    
-  </span>
-
+<div>
+  <span class="byline">2013-06-05 by fredrik</span>
+  
+    <span class="tags">
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>I have been fiddling with CSS a lot in my current client project. I am no ninja yet but I am getting hold of the elementary stuff at least. Today I made one radio button show a div and another one hide it. To be able to do this you need to know about the sibling operator <code>~</code> that is used to find an element matching the selector that is <em>after</em> the main rule. Consider this markup snippet:</p>
 
 <pre><code>&lt;input checked="checked" class="fold_open" type="radio" value="open" /&gt;
@@ -81,6 +84,7 @@ This means that when the class <code>fold_open</code> is checked (works for radi
 
 <p>The car in the photo is an <a href="http://en.wikipedia.org/wiki/Alfa_Romeo_1900">Alfa Romeo 1900 CSS</a> and it is just here for looks. Find a good photo about css….. It was shot by flickr user Henry Figueroa.</p>
 
+</div>
 
 <div class="dashed-top-border">
   <!-- disqus -->

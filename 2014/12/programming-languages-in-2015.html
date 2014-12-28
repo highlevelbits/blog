@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>high level bits - Programming languages in 2015</title>
+<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+<link href="../../style.css" rel="stylesheet">
+<link href="../../forms.css" rel="stylesheet">
+<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
+<!-- google analytics --><script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script><!-- end google analytics -->
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Programming languages in 2015
+</h2>
+<div>
+  <span class="byline">2014-12-28 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/dynamic.html" rel="tag"><span class="icon-tag"></span>dynamic</a>
+      
+        <a class="one-tag" href="../../tags/predictions.html" rel="tag"><span class="icon-tag"></span>predictions</a>
+      
+        <a class="one-tag" href="../../tags/javascript.html" rel="tag"><span class="icon-tag"></span>javascript</a>
+      
+        <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
+      
+        <a class="one-tag" href="../../tags/programming-languages.html" rel="tag"><span class="icon-tag"></span>programming languages</a>
+      
+        <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+<p>3 years ago I scribbled down <a href="http://highlevelbits.com/2011/12/programming-languages-in-2012.html">some predictions about programming languages trends in 2012</a>. That was fun but a bit too boring to do every year…. so now is the time for a follow up.</p>
+
+<h3 id="what-happened-with-my-predictions">What happened with my predictions?</h3>
+
+<p>It seems that I was mostly right with my predictions about the main contenders. Since then <strong>javascript</strong> has moved forward and <strong>Java</strong> is still rock solid. People are even moving back to Java from excursions to other languages. Scala hasn’t really taken off (thank god for that). A couple of new interesting languages has appeared that I didn’t anticipated. In the functional sphere we have <strong>elixir</strong> that lures the ruby crowd onto the erlang platform and makes it more accessible. We also have <strong>go</strong>, googles C replacement that looks really promising. I had the opportunity to try it out a bit a year ago and it was <a href="http://highlevelbits.com/tags/golang.html">mostly good warm feelings</a>.</p>
+
+<h3 id="looking-into-the-next-couple-of-years">Looking into the next couple of years</h3>
+
+<p><strong>Java</strong> will continue to be the main choice for enterprise software. This is a bit sad given all the nice alternatives out there nowadays but will probably make it easier to maintain large systems over time. Another trend is to combine enterprise Java on the backend with single page web apps with angular for the frontend. This brings me to javascript -&gt;</p>
+
+<p><strong>Javascript</strong> will continue to increase in importance still being the only native language for web browsers. Neither <strong>dart</strong> nor <strong>coffeescript</strong> will make it into mainstream browsers in the upcoming years. It may be possible to run dart in chrome but not anywhere else. There will be a couple of new javascript web frameworks that will be used for a while. Angular may still be there three years from now but don’t count on it.</p>
+
+<p><strong>HTML</strong> and <strong>CSS</strong> will continue to be crucial view technologies for the web. Combined with javascript they will form the mobile platform of tomorrow. Firefox OS is leading the way here and I expect to see more of this kind of consolidation. Nice things like <strong>haml</strong> and <strong>slim</strong> will continue to be marginal things.</p>
+
+<p>Functional languages and functional style in OO languages will continue to increase in popularity due to the heightened awareness of maintenance cost. Here I expect <strong>elixir</strong> to continue going strong together with <strong>clojure</strong> and <strong>erlang</strong>. Scala will not make it - partly due to the <em>smorgåsbord</em> character of the language and partly due to an elitist community. Also keep in mind that javascript is a capable functional language.</p>
+
+<p>You can also expect a move back to server side web frameworks. While it is fancy and performance friendly with single page web apps they are hard to maintain over several platforms and honestly - do users care about this <strong>at all</strong>? I hope this move will be towards lightweight web frameworks like sinatra on ruby, flask on python or dropwizard on java rather than going back to rails and whatnot in the draconian framework genre.</p>
+
+<p>Also the move back to relational databases will continue and people will start using postgre as a document database.</p>
+
+<h3 id="my-path-forward">My path forward</h3>
+
+<p>I am currently working with a client where the stack is a mixture of angular.js, camel, java, spring and some grails. This means I will improve my groovy and hopefully not turn worse with my javascript. I hope to continue doing some ruby on the side because I like the beauty of it. Strategically I will try to improve my go and my javascript and if I have any energy left after that I will dive into elixir.</p>
+
+<p><img src="https://farm4.staticflickr.com/3270/3000553746_80acbb9c4e_o.jpg" alt=""></p>
+
+<p><small>
+<a href="https://www.flickr.com/photos/nubui/3000553746">Photo</a> by <a href="https://www.flickr.com/photos/nubui/">nubui</a>.
+</small></p>
+
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

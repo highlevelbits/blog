@@ -48,16 +48,19 @@
         <h2 class="article-header">
   Multiple unicorn servers with SSL on nginx
 </h2>
-<span class="byline">2014-06-11 by fredrik</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/ssl.html" rel="tag"><span class="icon-tag"></span>ssl</a>
-    
-      <a class="one-tag" href="../../tags/rails.html" rel="tag"><span class="icon-tag"></span>rails</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2014-06-11 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/ssl.html" rel="tag"><span class="icon-tag"></span>ssl</a>
+      
+        <a class="one-tag" href="../../tags/rails.html" rel="tag"><span class="icon-tag"></span>rails</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>A while ago I set up my own <a href="https://www.archlinux.org/">arch linux</a> server at <a href="https://www.digitalocean.com/">digital ocean</a>. It was some work and I learned a lot in the process. At the moment I have three <a href="http://unicorn.bogomips.org/">unicorn</a>-based ruby things running behind <a href="http://nginx.org/">nginx</a> on the server. One is built with <a href="http://rubyonrails.org/">rails</a> and the other two with <a href="http://www.sinatrarb.com/">sinatra</a>. The one with rails is SSL-only. The work of setting up nginx was pretty straightforward but still I had to understand things from several sources so here is a rundown of how I accomplished this.</p>
 
 <p>nginx is easy to configure. Compared with <a href="https://httpd.apache.org/">apache</a> it is a breeze. The configuration is typically placed in <code>/etc/nginx/nginx.conf</code>. The syntax is basically:</p>
@@ -168,6 +171,7 @@
 
 <p>And there you go. Once <code>nginx.conf</code> is edited you need to restart or reload nginx in order to make the changes effectual. I have enjoyed working with nginx. It is not so hard to understand what to do and the number of pitfalls are kept at a minimum.</p>
 
+</div>
 
 <div class="dashed-top-border">
   <!-- disqus -->

@@ -48,18 +48,21 @@
         <h2 class="article-header">
   Introduction to Ruby on Rails for Java developers
 </h2>
-<span class="byline">2009-02-22 by fredrik</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
-    
-      <a class="one-tag" href="../../tags/rails.html" rel="tag"><span class="icon-tag"></span>rails</a>
-    
-      <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2009-02-22 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
+      
+        <a class="one-tag" href="../../tags/rails.html" rel="tag"><span class="icon-tag"></span>rails</a>
+      
+        <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>A couple of weeks ago I talked to a bunch of Java developers at <a href="http://www.sogeti.se/templates/Sogeti_LokalStartsida____2108.aspx">Sogeti</a> about <a href="http://rubyonrails.org/">Ruby on Rails</a>. I promised to approximate the talk as a blog post so here it is. (This was due to me mostly using pictures and code in the slides and had not that much text in them. So just passing on the slides wouldn't have helped much. Trying to apply <a href="http://www.presentationzen.com/">presentation zen</a> whenever possible...) I have only used Rails for a couple of spare time projects so I don't really know all the details. I know enough though to contrast it against enterprise Java. I have worked with Java and J2EE for about 10 years. For many of those years I have had a distinct feeling that we are complicating things all the time. We have the <a href="http://www-01.ibm.com/software/awdtools/rup/">unified process</a> that is supposed to solve all our cases but most of the time obfuscates the real purpose of projects. Documents and methodology become more important than the code that <span style="font-weight: bold;">is</span> the system. The technology we pick for our projects - most often J2EE or .net - is most of the time too much for the task at hand. I want you to start questioning these absolutes and start striving for alternative solutions.<br> </p>
 <div style="text-align: center;">
 <a href="http://www.flickr.com/photos/dullhunk/202872717/" title="Question Everything by dullhunk, on Flickr"><img alt="Question Everything" src="http://farm1.static.flickr.com/62/202872717_a8a4799419.jpg" style="width: 439px; height: 330px;"></a><br><br><div style="text-align: left;">I will narrow my whining to Java and J2EE this time. How many <code>public String</code> did you write the last year? Or <code>public static final int</code>? And how many of those were really necessary. Java is fine as a programming language <span style="font-weight: bold;">but</span> do we really need a strongly typed language all the time? I think not. What is strongly typing really? It is just a way of testing the code to make sure that the developer has made the correct decisions. And the fine thing is that we have to do these tests to even compile the program. Using a strongly typed and compiled language is a kind of test driven development in the small. Now think about a developer that always write nice tests for all his code. Wouldn't those tests cover typing errors regardless of whether the language is typed or not? So if we can guarantee that we always have developers that test an untyped language like <a href="http://www.ruby-lang.org/en/">Ruby</a> or Smalltalk might be used. Unfortunatley most developers are either lazy, careless or ignorant when it comes to test. More about this later.<br><br>Another thing I just have to whine about is J2EE. We all know that J2EE solves all problems in the entire universe. Is this a good or a bad thing? It might be a good thing for big systems with many disparate needs. But do we really need all this complexity for the common semi-large system? Probably not. It seems to me that J2EE was manufactured by architects that have a need to point out how extremely complex their work is. And maybe sometimes it is but hardly all the time. Most systems I have worked with have been forced to use a complex solution - "because that's the way we do it in this organization" - where a much simpler solution would have worked just as well and might have resulted in less lines of code and hence less maintenance cost. But instead of whining I will suggest an alternative that makes it more fun to develop. Ruby on Rails. Keep in mind that this is just one of several light weight frameworks that increases productivity and makes it fun to be a developer again. I will comment on several other frameworks towards the end of this post.<br><br>I will start with a brief discussion about the language (1) itself and then turn to the framework (2). Code will be used to show the simplicity compared to Java. Then I will tell you how to generate a sample application in just a few minutes (3) and lastly we will look at some tools (4) and take a look at the broader picture (5).<br><br><br><span style="font-weight: bold;font-size:130%;">The language</span><br><br>It is important to look into the language when choosing a framework. A less mature language might give you unanticipated problems down the road. Questions to ask regarding this is:<br><ul>
@@ -178,6 +181,7 @@ rake db:migrate
 <h2>Old comments</h2>
 <div class="one-old-comment">
 <span class="comment-date">2009-02-23</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body"><a href="http://en.wikipedia.org/wiki/Hear_hear" rel="nofollow">hear hear</a></div>
+</div>
 </div>
 </div>
 

@@ -48,14 +48,17 @@
         <h2 class="article-header">
   Back in Javaland
 </h2>
-<span class="byline">2014-03-05 by fredrik</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2014-03-05 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>So I am currently back coding Java. It is two months into the current assignment and about time to report some findings. The product I work on (yes - a real product that is <strong>released</strong>) is a desktop application written with <a href="https://en.wikipedia.org/wiki/Swing_%28Java%29">Swing</a> - this GUI framework of Java that seems to be almost abandoned. But it is the choice you have when doing desktop with Java. (I have no idea whethere this is better or worse with other languages. Probably not for cross platform stuff. This <a href="http://qt-project.org/">qt</a> thing might be a contender though.) It sure is possible to do good stuff with it. In this code base I have mostly been saved from interacting directly with Swing due to several abstractions (of varying quality) built on top of it. Some things have been really nice to use. Adding another menu item is done in no time at all. Sometimes it goes in the way. We tried to remove a tab from an editor window and it wasn’t possible to even understand how to do it in a couple of hours. The code base is a bit old but still remarkable stable despite a clear lack of automated tests. (Yes - we are increasing the numbers.) So that is a little background to what I am doing at the moment. A couple of reflections on this:</p>
 
 <ul>
@@ -75,6 +78,7 @@
 
 <p><img src="http://www.javaland.eu/typo3temp/pics/8e30c2bb4b.jpg" alt=""></p>
 
+</div>
 
 <div class="dashed-top-border">
   <!-- disqus -->

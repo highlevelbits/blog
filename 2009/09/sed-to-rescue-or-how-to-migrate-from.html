@@ -48,18 +48,21 @@
         <h2 class="article-header">
   sed to the rescue (or how to migrate from java.util.logging to org.slf4j)
 </h2>
-<span class="byline">2009-09-16 by fredrik</span>
-
-  <span class="tags">
-    
-      <a class="one-tag" href="../../tags/sed.html" rel="tag"><span class="icon-tag"></span>sed</a>
-    
-      <a class="one-tag" href="../../tags/logging.html" rel="tag"><span class="icon-tag"></span>logging</a>
-    
-      <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
-    
-  </span>
-
+<div>
+  <span class="byline">2009-09-16 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/sed.html" rel="tag"><span class="icon-tag"></span>sed</a>
+      
+        <a class="one-tag" href="../../tags/logging.html" rel="tag"><span class="icon-tag"></span>logging</a>
+      
+        <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
 <p>I got the task to migrate all our code - some 100 classes - from standard <a href="http://java.sun.com/javase/6/docs/api/index.html?java/util/logging/package-summary.html">JDK logging</a> to the logging facade framework <a href="http://www.slf4j.org/">slf4j</a>. (I am not sure if there are any real benefits from such a migration but the deploying organization has decided that this is the way to go so the best approach i to just look happy and accept. They also claim that there may be performance issues with the way we log now. It sounds a bit far-fetched to me....) A fast analysis of the task made me conclude that I needed to replace:</p>
 <div>
 <ul>
@@ -102,6 +105,7 @@ done</pre>
 </div>
 <div class="one-old-comment">
 <span class="comment-date">2009-09-17</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Seems like my 10 line script was a bit better than the migrator then! Sometimes a few lines of unix scripting is all you need. But it is of course good that there are tools since many developers don't have a clue about unix.</div>
+</div>
 </div>
 </div>
 

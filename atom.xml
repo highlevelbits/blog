@@ -2,13 +2,50 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2014-11-19T23:00:00Z</updated>
+  <updated>2014-12-27T23:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-12-28:/2014/12/programming-languages-in-2015.html</id>
+    <title type="html">Programming languages in 2015</title>
+    <published>2014-12-27T23:00:00Z</published>
+    <updated>2014-12-27T23:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/12/programming-languages-in-2015.html"/>
+    <content type="html">&lt;p&gt;3 years ago I scribbled down &lt;a href="http://highlevelbits.com/2011/12/programming-languages-in-2012.html"&gt;some predictions about programming languages trends in 2012&lt;/a&gt;. That was fun but a bit too boring to do every year…. so now is the time for a follow up.&lt;/p&gt;
+
+&lt;h3 id="what-happened-with-my-predictions"&gt;What happened with my predictions?&lt;/h3&gt;
+
+&lt;p&gt;It seems that I was mostly right with my predictions about the main contenders. Since then &lt;strong&gt;javascript&lt;/strong&gt; has moved forward and &lt;strong&gt;Java&lt;/strong&gt; is still rock solid. People are even moving back to Java from excursions to other languages. Scala hasn’t really taken off (thank god for that). A couple of new interesting languages has appeared that I didn’t anticipated. In the functional sphere we have &lt;strong&gt;elixir&lt;/strong&gt; that lures the ruby crowd onto the erlang platform and makes it more accessible. We also have &lt;strong&gt;go&lt;/strong&gt;, googles C replacement that looks really promising. I had the opportunity to try it out a bit a year ago and it was &lt;a href="http://highlevelbits.com/tags/golang.html"&gt;mostly good warm feelings&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="looking-into-the-next-couple-of-years"&gt;Looking into the next couple of years&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Java&lt;/strong&gt; will continue to be the main choice for enterprise software. This is a bit sad given all the nice alternatives out there nowadays but will probably make it easier to maintain large systems over time. Another trend is to combine enterprise Java on the backend with single page web apps with angular for the frontend. This brings me to javascript -&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Javascript&lt;/strong&gt; will continue to increase in importance still being the only native language for web browsers. Neither &lt;strong&gt;dart&lt;/strong&gt; nor &lt;strong&gt;coffeescript&lt;/strong&gt; will make it into mainstream browsers in the upcoming years. It may be possible to run dart in chrome but not anywhere else. There will be a couple of new javascript web frameworks that will be used for a while. Angular may still be there three years from now but don’t count on it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt; and &lt;strong&gt;CSS&lt;/strong&gt; will continue to be crucial view technologies for the web. Combined with javascript they will form the mobile platform of tomorrow. Firefox OS is leading the way here and I expect to see more of this kind of consolidation. Nice things like &lt;strong&gt;haml&lt;/strong&gt; and &lt;strong&gt;slim&lt;/strong&gt; will continue to be marginal things.&lt;/p&gt;
+
+&lt;p&gt;Functional languages and functional style in OO languages will continue to increase in popularity due to the heightened awareness of maintenance cost. Here I expect &lt;strong&gt;elixir&lt;/strong&gt; to continue going strong together with &lt;strong&gt;clojure&lt;/strong&gt; and &lt;strong&gt;erlang&lt;/strong&gt;. Scala will not make it - partly due to the &lt;em&gt;smorgåsbord&lt;/em&gt; character of the language and partly due to an elitist community. Also keep in mind that javascript is a capable functional language.&lt;/p&gt;
+
+&lt;p&gt;You can also expect a move back to server side web frameworks. While it is fancy and performance friendly with single page web apps they are hard to maintain over several platforms and honestly - do users care about this &lt;strong&gt;at all&lt;/strong&gt;? I hope this move will be towards lightweight web frameworks like sinatra on ruby, flask on python or dropwizard on java rather than going back to rails and whatnot in the draconian framework genre.&lt;/p&gt;
+
+&lt;p&gt;Also the move back to relational databases will continue and people will start using postgre as a document database.&lt;/p&gt;
+
+&lt;h3 id="my-path-forward"&gt;My path forward&lt;/h3&gt;
+
+&lt;p&gt;I am currently working with a client where the stack is a mixture of angular.js, camel, java, spring and some grails. This means I will improve my groovy and hopefully not turn worse with my javascript. I hope to continue doing some ruby on the side because I like the beauty of it. Strategically I will try to improve my go and my javascript and if I have any energy left after that I will dive into elixir.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://farm4.staticflickr.com/3270/3000553746_80acbb9c4e_o.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;
+&lt;a href="https://www.flickr.com/photos/nubui/3000553746"&gt;Photo&lt;/a&gt; by &lt;a href="https://www.flickr.com/photos/nubui/"&gt;nubui&lt;/a&gt;.
+&lt;/small&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2014-11-20:/2014/11/markdown-readme-from-grails.html</id>
     <title type="html">Serving up that readme with grails</title>
@@ -133,31 +170,6 @@ assert list_of_mails =~ random_ud
 &lt;/blockquote&gt;
 
 &lt;p&gt;Read more along these lines in &lt;a href="http://www.farnamstreetblog.com/2014/09/mistakes/"&gt;the post&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-09-17:/2014/09/fitting-the-role.html</id>
-    <title type="html">Do I fit the role or does the role fit me?</title>
-    <published>2014-09-16T22:00:00Z</published>
-    <updated>2014-09-16T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/09/fitting-the-role.html"/>
-    <content type="html">&lt;p&gt;I got a request for recruitment by email. And as usual the recruiter has determined that I fit a certain role very well. In this case and as always there are no consideration whether the role fits me. The recruiter asked me:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;I believe that your profile matches the requirements for this role. And
-I´am contacting you to hear if this role is consistent with your
-background, and if so, are you interested to be presented to my client?&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;and my response:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;It is indeed true that my profile matches this role. Also important to
-figure out is if the role matches me. (A thing recruiters seldom
-consider.) And in this case (as with a large number of similar requests
-over the years) it does not. Going from freelancing to being an employed
-gun for hire is not tempting at all.&lt;/p&gt;
-&lt;/blockquote&gt;
 </content>
   </entry>
 </feed>
