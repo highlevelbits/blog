@@ -1,15 +1,19 @@
 <h2 class="article-header">
   <%= "#{@item[:title]}" %>
 </h2>
-<span class="byline"><%= "#{@item[:created_at].strftime '%F'} by #{@item[:author]}" %></span>
-<% if @item[:tags] %>
-  <span class="tags">
-    <% tags_with_sibling_articles_for @item do |one_tag, similar_articles| %>
-      <a class="one-tag" href="<%= link_to_tag one_tag %>" rel="tag"><span class="icon-tag" /><%= one_tag %></a>
-    <% end %>
-  </span>
-<% end %>
+<div>
+  <span class="byline"><%= "#{@item[:created_at].strftime '%F'} by #{@item[:author]}" %></span>
+  <% if @item[:tags] %>
+    <span class="tags">
+      <% tags_with_sibling_articles_for @item do |one_tag, similar_articles| %>
+        <a class="one-tag" href="<%= link_to_tag one_tag %>" rel="tag"><span class="icon-tag" /><%= one_tag %></a>
+      <% end %>
+    </span>
+  <% end %>
+</div>
+<div class="inner-content">
 <%= yield %>
+</div>
 
 <div class="dashed-top-border">
   <!-- disqus -->
