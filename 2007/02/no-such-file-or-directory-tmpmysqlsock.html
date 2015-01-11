@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - No such file or directory - /tmp/mysql.sock</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - No such file or directory - /tmp/mysql.sock</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -61,7 +69,7 @@
   
 </div>
 <div class="inner-content">
-<p>Here comes a maybe not so high level bit, but it nevertheless cost me a lost of time the other day to figure out what was going on.<br><br>Long story short - I am recently experimenting with ruby on rails and and kept getting the following error message each single time I wanted to scaffold any of my database tables:<br><br><span style="font-style: italic;">No such file or directory - /tmp/mysql.sock</span><br><br>I am running Windows XP together with cygwin. Ruby is installed via cygwin and MySQL is installed via the MySQL windows installer.<br><br>It was pretty obvious ruby could not connect to my database, but I could not figure out why. The file <span style="font-style: italic;">mysql.sock</span> did not exist on my system and I could not figure out how to get ruby to access the database via tcp/ip. Some people suggested adding <span style="font-style: italic;">port: 3306</span> to <span style="font-style: italic;">database.yml</span> , but that did not change anything.<br><br>Then finally the breakthrough. I changed <span style="font-style: italic;">host: localhost </span>in <span style="font-style: italic;">database.yml </span>to <span style="font-style: italic;">host: 127.0.0.1 </span>and everything worked like a charm. It turns out that when specifying <span style="font-style: italic;">localhost</span> ruby tries to connect via a socket file whereas specifying a IP address switches to tcp/ip. Interesting.<br><br>So long,<br>--Hardy</p>
+  <p>Here comes a maybe not so high level bit, but it nevertheless cost me a lost of time the other day to figure out what was going on.<br><br>Long story short - I am recently experimenting with ruby on rails and and kept getting the following error message each single time I wanted to scaffold any of my database tables:<br><br><span style="font-style: italic;">No such file or directory - /tmp/mysql.sock</span><br><br>I am running Windows XP together with cygwin. Ruby is installed via cygwin and MySQL is installed via the MySQL windows installer.<br><br>It was pretty obvious ruby could not connect to my database, but I could not figure out why. The file <span style="font-style: italic;">mysql.sock</span> did not exist on my system and I could not figure out how to get ruby to access the database via tcp/ip. Some people suggested adding <span style="font-style: italic;">port: 3306</span> to <span style="font-style: italic;">database.yml</span> , but that did not change anything.<br><br>Then finally the breakthrough. I changed <span style="font-style: italic;">host: localhost </span>in <span style="font-style: italic;">database.yml </span>to <span style="font-style: italic;">host: 127.0.0.1 </span>and everything worked like a charm. It turns out that when specifying <span style="font-style: italic;">localhost</span> ruby tries to connect via a socket file whereas specifying a IP address switches to tcp/ip. Interesting.<br><br>So long,<br>--Hardy</p>
 <div class="old-comments">
 <h2>Old comments</h2>
 <div class="one-old-comment">
@@ -99,7 +107,8 @@
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

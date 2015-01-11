@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - jfokus 2010 day 1 summary</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - jfokus 2010 day 1 summary</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -63,7 +71,7 @@
   
 </div>
 <div class="inner-content">
-<p>It is hard to top the exotic blog posts from my argentinian coblogger. Nevertheless it may make sense to write up a summary of jfokus - the yearly Java conference in Stockholm. Yet again the venue is Filmstaden Sergel and I won't report anymore on this as compared to <a href="http://www.highlevelbits.com/2009/01/jfokus-summary.html">last years report</a>.</p>
+  <p>It is hard to top the exotic blog posts from my argentinian coblogger. Nevertheless it may make sense to write up a summary of jfokus - the yearly Java conference in Stockholm. Yet again the venue is Filmstaden Sergel and I won't report anymore on this as compared to <a href="http://www.highlevelbits.com/2009/01/jfokus-summary.html">last years report</a>.</p>
 <div>
 <br>The day started badly with a 40 minute delay on the commuter trains from the <a href="http://en.wikipedia.org/wiki/Sollentuna_Municipality">northern suburbs</a>. This made me late to the first tutorial. The first day of two is tutorial day - one before and one after lunch. 4 to choose from. I started with a nice talk on Good Object-Oriented Development by Kevlin Henney. Kevlin went through a lot of basic stuff related to object oriented development. Nothing new really but it is good to get this kind of confirmation know and then. He made some nice examples on encapsulation and showed us some real life code that was just not very good. I see similar stuff often in the systems I work with. One reason for this kind of code is that many developers learn a set of have-tos that they stick to. Some of them should probably be considered harmful. One example: always provide a default constructor. This may be useful if there is such thing as a default state for instances of the class but in many cases it results in objects with undefined state and leads to error prone code. Later on Kevlin removed 'get' from some code with a bunch of getters and I felt like FINALLY. I have never understood the point with the <a href="http://java.sun.com/javase/technologies/desktop/javabeans/index.jsp">JavaBeans</a> standard (ok - tooling but what else?) getters and setters really suck. (Ruby has a much nicer way to go about it. No big surprise there.....) He also talked for a while about unit testing and a feeling I have had lately that writing tests per method is darn wrong was firmly confirmed. It is much better to name methods after what they test. A method is often tested with several test cases while other simpler methods can be tested indirectly without a dedicated test case. The readability of tests is often low and I know I have failed with this on several occasions but it is not hard to argue that test code should be as readable as the main code. It will all live for a while and it will all be maintained so it should all be in as good shape as possible.<br><br>After lunch Anders Hammar delved into the depths of maven. Not the funniest subject but since I have some maven skills and don't work with it currently I felt that it was the best choice of the afternoon. (A kind of attempt to refresh a fading skill set.) Anders mixed slides and live demonstrations which is a very nice way to go about it. He started with lots of examples of the eclipse maven plugin m2eclipse. Looks really nice and I have tried it on a side project also. I didn't realize that m2eclipse runs on maven 3 but apparently it is compatible with maven 2 so you can use m2eclipse and maven 2 on the command line with the same configuration files. The part on dependency management didn't add anything new. More interesting then was the next part on life cycle customization. This is perhaps the area where maven has some serious problems. There are 3 built in lifecycles: default, clean and site. They are built up from phases where each phase has its default plugin that is executed. A problem with this is that this lifecycle view of a system build doesn't always fit all systems. If your plugin doesn't fit nicely into the phases you can run into all sorts of problems. A possiple way out of this problem is to <a href="http://www.sonatype.com/books/mvnref-book/reference/writing-plugins-sect-plugins-lifecycle.html">create your own lifecycle</a>. I am not sure whether this is good or not. Maybe Hardy knows more about it? The tutorial was labelled "advanced" but to me it was closer to basics. My needs for repetition of forgotten knowledge were thus satisfactorily filled!</div>
 <div> </div>
@@ -90,7 +98,8 @@
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

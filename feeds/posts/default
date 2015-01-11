@@ -1,8 +1,9 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2014-12-27T23:00:00Z</updated>
+  <updated>2015-01-10T23:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
@@ -10,12 +11,123 @@
     <uri>http://www.highlevelbits.com</uri>
   </author>
   <entry>
+    <id>tag:www.highlevelbits.com,2015-01-11:/2015/01/securing-arch-server.html</id>
+    <title type="html">Securing an arch linux server</title>
+    <published>2015-01-10T23:00:00Z</published>
+    <updated>2015-01-10T23:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2015/01/securing-arch-server.html"/>
+    <content type="html">
+&lt;p&gt;I am setting up my own server for the second time. One year ago I got myself a virtual server at digital ocean running arch linux. Unfortunately they dropped support for arch early in 2014 so I needed to move elsewhere and I turned my eyes on linode. So in order to remember how this is done when I do it a third time I will write down some notes about it here. In this first post I will walk you through getting your server up to date and securing it on a shell level.&lt;/p&gt;
+
+&lt;p&gt;This guide will set up the server &lt;code&gt;gibson&lt;/code&gt;  with a user called &lt;code&gt;william&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id="getting-in-and-updating"&gt;Getting in and updating&lt;/h3&gt;
+
+&lt;p&gt;From your provider you have gotten a root password. Log in with it.&lt;/p&gt;
+
+&lt;p&gt;Set hostname:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hostnamectl set-hostname gibson
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I also add it to my local &lt;code&gt;/etc/hosts&lt;/code&gt; so I don’t have to remember the IP.&lt;/p&gt;
+
+&lt;p&gt;I prefer running my server in the UTC time zone. If you want something else you can take care of it now. Use &lt;code&gt;timedatectl&lt;/code&gt; for this.&lt;/p&gt;
+
+&lt;p&gt;Before you can update the system, you need to create entropy, initiate pacman-key and populate the keyring.&lt;/p&gt;
+
+&lt;p&gt;To get arch package manager up and running you need to initiate it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;haveged -w 1024
+pacman-key --init
+pkill haveged
+pacman-key --populate archlinux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then run the update:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pacman -Syu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I also install some stuff I will need pretty soon:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pacman -S git zsh ufw
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="add-sudo-enable-user"&gt;Add sudo enable user&lt;/h3&gt;
+
+&lt;p&gt;Then it is time to secure the login. It is considered harmful to have a password protected root login. Start with adding a normal user:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;useradd -m william
+passwd william
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Give the new user root access:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;visudo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here you have to know your way around &lt;code&gt;vi&lt;/code&gt;. I can barely manage &lt;code&gt;vim&lt;/code&gt; so….
+Add this line somewhere in the file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ruben ALL=(ALL) ALL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now log out from your root login and try your new user. You should be able to login with password.&lt;/p&gt;
+
+&lt;h3 id="secure-the-login"&gt;Secure the login&lt;/h3&gt;
+
+&lt;p&gt;The next step is to use a public key for the ssh login instead of passwords. This will save you time when you need to get into your server and it is also more secure. &lt;/p&gt;
+
+&lt;p&gt;If you don’t have a ssh key you have to generate it now. You can find out how with the help of google. Copy the public key file to the server:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;scp ~/.ssh/id_rsa.pub william@gibson
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then login as &lt;code&gt;william&lt;/code&gt; to &lt;code&gt;gibson&lt;/code&gt;. The key file needs to be in &lt;code&gt;.ssh/authorized_keys&lt;/code&gt;. If you are the only user on the machine you can move it like below. Otherwise append it to the file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir .ssh
+mv id_rsa.pub .ssh/authorized_keys
+chown -R .ssh
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally we need to make some changes to the ssd configuration file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo vim /etc/ssh/sshd_config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this file the following lines needs to be uncommented and altered.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Port 66677
+PasswordAuthentication no          
+PermitRootLogin no
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This changes the ssh port from the default 22 making it harder to start attacking the server. We also turn off password authentication and root login. Restart &lt;code&gt;sshd&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo systemctl restart sshd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now the only user that can login is &lt;code&gt;william&lt;/code&gt; with the ssh key that we entered and on the new port.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh -p 66677 william@gibson
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and you are fine to go.&lt;/p&gt;
+
+&lt;p&gt;Now you likely want to use the server to run some software that needs to be available. In the next post I will show you how to set up &lt;code&gt;ufw&lt;/code&gt; - uncomplicated firewall.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:www.highlevelbits.com,2014-12-28:/2014/12/programming-languages-in-2015.html</id>
     <title type="html">Programming languages in 2015</title>
     <published>2014-12-27T23:00:00Z</published>
     <updated>2014-12-27T23:00:00Z</updated>
     <link rel="alternate" href="http://www.highlevelbits.com/2014/12/programming-languages-in-2015.html"/>
-    <content type="html">&lt;p&gt;3 years ago I scribbled down &lt;a href="http://highlevelbits.com/2011/12/programming-languages-in-2012.html"&gt;some predictions about programming languages trends in 2012&lt;/a&gt;. That was fun but a bit too boring to do every year…. so now is the time for a follow up.&lt;/p&gt;
+    <content type="html">
+&lt;p&gt;3 years ago I scribbled down &lt;a href="http://highlevelbits.com/2011/12/programming-languages-in-2012.html"&gt;some predictions about programming languages trends in 2012&lt;/a&gt;. That was fun but a bit too boring to do every year…. so now is the time for a follow up.&lt;/p&gt;
 
 &lt;h3 id="what-happened-with-my-predictions"&gt;What happened with my predictions?&lt;/h3&gt;
 
@@ -52,7 +164,8 @@
     <published>2014-11-19T23:00:00Z</published>
     <updated>2014-11-19T23:00:00Z</updated>
     <link rel="alternate" href="http://www.highlevelbits.com/2014/11/markdown-readme-from-grails.html"/>
-    <content type="html">&lt;p&gt;So you wrote a nice readme for your grails project and realized that it would be nice to serve it at some or other URL on your site. Yeah - happened to me too. So here is what I did.&lt;/p&gt;
+    <content type="html">
+&lt;p&gt;So you wrote a nice readme for your grails project and realized that it would be nice to serve it at some or other URL on your site. Yeah - happened to me too. So here is what I did.&lt;/p&gt;
 
 &lt;p&gt;First we need to add markdown capabilities to our grails project. For that we use the &lt;a href="https://grails.org/plugin/markdown"&gt;markdown plugin&lt;/a&gt;. Put the following line in your &lt;code&gt;BuildConfig.groovy&lt;/code&gt;:&lt;/p&gt;
 
@@ -108,7 +221,8 @@ end
     <published>2014-11-10T23:00:00Z</published>
     <updated>2014-11-10T23:00:00Z</updated>
     <link rel="alternate" href="http://www.highlevelbits.com/2014/11/100-continue.html"/>
-    <content type="html">&lt;p&gt;When posting a file in a complex setup with several layers I encountered a problem in a Java-&amp;gt;Apache interaction. I got this error message:&lt;/p&gt;
+    <content type="html">
+&lt;p&gt;When posting a file in a complex setup with several layers I encountered a problem in a Java-&amp;gt;Apache interaction. I got this error message:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[Tue Nov 11 14:55:57 2014] [error] [client &amp;lt;ip&amp;gt;] request body exceeds maximum size (131072) for SSL buffer, referer: &amp;lt;referrer-url&amp;gt;
 [Tue Nov 11 14:55:57 2014] [error] [client &amp;lt;ip&amp;gt;] could not buffer message body to allow SSL renegotiation to proceed, referer: &amp;lt;referrer-url&amp;gt;
@@ -123,7 +237,8 @@ end
     <published>2014-10-22T22:00:00Z</published>
     <updated>2014-10-22T22:00:00Z</updated>
     <link rel="alternate" href="http://www.highlevelbits.com/2014/10/smtp-mocking.html"/>
-    <content type="html">&lt;p&gt;So I wrote a micro service that gets a REST call and sends a mail or a SMS and I wanted to have some nice black box tests in place. &lt;/p&gt;
+    <content type="html">
+&lt;p&gt;So I wrote a micro service that gets a REST call and sends a mail or a SMS and I wanted to have some nice black box tests in place. &lt;/p&gt;
 
 &lt;h3 id="the-test"&gt;The test&lt;/h3&gt;
 
@@ -157,19 +272,5 @@ assert list_of_mails =~ random_ud
 &lt;p&gt;Integration tests can mean many things. There seem to be no common vocabulary within the testing discipline. In Grails - the framework used in the micro service here - integration testing means talking directly to a controller and stubbing away third party dependencies. So the meaning here is to test the different parts and of a system together. (As opposite to unit testing.) For me integration testing normally means testing a couple of systems together and accessing it from the outside (normally with HTTP in some form). This confusion about names led me to use &lt;em&gt;black box testing&lt;/em&gt; in this article. Using another name for this does not really help but when talking about black boxes it is obvious that we are not testing or knows about any internals - a good thing.&lt;/p&gt;
 </content>
   </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-09-23:/2014/09/mistakes.html</id>
-    <title type="html">The benefit of mistakes</title>
-    <published>2014-09-22T22:00:00Z</published>
-    <updated>2014-09-22T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/09/mistakes.html"/>
-    <content type="html">&lt;p&gt;I stumbled upon a great post over at &lt;a href="http://www.farnamstreetblog.com/"&gt;Farnam Street&lt;/a&gt; pointing out the importance of making mistakes. Nothing new here but really good to get a reminder now and then:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Just because we’ve lost our way doesn’t mean that we are lost forever. In the end, it’s not the failures that define us so much as how we respond.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Read more along these lines in &lt;a href="http://www.farnamstreetblog.com/2014/09/mistakes/"&gt;the post&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
 </feed>
+

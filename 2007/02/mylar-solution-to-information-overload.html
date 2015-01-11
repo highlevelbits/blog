@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - Mylar - the solution to information overload</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - Mylar - the solution to information overload</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -59,7 +67,7 @@
   
 </div>
 <div class="inner-content">
-<p>Hi again,<br><br>one of the recent topics on this blog was information overload. Until recently I experienced this daily within Eclipse IDE. Once your project reaches a moderate size the eclipse package explorer becomes virtually useless since you get completely lost in all the information it displays. Classes, methods, jar dependencies, project file, ... - finding something in this amount of information ended up in hour long scrolling session. I basically got to the point where I completely ignored the package explorer and just relied on the <span style="font-style: italic;">CTRL-R </span>and <span style="font-style: italic;">CTRL-T</span> keyboard shortcuts which let you search for resources respectively classes in the whole workspace.<br><br>Admittedly my problems with Eclipse might not be relevant in the grand scheme of things, but I was still happy when I came across <a href="http://www.eclipse.org/mylar/">Mylar</a> and its solution to this type information overload. Mylar is based on tasks/activities and the idea is that each task starts with an empty package explorer. While you work on the task and continue opening files Mylar will build up a list of <span style="font-style: italic;">task relevant</span> files. Given that you normally only work on a small set of files at a time you end up with a very compact list in the package explorer. You can manually add <span style="font-style: italic;">landmarks</span> to files you want to show in the package explorer or you can remove <span style="font-style: italic;">landmarks</span> mylar created automatically. Last but not least, Mylar also integrates with many bug/task tracking solutions like for example <a href="http://www.atlassian.com/software/jira/">Jira</a>. Mylar Eclipse tasks and your currently assigned tasks from the bug tracker become one and the same thing. I call this true Agile Development :)<br><br>I recommend everyone working with Eclipse to install Mylar. Hopefully it becomes soon the default package explorer in Eclipse.<br><br>In case you are experiencing problems with Eclipse hanging / locking up after installing Mylar it might help to edit <span style="font-style: italic;">eclipse.ini</span> and add the following:<br><br>-vmargs<br>-server<br>-Xms40m<br>-Xmx768m<br>-XX:MaxPermSize=128m<br>-XX:+UseParallelGC<br>-XX:+UseParallelOldGC<br><br>I work with <a href="http://www.exadel.com/web/portal/home">Exadel</a> and <a href="http://www.eclipse.org/mylar/">Mylar</a> and noticed that without these settings that Eclipse would just hang, especially when changing editors. The only way out was to kill Eclipse. The above settings fixed this problem ( it seems to be related to the PermGen size and there are a lot of theories about this - just Google for it ;-)<br><br>--Hardy</p>
+  <p>Hi again,<br><br>one of the recent topics on this blog was information overload. Until recently I experienced this daily within Eclipse IDE. Once your project reaches a moderate size the eclipse package explorer becomes virtually useless since you get completely lost in all the information it displays. Classes, methods, jar dependencies, project file, ... - finding something in this amount of information ended up in hour long scrolling session. I basically got to the point where I completely ignored the package explorer and just relied on the <span style="font-style: italic;">CTRL-R </span>and <span style="font-style: italic;">CTRL-T</span> keyboard shortcuts which let you search for resources respectively classes in the whole workspace.<br><br>Admittedly my problems with Eclipse might not be relevant in the grand scheme of things, but I was still happy when I came across <a href="http://www.eclipse.org/mylar/">Mylar</a> and its solution to this type information overload. Mylar is based on tasks/activities and the idea is that each task starts with an empty package explorer. While you work on the task and continue opening files Mylar will build up a list of <span style="font-style: italic;">task relevant</span> files. Given that you normally only work on a small set of files at a time you end up with a very compact list in the package explorer. You can manually add <span style="font-style: italic;">landmarks</span> to files you want to show in the package explorer or you can remove <span style="font-style: italic;">landmarks</span> mylar created automatically. Last but not least, Mylar also integrates with many bug/task tracking solutions like for example <a href="http://www.atlassian.com/software/jira/">Jira</a>. Mylar Eclipse tasks and your currently assigned tasks from the bug tracker become one and the same thing. I call this true Agile Development :)<br><br>I recommend everyone working with Eclipse to install Mylar. Hopefully it becomes soon the default package explorer in Eclipse.<br><br>In case you are experiencing problems with Eclipse hanging / locking up after installing Mylar it might help to edit <span style="font-style: italic;">eclipse.ini</span> and add the following:<br><br>-vmargs<br>-server<br>-Xms40m<br>-Xmx768m<br>-XX:MaxPermSize=128m<br>-XX:+UseParallelGC<br>-XX:+UseParallelOldGC<br><br>I work with <a href="http://www.exadel.com/web/portal/home">Exadel</a> and <a href="http://www.eclipse.org/mylar/">Mylar</a> and noticed that without these settings that Eclipse would just hang, especially when changing editors. The only way out was to kill Eclipse. The above settings fixed this problem ( it seems to be related to the PermGen size and there are a lot of theories about this - just Google for it ;-)<br><br>--Hardy</p>
 </div>
 
 <div class="dashed-top-border">
@@ -75,7 +83,8 @@
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

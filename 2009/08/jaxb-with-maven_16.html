@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - JAXB with Maven</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - JAXB with Maven</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -63,7 +71,7 @@
   
 </div>
 <div class="inner-content">
-<p>Fredrik was recently blogging about "<a href="http://www.highlevelbits.com/2009/06/two-way-ssl-with-java.html">Two way SSL with Java</a>" and about his frustration about the lack of knowledge and documentation. This time I want to blog about another area of software development where frustration is running high - XML processing. On the surface things looks easy, but who does not remember the classpath problems around XML parsing in the early days (SAX vs XERCES vs DOM, etc). And who really fully understands the XSD syntax and is able to create a properly designed xsd? And documentation - let's just not talk about it!<br><br>But let's get to the actual problem. I wanted to use <a href="https://jaxb.dev.java.net/">JAXB</a> to write a parser for XML files matching a given xsd. Given that Sun introduced JAXB as official XML binding framework for Java it seems the obvious choice for the task. Unfortunately, another requirement was that the code would work under JDK 5 and 6. However, the JAXB API is only offical part of the JDK since version 6. To solve this problem a little trick is needed. Let's take it step by step using <a href="http://maven.apache.org/">Maven</a> as build system. First we have to include the <a href="http://mojo.codehaus.org/jaxb2-maven-plugin/">plugin</a> by adding the following to the <a href="http://maven.apache.org/pom.html">POM</a>:</p>
+  <p>Fredrik was recently blogging about "<a href="http://www.highlevelbits.com/2009/06/two-way-ssl-with-java.html">Two way SSL with Java</a>" and about his frustration about the lack of knowledge and documentation. This time I want to blog about another area of software development where frustration is running high - XML processing. On the surface things looks easy, but who does not remember the classpath problems around XML parsing in the early days (SAX vs XERCES vs DOM, etc). And who really fully understands the XSD syntax and is able to create a properly designed xsd? And documentation - let's just not talk about it!<br><br>But let's get to the actual problem. I wanted to use <a href="https://jaxb.dev.java.net/">JAXB</a> to write a parser for XML files matching a given xsd. Given that Sun introduced JAXB as official XML binding framework for Java it seems the obvious choice for the task. Unfortunately, another requirement was that the code would work under JDK 5 and 6. However, the JAXB API is only offical part of the JDK since version 6. To solve this problem a little trick is needed. Let's take it step by step using <a href="http://maven.apache.org/">Maven</a> as build system. First we have to include the <a href="http://mojo.codehaus.org/jaxb2-maven-plugin/">plugin</a> by adding the following to the <a href="http://maven.apache.org/pom.html">POM</a>:</p>
 <pre class="brush: xml">
 &lt;plugin&gt;
     &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
@@ -151,7 +159,8 @@ in thе daylіght, for the reаson that i liκe tο find out more and more.</div
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

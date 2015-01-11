@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - Notes on test driven development</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - Notes on test driven development</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -61,7 +69,7 @@
   
 </div>
 <div class="inner-content">
-<div>This post was triggered by Per Lundholms post <a href="http://blog.crisp.se/perlundholm/2009/11/20/1258717215369.html" id="ztep" title="Beyond Basic TDD">Beyond Basic TDD</a> - an interesting take on problems and possibilities with TDD. The acronym means Test Driven Development and has been around since the pioneering days of <a href="http://c2.com/cgi/wiki?ExtremeProgramming" id="z9:4" title="eXtreme Programmin">eXtreme Programmin</a>g. Many remember the kentbeckism "Listening, Testing, Coding, Designing. That's all there is to software. Anyone who tells you different is selling something." Serious developers test their work. XP or TDD didn't change that. TDD not only promises to make sure the code works, it can be done in many other ways, it also promises that the code that is created have a good design. The idea is that code that is easy to test also is of good design. Whenever bad design appears it is refactored with no fear of failure since unit tests guarantee quality.</div>
+  <div>This post was triggered by Per Lundholms post <a href="http://blog.crisp.se/perlundholm/2009/11/20/1258717215369.html" id="ztep" title="Beyond Basic TDD">Beyond Basic TDD</a> - an interesting take on problems and possibilities with TDD. The acronym means Test Driven Development and has been around since the pioneering days of <a href="http://c2.com/cgi/wiki?ExtremeProgramming" id="z9:4" title="eXtreme Programmin">eXtreme Programmin</a>g. Many remember the kentbeckism "Listening, Testing, Coding, Designing. That's all there is to software. Anyone who tells you different is selling something." Serious developers test their work. XP or TDD didn't change that. TDD not only promises to make sure the code works, it can be done in many other ways, it also promises that the code that is created have a good design. The idea is that code that is easy to test also is of good design. Whenever bad design appears it is refactored with no fear of failure since unit tests guarantee quality.</div>
 <div> </div>
 <div>I have been working test driven for most of my time as a java developer. I first started writing tests with the first version of Junit back in the late 90s. Back then I felt that this must surely be the way of the future. Not so. In every project I have worked in since I have had to fight to get people to even write unit tests. Per asks the question "What do you think should go into an advanced class on TDD?" The following are a couple of ideas from me.</div>
 <div> </div>
@@ -114,7 +122,8 @@
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

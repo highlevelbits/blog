@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - MySQL, Where Art Thou?</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - MySQL, Where Art Thou?</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -59,7 +67,7 @@
   
 </div>
 <div class="inner-content">
-I am using <a href="http://www.mysql.com/">MySQL</a> for various things  - my wiki is running against it, my local <a href="http://www.sonarsource.org/">Sonar</a> installation uses it and often I run <a href="http://www.hibernate.org/">Hibernate</a> unit tests against it.  I remember installing MySQL via <a href="http://www.macports.org/">macports</a>, but since then I have not touched it. Well, until a couple of days ago, where I got strange error messages from my JDBC driver when trying to connect to a specific schema in my database. I still could connect to MySQL using the <i>mysql</i> command line though. I wanted to know more. I needed to find the mysqld configuration and error logs. But where?<br>I haven't looked at the MySQL installation for months and I was not sure where macport installed it. I remembered that the MySQL configuration file is called <i>my.cnf</i> or something <i>*.cnf</i>. I tried a quick:<br><br><pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;"><code>&gt; locate my.cnf<br>&gt; locate *.cnf<br></code></pre>
+  I am using <a href="http://www.mysql.com/">MySQL</a> for various things  - my wiki is running against it, my local <a href="http://www.sonarsource.org/">Sonar</a> installation uses it and often I run <a href="http://www.hibernate.org/">Hibernate</a> unit tests against it.  I remember installing MySQL via <a href="http://www.macports.org/">macports</a>, but since then I have not touched it. Well, until a couple of days ago, where I got strange error messages from my JDBC driver when trying to connect to a specific schema in my database. I still could connect to MySQL using the <i>mysql</i> command line though. I wanted to know more. I needed to find the mysqld configuration and error logs. But where?<br>I haven't looked at the MySQL installation for months and I was not sure where macport installed it. I remembered that the MySQL configuration file is called <i>my.cnf</i> or something <i>*.cnf</i>. I tried a quick:<br><br><pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;"><code>&gt; locate my.cnf<br>&gt; locate *.cnf<br></code></pre>
 <br>Both commands gave a uge amounts of hits and I was still not sure where to look at. There must be a better way to find out which configuration the database is using and where the data is stored. I started some digging. Turns out if MySQL is still running, you can simplly issue a SQL statement to get most information you need. The key is the <a href="http://dev.mysql.com/doc/refman/5.0/en/show.html"><i>show</i></a> command. You might already know <i>show databases</i> and <i>show tables</i>, but do you know:<br><br><pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;"><code>show variables;</code></pre>
 <br>This command will tell you almost all you need to know, amongst others:<br><br><pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;"><code>log_error  /opt/local/var/db/mysql5/Sarmakand.local.err<br>pid_file   /opt/local/var/db/mysql5/Sarmakand.local.pid<br>datadir    /opt/local/var/db/mysql5/<br></code></pre>
 <br>Now I was almost there. I had found the data directories and the log file. A quick look in the log revealed something along these lines:<br><br><pre style="background-color: #eeeeee; border: 1px dashed rgb(153, 153, 153); color: black; font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;">InnoDB: Cannot find table foo from the internal data dictionary<br>InnoDB: of InnoDB though the .frm file for the table exists. Maybe you<br>InnoDB: have deleted and recreated InnoDB data files but have forgotten<br>InnoDB: to delete the corresponding .frm files of InnoDB tables?<code><br></code></pre>
@@ -81,7 +89,8 @@ I am using <a href="http://www.mysql.com/">MySQL</a> for various things  - my w
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

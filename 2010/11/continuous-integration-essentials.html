@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - Continuous Integration Essentials</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - Continuous Integration Essentials</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -59,7 +67,7 @@
   
 </div>
 <div class="inner-content">
-<p>This is a short text about continuous integration. It serves as a companion to a lightning talk I do on the subject. In this text I will first try to define it, then move on to a short discussion and finally end with some encouragement and perhaps call to action.</p>
+  <p>This is a short text about continuous integration. It serves as a companion to a lightning talk I do on the subject. In this text I will first try to define it, then move on to a short discussion and finally end with some encouragement and perhaps call to action.</p>
 <p>When <b>defining</b> the concept "continuous integration" it is easy to use a bit too many words. I started to think along the lines of "to verify as much as possible as often as possible" but it was a little bit too noisy. After several iterations I decided on the dense:</p>
 <div style="text-align: center;"><b>verify often</b></div>
 <div style="text-align: left;">It is small enough to not be a formal definition. Formal definitions are often a bit far away from the real thing. This short form can also be remembered easily. So continuous integration is for this article defined as "verify often". Lets have a look at what we can <b>verify</b>. What first springs to mind is to check that the code base is fine. With a static language the first thing to do is to compile the code so that syntactic errors are found. After that unit tests can be run to verify the semantics of the code. With a dynamic language the syntax is verified implicitly with the unit tests. They will simply not run if there are syntactic errors in the code. With this in place we move on to automatic installation of the system in an environment that resembles the target environment and then perform integration and system tests. (And whatever you call your different test levels in your organization.) Almost all kinds of tests are possibly to automate. The exception of course is the visual look and feel of a graphic interface.</div>
@@ -114,7 +122,8 @@
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

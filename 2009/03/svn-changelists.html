@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - svn changelists</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - svn changelists</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -59,7 +67,7 @@
   
 </div>
 <div class="inner-content">
-<p>While I am on the 'discovering trip'. Here is another thing I found out this week. This time I actually knew that this particular feature existed, but I never really knew how to use it and how it actually works. I am talking about <a href="http://svnbook.red-bean.com/en/1.5/svn-book.html#svn.advanced.changelists">svn changelists</a>. They are part of subversion since version 1.5 and so far were only something I read about. However, this week I discovered by accident the 'move to changelist' button in the Intellij Idea svn plugin. I just tried it and immediately it dawned on my how useful this feature is. It allows me for example to move some files, which I always change, but never commit into a seperate changeset. This way I don't have to remember to either revert or not commit these files. You probably think that such files should not exists in a properly setup project, but what about for example log4j.properties. I personally like to collect log4j output in <a href="http://logging.apache.org/chainsaw/index.html">Chainsaw</a> , but on the other hand I don't want to commit the log4j configuration file with the required socket appender enabled. Well, now I just moved log4j.properties into its own changelist and I don't have to think about it anymore.<br>From the command line you are using the changelist feature via the '--changelist' options which can be passed to most of the svn sub-commands. For example a checkin would look like this:</p>
+  <p>While I am on the 'discovering trip'. Here is another thing I found out this week. This time I actually knew that this particular feature existed, but I never really knew how to use it and how it actually works. I am talking about <a href="http://svnbook.red-bean.com/en/1.5/svn-book.html#svn.advanced.changelists">svn changelists</a>. They are part of subversion since version 1.5 and so far were only something I read about. However, this week I discovered by accident the 'move to changelist' button in the Intellij Idea svn plugin. I just tried it and immediately it dawned on my how useful this feature is. It allows me for example to move some files, which I always change, but never commit into a seperate changeset. This way I don't have to remember to either revert or not commit these files. You probably think that such files should not exists in a properly setup project, but what about for example log4j.properties. I personally like to collect log4j output in <a href="http://logging.apache.org/chainsaw/index.html">Chainsaw</a> , but on the other hand I don't want to commit the log4j configuration file with the required socket appender enabled. Well, now I just moved log4j.properties into its own changelist and I don't have to think about it anymore.<br>From the command line you are using the changelist feature via the '--changelist' options which can be passed to most of the svn sub-commands. For example a checkin would look like this:</p>
 <blockquote>svn commit -m "my log message" --changelist myChangeList</blockquote>
 <p>One caveat though. I was assuming that committing without specifying a changelist would only commit the files which are not specifically in a changelist. Unfortunately, that's not the case. Instead all changes are committed. That's a clear drawback for me, but at least it is hidden from me when using the Idea plugin.<br><br>Time to hand-over to Fredrik again for a less technical blog entry :)<br><br>--Hardy</p>
 <div class="old-comments">
@@ -83,7 +91,8 @@
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

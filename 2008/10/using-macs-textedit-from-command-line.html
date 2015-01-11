@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - Using Mac's TextEdit from the command line</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - Using Mac's TextEdit from the command line</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -61,7 +69,7 @@
   
 </div>
 <div class="inner-content">
-Just a short little note. As I recently mentioned there are a few things which I actually do not like about my Mac. One is that the <i>Finder</i> per default does not display hidden files and the second related issue that <i>TextEdit</i> is not in the default path of the console.<br>Why is that important you ask? Well I would like to say for example say at the command line:<br><br>&gt; edit foo.txt <br><br>or <br><br>&gt; edit ~/.bashrc<br><br>For the former I could open <i>Finder</i>, locate the file and double click. For the former I am pretty much out of luck. Of course I also could just use <i>vi </i>and in fact that's what I am doing most of the time, but then there are the times where I just want to have another simple editor. To come to the point, here is what I did and what I would like to share with you. Just add this to your <i>~/.bashr</i>c (or <i>~/.bash_profile </i>as a matter of fact):<br><br>function edit()<br>{<br>    /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2&gt;/dev/null<br>}<br><br>Have fun,<br>--Hardy<div class="old-comments">
+  Just a short little note. As I recently mentioned there are a few things which I actually do not like about my Mac. One is that the <i>Finder</i> per default does not display hidden files and the second related issue that <i>TextEdit</i> is not in the default path of the console.<br>Why is that important you ask? Well I would like to say for example say at the command line:<br><br>&gt; edit foo.txt <br><br>or <br><br>&gt; edit ~/.bashrc<br><br>For the former I could open <i>Finder</i>, locate the file and double click. For the former I am pretty much out of luck. Of course I also could just use <i>vi </i>and in fact that's what I am doing most of the time, but then there are the times where I just want to have another simple editor. To come to the point, here is what I did and what I would like to share with you. Just add this to your <i>~/.bashr</i>c (or <i>~/.bash_profile </i>as a matter of fact):<br><br>function edit()<br>{<br>    /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2&gt;/dev/null<br>}<br><br>Have fun,<br>--Hardy<div class="old-comments">
 <h2>Old comments</h2>
 <div class="one-old-comment">
 <span class="comment-date">2009-06-29</span><span class="commenter-name">Vivek</span><div class="comment-body">Alternative way to do this.<br><br>add the following line to .bashrc:<br><br>alias edit='open -a textmate'</div>
@@ -94,7 +102,8 @@ Just a short little note. As I recently mentioned there are a few things which I
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

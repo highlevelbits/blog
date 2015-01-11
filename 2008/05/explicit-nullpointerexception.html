@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - Explicit NullPointerException</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - Explicit NullPointerException</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -59,7 +67,7 @@
   
 </div>
 <div class="inner-content">
-<p>I am reading a book on JavaServer Faces (The Complete Reference.....) since I am supposed to teach the subject next week at a course on Java and web programming. One code example got me started on one of my favorite subjects - the abundance of null checks in source code. This is the example code I saw inside a custom converter example class:<br><br><code>public String getAsString(FacesContext context,<br>    UIComponent component,<br>    Object value)<br>{<br>    if( context == null || component == null )<br>    {<br>        throw new NullPointerException();<br>    }<br>    // and obviously some more code here....<br>}</code><br><br>This doesn't make sense at all since if the params are null there will eventuelly be a NullPointerException raised anyway. This method is supposed to be called by the JSF framework so it makes even less sense. Why would a framework call a custom converter class with null values? I saw similar code yesterday in the huge code pile I am working with now for a customer. The difference was that a checked exception was thrown instead of an unchecked. That is even worse since every caller of the method need to deal with that exception and - in this case - the source fault (null value of a param) was not mentioned at all. Just a generic "this was not good" message. I suggest that null values can take care of themselves. If someone passes in null for a param that never should be null a NullPointerException is a brilliant outcome with the stack trace showing us exactly where the null value was discovered. </p>
+  <p>I am reading a book on JavaServer Faces (The Complete Reference.....) since I am supposed to teach the subject next week at a course on Java and web programming. One code example got me started on one of my favorite subjects - the abundance of null checks in source code. This is the example code I saw inside a custom converter example class:<br><br><code>public String getAsString(FacesContext context,<br>    UIComponent component,<br>    Object value)<br>{<br>    if( context == null || component == null )<br>    {<br>        throw new NullPointerException();<br>    }<br>    // and obviously some more code here....<br>}</code><br><br>This doesn't make sense at all since if the params are null there will eventuelly be a NullPointerException raised anyway. This method is supposed to be called by the JSF framework so it makes even less sense. Why would a framework call a custom converter class with null values? I saw similar code yesterday in the huge code pile I am working with now for a customer. The difference was that a checked exception was thrown instead of an unchecked. That is even worse since every caller of the method need to deal with that exception and - in this case - the source fault (null value of a param) was not mentioned at all. Just a generic "this was not good" message. I suggest that null values can take care of themselves. If someone passes in null for a param that never should be null a NullPointerException is a brilliant outcome with the stack trace showing us exactly where the null value was discovered. </p>
 <div class="old-comments">
 <h2>Old comments</h2>
 <div class="one-old-comment">
@@ -81,7 +89,8 @@
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - My precious wiki</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - My precious wiki</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -63,7 +71,7 @@
   
 </div>
 <div class="inner-content">
-<p>Ever wanted a simple wiki, which you can edit on- or offline? A wiki which is easy to back up<br>and does versioning. And what's about some free hosting as well?<br><br>I am a big proponent of running a personal wiki to capture and organize thoughts. In case you don't agree, I recommend you read Any Hunt's "<a href="http://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050">Pragmatic Thinking and Learning</a>".<br><br>Self I have been running <a href="http://info.tiki.org/Tiki+Wiki+CMS+Groupware">Tiki Wiki</a> for a long time, but it is quite heavy weight, requires a database and constant upgrading. I was always looking for something more lightweight and now I found it - <a href="https://github.com/github/gollum">gollum</a>. A lightweight racks app which works either via a webinterface or by simple text file editing on the file system.<br><br>Running gollum locally is as easy as:</p>
+  <p>Ever wanted a simple wiki, which you can edit on- or offline? A wiki which is easy to back up<br>and does versioning. And what's about some free hosting as well?<br><br>I am a big proponent of running a personal wiki to capture and organize thoughts. In case you don't agree, I recommend you read Any Hunt's "<a href="http://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050">Pragmatic Thinking and Learning</a>".<br><br>Self I have been running <a href="http://info.tiki.org/Tiki+Wiki+CMS+Groupware">Tiki Wiki</a> for a long time, but it is quite heavy weight, requires a database and constant upgrading. I was always looking for something more lightweight and now I found it - <a href="https://github.com/github/gollum">gollum</a>. A lightweight racks app which works either via a webinterface or by simple text file editing on the file system.<br><br>Running gollum locally is as easy as:</p>
 <pre class="code">
 $ gem install gollum
 $ gollum</pre>
@@ -74,7 +82,8 @@ $ gem install rhc
 <p>Now let's create a domain and app for your wiki:</p>
 <pre class="code">
 $ rhc-create-domain -n <your-domain> -l <email>
-$ rhc-create-app -a wiki -t rack-1.1 -l <email></email></email></your-domain></pre>
+$ rhc-create-app -a wiki -t rack-1.1 -l <email>
+</email></email></your-domain></pre>
 <p>Once you ran this commands you should have a local git checkout in the directory wiki and a running application under http://wiki-<your-domain>-rhcloud.com.<br><br>Next we need to install gollum. Let's change into the <i>wiki</i> directory. First open <i>.openshift/action_hooks/build</i> and just add the line</your-domain></p>
 <pre class="code">
 export </pre>
@@ -146,7 +155,8 @@ http://google.cox</div>
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - No need to code - just annotate it...</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - No need to code - just annotate it...</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -59,7 +67,7 @@
   
 </div>
 <div class="inner-content">
-<p><a href="http://www.theserverside.com/news/thread.tss?thread_id=48810">TheServerSide reports</a> that JSR 303 will solve the problem of validating beans in several tiers in the typical J2EE stack. A developer is supposed to annotate his bean with validation rules rather than code it in controller classes all over the system. This is probably a very nice effort to sort out one of the problems with the whole J2EE thing. It starts me wondering though. It seems like Java is moving from actual code towards more and more of the annotation stuff. (Which I don't like at all from the artistic perspective....) Annotations make sense for many things - mostly for matters concerning infrastructural issues. It also makes sense to annotate in order to validate proper values in a Java bean. And it highlights a problem that has been there all the time since Java beans appeared. The Java beans standard isn't really object oriented. It kind of assumes that a get/set pair encapsulates one field. The requirement of having an empty constructor also emphasizes that you can never trust a Java bean instance. The values can be whatever. And that is the reason you need a validation annotation framework. I think it is sad that a nice object oriented language like Java is used mostly for functional programming. Also sad is the complexity that is added when making workarounds for solving these issues.</p>
+  <p><a href="http://www.theserverside.com/news/thread.tss?thread_id=48810">TheServerSide reports</a> that JSR 303 will solve the problem of validating beans in several tiers in the typical J2EE stack. A developer is supposed to annotate his bean with validation rules rather than code it in controller classes all over the system. This is probably a very nice effort to sort out one of the problems with the whole J2EE thing. It starts me wondering though. It seems like Java is moving from actual code towards more and more of the annotation stuff. (Which I don't like at all from the artistic perspective....) Annotations make sense for many things - mostly for matters concerning infrastructural issues. It also makes sense to annotate in order to validate proper values in a Java bean. And it highlights a problem that has been there all the time since Java beans appeared. The Java beans standard isn't really object oriented. It kind of assumes that a get/set pair encapsulates one field. The requirement of having an empty constructor also emphasizes that you can never trust a Java bean instance. The values can be whatever. And that is the reason you need a validation annotation framework. I think it is sad that a nice object oriented language like Java is used mostly for functional programming. Also sad is the complexity that is added when making workarounds for solving these issues.</p>
 <div class="old-comments">
 <h2>Old comments</h2>
 <div class="one-old-comment">
@@ -81,7 +89,8 @@
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->

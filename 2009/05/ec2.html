@@ -1,16 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>high level bits - EC2</title>
-<link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
-<link href="../../awesome/font-awesome-min.css" rel="stylesheet">
-<link href="../../style.css" rel="stylesheet">
-<link href="../../forms.css" rel="stylesheet">
-<link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
-<!-- you don't need to keep this, but it's cool for stats! --><meta name="generator" content="nanoc 3.6.8">
-<!-- google analytics --><script type="text/javascript">
+    <meta charset="utf-8">
+    <title>high level bits - EC2</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-1370334-1']);
@@ -22,15 +29,16 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script><!-- end google analytics -->
-</head>
-<body>
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
     <div class="main">
       <div class="header">
         <div class="twitter-window">
           <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+        </div>
         <a href="../../">
           <h1>h1ghlevelb1ts</h1>
         </a>
@@ -57,7 +65,7 @@
   
 </div>
 <div class="inner-content">
-<p>It is time to get more technical again. This time I want to write about cloud computing or more specifically about <a href="http://aws.amazon.com/ec2/">Amazon's EC2</a>. Given the hype around the very hard to define term of cloud computing, it was for a long time on my todo list to check EC2 out. However, I wanted to have a use case. "Luckily" I had to fix a Hibernate Search <a href="http://opensource.atlassian.com/projects/hibernate/browse/HSEARCH-248">bug</a> which would only manifest itself against a certain set of databases, including SQLServer. Since I did not have a SQLServer running locally, I decided this might be the opportunity I was looking for. Surely, there must be a virtual machine in EC2 with SQLServer installed.<br><br>Turns out there are heaps and it is a piece of cake to get started. All you need is an amazon account. If you ever ordered a book from Amazon chances are you have one. It felt a little wrong to use it though. I still have to associate Amazon to more than just a bookstore. Anyways, logging in worked fine and after answering some initial setup questions, generating a certificate for authentication and watching a 3 minutes tutorial video, you are ready to proceed to the EC2 console. Just press the Launch Instance button, select a virtual machine configuration and off you go. It is all very intuitive and easy to understand (meaning no need for reading any more documentation:). The actual starting up time for the virtual machine was longer than I expected and I started to think something went wrong, but in the end the console reported the machine ready to use. Once running, you have a public DNS name for the machine which you can use to connect to it via ssh or remote desktop. Again very simple.<br>In my case I just used remote desktop to log onto the machine, create a new SQLServer database to use for running my tests and then I was back debugging my problem. Sweet.<br><br>I haven't tried yet any of the other EC2 services like volumes and snapshots, but I will be back. Well done, Amazon!<br><br>--Hardy</p>
+  <p>It is time to get more technical again. This time I want to write about cloud computing or more specifically about <a href="http://aws.amazon.com/ec2/">Amazon's EC2</a>. Given the hype around the very hard to define term of cloud computing, it was for a long time on my todo list to check EC2 out. However, I wanted to have a use case. "Luckily" I had to fix a Hibernate Search <a href="http://opensource.atlassian.com/projects/hibernate/browse/HSEARCH-248">bug</a> which would only manifest itself against a certain set of databases, including SQLServer. Since I did not have a SQLServer running locally, I decided this might be the opportunity I was looking for. Surely, there must be a virtual machine in EC2 with SQLServer installed.<br><br>Turns out there are heaps and it is a piece of cake to get started. All you need is an amazon account. If you ever ordered a book from Amazon chances are you have one. It felt a little wrong to use it though. I still have to associate Amazon to more than just a bookstore. Anyways, logging in worked fine and after answering some initial setup questions, generating a certificate for authentication and watching a 3 minutes tutorial video, you are ready to proceed to the EC2 console. Just press the Launch Instance button, select a virtual machine configuration and off you go. It is all very intuitive and easy to understand (meaning no need for reading any more documentation:). The actual starting up time for the virtual machine was longer than I expected and I started to think something went wrong, but in the end the console reported the machine ready to use. Once running, you have a public DNS name for the machine which you can use to connect to it via ssh or remote desktop. Again very simple.<br>In my case I just used remote desktop to log onto the machine, create a new SQLServer database to use for running my tests and then I was back debugging my problem. Sweet.<br><br>I haven't tried yet any of the other EC2 services like volumes and snapshots, but I will be back. Well done, Amazon!<br><br>--Hardy</p>
 </div>
 
 <div class="dashed-top-border">
@@ -73,7 +81,8 @@
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
-  </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <!-- end disqus -->
