@@ -3,7 +3,7 @@ title: "Securing an arch linux server"
 kind: article
 created_at: 2015-01-11
 author: fredrik
-tags: arch, server, shell, security, linux
+tags: arch, server, security, linux
 ---
 
 I am setting up my own server for the second time. One year ago I got myself a virtual server at digital ocean running arch linux. Unfortunately they dropped support for arch early in 2014 so I needed to move elsewhere and I turned my eyes on linode. So in order to remember how this is done when I do it a third time I will write down some notes about it here. In this first post I will walk you through getting your server up to date and securing it on a shell level.
