@@ -3,13 +3,80 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.highlevelbits.com/</id>
   <title>rss feed</title>
-  <updated>2015-01-10T23:00:00Z</updated>
+  <updated>2015-01-12T23:00:00Z</updated>
   <link rel="alternate" href="http://www.highlevelbits.com/"/>
   <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
   </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2015-01-13:/2015/01/ufw-arch-server.html</id>
+    <title type="html">Setting up ufw for a web server</title>
+    <published>2015-01-12T23:00:00Z</published>
+    <updated>2015-01-12T23:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2015/01/ufw-arch-server.html"/>
+    <content type="html">
+&lt;p&gt;Once you have a secure server - as described in the &lt;a href="http://highlevelbits.com/2015/01/securing-arch-server.html"&gt;previous installment&lt;/a&gt; - the next step is to set up a firewall so that only expected traffic is allowed. The high ceremony approach to this is to use &lt;code&gt;iptables&lt;/code&gt;. I never learned this and once I found &lt;a href="https://wiki.archlinux.org/index.php/Uncomplicated_Firewall"&gt;&lt;code&gt;ufw&lt;/code&gt;&lt;/a&gt; (stands for &lt;em&gt;uncomplicated firewall&lt;/em&gt;) there seem to be no need for trivial use cases like mine.&lt;/p&gt;
+
+&lt;h3 id="requirements"&gt;Requirements&lt;/h3&gt;
+
+&lt;p&gt;My needs are simple - I want to accept:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ssh traffic on a port that is not 22&lt;/li&gt;
+  &lt;li&gt;http on port 80&lt;/li&gt;
+  &lt;li&gt;https on port 443&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And that is all.&lt;/p&gt;
+
+&lt;h3 id="ufw-apps"&gt;ufw apps&lt;/h3&gt;
+
+&lt;p&gt;ufw comes with a set of predefined &lt;em&gt;apps&lt;/em&gt;. They are located in &lt;code&gt;/etc/ufw/applications.d/&lt;/code&gt; and grouped into typcial uses. So the ssh rule is in the file &lt;code&gt;ufw-loginserver&lt;/code&gt; along with other rules related to login. And web server rules are in &lt;code&gt;ufw-webserver&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id="default"&gt;Default&lt;/h3&gt;
+
+&lt;p&gt;I start with adding a rule that denies everything&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; ufw default deny
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;on the command line. Almost everything happens on the command line….&lt;/p&gt;
+
+&lt;h3 id="web"&gt;Web&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;WWW Full&lt;/code&gt; rule in &lt;code&gt;ufw-webserver&lt;/code&gt; is exactly what I want for http and https so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; ufw allow "WWW Full"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="ssh"&gt;SSH&lt;/h3&gt;
+
+&lt;p&gt;There is a SSH rule in &lt;code&gt;ufw-loginserver&lt;/code&gt; but it defaults to port 22. I can either change it or create a new rule. The latter seems better and will probably survive new versions of &lt;code&gt;ufw&lt;/code&gt; better. So I add a file called &lt;code&gt;ufw-loginserver-custom&lt;/code&gt; and copy the ssh rule with just a change to the port:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[CUSTOMSSH]
+title=SSH server
+description=SSH server
+ports=12345/tcp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and allow it on the command line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; ufw allow CUSTOMSSH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="enabling-the-firewall"&gt;Enabling the firewall&lt;/h3&gt;
+
+&lt;p&gt;Now all that is left is to enable the firewall:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; ufw enable
+&amp;gt; systemctl enable ufw
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and you have a secure server. Next is probably to get &lt;code&gt;nginx&lt;/code&gt; up and running. I already posted about getting &lt;a href="http://highlevelbits.com/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html"&gt;unicorn and SSL to work with nginx&lt;/a&gt; so I probably want add anything about that at this time.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:www.highlevelbits.com,2015-01-11:/2015/01/securing-arch-server.html</id>
     <title type="html">Securing an arch linux server</title>
@@ -229,47 +296,6 @@ end
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;After some googling where &lt;a href="https://stackoverflow.com/questions/14281628/ssl-renegotiation-with-client-certificate-causes-server-buffer-overflow"&gt;this stackoverflow post&lt;/a&gt; proved the most informative I learned that the upper limit for file size over SSL is rather low - just some 131702 bytes. The post lists several ways of solving the problem. I thought the header way was the neatest. I just added the header &lt;code&gt;Expect: 100-continue&lt;/code&gt; to the call and the problem disappeared. The value of the header is rather cryptic but well documented in &lt;a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.20"&gt;the specs&lt;/a&gt;. Basically it tells the server to finish SSL negotiations before downloading the full request body from the client.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:www.highlevelbits.com,2014-10-23:/2014/10/smtp-mocking.html</id>
-    <title type="html">Mocking SMTP when testing a black box of software</title>
-    <published>2014-10-22T22:00:00Z</published>
-    <updated>2014-10-22T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2014/10/smtp-mocking.html"/>
-    <content type="html">
-&lt;p&gt;So I wrote a micro service that gets a REST call and sends a mail or a SMS and I wanted to have some nice black box tests in place. &lt;/p&gt;
-
-&lt;h3 id="the-test"&gt;The test&lt;/h3&gt;
-
-&lt;p&gt;So my test would &lt;code&gt;POST&lt;/code&gt; to a web service, then wait for a little while and then check if a mail was sent. The test runs remotely from a build server so everything it needs needs to be accesible over HTTP. So I decided to have a &lt;em&gt;real&lt;/em&gt; SMTP server running on the server writing files to a directory that a web server can pick up and show to the test. And a static web server serving the mail files in that directory. Pseudo code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;random_id = UUID.generate()
-message = subject: random_id, message: 'long rant'
-server.post message
-wait 1000
-list_of_mails = staticServer.get
-assert list_of_mails =~ random_ud
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="dummy-smtp-server"&gt;Dummy SMTP server&lt;/h3&gt;
-
-&lt;p&gt;I looked around on the Internet for a while. I used a Java based graphical dummy server locally called &lt;a href="https://nilhcem.github.io/FakeSMTP/"&gt;FakeSMTP&lt;/a&gt;. It is really useful when doing stuff in a graphical environment. Now I needed something headless instead. My eyes fell on a &lt;a href="https://github.com/maestrofjp/Dummy-SMTP"&gt;small Python script&lt;/a&gt; that did almost exactly what I wanted. The only thing missing was the naming of the files. In order to trace a mail through the server onto the SMTP server I needed something unique. I decided to put a UUID as the subject. The Python script needed &lt;a href="https://github.com/froderik/Dummy-SMTP"&gt;a little tweak&lt;/a&gt; to get the subject (as well as the timestamp) onto the filename.&lt;/p&gt;
-
-&lt;p&gt;The script only works with Python 2 so make sure you have it….. I am sure it is easy to change for Python 3 for a pythonista.&lt;/p&gt;
-
-&lt;h3 id="simple-file-serving-web-server"&gt;Simple file serving web server&lt;/h3&gt;
-
-&lt;p&gt;Since the system &lt;strong&gt;under test&lt;/strong&gt; lives in a tomcat I started out trying to make tomcat serve static files from the folder where the SMTP server stuffs mail files. It is supposed to work but I had some problems and gave up deciding to search for a simpler solution. And suddenly there it was. Look at &lt;a href="https://docs.python.org/2/library/simplehttpserver.html"&gt;this&lt;/a&gt; beauty:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;python -m SimpleHTTPServer
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Get yourself into a directory from where you want to serve static files - type the above into the terminal and you are up and running on port &lt;code&gt;8000&lt;/code&gt;. &lt;/p&gt;
-
-&lt;h3 id="closing-rant-about-naming"&gt;Closing rant about naming&lt;/h3&gt;
-
-&lt;p&gt;Integration tests can mean many things. There seem to be no common vocabulary within the testing discipline. In Grails - the framework used in the micro service here - integration testing means talking directly to a controller and stubbing away third party dependencies. So the meaning here is to test the different parts and of a system together. (As opposite to unit testing.) For me integration testing normally means testing a couple of systems together and accessing it from the outside (normally with HTTP in some form). This confusion about names led me to use &lt;em&gt;black box testing&lt;/em&gt; in this article. Using another name for this does not really help but when talking about black boxes it is obvious that we are not testing or knows about any internals - a good thing.&lt;/p&gt;
 </content>
   </entry>
 </feed>
