@@ -6,7 +6,7 @@ author: fredrik
 tags: arch, server, security, linux, ufw
 ---
 
-Once you have a secure server - as described in the [previous installment](http://highlevelbits.com/2015/01/securing-arch-server.html) - the next step is to set up a firewall so that only expected traffic is allowed. The high ceremony approach to this is to use `iptables`. I never learned this and once I found `[ufw](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall)` (stands for *uncomplicated firewall*) there seem to be no need for trivial use cases like mine.
+Once you have a secure server - as described in the [previous installment](/2015/01/securing-arch-server.html) - the next step is to set up a firewall so that only expected traffic is allowed. The high ceremony approach to this is to use `iptables`. I never learned this and once I found [`ufw`](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall) (stands for *uncomplicated firewall*) there seem to be no need for trivial use cases like mine.
 
 ### Requirements
 
@@ -56,4 +56,4 @@ Now all that is left is to enable the firewall:
     > ufw enable
     > systemctl enable ufw
 
-and you have a secure server. Next is probably to get `nginx` up and running. I already posted about getting [unicorn and SSL to work with nginx](http://highlevelbits.com/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html) so I probably want add anything about that at this time.
+and you have a secure server. Next is probably to get `nginx` up and running. I already posted about getting [unicorn and SSL to work with nginx](/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html) so I probably want add anything about that at this time.

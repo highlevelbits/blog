@@ -93,4 +93,4 @@ Now the only user that can login is `william` with the ssh key that we entered a
 
 and you are fine to go.
 
-Now you likely want to use the server to run some software that needs to be available. In the next post I will show you how to set up `ufw` - uncomplicated firewall.
+Now you likely want to use the server to run some software that needs to be available. In the [next post](/2015/01/ufw-arch-server.html) I will show you how to set up `ufw` - uncomplicated firewall.
