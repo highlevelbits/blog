@@ -17,7 +17,7 @@
     <updated>2015-01-12T23:00:00Z</updated>
     <link rel="alternate" href="http://www.highlevelbits.com/2015/01/ufw-arch-server.html"/>
     <content type="html">
-&lt;p&gt;Once you have a secure server - as described in the &lt;a href="http://highlevelbits.com/2015/01/securing-arch-server.html"&gt;previous installment&lt;/a&gt; - the next step is to set up a firewall so that only expected traffic is allowed. The high ceremony approach to this is to use &lt;code&gt;iptables&lt;/code&gt;. I never learned this and once I found &lt;a href="https://wiki.archlinux.org/index.php/Uncomplicated_Firewall"&gt;&lt;code&gt;ufw&lt;/code&gt;&lt;/a&gt; (stands for &lt;em&gt;uncomplicated firewall&lt;/em&gt;) there seem to be no need for trivial use cases like mine.&lt;/p&gt;
+&lt;p&gt;Once you have a secure server - as described in the &lt;a href="/2015/01/securing-arch-server.html"&gt;previous installment&lt;/a&gt; - the next step is to set up a firewall so that only expected traffic is allowed. The high ceremony approach to this is to use &lt;code&gt;iptables&lt;/code&gt;. I never learned this and once I found &lt;a href="https://wiki.archlinux.org/index.php/Uncomplicated_Firewall"&gt;&lt;code&gt;ufw&lt;/code&gt;&lt;/a&gt; (stands for &lt;em&gt;uncomplicated firewall&lt;/em&gt;) there seem to be no need for trivial use cases like mine.&lt;/p&gt;
 
 &lt;h3 id="requirements"&gt;Requirements&lt;/h3&gt;
 
@@ -74,7 +74,7 @@ ports=12345/tcp
 &amp;gt; systemctl enable ufw
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;and you have a secure server. Next is probably to get &lt;code&gt;nginx&lt;/code&gt; up and running. I already posted about getting &lt;a href="http://highlevelbits.com/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html"&gt;unicorn and SSL to work with nginx&lt;/a&gt; so I probably want add anything about that at this time.&lt;/p&gt;
+&lt;p&gt;and you have a secure server. Next is probably to get &lt;code&gt;nginx&lt;/code&gt; up and running. I already posted about getting &lt;a href="/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html"&gt;unicorn and SSL to work with nginx&lt;/a&gt; so I probably want add anything about that at this time.&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -184,7 +184,7 @@ PermitRootLogin no
 
 &lt;p&gt;and you are fine to go.&lt;/p&gt;
 
-&lt;p&gt;Now you likely want to use the server to run some software that needs to be available. In the next post I will show you how to set up &lt;code&gt;ufw&lt;/code&gt; - uncomplicated firewall.&lt;/p&gt;
+&lt;p&gt;Now you likely want to use the server to run some software that needs to be available. In the &lt;a href="/2015/01/ufw-arch-server.html"&gt;next post&lt;/a&gt; I will show you how to set up &lt;code&gt;ufw&lt;/code&gt; - uncomplicated firewall.&lt;/p&gt;
 </content>
   </entry>
   <entry>
