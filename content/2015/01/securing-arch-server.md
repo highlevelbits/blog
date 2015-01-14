@@ -79,11 +79,11 @@ Finally we need to make some changes to the ssd configuration file.
 
 In this file the following lines needs to be uncommented and altered.
 
-    Port 66677
+    Port 6677
     PasswordAuthentication no          
     PermitRootLogin no
 
-This changes the ssh port from the default 22 making it harder to start attacking the server. We also turn off password authentication and root login. Restart `sshd`.
+This changes the ssh port from the default 22 making it harder to start attacking the server. (EDIT: port must be in the range 1-65535 - thanks to maha for pointing this out. I changed the example port above accordingly.) We also turn off password authentication and root login. Restart `sshd`.
 
     sudo systemctl restart sshd
 
