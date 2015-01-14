@@ -43,7 +43,7 @@ There is a SSH rule in `ufw-loginserver` but it defaults to port 22. I can eithe
     [CUSTOMSSH]
     title=SSH server
     description=SSH server
-    ports=12345/tcp
+    ports=667/tcp
 
 and allow it on the command line:
 
