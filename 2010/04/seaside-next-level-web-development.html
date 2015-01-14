@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Seaside - next level web development</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Seaside - next level web development
+</h2>
+<div>
+  <span class="byline">2010-04-22 by fredrik</span>
+  
+</div>
+<div class="inner-content">
+  <p><a href="http://rubyonrails.org/">Ruby on Rails</a> may be the best 'normal' web framework out there but if you want to take web development to a new level it may be worth looking at Seaside - a web framework built on <a href="http://www.smalltalk.org/main/">Smalltalk</a> - the mother of all object oriented languages. This morning I attended a breakfast seminar at Stockholm consultants <a href="http://www.msc.se/index.html">MSC</a> held by <a href="http://goran.krampe.se/blog">Göran Krampe</a> about <a href="http://seaside.st/">Seaside</a>. I have read some about it earlier and put it on the huge list of things to try later (together with erlang, haskell, an infinite number of javascript frameworks not excluding <a href="http://nodejs.org/">node.js</a>, python with <a href="http://www.djangoproject.com/">django</a> etc etc ). But when <a href="http://divineprogrammer.blogspot.com/">Mikael Kindborgs</a> colleague at MSC is holding a seminar on the topic it sure is interesting to attend and I must admit that I now feel that Seaside probably will be the technology used for the next hobby project for me. Why? I will paraphrase some of what Göran said and add some of my own so here goes:</p>
+<ul>
+<li>no templates - you don't have to touch HTML at all. This means that (1) method calls for a tag makes sure that tag is properly rendered so no problem with nonclosing tags etc. (2) the kind of mess where tags are intermingled with "normal" code is gone, (3) the HTML looks really good and (4) no risk of using messy techniques for styling - you have to put it all in the global CSS file.</li>
+<li>the server is not stateless. This may be a problem in extremely large applications but for most cases a bit of load balancing with sticky sessions will solve it with no problem. Session state is communicated with a request parameter so no cookies are involved. And the other parameter is for identifying the continuation.</li>
+<li>Smalltalk is a really nice language. It has the simplest syntax possible and all and everything is objects. It would be nice to get more hands on experience with the language. Lots of the good stuff in software development comes from the smalltalk community. It is probably because the barriers for accomplishing things is much lower than in other languages.</li>
+<li>no XML and no configuration files. You write it all in Smalltalk. This is - of course - similar to Rails where everything is Ruby. A very nice and reasonable approach.</li>
+<li>no builds. Smalltalk runs in its own virtual machine with something called an image that holds the current object state of everything. Kind of like EJB stateful session beans but good.... Code changes in the development environment is runnable at once. This is no news for Smalltalk developers but for a Java web developer it may sound too good to be true. Seaside adds a nice debug environment to your web pages where you can inspect and change the code from within the browser. Imagine doing that with a JSP-based framework in the J2EE stack.</li>
+<li>Seaside is 'just a web framework'. Unlike Rails and django it doesn't solve all your problems. For persistence you have to hook into other Smalltalk solutions. For the enterprise - <a href="http://www.gemstone.com/">Gemstone</a> may be interesting with its powerful object database.</li>
+</ul>
+<p>So - many thanks to Göran Krampe for awakening my interest in Seaside (and Smalltalk).</p>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2010-04-21</span><span class="commenter-name">Mikael Kindborg</span><div class="comment-body">I was stunned by the Seaside component demo, but I was completely levitated by the browser based IDE that lets you code right into the Smalltalk image! No build tools and No config are strong points. Big Yes to a uniform language for describing and programming web apps, and Yes to instant coding!</div>
+</div>
+</div>
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

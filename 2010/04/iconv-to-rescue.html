@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - iconv to the rescue</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  iconv to the rescue
+</h2>
+<div>
+  <span class="byline">2010-04-18 by hardy</span>
+  
+    <span class="tags">
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <p>Inspired by this Rand's <a href="http://www.randsinrepose.com/archives/2009/12/24/a_creative_soundtrack.html">blog</a> I gave <a href="http://www.ommwriter.com/">Ommwriter</a> a go. Opening an existing text file I was surprised though to be greeted by something like this:</p>
+<p style="text-align: center;">[[{"type":"media","view_mode":"media_large","fid":"89","attributes":{"alt":"","class":"media-image","typeof":"foaf:Image"}}]]</p>
+<p>Unfortunately, I must have accidentally saved the file before I was able to exit the Ommwriter, because when I tried to reopen the file in TextEdit I got the same result. I was pretty sure I was encountering an encoding problem. Time for <span style="font-style: italic;">iconv</span>. The default encoding on my Mac is UTF-8 so I tried something like:</p>
+<pre style="font-family: Andale Mono,Lucida Console,Monaco,fixed,monospace; color: rgb(0, 0, 0); background-color: rgb(238, 238, 238); font-size: 12px; border: 1px dashed rgb(153, 153, 153); line-height: 14px; padding: 5px; overflow: auto; width: 100%;">
+<code>iconv -f UTF-8 -t UTF-16 foo.txt
+</code></pre>
+<p>And lo and behold I got my text back. After investigating the problem for a little bit I found out that the problem occurs when the text contains characters outside the <span style="font-style: italic;">[A-Z]</span> and <span style="font-style: italic;">[a-z]</span> range, for example an ö.<br><br>Anyways, after this initial hiccup, I have to admit I am positively surprised about Ommwriter. The fact that all distractions are removed from the screen really helps focusing on the actual task of writing. I also like that there is <span style="font-weight: bold;">no</span> spell checker. You are actually focusing on writing and not proof reading. Most surprised I was, however, by the fact that audible keyboard strokes actually really help the writing process.</p>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2010-04-18</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Cool editor. Download in progress!</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2011-07-21</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Just for reference. I found a paid for editor (via signal vs noise) with a little bit of markdown in it. <a href="http://www.iawriter.com/" rel="nofollow">iA Writer</a> looks really sweet!</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2011-07-21</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Looks nice indeed. I might give it a go, but I am a Ommwriter by now. Even shelled out the money for the IPad version. It really helps me when I want to focus on the actual writing.</div>
+</div>
+</div>
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Hiding and viewing dot files in Mac's Finder</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Hiding and viewing dot files in Mac's Finder
+</h2>
+<div>
+  <span class="byline">2009-02-27 by hardy</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/mac.html" rel="tag"><span class="icon-tag"></span>mac</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <p>Hi,<br><br>I was talking about the problem that Finder is per default hiding dot files before. In most cases you get away with the default, but sometimes it really sucks that you cannot drill down into your 'hidden' directories. Since I work a lot with bash I added the following function to my <span style="font-style: italic;">~./bashrc</span> :<br> </p>
+<blockquote>
+<pre>
+function switchFinderOptions()
+{
+   SHOW_DOT_FILES="defaults write com.apple.Finder AppleShowAllFiles YES"
+   HIDE_DOTFILES="defaults write com.apple.Finder AppleShowAllFiles NO"
+   echo "Choose finder mode:"
+   echo  $SHOW_DOT_FILES '[1] ' ;
+   echo  $HIDE_DOTFILES '[2] ' ;
+   read ans
+   case "$ans" in
+     1) `$SHOW_DOT_FILES`;;
+     2) `$HIDE_DOTFILES`;;
+   esac
+   killall Finder
+}
+</pre>
+</blockquote>
+<p>After adding this function it becomes very easy to switch the Finder mode and quickly drill down a hidden directory structure.<br><br>Hope it helps.<br><br>--Hardy</p>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2010-12-31</span><span class="commenter-name">Frank</span><div class="comment-body">Seems like too big a hammer. I wish I could just press Command-Shift-D or something to see the dot files.<br>I like the idea of a command line function if that's the best we can do; though I would prefer to pass in flags. I'd show you my code, but I can't find a way to allow formatting to be preserved here. Oh well.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2010-12-31</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">If you want to share your code consider putting it onto <a rel="nofollow">forkcan</a> and posting the link here.<br>You could also consider using TotalFinder as described in <a href="http://www.highlevelbits.com/2010/10/mac-tips-visor-totalfinder.html" rel="nofollow">this</a> post. You'll get a whole lot of additional Finder goodies including the ability to toggle he display of system files.</div>
+</div>
+</div>
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - detecting prime numbers with Test Driven Development</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  detecting prime numbers with Test Driven Development
+</h2>
+<div>
+  <span class="byline">2013-04-23 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/tdd.html" rel="tag"><span class="icon-tag"></span>tdd</a>
+      
+        <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>This tuesday I held a half day workshop on Test Driven Development for a group of developers
+at Smart Bears Stockholm office. I prepared by writing a
+<a href="what_is_tdd.html">generic post about TDD</a> explaining the main principles. During the
+session we used prime number detection as an example kata. This is a very simple problem and
+as such useful to show how to do proper TDD. On the other hand there isn’t much of real world
+problems in there. We started with the tiniest test:</p>
+
+<pre><code>@Test
+public void oneIsPrime(){
+    assertTrue("1 should be a prime", Prime.isPrime(1));
+}
+</code></pre>
+
+<p>and implemented this with:</p>
+
+<pre><code>public class Prime {
+  public static boolean isPrime(int number){
+    return true;
+  }
+}
+</code></pre>
+
+<p>This piece of code is the best thing that fulfills our test so there is no need to get into the
+refactor phase at this stage. The language is called Java if you don’t recognize it.</p>
+
+<p>The next test takes the first non prime number and test it:</p>
+
+<pre><code>@Test
+public void fourIsNotPrime(){
+    assertFalse("4 should not be a prime", Prime.isPrime(4));
+}
+</code></pre>
+
+<p>implemented with:</p>
+
+<pre><code>public static boolean isPrime(int number){
+    if( number == 4 ) return false;
+    return true;
+}
+</code></pre>
+
+<p>Now this can be refactored:</p>
+
+<pre><code>public static boolean isPrime(int number){
+    return number != 4;
+}
+</code></pre>
+
+<p>Note that the refactoring doesn’t add functionality - it just makes the code easier to read. Add another
+non-prime:</p>
+
+<pre><code>@Test
+public void nineIsNotPrime() {
+    assertNotPrime(9);
+}
+</code></pre>
+
+<p>and helper methods to make the test code a little bit easier to read:</p>
+
+<pre><code>public void assertNotPrime(int number){
+    String message = "" + number + " should not be a prime";
+    assertFalse(message, Prime.isPrime(number));
+}
+
+public void assertPrime(int number){
+    String message = "" + number + " should be a prime";
+    assertTrue(message, Prime.isPrime(number));
+}
+</code></pre>
+
+<p>Actually in the workshop we didn’t break out the asserts into methods but went straight for the
+next test code refactoring. The code under test is still naive:</p>
+
+<pre><code>public static boolean isPrime(int number){
+    if( number == 4 || number == 9 ) return false;
+    return true;
+}
+</code></pre>
+
+<p>Now we felt the need to introduce an easier way to test many combinations at once. This is a bit awkward in
+Java and come much more natural in a dynamic language. We used the junit runner Parameterized to be able to
+have one test for each prime we’d like to test while reusing as much of the test code as possible. Here is the
+implementation:</p>
+
+<pre><code>package prime;
+
+import java.util.*;
+
+import org.junit.*;
+import org.junit.runner.*;
+import org.junit.runners.*;
+import org.junit.runners.Parameterized.*;
+
+import static org.junit.Assert.*;
+
+@RunWith(Parameterized.class)
+public class TestPrime {
+    private int number;
+    private boolean isPrime;
+
+    public TestPrime(int number, boolean isPrime){
+        this.number = number;
+        this.isPrime = isPrime;
+    }
+
+    @Parameters
+    public static Collection&lt;Object[]&gt; bunchOfPrimes(){
+        return Arrays.asList(new Object[][]{
+            {1, true},
+            {2, true},
+            {3, true},
+            {4, false},
+            {7, true},
+            {9, false},
+            {10, false},
+            {13, true},
+            {15, false}
+        });
+    }
+
+    @Test
+    public void isPrime(){
+        if(this.isPrime){
+            assertPrime(this.number);
+        } else {
+            assertNotPrime(this.number);
+        }
+    }
+
+    public void assertPrime(int number){
+        String message = "" + number + " should be a prime";
+        assertTrue(message, Prime.isPrime(number));
+    }
+
+    public void assertNotPrime(int number){
+        String message = "" + number + " should not be a prime";
+        assertFalse(message, Prime.isPrime(number));
+    }
+}
+</code></pre>
+
+<p>This is the code that I prepared before the session. When we programmed it in the session we ended up with
+using <code>assertEquals</code> instead of having the helper methods and I think that was a nicer approach.</p>
+
+<p><code>Parameterized</code> requires a method that returns test data. It should have the awkward return type
+<code>Collection&lt;Object[]&gt;</code> - that is a collection of object arrays. Each member of the array should have
+data so that the test class constructor can be called. In our case there is a number - the prime candidate -
+and a boolean indicating if it is expected to be a prime or not. The runner creates one instance per
+data point and runs all Test methods on that one. In our case there is only the <code>isPrime</code> method.</p>
+
+<p>Now all there is left is to implement the real stuff:</p>
+
+<pre><code>public static boolean isPrime(int number){
+  for(int i = 2; i &lt; number; i++) {
+    if(number % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+</code></pre>
+
+<p>and a somewhat refactored solution:</p>
+
+<pre><code>public static boolean isPrime(int number){
+  for(int i = 2; i &lt;= sqrt(number); i++) {
+    int remainder = number % i;
+    if(remainder == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+private static double sqrt(int number){
+  return Math.sqrt(number);
+}
+</code></pre>
+
+<p>This was a fun but naive exercise. You can follow this code step-by-step in
+<a href="https://github.com/froderik/javaprime">this github repo</a>.
+There are commits and tags for each step in the TDD cycle. There is also a slightly more advanced example
+with prime factorizations.</p>
+
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>
