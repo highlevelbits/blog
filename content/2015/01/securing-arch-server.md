@@ -98,7 +98,7 @@ Now you likely want to use the server to run some software that needs to be avai
 EDIT: [posted the link on reddit](https://www.reddit.com/r/archlinux/comments/2sbcce/how_to_secure_your_arch_server/) and got some great feedback. I made these changes:
 
 - port number must be in the 1-65535 range - thanks maha.
-- port number should be below 1024 for increased security - thanks [extra_](https://www.reddit.com/user/extra_)
-- `.ssh/authorized_keys` is better of as read-only - thanks (Nebu_Retski)[https://www.reddit.com/user/Nebu_Retski].
-- there is a command for copying a ssh key `ssh-copy-id` so I replaced my `scp` with this - thanks (MartiPanda)[https://www.reddit.com/user/MartiPanda]
+- port number should be below 1024 for increased security - thanks <a href="https://www.reddit.com/user/extra_">extra_</a>
+- `.ssh/authorized_keys` is better of as read-only - thanks [Nebu_Retski](https://www.reddit.com/user/Nebu_Retski).
+- there is a command for copying a ssh key `ssh-copy-id` so I replaced my `scp` with this - thanks [MartiPanda](https://www.reddit.com/user/MartiPanda)
 - added reference links to the excellent [arch wiki](https://wiki.archlinux.org/) -thanks Nebu_Retski again.
