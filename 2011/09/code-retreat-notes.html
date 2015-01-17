@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Code retreat notes</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Code retreat notes
+</h2>
+<div>
+  <span class="byline">2011-09-21 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/code-retreat.html" rel="tag"><span class="icon-tag"></span>code retreat</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <p>Yay! I finally got to attend a <a href="http://coderetreat.com/">code retreat</a>. The first public one held in Stockholm took place last saturday and it was possibly the best event this year. <a href="https://twitter.com/#!/peter_lind">Peter Lind</a> and <a href="http://www.valtech.se/">Valtech</a> hosted the event in their nice office at Kungsholmen and <a href="http://emilybache.blogspot.com/">Emily Bache</a> facilitated. Read more about the event format <a href="http://coderetreat.com/facilitation.html">over here</a>.</p>
+<p>This kind of event is where you have the opportunity to really learn a lot. A room full of passionate and skilled developers wanting to pair up with you just for the sake of learning. All code is thrown away so there is no pressure of delivery and no schedules to meet. The problem - game of life - is deliberately chosen so that it is impossible to solve it with test driven development in 45 minutes. I managed to code in 4 languages during the day. The session with <a href="https://twitter.com/#!/msundb">Mikael Sundberg</a> where we used clojure was probably the one where I was most passive but it was fascinating to grow a solution in a purely functional language. Two ruby sessions, one in Java (my “native” language) and one in javascript made the day perfect. Pragmatic approaches to testing in the more obscure languages made it possible to get forward *despite* not using a testing framework. To top it off Emily introduced the <a href="http://www.cyber-dojo.com/">cyber dojo</a> for the last session. Instead of pairing with the same person for 45 minutes you work in 3 pairs and switch partner every 5 minutes so you basically work on the same code base for 10 minutes. With communicative developers it turned out to be really fun. The first minute in a new pair was spent communicating the code at hand and then on to coding. Actually we covered a surprising amount of ground on all 3 stations. A great last session of the day. The day ended with a longer retrospective where everyone got the chance to give feedback and share thoughts about the day.</p>
+<p>Takeaways:</p>
+<ul>
+<li>functional needs more studying - clojure, erlang and haskell are my prime candidates</li>
+<li>it is amazing how different persons communicate in different ways. The first 10 minutes in each pair was typically spent getting a feel for the other person and agreeing on an approach.</li>
+<li>I was a bit surprised by the bottom-up approach that some were inclined to take. I thought that a test for each “rule” in the game of life was pretty low level. I think it is hard to do the right thing when going too deep first. On the other hand zooming in on one part of the problem made it easier to actually accomplish something. The hardest part of the problem is probably counting the number of live neighbors of a cell. Some team just passed this value in to the cell class making it possible to code all the rules in 45 minutes but without having the full game running.</li>
+<li>throwing away code felt really good.</li>
+<li>pair progamming should be done more often.</li>
+<li>infinity is infinite</li>
+</ul>
+<p>In the middle of the night after the event <a href="https://twitter.com/#!/martengustafson">Mårten Gustafsson</a> tweeted this weird clip where the game of life is coded in ancient <a href="http://en.wikipedia.org/wiki/APL_(programming_language)">APL</a>. It looks mostly like hieroglyphs.</p>
+<center><iframe allowfullscreen="" frameborder="0" height="315" src="http://www.youtube.com/embed/a9xAKttWgP4" width="420"></iframe></center>
+<p> </p>
+<p>Thanks to Peter Lind, Valtech for arranging this great event and Emily Bache for excellent moderation. I hope we will see more of this event type in the future.</p>
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

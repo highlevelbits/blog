@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - go templating - the basics</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  go templating - the basics
+</h2>
+<div>
+  <span class="byline">2013-09-28 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/golang.html" rel="tag"><span class="icon-tag"></span>golang</a>
+      
+        <a class="one-tag" href="../../tags/coding.html" rel="tag"><span class="icon-tag"></span>coding</a>
+      
+        <a class="one-tag" href="../../tags/web.html" rel="tag"><span class="icon-tag"></span>web</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p><a href="http://www.flickr.com/photos/29363671@N08/4264734398"><img style="float:right" src="http://farm3.staticflickr.com/2723/4264734398_f89371801a.jpg"></a></p>
+
+<p>I am busy coding a web site with <a href="http://golang.org/">go</a>. I am still not convinced that go is the best choice for web development unless performance is in high demand. It is still great fun to learn a new language and a language that have different opinions on many things compared to other languages. This kind of experiences are very good to move forward as a developer. So kudos to <a href="http://www.flatwallet.se/">flatwallet</a> that lets me learn go while getting paid for it. </p>
+
+<p>We try to use as much as possible of the standard library but sometimes it is hard as I <a href="http://highlevelbits.com/2013/09/pragmatic_unit_testing_with_go.html">described in my post about testing</a>. When it comes to web development there is a good enough <a href="http://golang.org/pkg/text/template/">template engine</a> that provides with the simplest things to get stuff into your <a href="http://highlevelbits.com/2012/04/control-your-markup.html">markup</a>. In mainstream template engines the normal way to get behavior into your template is to use <code>&lt;% %&gt;</code> for executing some code and <code>&lt;%= %&gt;</code> for getting some stuff inserted into the generated markup. In go you use double curly braces instead. So in order to insert a value you go <code>{{.Value}}</code>. The single point is a reference to the data structure (remember - no objects in go) that was passed to the template from the back end code and value is a field in that structure. There is the basic control flow things like:</p>
+
+<pre><code>{{ if .IsActive }}
+  Active
+{{ else }}
+  Inactive
+{{ end }}
+</code></pre>
+
+<p>and loops:</p>
+
+<pre><code>{{ range .Books }}
+  &lt;div&gt;
+    {{ .Title }} by {{ .Author }}
+  &lt;/div&gt;
+{{ end }}
+</code></pre>
+
+<p>When using <code>range</code> the <code>.</code> context is set to the current item for each loop over the collection. As you see you just mix curly braces with HTML freely. (So that it looks really messy to the eye….) Since the templating doesn’t conflict with the markup you can also use them in attribute values. This may look nasty at times:</p>
+
+<pre><code>&lt;div class="{{if .IsActive}}active{{else}}passive{{end}}"/&gt;
+</code></pre>
+
+<p>Not to my liking. The alternative is to add another field to the page structure and calculate the value in the go code instead. It adds a bit of duplication and the number of line increases and I am not sure the overall readability goes up. So the above may actually be a good choice at times. In this particular case it has the benefit of keepin css classes in the markup. Indeed - you could do it like this just as well:</p>
+
+<pre><code>{{ if .IsActive }}
+  &lt;div class="active"/&gt;
+{{ else }}
+  &lt;div class="passive"/&gt;
+{{ end }}
+</code></pre>
+
+<p>Better or worse? This is a simple div with nothing else in it but consider a real world situation where there are some content inside etc. Then it may be better to go with the compact solution instead. Things like these may be good to put in the coding guidelines for a project. (You all do them - right?!?)</p>
+
+<p>You can define a template with <code>{{ define "my_template" }} &lt;html&gt;....&lt;/html&gt; {{ end }}</code> for both whole pages and parts in a page. Say you define a header partial: <code>{{ define "header" }}&lt;div&gt;Menus and other header stuffs.&lt;/div&gt;{{ end }}</code> then you can use it in another template with: <code>{{ template "header" }}</code>. So that is kind of neat. There is no support for layouts so for solving that in the standard library way you’ll have to do it yourself with functions calling different templates in different contexts. </p>
+
+<p>One more thing. You can use <code>with</code> to get deeper in the context of the page. Like this:</p>
+
+<pre><code>{{ range .Books }}
+  &lt;div&gt;
+    {{ .Title }} by 
+    {{ with .Author }}
+      {{ .FirstName }}{{ .LastName }}
+    {{ end }}
+  &lt;/div&gt;
+{{ end }}
+</code></pre>
+
+<p>I haven’t used this much but it has the benefit of getting evaluated only if there is something in the referenced value. So it is a combined <code>if</code> statement with a scope narrower.</p>
+
+<p>Then there is a bunch of built-in functions that makes life a bit easier. The one that has bothered me most is <code>call</code> that lets you call a function from within the template. But not any function. It must either have been previously tied to the template with calls to <code>Funcs</code> with a <code>FuncMap</code> or be in the global namespace. So if you have a nice little function tied to the struct you are exposing to your template you can not use it right away. I find this limiting - the extra code to set it up can just as well be used to introduce another variable in the struct that holds the computed value. You end up with redundant data in your model where parts are ‘real’ data and parts are computed values. I don’t have a perfect <em>feel</em> for this yet and will come back to review it later and maybe another post about advanced templating.</p>
+
+<p>The standard library documentation is really good. The templating basics is in the <a href="http://golang.org/pkg/text/template/">text/template package</a> while there are some added things for web pages in the <a href="http://golang.org/pkg/text/template/">html/template package</a>. This separation is obviously good so that you can do templating inside whatever format you work with.</p>
+
+<p>Engine photo by <a href="http://www.flickr.com/photos/29363671@N08/">Jon Pekelnicky</a>.</p>
+
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

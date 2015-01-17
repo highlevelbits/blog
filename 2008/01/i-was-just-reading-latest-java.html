@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - A whole new world</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  A whole new world
+</h2>
+<div>
+  <span class="byline">2008-01-16 by hardy</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <p>I was just reading the latest '<a href="http://www.javaspecialists.eu/archive/Issue155.html" id="kfs6" title="The Java Specialists' Newsletter">The Java Specialists' Newsletter</a>' - I am not sure if I have mentioned this newsletter and the name of <a href="http://www.javaspecialists.eu/index.jsp" id="brxi" title="Dr. Heinz M. Kabutz">Dr. Heinz M. Kabutz</a> on this blog before - when I realized how interesting and potentially far reaching implications the usage of Strings can have. I consider myself to be a competent Java developer and I know that if I want to concatenate Strings I should use a StringBuilder or StringBuffer. However, I did not know that I should not synchronize on a String. I probably would not have done it anyway, since some long time ago I've learned to synchronize on an Object instance, but I did not know why I should do it this way. I also did not know what exactly String.intern()is good for. I have seen it many times browsing the Java Docs, but never really took the time to understand it.<br><br>Anyways, reading the newsletter I got intrigued and started to surf the net for more information and soon realized how far reaching the simple usage of a String can become and that String manipulation could be the cause of performance problems. This blog entry I found especially interesting - <a href="http://thought-bytes.blogspot.com/2007/03/java-string-performance.html" id="ckjq" title="Java String performance">Java String performance</a>. However, I don't think you should refactor all your String usage now. I am a firm believer in profiling before improving, but it is still interesting to keep certain facts about such a simple thing as String usage stored away in some dark corner of your brain.<br><br>This little excursion into the world of Strings also reminded me of an article I read a while ago (unfortunately I just cannot dig it up again - maybe someone else can help?). In essence the article tried to answer the question whether all the layers of abstraction we have within the IT world really make it easier, quicker and safer to implement applications. Somehow it does, however each single abstraction is build by humans, meaning it is as prone to error and bugs than the very application you try to write using these abstractions. If you are sitting somewhere at the top of this pile of abstractions and a lower level abstraction fails how possible is it that you are able to understand and fix the problem? Will it not become harder and harder to control all these layers and abstractions. Taking the example of a String - who out there can still explain to me all the layers involved manipulating this string. Starting with the JVM, over to the OS and IO operations all the ways down to CPU registers.</p>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2008-01-20</span><span class="commenter-name">Fredrik Rubensson</span><div class="comment-body">Sure are lots to think about when it comes to performance. I occasionally read parts of <a href="http://java.sun.com/docs/books/effective/" rel="nofollow">Effective Java</a> by Joshua Bloch - a book that describes many of the inner workings of Java. It's a bit old (2001) - it would be nice with a new one including features of Java 5. And there probably are changes to the implementation in many of the areas covered by the book. <br><br>I am not sure about the layer thing. I would argue that stable layers is a good thing because the abstraction level can be higher when there are a stable foundation that hides all the boring details. Unstable layers though..... Thinking about a certain OS for example that messes up the life of software developers most of the time. But no one questions the usefulness of a compiler or a relational database. It is important to hook in at the right level. If your application needs details then maybe it should be written at a lower level of abstraction. (Or if it needs to be really fast or safe.)</div>
+</div>
+</div>
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

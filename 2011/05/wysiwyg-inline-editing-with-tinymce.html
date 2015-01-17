@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Wysiwyg inline editing with tinyMce, jQuery, Rails and cucumber</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Wysiwyg inline editing with tinyMce, jQuery, Rails and cucumber
+</h2>
+<div>
+  <span class="byline">2011-05-14 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/rails.html" rel="tag"><span class="icon-tag"></span>rails</a>
+      
+        <a class="one-tag" href="../../tags/jquery.html" rel="tag"><span class="icon-tag"></span>jquery</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <div>I have been a little silent in this space cause I have been busy doing cool new stuff with rails. In a new brand project I am using couch (and nosql) for the first time and I am also diving into the jQuery ocean. It has been a rewarding trip this far with a couple of frustrations that has been solved with the help of the internets. Time to give something back!</div>
+<br><div>This post is about how to use tinyMce not just as a nice wysiwyg editor but also for inline editing. The case is that you have a piece of markup on a page that you want to easily change without leaving the page. It turns out that it is not that hard for your specific case. A more generic case might be harder but not by much. As long as the thing you are editing is an entity that it stored in its entirety somewhere you should be good to go. (Couch is of course nice for this.)</div>
+<br><div>I will assume that you have a running rails project and is familiar with the workings of rails. I am using rails 3 but I think most of the code should work with rails 2 as well. A running rails project with this setup can be <a href="https://github.com/froderik/inlinetinymce">found over at github</a>.</div>
+<br><div>Lets start with adding some gems to our Gemfile:</div>
+<br>
+<pre>
+source 'http://rubygems.org'
+
+gem 'rails'
+gem 'sqlite3'
+
+# user friendly markup
+gem 'haml'
+
+# wysiwyg editor
+gem 'tiny_mce'
+
+group :development, :test do
+  gem 'cucumber-rails'
+  gem 'capybara'
+end
+</pre>
+<br><div>Now we are good to go. Now you may wonder what that cucumber thing is and it is included because we love tests a lot. We love them so much that we like to test drive our applications. Right! So lets start with a cucumber feature. To get rails and cucumber to work together run rails generate cucumber:install --capybara . This will add a bunch of folders, scripts and configurations and we can now call cucumber directly in our root folder to run all the features in the features folder. Lets create a feature called inlinerichediting.feature with something like this in it:</div>
+<br>
+<pre>
+Feature: rich inline editing
+  In order to get a comprehensive context
+  as a web site editor
+  I want to inline edit text on my pages
+
+  Scenario: edit inline
+    Given I am on the start page
+    When I click on the element with id "fancy_text"
+    And I fill in the editor with "A really fancy text"
+    And I press "Save" within ".editor
+    Then I should see "A really fancy text" within "#fancy_text"
+</pre>
+<br><div>If you know Cucumber you know that it is really the 5 last lines that actually does something. Of these we will need to add our own implementation to 2 of them and the other 3 are provided in web_steps.rb that the cucumber installer generated for us. I start with adding the 2 missing steps that cucumber helped me with writing. And of course nothing will work yet since we have added no views or controllers.... Lets do that - the controller is pretty straightforward:</div>
+<br>
+<pre>
+class ContentController &lt; ApplicationController
+  def home
+    @text = "Click me to edit the text"
+  end
+end
+</pre>
+<br><div>We will add more to this file later. And the first version of the view is even simpler:</div>
+<br>
+<pre>
+.content#fancy_text
+  = @text
+</pre>
+<br><div>A very simple layout/application.haml to go with this could be:</div>
+<br>
+<pre>
+%html
+  %head
+    %title
+      Inline Tiny MCE example
+    = csrf_meta_tag
+  %body
+    = yield
+</pre>
+<br><div>And the first of our 5 cucumber steps now passes. In the second step we want to click on the text to make it editable. Capybara with Selenium as driver has support for Javascript behavior in the browser - this particular way to interact with the browser is not in the DSL however (only "normal" clickable things) so we need to get further down in the Capybara code to implement this step. What we need to do is find the element and then click on it. Like this:</div>
+<br>
+<pre>
+When /^I click on the element with id "([^"]*)"$/ do |id|
+  find_by_id(id).click
+end
+</pre>
+<br><div>Just a silly line but I can tell you it took me some time to find out how to do it....</div>
+<br><div>Now the second of our 5 cucumber steps passes but not the next which is both due to the next step not being implemented yet and to that we haven't actually done anything on click yet. Lets make the text clickable and show a text area on click. Lets introduce jquery.</div>
+<br><div>jquery is the most used javascript library out there at the moment. It makes it easy to work with the DOM and has a rich ecosystem of all kinds of things. To add it we just download it and store it in out public/javascripts folder and add one line to views/layouts/application.haml :</div>
+<br>
+<pre>
+= javascript_include_tag 'jquery'</pre>
+<br><div>We also need some scripts of our own and we want them in its own script file:</div>
+<br>
+<pre>
+= javascript_include_tag 'application'</pre>
+<br><div>The first thing we want to do is a bit fancy. We want to give the user a feeling of that the content actually is clickable by changing its appearance when hovering over it. To do that we put the following lines into our javascript file:</div>
+<br>
+<pre>
+// called by jquery when the document has loaded - sets up all de ztuff
+$(document).ready(
+  function(){
+    $(".content").hover(
+      function(event){
+        $(this).addClass("selectForEditing");
+      },
+      function(event){
+        $(this).removeClass("selectForEditing");
+      }
+    );
+  }
+);
+</pre>
+<br><div>So what happens here? A bit messy if you are not used to it. Essentially what happens is that when the document is ready - has finished loading - we have defined a function to be executed. In this function we assign listeners to certain events in the DOM model. In this case we want to listen to when the mouse enters the element with id "content" and when it is exiting the element. Whenever this happens we add or remove a CSS class from the element. Without the CSS - nothing happens. Lets add it and since we are doing everything the proper way we want to put it in its own file in the public/stylesheets folder. Lets call it style.css and put the following styling in it:</div>
+<br>
+<pre>
+#content {
+  border:solid;
+  border-color:white;
+  border-width:1px;
+  padding:5px;
+}
+
+.selectForEditing {
+  border:solid;
+  border-color:gray;
+  border-width:1px;
+}
+</pre>
+<br><div>Ok - this is a little hack counting on that our background is white. You can probably do the same thing in some better way. Please tell me in the comments. CSS is not what I know best..... We also need to add CSS files to the header. The line</div>
+<br>
+<pre>
+= stylesheet_link_tag :all</pre>
+<br><div>will do that for us. And a nice hovering effect is there!</div>
+<br><div>Our next mission is to replace the text with an editor when clicked. Initially this will be a simple textarea tag and as a later step we will put a tinyMCE editor in there instead. Now we need some more markup! Our home.haml file now looks like this:</div>
+<br>
+<pre>
+.content#fancy_text
+  = @text
+= form_tag '/content/save',           |
+      :remote =&gt; true,                |
+      :class =&gt; 'hidden editor' do    |
+  = text_area_tag :text, @text, :class =&gt; 'mceEditor'
+  = submit_tag 'Save'
+</pre>
+<br><div>You may be more familiar with the "form_for" tag but in order to avoid the database overhead and model classes for this tiny example I will use the "form_tag" helper instead. The parameters basically says that this is an asynchronous call to /content/save. The CSS "hidden" (set to display:none;) is applied to make this part of the markup invisible until the user clicks the text. The javascript to swap the text element with the form is:</div>
+<br>
+<pre>
+$(".content").click( function(event){
+  $(".content").hide();
+  $(".editor").show();
+});
+</pre>
+<br><div>and it should be placed in the document-ready-function as well. An editor is there but nothing can be submitted yet. Lets wait with that and make it in to a wysiwyg editor first. The rails plugin for TinyMCE comes with a couple of neat things. Firstly - to include it there is the include_tiny_mce_if_needed method to add to views/layouts/application.haml. It includes the TinyMCE files if they are needed - if the controller has stated a need for them. A controller includes TinyMCE with this code somewhere in the controller class:</div>
+<br>
+<pre>
+uses_tiny_mce :only =&gt; [:home],
+  :options =&gt; {
+    :width =&gt; "600",
+    :height =&gt; "500"
+  }
+</pre>
+<br><div>Here it is possible to configure which of the controller actions that really need TinyMCE (or all if you want that). In our case we have only one controller method - so we add that one. The configuration of TinyMCE is also placed here if you want to have different configuration for different controllers. A default configuration can be placed in config/tiny_mce.yml.</div>
+<br><div>So we have our fancy inline editor. All that is left is to make the tests run and submit our edits and return to the original text only page. So bear with me - there will be a couple of lines more of code before this is over. Firstly - lets try to make that third step in our cucumber suite run. The reason I waited until now is that the implementation of that step is TinyMCE specific. Thats a bit sad because it would be nice to have a generic test for whatever editor there is. Not possible with the way TinyMCE works. (At least not with my skills - please prove me wrong.) After a fair bit of trying and fair bit of internet browsing I found a solution that works although not elegantly. It uses a feature in selenium that makes it possible to run javascript in the browser. Here it is:</div>
+<br>
+<pre>
+When /^I fill in the editor with "([^"]*)"$/ do |text|
+  evaluate_script("tinyMCE.activeEditor.setContent('" + text + "');")
+end
+</pre>
+<br><div>One thing left to make the third cucumber step work. We need to tell capybara to use selenium instead of running headless. In headless mode there is no support for arbitrary browser script running. To do this we add the file features/support/capybara.rb and enter Capybara.default_driver = :selenium and we have a running cucumber step that sets the text of a TinyMCE text area. A side effect is that selenium will start firefox to run the tests with. It will all slow down a bit.... and spork won't be that helpful either.</div>
+<br><div>Actually the fourth step where we push the Save button also works but the resulting page contains an error so the final step can't find the entered text. In order to make this last thing work we will add the controller method that answers the remote call from the form and some javascript that handles updating of the page when the asynchronous call succeeds. Lets start with the controller. The form pointed towards '/content/save' so lets add a save method to the content controller.</div>
+<br>
+<pre>
+def save
+  @text = params[:text]
+  # do some database saving here
+  render :text =&gt; @text, :content_type =&gt; 'application/html'
+end
+</pre>
+<br><div>And finally we need to run some ajax style scripts to take care of the result and make the page look good after the edit. When using ajax stuff the glue that makes rails agnostic to javascript framework needs to be present. I call the script file rails.js and add it just as the other javascript files above. Inside application.js we need to place some code to deal with the remote call to the server and - perhaps more importantly - the answer. It looks like this:</div>
+<br>
+<pre>
+// hide the form when submitting - when the ajax calls succeeds
+// put the returned data in the text field and show it
+$(".editor").submit( function(event){
+  $(".editor").hide();
+}).bind("ajax:success", function(event,data,status,xhr){
+  $(".content").html(data);
+  $(".content").show();
+});
+</pre>
+<br>
+<div>...and should also be placed in the document-ready-function. The first part hides the editor div when submitting data. The actual susmission is done by normal form post so no need for scripting there. The second part is the callback when the remote call has succeeded. It sets the returned data in the original text field and then shows it.</div>
+<br>
+<div>Well - thats about it. I hope you enjoyed it! A running full code example can be <a href="https://github.com/froderik/inlinetinymce">found over at gihub</a>. And a closing promise - I will try to post this kind of findings in parts in the future.....</div>
+<div> </div>
+
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

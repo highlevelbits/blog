@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Web standards revisited</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Web standards revisited
+</h2>
+<div>
+  <span class="byline">2008-09-29 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/xml.html" rel="tag"><span class="icon-tag"></span>xml</a>
+      
+        <a class="one-tag" href="../../tags/web.html" rel="tag"><span class="icon-tag"></span>web</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <p><a href="http://alistapart.com/" id="s_5_" title="A List Apart">A List Apart</a> has an interesting post about called <a href="http://alistapart.com/articles/webstandards2008" id="nj2o" title="Web Standards 2008: Three Circles of Hell">Web Standards 2008: Three Circles of Hell</a>. Molly E. Holzschlag gives an interesting view into the web standards organizations and the mechanisms that drive web standards. This is not uplifting reading at all despite the optimistic note towards the end:</p>
+<blockquote>Can we solve the problem? I’ve never been a fortune teller, but I am an optimist. I believe we have amazing people in each of these circles who can come together and make things happen.</blockquote>
+<p>I am more of a pessimist so I would place my money on a future with bad standards. Still - bad standards are better than no standards at all. After all - it is easier to be a web developer these days than it used to be. I like to think that this is because more and better standards. The tools are better and the number of things that don't work in Internet Explorer are not that numerous any more. Pragmatically speaking - there is progress. Could standards be better - definitely. I spent almost a day last week explaining the XML Schema standard (oops - it is not a standard - it is a <a href="http://www.w3.org/XML/Schema" id="n9sf" title="recommendation">recommendation</a>....) to a group of people attending an XML course for beginners. They asked me: "Why is it so complicated?". I had no answer to that. (For those lucky few of you that aren't XML-enabled it is easy to summarize the complexity. To define</p>
+<pre>
+<foo>&lt;foo&gt;
+    &lt;bar/&gt;
+&lt;/foo&gt;<bar>
+</bar></foo></pre>
+<p>you need to say</p>
+<pre>
+<element name="foo">&lt;element name="foo&gt;
+    &lt;complexType&gt;
+        &lt;sequence&gt;
+            &lt;element name="bar" type="string" /&gt;
+        &lt;/sequence&gt;
+    &lt;/complexType&gt;
+&lt;/element&gt; </element></pre>
+<p>With some imagination it is not hard to see where this is leading....) My teacher colleague Mathias Franzén pointed out that things may be unnecessarily complex but once embraced by the critical mass there is no turning back. XML Schema is like that. It has become the de facto standard for all large organizations. Sad - since there is this nice alternative called <a href="http://relaxng.org/" id="ne:7" title="RELAX NG">RELAX NG</a> that has the same functionality without the unnecessary complexity. </p>
+<div>Anyway - back to the article. The 3 circles of hell are (1) standards organizations with <a href="http://www.w3.org/" id="uuzb" title="W3C">W3C</a> playing the lead part, (2) independent organizations like <a href="http://www.whatwg.org/" id="sbad" title="WHATWG">WHATWG</a>  and finally (3) corporations. They all drive standards in their different ways and all have pros and cons that are nicely listed in the article. A glimmer of hope in the darkness is the newly initiated <a href="http://www.webfoundation.org/" id="mxf-" title="World Wide Web Foundation">World Wide Web Foundation</a> founded by Tim Berners-Lee (whom we all respect). This foundation will "advance one web that is free and open", "expand the web's capability and robustness" and finally "extend the web's benefit to all people on the planet". One first guess is that W3C might as well stand behind this kind of statements. What makes this different is the aim for an economic model where the standards organization is not economically dependent on the good will of big corporations - with their own evil agendas - but has independent funding. Hmmm - the money must come from somewhere must it not? </div>
+<div> </div>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2008-10-02</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">Yeah, formal XML can be a real pain :( Surely there are easier and better ways to do it.</div>
+</div>
+</div>
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

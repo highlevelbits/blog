@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Multiple unicorn servers with SSL on nginx</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 3.7.4">
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1370334-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <!-- end google analytics -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="twitter-window">
+          <a href="https://twitter.com/highlevelbits" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @highlevelbits</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+        ·
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        ·
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Multiple unicorn servers with SSL on nginx
+</h2>
+<div>
+  <span class="byline">2014-06-11 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/ssl.html" rel="tag"><span class="icon-tag"></span>ssl</a>
+      
+        <a class="one-tag" href="../../tags/rails.html" rel="tag"><span class="icon-tag"></span>rails</a>
+      
+        <a class="one-tag" href="../../tags/server.html" rel="tag"><span class="icon-tag"></span>server</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>A while ago I set up my own <a href="https://www.archlinux.org/">arch linux</a> server at <a href="https://www.digitalocean.com/">digital ocean</a>. It was some work and I learned a lot in the process. At the moment I have three <a href="http://unicorn.bogomips.org/">unicorn</a>-based ruby things running behind <a href="http://nginx.org/">nginx</a> on the server. One is built with <a href="http://rubyonrails.org/">rails</a> and the other two with <a href="http://www.sinatrarb.com/">sinatra</a>. The one with rails is SSL-only. The work of setting up nginx was pretty straightforward but still I had to understand things from several sources so here is a rundown of how I accomplished this.</p>
+
+<p>nginx is easy to configure. Compared with <a href="https://httpd.apache.org/">apache</a> it is a breeze. The configuration is typically placed in <code>/etc/nginx/nginx.conf</code>. The syntax is basically:</p>
+
+<pre><code>&lt;key&gt; {
+    &lt;key&gt; &lt;value&gt;;
+}
+</code></pre>
+
+<p>And there can be nested blocks inside another block. When configuring a server it seems to me that the freedom about how to nest things is rather high as long as it makes sense to the configuration.</p>
+
+<p>My server is defined inside a <code>http</code> block that contains all the domains I want to configure for the server. It then got some sensible defaults that I copied from somewhere:</p>
+
+<pre><code>http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    ssl_session_cache builtin:1000 shared:SSL:10m;
+
+    sendfile        on;
+    tcp_nopush     on;
+
+    keepalive_timeout  120;
+
+    gzip  on;
+    gzip_vary on;
+    gzip_min_length 500;
+
+    gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+    gzip_types text/plain text/xml text/css
+       text/comma-separated-values
+       text/javascript application/x-javascript
+       application/atom+xml image/x-icon;
+
+    ....
+}
+</code></pre>
+
+<p>As you can see this is some reasonable stuff that I want to have for all my domains. But it is not the focus of this post so you’ll have to read up on it elsewhere. Then I configured the upstream unicorn connection for each domain like this:</p>
+
+<pre><code>http {
+    ....
+    upstream oneofmydomains_unicorn_server {
+        server unix:/var/rack/oneofmydomains/tmp/sockets/unicorn.sock
+    }
+    ....
+}
+</code></pre>
+
+<p><code>oneofmydomains_unicorn_server</code> is just a name that will be used later to bind a domain to this unicorn socket. The file name coming after <code>unix:</code> should be the one in your unicorn config for that particular server.</p>
+
+<p>Then comes a <code>server</code> section for each domain. Lets start with the plain HTTP variant:</p>
+
+<pre><code>http {
+    ....
+    server {
+        listen 80;
+        server_name .oneofmydomains.com;
+
+        location / {
+            root /var/rack/oneofmydomains/public;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_redirect off;
+            proxy_pass http://oneofmydomains_unicorn_server;
+        }
+    }
+}
+</code></pre>
+
+<p>This section starts with the port to listen on this should be 80 in most cases. Then comes the server name describing what domain requests to listen to for this server. This is the part that makes it possible to have several domains running on the same nginx instance. After that another block called <code>location</code>. It starts with where to find static content. So for each request it will look for files in this folder and serving them - if none is found it will move on to the <code>proxy_pass</code> unicorn server that should match the name given in the upstream section above. The other <code>proxy_*</code> directives is needed to give the unicorn server a useful environment.</p>
+
+<p>So onwards to SSL. One might think that here is where you put in a <code>https</code> section instead of <code>http</code> and there is such a construct. I didn’t try it since I got it to work in another way. There are probably several ways to do this.</p>
+
+<p>To enable SSL you need to get a certificate. If your site is serious you want to buy it from a trusted signatory but if you don’t care about users getting warnings about untrusted certificates you can generate one yourself.</p>
+
+<p>I used a variant of the server section to setup SSL. Like this:</p>
+
+<pre><code>http {
+    ....
+    server {
+        listen 443;
+        server_name .oneofmydomains.com;
+
+        ssl on;
+
+        ssl_certificate     /etc/nginx/www.oneofmydomains.com.cert;
+        ssl_certificate_key /etc/nginx/www.oneofmydomains.com.key;
+        ssl_protocols        SSLv3 TLSv1 TLSv1.1 TLSv1.2;       # default on newer versions
+        ssl_ciphers          ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-RC4-SHA:ECDHE-RSA-AES128-SHA:RC4-SHA:RC4-MD5:ECDHE-RSA-AES256-SHA:AES256-SHA:ECDHE-RSA-DES-CBC3-SHA:DES-CBC3-SHA:AES128-SHA;
+        ssl_prefer_server_ciphers on;
+
+        root /var/rack/oneofmydomains/public;
+
+        location / {
+            proxy_set_header Host $http_host;
+            proxy_set_header X-FORWARDED-PROTO https;
+            # pass to the upstream unicorn server mentioned above
+            proxy_pass http://oneofmydomains_unicorn_server;
+        }
+    }
+}
+</code></pre>
+
+<p>As you can see most of the server section is the same. The default port for SSL is 443 so if you want your users to be able to use https://oneofmydomains.com without a port number - this is the way to go. (Just like 80 in the case of normal http.)</p>
+
+<p><code>ssl</code> is <code>on</code> and the certificate and its key is specified. Then there are lists of protocols and ciphers. This is used when a calling client handshakes with the server. It is just to decide a protocol and cipher to use for the interaction. If there is no match you may have a problem…. The location part is a bit different also with a somewhat different proxy header setup. </p>
+
+<p>And there you go. Once <code>nginx.conf</code> is edited you need to restart or reload nginx in order to make the changes effectual. I have enjoyed working with nginx. It is not so hard to understand what to do and the number of pitfalls are kept at a minimum.</p>
+
+</div>
+
+<div class="dashed-top-border">
+  <!-- disqus -->
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'highlevelbits'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  <!-- end disqus -->
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

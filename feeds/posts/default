@@ -1,0 +1,329 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://www.highlevelbits.com/</id>
+  <title>rss feed</title>
+  <updated>2015-01-16T23:00:00Z</updated>
+  <link rel="alternate" href="http://www.highlevelbits.com/"/>
+  <link rel="self" href="http://www.highlevelbits.com/feeds/posts/default"/>
+  <author>
+    <name>Fredrik &amp; Hardy</name>
+    <uri>http://www.highlevelbits.com</uri>
+  </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2015-01-17:/2015/01/sending-mail-from-the-command-line.html</id>
+    <title type="html">Sending mail on the (arch) command line</title>
+    <published>2015-01-16T23:00:00Z</published>
+    <updated>2015-01-16T23:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2015/01/sending-mail-from-the-command-line.html"/>
+    <content type="html">
+&lt;p&gt;I &lt;a href="/2013/12/simple_backups.html"&gt;handwired my own backup solution&lt;/a&gt; a while ago and apparently left out the important part of reporting. When the backup script is done a mail is sent to me depending on the result. It took some time for me to figure out how to do this but once I knew it was really easy. Install &lt;code&gt;ssmtp&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S ssmtp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As root - edit &lt;code&gt;/etc/ssmtp/ssmtp.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mailhub=&amp;lt;smtp.server&amp;gt;:&amp;lt;port&amp;gt;
+AuthUser=&amp;lt;username&amp;gt;
+AuthPass=&amp;lt;password&amp;gt;
+UseSTARTTLS=YES
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I use sendgrid as outgoing SMTP server but there are several other options. Setting up your own shouldn’t be to hard either.&lt;/p&gt;
+
+&lt;p&gt;Once you have this up and running you can send me an email like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo 'Really cool post about sending mails' | mail -s 'Cool post' fredrik@eldfluga.se
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="https://farm7.staticflickr.com/6200/6118863684_32120222a4_b.jpg" alt="mail boxes" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;
+&lt;a href="https://www.flickr.com/photos/gregoryjordan/6118863684/"&gt;Photo&lt;/a&gt; by &lt;a href="https://www.flickr.com/photos/gregoryjordan/"&gt;Gregory Jordan&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2015-01-13:/2015/01/ufw-arch-server.html</id>
+    <title type="html">Setting up ufw for a web server</title>
+    <published>2015-01-12T23:00:00Z</published>
+    <updated>2015-01-12T23:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2015/01/ufw-arch-server.html"/>
+    <content type="html">
+&lt;p&gt;Once you have a secure server - as described in the &lt;a href="/2015/01/securing-arch-server.html"&gt;previous installment&lt;/a&gt; - the next step is to set up a firewall so that only expected traffic is allowed. The high ceremony approach to this is to use &lt;code&gt;iptables&lt;/code&gt;. I never learned this and once I found &lt;a href="https://wiki.archlinux.org/index.php/Uncomplicated_Firewall"&gt;&lt;code&gt;ufw&lt;/code&gt;&lt;/a&gt; (stands for &lt;em&gt;uncomplicated firewall&lt;/em&gt;) there seem to be no need for trivial use cases like mine.&lt;/p&gt;
+
+&lt;h3 id="requirements"&gt;Requirements&lt;/h3&gt;
+
+&lt;p&gt;My needs are simple - I want to accept:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ssh traffic on a port that is not 22&lt;/li&gt;
+  &lt;li&gt;http on port 80&lt;/li&gt;
+  &lt;li&gt;https on port 443&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And that is all.&lt;/p&gt;
+
+&lt;h3 id="ufw-apps"&gt;ufw apps&lt;/h3&gt;
+
+&lt;p&gt;ufw comes with a set of predefined &lt;em&gt;apps&lt;/em&gt;. They are located in &lt;code&gt;/etc/ufw/applications.d/&lt;/code&gt; and grouped into typcial uses. So the ssh rule is in the file &lt;code&gt;ufw-loginserver&lt;/code&gt; along with other rules related to login. And web server rules are in &lt;code&gt;ufw-webserver&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id="default"&gt;Default&lt;/h3&gt;
+
+&lt;p&gt;I start with adding a rule that denies everything&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; ufw default deny
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;on the command line. Almost everything happens on the command line….&lt;/p&gt;
+
+&lt;h3 id="web"&gt;Web&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;WWW Full&lt;/code&gt; rule in &lt;code&gt;ufw-webserver&lt;/code&gt; is exactly what I want for http and https so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; ufw allow "WWW Full"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="ssh"&gt;SSH&lt;/h3&gt;
+
+&lt;p&gt;There is a SSH rule in &lt;code&gt;ufw-loginserver&lt;/code&gt; but it defaults to port 22. I can either change it or create a new rule. The latter seems better and will probably survive new versions of &lt;code&gt;ufw&lt;/code&gt; better. So I add a file called &lt;code&gt;ufw-loginserver-custom&lt;/code&gt; and copy the ssh rule with just a change to the port:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[CUSTOMSSH]
+title=SSH server
+description=SSH server
+ports=667/tcp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and allow it on the command line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; ufw allow CUSTOMSSH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="enabling-the-firewall"&gt;Enabling the firewall&lt;/h3&gt;
+
+&lt;p&gt;Now all that is left is to enable the firewall:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; ufw enable
+&amp;gt; systemctl enable ufw
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and you have a secure server. Next is probably to get &lt;code&gt;nginx&lt;/code&gt; up and running. I already posted about getting &lt;a href="/2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html"&gt;unicorn and SSL to work with nginx&lt;/a&gt; so I probably want add anything about that at this time.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2015-01-11:/2015/01/securing-arch-server.html</id>
+    <title type="html">Securing an arch linux server</title>
+    <published>2015-01-10T23:00:00Z</published>
+    <updated>2015-01-10T23:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2015/01/securing-arch-server.html"/>
+    <content type="html">
+&lt;p&gt;I am setting up my own server for the second time. One year ago I got myself a virtual server at digital ocean running arch linux. Unfortunately they dropped support for arch early in 2014 so I needed to move elsewhere and I turned my eyes on linode. So in order to remember how this is done when I do it a third time I will write down some notes about it here. In this first post I will walk you through getting your server up to date and securing it on a shell level.&lt;/p&gt;
+
+&lt;p&gt;This guide will set up the server &lt;code&gt;gibson&lt;/code&gt;  with a user called &lt;code&gt;william&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id="getting-in-and-updating"&gt;Getting in and updating&lt;/h3&gt;
+
+&lt;p&gt;From your provider you have gotten a root password. Log in with it.&lt;/p&gt;
+
+&lt;p&gt;Set hostname:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hostnamectl set-hostname gibson
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I also add it to my local &lt;code&gt;/etc/hosts&lt;/code&gt; so I don’t have to remember the IP.&lt;/p&gt;
+
+&lt;p&gt;I prefer running my server in the UTC time zone. If you want something else you can take care of it now. Use &lt;a href="https://wiki.archlinux.org/index.php/Time"&gt;&lt;code&gt;timedatectl&lt;/code&gt;&lt;/a&gt; for this.&lt;/p&gt;
+
+&lt;p&gt;Before you can update the system, you need to &lt;a href="https://wiki.archlinux.org/index.php/Pacman-key#Initializing_the_keyring"&gt;create entropy, initiate pacman-key and populate the keyring&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To get arch package manager up and running you need to initiate it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;haveged -w 1024
+pacman-key --init
+pkill haveged
+pacman-key --populate archlinux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then run the update:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pacman -Syu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I also install some stuff I will need pretty soon:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pacman -S git zsh ufw
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="add-sudo-enable-user"&gt;Add sudo enable user&lt;/h3&gt;
+
+&lt;p&gt;Then it is time to secure the login. It is considered harmful to have a password protected root login. Start with &lt;a href="https://wiki.archlinux.org/index.php/Users_and_Groups#Example_adding_a_user"&gt;adding a normal user&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;useradd -m william
+passwd william
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Give the new user root access with &lt;a href="https://wiki.archlinux.org/index.php/Sudo#Using_visudo"&gt;visudo&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;visudo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here you have to know your way around &lt;code&gt;vi&lt;/code&gt;. I can barely manage &lt;code&gt;vim&lt;/code&gt; so….
+Add this line somewhere in the file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;william ALL=(ALL) ALL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now log out from your root login and try your new user. You should be able to login with password.&lt;/p&gt;
+
+&lt;h3 id="secure-the-login"&gt;Secure the login&lt;/h3&gt;
+
+&lt;p&gt;The next step is to use a public key for the ssh login instead of passwords. This will save you time when you need to get into your server and it is also more secure. The &lt;a href="https://wiki.archlinux.org/index.php/Secure_Shell#Protecting_SSH"&gt;arch wiki has a good section&lt;/a&gt; about this.&lt;/p&gt;
+
+&lt;p&gt;If you don’t have a ssh key you have to generate it now. You can find out how with the help of google. Copy the public key file to the server:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh-copy-id william@gibson
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then login as &lt;code&gt;william&lt;/code&gt; to &lt;code&gt;gibson&lt;/code&gt;. The key file needs to be in &lt;code&gt;.ssh/authorized_keys&lt;/code&gt;. If you are the only user on the machine you can move it like below. Otherwise append it to the file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir .ssh
+mv id_rsa.pub .ssh/authorized_keys
+chown -R .ssh
+chmod 700 .ssh
+chmod 400 .ssh/authorized_keys
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally we need to make some changes to the sshd configuration file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo vim /etc/ssh/sshd_config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this file the following lines needs to be uncommented and altered.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Port 667
+PasswordAuthentication no          
+PermitRootLogin no
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This changes the ssh port from the default 22 making it harder to start attacking the server. We also turn off password authentication and root login. Restart &lt;code&gt;sshd&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo systemctl restart sshd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now the only user that can login is &lt;code&gt;william&lt;/code&gt; with the ssh key that we entered and on the new port.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh -p 667 william@gibson
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and you are fine to go.&lt;/p&gt;
+
+&lt;p&gt;Now you likely want to use the server to run some software that needs to be available. In the &lt;a href="/2015/01/ufw-arch-server.html"&gt;next post&lt;/a&gt; I will show you how to set up &lt;code&gt;ufw&lt;/code&gt; - uncomplicated firewall.&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;a href="https://www.reddit.com/r/archlinux/comments/2sbcce/how_to_secure_your_arch_server/"&gt;posted the link on reddit&lt;/a&gt; and got some great feedback. I made these changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;port number must be in the 1-65535 range - thanks maha.&lt;/li&gt;
+  &lt;li&gt;port number should be below 1024 for increased security - thanks &lt;a href="https://www.reddit.com/user/extra_"&gt;extra_&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;.ssh/authorized_keys&lt;/code&gt; is better of as read-only - thanks &lt;a href="https://www.reddit.com/user/Nebu_Retski"&gt;Nebu_Retski&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;there is a command for copying a ssh key &lt;code&gt;ssh-copy-id&lt;/code&gt; so I replaced my &lt;code&gt;scp&lt;/code&gt; with this - thanks &lt;a href="https://www.reddit.com/user/MartiPanda"&gt;MartiPanda&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;added reference links to the excellent &lt;a href="https://wiki.archlinux.org/"&gt;arch wiki&lt;/a&gt; -thanks Nebu_Retski again.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-12-28:/2014/12/programming-languages-in-2015.html</id>
+    <title type="html">Programming languages in 2015</title>
+    <published>2014-12-27T23:00:00Z</published>
+    <updated>2014-12-27T23:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/12/programming-languages-in-2015.html"/>
+    <content type="html">
+&lt;p&gt;3 years ago I scribbled down &lt;a href="http://highlevelbits.com/2011/12/programming-languages-in-2012.html"&gt;some predictions about programming languages trends in 2012&lt;/a&gt;. That was fun but a bit too boring to do every year…. so now is the time for a follow up.&lt;/p&gt;
+
+&lt;h3 id="what-happened-with-my-predictions"&gt;What happened with my predictions?&lt;/h3&gt;
+
+&lt;p&gt;It seems that I was mostly right with my predictions about the main contenders. Since then &lt;strong&gt;javascript&lt;/strong&gt; has moved forward and &lt;strong&gt;Java&lt;/strong&gt; is still rock solid. People are even moving back to Java from excursions to other languages. Scala hasn’t really taken off (thank god for that). A couple of new interesting languages has appeared that I didn’t anticipated. In the functional sphere we have &lt;strong&gt;elixir&lt;/strong&gt; that lures the ruby crowd onto the erlang platform and makes it more accessible. We also have &lt;strong&gt;go&lt;/strong&gt;, googles C replacement that looks really promising. I had the opportunity to try it out a bit a year ago and it was &lt;a href="http://highlevelbits.com/tags/golang.html"&gt;mostly good warm feelings&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="looking-into-the-next-couple-of-years"&gt;Looking into the next couple of years&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Java&lt;/strong&gt; will continue to be the main choice for enterprise software. This is a bit sad given all the nice alternatives out there nowadays but will probably make it easier to maintain large systems over time. Another trend is to combine enterprise Java on the backend with single page web apps with angular for the frontend. This brings me to javascript -&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Javascript&lt;/strong&gt; will continue to increase in importance still being the only native language for web browsers. Neither &lt;strong&gt;dart&lt;/strong&gt; nor &lt;strong&gt;coffeescript&lt;/strong&gt; will make it into mainstream browsers in the upcoming years. It may be possible to run dart in chrome but not anywhere else. There will be a couple of new javascript web frameworks that will be used for a while. Angular may still be there three years from now but don’t count on it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt; and &lt;strong&gt;CSS&lt;/strong&gt; will continue to be crucial view technologies for the web. Combined with javascript they will form the mobile platform of tomorrow. Firefox OS is leading the way here and I expect to see more of this kind of consolidation. Nice things like &lt;strong&gt;haml&lt;/strong&gt; and &lt;strong&gt;slim&lt;/strong&gt; will continue to be marginal things.&lt;/p&gt;
+
+&lt;p&gt;Functional languages and functional style in OO languages will continue to increase in popularity due to the heightened awareness of maintenance cost. Here I expect &lt;strong&gt;elixir&lt;/strong&gt; to continue going strong together with &lt;strong&gt;clojure&lt;/strong&gt; and &lt;strong&gt;erlang&lt;/strong&gt;. Scala will not make it - partly due to the &lt;em&gt;smorgåsbord&lt;/em&gt; character of the language and partly due to an elitist community. Also keep in mind that javascript is a capable functional language.&lt;/p&gt;
+
+&lt;p&gt;You can also expect a move back to server side web frameworks. While it is fancy and performance friendly with single page web apps they are hard to maintain over several platforms and honestly - do users care about this &lt;strong&gt;at all&lt;/strong&gt;? I hope this move will be towards lightweight web frameworks like sinatra on ruby, flask on python or dropwizard on java rather than going back to rails and whatnot in the draconian framework genre.&lt;/p&gt;
+
+&lt;p&gt;Also the move back to relational databases will continue and people will start using postgre as a document database.&lt;/p&gt;
+
+&lt;h3 id="my-path-forward"&gt;My path forward&lt;/h3&gt;
+
+&lt;p&gt;I am currently working with a client where the stack is a mixture of angular.js, camel, java, spring and some grails. This means I will improve my groovy and hopefully not turn worse with my javascript. I hope to continue doing some ruby on the side because I like the beauty of it. Strategically I will try to improve my go and my javascript and if I have any energy left after that I will dive into elixir.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://farm4.staticflickr.com/3270/3000553746_80acbb9c4e_o.jpg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;
+&lt;a href="https://www.flickr.com/photos/nubui/3000553746"&gt;Photo&lt;/a&gt; by &lt;a href="https://www.flickr.com/photos/nubui/"&gt;nubui&lt;/a&gt;.
+&lt;/small&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2014-11-20:/2014/11/markdown-readme-from-grails.html</id>
+    <title type="html">Serving up that readme with grails</title>
+    <published>2014-11-19T23:00:00Z</published>
+    <updated>2014-11-19T23:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2014/11/markdown-readme-from-grails.html"/>
+    <content type="html">
+&lt;p&gt;So you wrote a nice readme for your grails project and realized that it would be nice to serve it at some or other URL on your site. Yeah - happened to me too. So here is what I did.&lt;/p&gt;
+
+&lt;p&gt;First we need to add markdown capabilities to our grails project. For that we use the &lt;a href="https://grails.org/plugin/markdown"&gt;markdown plugin&lt;/a&gt;. Put the following line in your &lt;code&gt;BuildConfig.groovy&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;compile ":markdown:1.1.1"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next - &lt;a href="https://stackoverflow.com/questions/12835568/using-markdown-as-a-grails-view"&gt;which may be tricky&lt;/a&gt; - we need to have the markdown file in our &lt;code&gt;views&lt;/code&gt; directory for grails to find them. The file also need to end with &lt;code&gt;gsp&lt;/code&gt;. The easiest way to accomplish this is to make a soft link (yes - git preserves soft links….. given your coworkers also is on some kind of unix):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd grails-app/views/readme
+ln -s ../../../readme.md readme.gsp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we need some kind of route. I decide to go for a &lt;code&gt;readme&lt;/code&gt; path with its own controller but this can be done in several ways. Put this in your &lt;code&gt;UrlMappings.groovy&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;"/readme"(controller:"readme")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and with that goes a &lt;code&gt;ReadmeController&lt;/code&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class ReadmeController {
+  def readme() {
+    render(layout: 'markdown', view: 'readme')
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We pass the view to &lt;code&gt;render&lt;/code&gt; and also a special layout needed to trigger markdown. Here is the essential part of the layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;body&amp;gt;
+    &amp;lt;markdown:renderHtml&amp;gt;
+        &amp;lt;g:layoutBody/&amp;gt;
+    &amp;lt;/markdown:renderHtml&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And there you go with a nice path to your readme.&lt;/p&gt;
+
+&lt;p&gt;This is admittedly a bit cumbersome but pretty straightforward. The other approach is to read the markdown programmatically and do the markup processing in a controller. Probably pros and cons with both approaches.&lt;/p&gt;
+
+&lt;p&gt;(On a side note. At times like this I miss Ruby. I did &lt;a href="https://github.com/froderik/anyrest/blob/master/anyrest.rb"&gt;pretty much the same thing&lt;/a&gt; with &lt;a href="http://www.sinatrarb.com/"&gt;sinatra&lt;/a&gt; a while ago. Add a gem and &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;get '/' do
+    markdown :README
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in the “controller”. Much easier.)&lt;/p&gt;
+</content>
+  </entry>
+</feed>
+
