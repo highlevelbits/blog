@@ -3,8 +3,8 @@
 git config --global user.email "highlevelbits@eldfluga.se"
 git config --global user.name "high level bits automator"
 
-bundle install
 git clone https://github.com/highlevelbits/blog.git --branch gh-pages output
+rm -rf output/*
 nanoc
 cd output
 echo highlevelbits.com > CNAME
