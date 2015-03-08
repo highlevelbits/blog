@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+git config --global user.email "highlevelbits@eldfluga.se"
+git config --global user.name "high level bits automator"
+
 bundle install
 git clone git@github.com:highlevelbits/blog.git --branch gh-pages output
 nanoc
