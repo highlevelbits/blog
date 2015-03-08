@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
-git config user.email "highlevelbits@eldfluga.se"
-git config user.name "high level bits automator"
+git config --global user.email "highlevelbits@eldfluga.se"
+git config --global user.name "high level bits automator"
 
 bundle install
 git clone https://github.com/highlevelbits/blog.git --branch gh-pages output
