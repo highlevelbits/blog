@@ -1,1 +1,2 @@
 install: ./publish_from_travis.sh
+secure: "LMrvJmvm6cuaHCtLDIciLzphbdaHp4/YRNjWJh5aOwllBUY3wK2gNXraWMzQGuLoogol+cpewh6OZg+fAT/G2ZXdGhlanugZhxIo0guKpu965sdEWzz+XfkyD5rtv/kfy+Pkcp95R4ol9eceuC5UV/TI28S2Ekh+njA8MxJNtko="

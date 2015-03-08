@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 
-git config --global user.email "highlevelbits@eldfluga.se"
-git config --global user.name "high level bits automator"
+git config user.email "highlevelbits@eldfluga.se"
+git config user.name "high level bits automator"
 
 bundle install
-git clone git@github.com:highlevelbits/blog.git --branch gh-pages output
+git clone https://github.com/highlevelbits/blog.git --branch gh-pages output
 nanoc
 cd output
 echo highlevelbits.com > CNAME
 git add .
 git commit -am "high level bits automatic deploy"
-git push -f origin gh-pages
+git push --force --quiet "http://${GH_AUTH}@github.com/highlevelbits/blog.git" master:gh-pages 
