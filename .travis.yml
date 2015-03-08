@@ -1,4 +1,6 @@
-install: "./publish_from_travis.sh"
+language: ruby
+
+script: "./publish_from_travis.sh"
 
 # this is the encrypted api key from github setting 
 # the GH_AUTH env variable used in the install script
