@@ -1,6 +1,7 @@
 language: ruby
 
-script: "./publish_from_travis.sh"
+install: "./publish_from_travis.sh"
+script: echo "brilliantly automated"
 
 # this is the encrypted api key from github setting 
 # the GH_AUTH env variable used in the install script
