@@ -1,4 +1,13 @@
 install: "./publish_from_travis.sh"
+
+# this is the encrypted api key from github setting 
+# the GH_AUTH env variable used in the install script
 env:
   global:
     secure: hrfBYK9YXs0rJJvr3zbIFFt7E11KdbtTzbSYgvULEhVgRwXscKRj/x9eUrfwQRBWnR8WjhKglsx+UT+278xHV3FQHqUgkgwT5VMwfiHFUUaqOgXD+sS9SLLA4GmgFKeS1iukgrl87QqBWXoxhCZGqgHcPIApySAEeOvvQUKbO+M=
+
+# build only master - don't want to publish wip
+branches:
+  only:
+    - master
+
