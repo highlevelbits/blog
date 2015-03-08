@@ -10,4 +10,4 @@ cd output
 echo highlevelbits.com > CNAME
 git add .
 git commit -am "high level bits automatic deploy"
-git push --force --quiet "https://${GH_AUTH}@github.com/highlevelbits/blog.git" gh-pages 
+git push --force --quiet "https://${GH_AUTH}@github.com/highlevelbits/blog.git" gh-pages > /dev/null 2>&1
