@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/highlevelbits/blog.svg?branch=master)](https://travis-ci.org/highlevelbits/blog)
+
+
 high level bits repository
 ==========================
 
