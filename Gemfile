@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'nanoc', git: 'https://github.com/froderik/nanoc.git'
+gem 'nanoc'
 gem 'adsf'
 gem 'kramdown'
 gem 'haml'
