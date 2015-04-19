@@ -1,6 +1,6 @@
 def tags_for item
   if item[:tags]
-    item[:tags].split(',').map {|tag| tag.strip }
+    item[:tags].split(',').map {|tag| tag.strip }.sort
   else
     []
   end
