@@ -32,9 +32,9 @@ To get started
     nanoc view
 
     # publish the site
-    ./publish.rb
+    git push
 
-Iterate the final 3 whenever content has changed.
+Travis picks up upon push and runs the publish script. (As [described in a post](http://highlevelbits.com/2015/03/publishing_this_blog_with_travis.html).) If this is not working it is possible to publish locally also. Just find the appropriate script in the root folder. Iterate the final 3 whenever content as changed.
 
 File structure
 --------------
