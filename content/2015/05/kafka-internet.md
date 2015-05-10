@@ -18,4 +18,4 @@ child-like errors that even the dumbest human would never make. Computers can be
 inflexible, unforgetting and unforgiving, yet simultaneously quirky and error-prone. Bureaucracies 
 are also notorious for their mindless application of rules and the dumb, irrational decisions that often result.
 
-Found in the [the radar](http://radar.oreilly.com/2015/04/four-short-links-7-april-2015-2.html).
+Found in [the radar](http://radar.oreilly.com/2015/04/four-short-links-7-april-2015-2.html).
