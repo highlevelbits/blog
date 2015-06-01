@@ -3,7 +3,7 @@ title: "Finding files in emacs and some bits about package mgmt"
 kind: article
 created_at: 2015-06-01
 author: fredrik
-tags: emacs, projectile, productivity, melpa
+tags: emacs, projectile, productivity, melpa, editor
 ---
 
 Some more findings from my emacs journey. `C-x C-f` is not so fun when looking for files in any normal software projects. 
