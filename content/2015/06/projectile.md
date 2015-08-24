@@ -36,3 +36,6 @@ There are loads of more stuff in projectile but you gotta start somewhere.
 Also when investigating this I stumbled upon [helm](http://tuhdo.github.io/helm-intro.html) that supposedly is
 an *incremental completion and selection narrowing framework*. The oceans of nice things in the emacs 
 stratosphere....
+
+UPDATE: also useful is to install `flx-ido` that gives you better fuzzy matching of file names. Available with MELPA. 
+Next mission - automate package installs.
