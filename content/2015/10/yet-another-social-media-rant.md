@@ -32,5 +32,6 @@ it too hard for the average user to get hold of the tools that are available to 
 to give away their data in return for a nice selection of ads. It is hard to blame them.
 
 ![](https://c1.staticflickr.com/3/2453/3989939286_b7c69f9316_b.jpg)
+
 <smaller>[Photo](https://www.flickr.com/photos/stylianosm/3989939286) by 
 [Stylianos Mystakidis](https://www.flickr.com/photos/stylianosm)</smaller>
