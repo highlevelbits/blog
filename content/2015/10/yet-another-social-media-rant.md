@@ -33,5 +33,5 @@ to give away their data in return for a nice selection of ads. It is hard to bla
 
 ![](https://c1.staticflickr.com/3/2453/3989939286_b7c69f9316_b.jpg)
 
-<smaller>[Photo](https://www.flickr.com/photos/stylianosm/3989939286) by 
-[Stylianos Mystakidis](https://www.flickr.com/photos/stylianosm)</smaller>
+[Photo](https://www.flickr.com/photos/stylianosm/3989939286) by 
+[Stylianos Mystakidis](https://www.flickr.com/photos/stylianosm)
