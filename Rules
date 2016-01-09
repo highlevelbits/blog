@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# coding: utf-8
 
 # A few helpful tips about the Rules file:
 #
@@ -27,7 +28,7 @@ preprocess do
   end
 
   tags.each do |tag|
-    items << Nanoc::Item.new("", { tag: tag, kind: 'tag' }, "/tags/#{tag.gsub(' ', '-')}/")
+    items.create("", { tag: tag, kind: 'tag' }, "/tags/#{tag.gsub(' ', '-')}/")
   end    
 end
 

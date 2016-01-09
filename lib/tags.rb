@@ -7,7 +7,7 @@ def tags_for item
 end
 
 def items_tagged_with tag, except = []
-  (@items - except).select {|item| tags_for(item).include?(tag) }.sort {|x,y| y[:created_at].to_s <=> x[:created_at].to_s}
+  @items.reject {|item| except.include? item }.select {|item| tags_for(item).include?(tag) }.sort {|x,y| y[:created_at].to_s <=> x[:created_at].to_s}
 end
 
 def items_without_tags
