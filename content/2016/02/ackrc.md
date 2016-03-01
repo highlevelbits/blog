@@ -14,7 +14,7 @@ When `git` appeared I started using `git grep`. It is really handy since it only
 This is also a disadvantage at times.
 
 Then some years ago I worked with a guy that introduced a series of grep tools to me. The final one was `ack` and I have stucked 
-with it sincme then. It got good defaults for what you may want to ignore and also gives a nice colorized output. I haven't 
+with it since then. It got good defaults for what you may want to ignore and also gives a nice colorized output. I haven't 
 really tried to tweak it until the other day when I got disturbed by the appearance of content in the `coverage` folder of 
 a ruby side project I am working on. It is easy to add the `--ignore-directory` flag on the command line but not so convenient 
 the second time around. In comes the `.ackrc` file where you can put custom settings. You can have one in your home 
