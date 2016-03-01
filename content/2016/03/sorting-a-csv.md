@@ -6,7 +6,7 @@ author: fredrik
 tags: bash, sort, csv
 ---
 
-If you knwo your spreadsheet tool you probably think this post is rather useless. I like doing things on the command
+If you know your spreadsheet tool you probably think this post is rather useless. I like doing things on the command
 line and so I felt it important to find out how a CSV file can be sorted thereon.(In my case I got a CSV file containing
 a memory report of a redis instance.)
 
