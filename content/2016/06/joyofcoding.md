@@ -13,6 +13,7 @@ any of them since I went to [decentralize.js](http://highlevelbits.com/2014/09/d
 
 But now is a good time to return to this habit since [Joy of Coding](http://joyofcoding.org/) was one of those conferences 
 that stands out from the crowd. This is for several reasons:
+
 - Firstly the whole theme of the conference is so positive. Talking about joyfulness
 in something that you do for a living is really a good thing. 
 - Because of this positive stance it seems like the speaker lineup is better than usual. And this is despite this
