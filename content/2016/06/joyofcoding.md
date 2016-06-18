@@ -8,7 +8,7 @@ tags: conference, software development, coding
 
 ![](http://joyofcoding.org/img/blue-logo-with-white-text.svg)
 
-Despite [attending quite a few conferences](http://lanyrd.com/profile/froderik/past/) the last few years I haven't wrote about
+Despite [attending quite a few conferences](http://lanyrd.com/profile/froderik/past/) the last few years I didn't write about
 any of them since I went to [decentralize.js](http://highlevelbits.com/2014/09/decentralize.html) almost two years ago.
 
 But now is a good time to return to this habit since [Joy of Coding](http://joyofcoding.org/) was one of those conferences 
