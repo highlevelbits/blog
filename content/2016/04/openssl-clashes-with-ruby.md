@@ -31,3 +31,5 @@ So far for the **easiest way out**. The **harder way** must surely be to install
 For me - an older ruby like `2.1.5` did not like to be reinstalled at all. There probably is a need for flags here.
 Instead I tried to install `2.2.4` and it worked fine. So until I have a client that insists on an old version 
 (like the one I did my last day for yesterday) I will be happy with this solution.
+
+**Update 17th of July**: I haven't been much on Ruby lately but today I upgraded a project to the latest 2.3.1 and now it seems to work fine with the latest OpenSSL.
