@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Could not load OpenSSL</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Could not load OpenSSL
+</h2>
+<div>
+  <span class="byline">2016-03-17 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+      
+        <a class="one-tag" href="../../tags/openssl.html" rel="tag"><span class="icon-tag"></span>openssl</a>
+      
+        <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>Today suddenly I got a nasty error when trying to <code>bundle install</code> in a ruby repository I am working on:</p>
+
+<pre><code>&gt; bundle install   
+Error loading RubyGems plugin "/home/ruben/.rbenv/rbenv.d/exec/gem-rehash/rubygems_plugin.rb": /home/ruben/.rbenv/versions/2.0.0-p647/lib/ruby/2.0.0/x86_64-linux/openssl.so: undefined symbol: SSLv2_method - /home/ruben/.rbenv/versions/2.0.0-p647/lib/ruby/2.0.0/x86_64-linux/openssl.so (LoadError)
+
+Could not load OpenSSL.
+You must recompile Ruby with OpenSSL support or change the sources in your Gemfile from 'https' to 'http'.
+Instructions for compiling with OpenSSL using RVM are available at http://rvm.io/packages/openssl.
+&gt;
+</code></pre>
+
+<p>As you can see this was with a pretty recent ruby 2.0 running on rbenv. I made a quick check and confirmed that I had the same
+problem with ruby 2.2 so it likely had to do with the openssl library. Googling - however - was not of much help. Mostly older
+issues talking about recompiling openssl with SSLv2. So after trying a few things I decided to downgrade openssl and it worked 
+right away. The misbehaving version is <code>1.0.2.g</code> while <code>1.0.2.f</code> works as it should. (Or the ruby tooling is using something
+in the latter that is shouldn’t…..)</p>
+
+<p>My conclusion is that SSLv2 is not included in the last package of openssl on arch linux. This is probably a good thing
+as SSLv2 is regarded as broken. But since it breaks ruby it would be nice to have an intermediate solution while ruby
+is being fixed. I sense this may take a while…..</p>
+
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Cutting part of a large file with sed</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Cutting part of a large file with sed
+</h2>
+<div>
+  <span class="byline">2016-04-04 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/sed.html" rel="tag"><span class="icon-tag"></span>sed</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p><code>sed</code> helped me again. I got this really large database backup file (14 GBs) and needed to extract the part involved in one 
+of the tables. After finding the table in question on line 22372205 and deciding that the part I needed ended
+on line 22708925 it was really easy to extract with sed:</p>
+
+<pre><code>sed -n '22372205,22708925p' backup.sql &gt; backup_part.sql
+</code></pre>
+
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

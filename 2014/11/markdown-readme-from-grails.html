@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Serving up that readme with grails</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Serving up that readme with grails
+</h2>
+<div>
+  <span class="byline">2014-11-20 by fredrik</span>
+  
+    <span class="tags">
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>So you wrote a nice readme for your grails project and realized that it would be nice to serve it at some or other URL on your site. Yeah - happened to me too. So here is what I did.</p>
+
+<p>First we need to add markdown capabilities to our grails project. For that we use the <a href="https://grails.org/plugin/markdown">markdown plugin</a>. Put the following line in your <code>BuildConfig.groovy</code>:</p>
+
+<pre><code>compile ":markdown:1.1.1"
+</code></pre>
+
+<p>Next - <a href="https://stackoverflow.com/questions/12835568/using-markdown-as-a-grails-view">which may be tricky</a> - we need to have the markdown file in our <code>views</code> directory for grails to find them. The file also need to end with <code>gsp</code>. The easiest way to accomplish this is to make a soft link (yes - git preserves soft links….. given your coworkers also is on some kind of unix):</p>
+
+<pre><code>cd grails-app/views/readme
+ln -s ../../../readme.md readme.gsp
+</code></pre>
+
+<p>Then we need some kind of route. I decide to go for a <code>readme</code> path with its own controller but this can be done in several ways. Put this in your <code>UrlMappings.groovy</code>:</p>
+
+<pre><code>"/readme"(controller:"readme")
+</code></pre>
+
+<p>and with that goes a <code>ReadmeController</code>:</p>
+
+<pre><code>class ReadmeController {
+  def readme() {
+    render(layout: 'markdown', view: 'readme')
+  }
+}
+</code></pre>
+
+<p>We pass the view to <code>render</code> and also a special layout needed to trigger markdown. Here is the essential part of the layout:</p>
+
+<pre><code>&lt;body&gt;
+    &lt;markdown:renderHtml&gt;
+        &lt;g:layoutBody/&gt;
+    &lt;/markdown:renderHtml&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>And there you go with a nice path to your readme.</p>
+
+<p>This is admittedly a bit cumbersome but pretty straightforward. The other approach is to read the markdown programmatically and do the markup processing in a controller. Probably pros and cons with both approaches.</p>
+
+<p>(On a side note. At times like this I miss Ruby. I did <a href="https://github.com/froderik/anyrest/blob/master/anyrest.rb">pretty much the same thing</a> with <a href="http://www.sinatrarb.com/">sinatra</a> a while ago. Add a gem and</p>
+
+<pre><code>get '/' do
+    markdown :README
+end
+</code></pre>
+
+<p>in the “controller”. Much easier.)</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

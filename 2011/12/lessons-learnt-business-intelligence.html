@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Lessons learnt: business intelligence</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Lessons learnt: business intelligence
+</h2>
+<div>
+  <span class="byline">2011-12-20 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/big-data.html" rel="tag"><span class="icon-tag"></span>big data</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <p>I have had the opportunity to work with business intelligence tooling for a customer this fall. It is a new area for me so it has been both frustrating and interesting. The frustration comes from the many dead ends it is possible to walk mindlessly into. The interestingness comes of course from the opportunity to learn new stuff.<br><br>My customer does not have "big data" with row counts in the millions rather than the billions. They get by with a relational database with no problem at all. My task has been to extract data from the relational database and put it in a business intelligence tool to enable ease of reports creation. We choose to develop a proof of concept with <a href="http://www.gooddata.com/">GoodData</a> a SaaS (Software as a Service) vendor in the business intelligence sector. They are on a <a href="http://www.gooddata.com/about/romans-vision">mission to redefine</a> the business intelligence business (wow - a bit meta that) making it easy to get up and running with a nice user interface and some queer command line tools to use for integration. This post is a short list of lessons learned while working on this.<br><br><b>Data quality</b> is important. For a system that has been around for a while it is likely that parts of the data is not of the highest quality. This is not visible until someone put it into reports.<br><br><a href="http://www.gooddata.com/" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" height="188" src="http://www.gooddata.com/images/uploads/poweredby2.png" width="320"></a>GoodData has good support for developers with nice, open, informative forums and fast support. The <b>tools are not outstanding</b> in any way (as you can see to the left). Errors are most often obscured and hard to decipher. A certain amount of trial and error is necessary to get forward. According to various sources - old school business intelligence tools are typically even harder on developers and may cost a fortune to implement. This amazes me.<br><br>There are other SaaS players in the business intelligence niche but only some of them has the option to <b>try the solution before buying</b>. GoodData is one of them. Most of them don't have any useful information about how to go about doing an implementation on their home page. This is a bit strange to me but maybe the typical business intelligence tool buyer is a suit and not a developer? Pro tips for SaaS vendors: offer free trial account and put useful information on your site.<br><br>Even millions of data rows take a long time to extract.<br><br>A <b>flat data structure</b> with lots of redundancies is preferred in the business intelligence end of things. Getting a flat data structure out of a bunch of tables from a highly normalized relational database is not fast at all. My worst case scenario had me at about 13 days to get all the data out. I then abandoned the flatness dream. Export times is not that important though since a full data load should only be necessary once.<br><br>When getting data out of a live system and it involves several hours of processing the <b>data will most likely change</b>. If you are to join it outside the database it may then fail because stuff exported later may reference entries that didn't exists in the target dataset. The best way to solve this is probably to just take a copy of the entire database and work with that instead.<br><br><b>Lookup tables</b> is not what it sounds like. If I - for example - has a flight dataset that got one departure airport and one arrival airport I can not connect this to the same lookup table but have to create a departure airports data set <b>and</b> an arrival airports data set. This is very wrong to me. (This may be a GoodData weirdness.)<br><br>Anyway. This were scattered thoughts - I have had a good time playing with these things and have as a result more respect for the complexity of BIG DATA.</p>
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

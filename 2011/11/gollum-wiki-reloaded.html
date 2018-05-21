@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Gollum wiki reloaded</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Gollum wiki reloaded
+</h2>
+<div>
+  <span class="byline">2011-11-17 by hardy</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/gollum.html" rel="tag"><span class="icon-tag"></span>gollum</a>
+      
+        <a class="one-tag" href="../../tags/openshift.html" rel="tag"><span class="icon-tag"></span>openshift</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  In my <a href="http://www.highlevelbits.com/2011/11/my-precious-wiki.html">last post</a> I described how to setup a <a href="https://github.com/github/gollum/">gollum</a> wiki on <a href="https://openshift.redhat.com/app">OpenShift</a>. I realized that there was quite some editing involved and especially the need to deploy twice in order to determine the git repo location bugged me. I decided to improve on this. The outcome is the GitHub repo <a href="https://github.com/hferentschik/gollum-openshifted">gollum-openshifted</a>. All required files are checked in and all you have to do is follow the simple instructions in the <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/README.md">README</a>.<br><br>The key for not having to manually edit <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/config.ru">config.ru</a> is a little perl magic in <a href="https://github.com/hferentschik/gollum-openshifted/blob/master/.openshift/action_hooks/build">.openshift/action_hooks/build</a> and some regular expression replacement with some OpenShift variables.<br><br>Let me know how it goes,<br>Hardy<br><br><br><br><br>
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

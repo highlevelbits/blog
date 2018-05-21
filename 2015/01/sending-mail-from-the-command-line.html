@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Sending mail on the (arch) command line</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Sending mail on the (arch) command line
+</h2>
+<div>
+  <span class="byline">2015-01-17 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+      
+        <a class="one-tag" href="../../tags/email.html" rel="tag"><span class="icon-tag"></span>email</a>
+      
+        <a class="one-tag" href="../../tags/linux.html" rel="tag"><span class="icon-tag"></span>linux</a>
+      
+        <a class="one-tag" href="../../tags/server.html" rel="tag"><span class="icon-tag"></span>server</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>I <a href="../../2013/12/simple_backups.html">handwired my own backup solution</a> a while ago and apparently left out the important part of reporting. When the backup script is done a mail is sent to me depending on the result. It took some time for me to figure out how to do this but once I knew it was really easy. Install <code>ssmtp</code>:</p>
+
+<pre><code>sudo pacman -S ssmtp
+</code></pre>
+
+<p>As root - edit <code>/etc/ssmtp/ssmtp.conf</code>:</p>
+
+<pre><code>mailhub=&lt;smtp.server&gt;:&lt;port&gt;
+AuthUser=&lt;username&gt;
+AuthPass=&lt;password&gt;
+UseSTARTTLS=YES
+</code></pre>
+
+<p>I use sendgrid as outgoing SMTP server but there are several other options. Setting up your own shouldn’t be to hard either.</p>
+
+<p>Once you have this up and running you can send me an email like this:</p>
+
+<pre><code>echo 'Really cool post about sending mails' | mail -s 'Cool post' fredrik@eldfluga.se
+</code></pre>
+
+<p><img src="https://farm7.staticflickr.com/6200/6118863684_32120222a4_b.jpg" alt="mail boxes"></p>
+
+<p><small>
+<a href="https://www.flickr.com/photos/gregoryjordan/6118863684/">Photo</a> by <a href="https://www.flickr.com/photos/gregoryjordan/">Gregory Jordan</a>.</small></p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

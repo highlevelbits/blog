@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Finding files in emacs and some bits about package mgmt</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Finding files in emacs and some bits about package mgmt
+</h2>
+<div>
+  <span class="byline">2015-06-01 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/editor.html" rel="tag"><span class="icon-tag"></span>editor</a>
+      
+        <a class="one-tag" href="../../tags/emacs.html" rel="tag"><span class="icon-tag"></span>emacs</a>
+      
+        <a class="one-tag" href="../../tags/productivity.html" rel="tag"><span class="icon-tag"></span>productivity</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>Some more findings from my emacs journey. <code>C-x C-f</code> is not so fun when looking for files in any normal software projects. 
+Proprietary IDEs and editors have nice support for quickly finding a file anywhere and of course it is there in 
+emacs also. In IntelliJ I can go <code>C-N</code> to find files easily and in Sublime there is <code>C-P</code>. (Note that <code>C</code> in emacs
+lingo is the same as <code>Ctrl</code> in many other lingos….)</p>
+
+<p>It seems that there are several ways to do this in emacs. I found a package called 
+<a href="https://github.com/bbatsov/projectile">projectile</a> that adds project
+oriented features like this one. To add packages in emacs there is - since emacs 24 - <code>package.el</code> that can be
+used to get packages from central repositories like <a href="http://melpa.org">MELPA</a> 
+(Milkypostman’s Emacs Lisp Package Archive). I put in some lines in my <code>.emacs</code> file for this:</p>
+
+<pre><code>;; MELPA
+(require 'package)
+(add-to-list 'package-archives
+         '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+</code></pre>
+
+<p>and this gives me access to remote packages via the <code>list-packages</code> command.</p>
+
+<p>Now I have the nice <code>projectile-find-file</code> command available. To make it easily accesible I bind it to <code>M-p</code> with:</p>
+
+<pre><code>(global-set-key (kbd "M-p") 'projectile-find-file)
+</code></pre>
+
+<p>also in <code>.emacs</code>.</p>
+
+<p>There are loads of more stuff in projectile but you gotta start somewhere.</p>
+
+<p>Also when investigating this I stumbled upon <a href="http://tuhdo.github.io/helm-intro.html">helm</a> that supposedly is
+an <em>incremental completion and selection narrowing framework</em>. The oceans of nice things in the emacs 
+stratosphere….</p>
+
+<p>UPDATE: also useful is to install <code>flx-ido</code> that gives you better fuzzy matching of file names. Available with MELPA. 
+Next mission - automate package installs.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

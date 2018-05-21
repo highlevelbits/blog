@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Setting up ufw for a web server</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Setting up ufw for a web server
+</h2>
+<div>
+  <span class="byline">2015-01-13 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+      
+        <a class="one-tag" href="../../tags/linux.html" rel="tag"><span class="icon-tag"></span>linux</a>
+      
+        <a class="one-tag" href="../../tags/security.html" rel="tag"><span class="icon-tag"></span>security</a>
+      
+        <a class="one-tag" href="../../tags/server.html" rel="tag"><span class="icon-tag"></span>server</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>Once you have a secure server - as described in the <a href="securing-arch-server.html">previous installment</a> - the next step is to set up a firewall so that only expected traffic is allowed. The high ceremony approach to this is to use <code>iptables</code>. I never learned this and once I found <a href="https://wiki.archlinux.org/index.php/Uncomplicated_Firewall"><code>ufw</code></a> (stands for <em>uncomplicated firewall</em>) there seem to be no need for trivial use cases like mine.</p>
+
+<h3 id="requirements">Requirements</h3>
+
+<p>My needs are simple - I want to accept:</p>
+
+<ul>
+  <li>ssh traffic on a port that is not 22</li>
+  <li>http on port 80</li>
+  <li>https on port 443</li>
+</ul>
+
+<p>And that is all.</p>
+
+<h3 id="ufw-apps">ufw apps</h3>
+
+<p>ufw comes with a set of predefined <em>apps</em>. They are located in <code>/etc/ufw/applications.d/</code> and grouped into typcial uses. So the ssh rule is in the file <code>ufw-loginserver</code> along with other rules related to login. And web server rules are in <code>ufw-webserver</code>.</p>
+
+<h3 id="default">Default</h3>
+
+<p>I start with adding a rule that denies everything</p>
+
+<pre><code>&gt; ufw default deny
+</code></pre>
+
+<p>on the command line. Almost everything happens on the command line….</p>
+
+<h3 id="web">Web</h3>
+
+<p>The <code>WWW Full</code> rule in <code>ufw-webserver</code> is exactly what I want for http and https so:</p>
+
+<pre><code>&gt; ufw allow "WWW Full"
+</code></pre>
+
+<h3 id="ssh">SSH</h3>
+
+<p>There is a SSH rule in <code>ufw-loginserver</code> but it defaults to port 22. I can either change it or create a new rule. The latter seems better and will probably survive new versions of <code>ufw</code> better. So I add a file called <code>ufw-loginserver-custom</code> and copy the ssh rule with just a change to the port:</p>
+
+<pre><code>[CUSTOMSSH]
+title=SSH server
+description=SSH server
+ports=667/tcp
+</code></pre>
+
+<p>and allow it on the command line:</p>
+
+<pre><code>&gt; ufw allow CUSTOMSSH
+</code></pre>
+
+<h3 id="enabling-the-firewall">Enabling the firewall</h3>
+
+<p>Now all that is left is to enable the firewall:</p>
+
+<pre><code>&gt; ufw enable
+&gt; systemctl enable ufw
+</code></pre>
+
+<p>and you have a secure server. Next is probably to get <code>nginx</code> up and running. I already posted about getting <a href="../../2014/06/multiple-unicorn-servers-with-ssl-on-nginx.html">unicorn and SSL to work with nginx</a> so I probably want add anything about that at this time.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

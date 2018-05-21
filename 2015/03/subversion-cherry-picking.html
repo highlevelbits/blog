@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Cherry Picking with Subversion</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Cherry Picking with Subversion
+</h2>
+<div>
+  <span class="byline">2015-03-27 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/svn.html" rel="tag"><span class="icon-tag"></span>svn</a>
+      
+        <a class="one-tag" href="../../tags/version-control.html" rel="tag"><span class="icon-tag"></span>version control</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>So I am back in subversion after two years with git only development. I feel insecure…. 
+Merge is not working so well as in git. Today I needed to merge changes from a single commit on a release branch
+to our main branch. Cherry picking….. Turned out it was possible with subversion:</p>
+
+<pre><code>svn merge -c &lt;revision&gt; &lt;source_branch&gt;
+</code></pre>
+
+<p>The -c merges only the commit and nothing else. Useful!</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Two way SSL with Java</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Two way SSL with Java
+</h2>
+<div>
+  <span class="byline">2009-06-02 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/java.html" rel="tag"><span class="icon-tag"></span>java</a>
+      
+        <a class="one-tag" href="../../tags/ssl.html" rel="tag"><span class="icon-tag"></span>ssl</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <p>After too much time wrestling with setting up a two way SSL connection between one WebLogic Server 10 instance and one WebLogic Server 9 instance through one Apache instance I have now come to a solution. I don't know much about these matters. In the 12 years I have spent in the business I have only worked with issues like these once before. And it seems that not many people know about how to solve it. I asked everyone I could think of in the organisation and finally I found <a href="http://www.sensate.se" id="scod" title="Rickard Lundin">Rickard Lundin</a> that was the first person that actually seemed to understand the whole chain of events. So with Rickards help and with a lot of help from <a href="http://www.google.com" id="n6.3" title="Google">Google</a> a solution is now at hand.<br><br>The solution we found was rather simple and it is kind of disturbing that it took so long. I spent several hours in the console of WebLogic Server where there are one tab for SSL and one for Keystores for every server instance in a domain. This didn't work at all and one WLS expert I talked to said he never got it to work properly. This may still not be the case but I can tell you that it sure is not easy to make it work. So scrap WLS configurations. Instead what to do is rely on Javas built in support for SSL and HTTPS. Whenever instances of java.net.URL gets called with openConnection() and the protocol https is used in the url there are 4 system properties that are used. (For older versions of Java you may need to install JSSE specifically to make this work.) These are <span style="font-family: Courier New;">javax.net.ssl.keyStore</span> and <span style="font-family: Courier New;">javax.net.ssl.keyStorePassword</span> for the key and certificate you want to use to certify your client. And then there is <span style="font-family: Courier New;">javax.net.ssl.trustStore </span>and <span style="font-family: Courier New;">javax.net.ssl.trustStorePassword</span> that is used to to make sure that the client can trust the server it is calling. Both "store"-properties must point to a file stored in JKS (Java KeyStore) format. And the password parameters are naturally used to access those key stores. If you have pem files or some other kind of file format for you keys and certs you can use the open source tool <a href="http://portecle.sourceforge.net/" id="dc:l" title="Portecle">Portecle</a> to put them into a JKS file instead. There is also the <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/keytool.html" id="fqeb" title="keytool tool">keytool tool</a> (!) in JDK that knows a lot about how to maniuplate JKS files. And more generic perhaps - <a href="http://www.openssl.org/" id="wpju" title="openssl">openssl</a> on the command line.<br><br>A <a href="http://jcalcote.wordpress.com/2008/11/13/java-secure-http-keys/" id="cl:t" title="very good post">very good post</a> about this.<br><br>In my case I needed to make 2 calls to the server - the first one to get a login and a session and the second to get some data. This is hard with the normal JDK classes so I downloaded <a href="http://hc.apache.org/httpclient-3.x/index.html" id="x59x" title="httpclient">httpclient</a> 3.1 (version 4 is in beta) and used the classes HttpClient and GetMethod to do my calls. The session still wasn't kept alive between the calls. Some more googling led me to the documentation <a href="http://hc.apache.org/httpclient-3.x/cookies.html" id="v6w4" title="about cookies">about cookies</a> (!) at httpclient home page. And it makes sense since the web server store the session identity as a cookie. No need to rewrite the session id when calling from a controlled environment. It turned out that the code</p>
+<pre>
+ method.getParams().setCookiePolicy(CookiePolicy.RFC_2109)</pre>
+<p>made wonders when put in between creating the method object and executing it. So a couple of system properties and about 10 lines of code solved this problem. It is so easy to get lost in the app server jungle when there often is a simpler solution close by. And this solution works from a standalone client too!<br><br> </p>
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

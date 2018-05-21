@@ -1,0 +1,194 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://www.highlevelbits.com/</id>
+  <title>rss feed</title>
+  <updated>2017-04-29T22:00:00Z</updated>
+  <link rel="alternate" href="http://www.highlevelbits.com/"/>
+  <link rel="self" href="http://www.highlevelbits.com/rss.xml"/>
+  <author>
+    <name>Fredrik &amp; Hardy</name>
+    <uri>http://www.highlevelbits.com</uri>
+  </author>
+  <entry>
+    <id>tag:www.highlevelbits.com,2017-04-30:/2017/04/ten-years-after.html</id>
+    <title type="html">Ten years after</title>
+    <published>2017-04-29T22:00:00Z</published>
+    <updated>2017-04-29T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2017/04/ten-years-after.html"/>
+    <content type="html">
+&lt;p&gt;It is a bit more than ten years since me and Hardy decided to get this blog started. In 
+the &lt;a href="/2007/02/there-is-hope-despite-everything.html"&gt;first post&lt;/a&gt; I wrote from my 10 year
+perspective in the software development industry. Now 10 more years has gone by and my 
+experience is so much stronger than it was back then. I still do mostly development and I 
+still think it is really fun.&lt;/p&gt;
+
+&lt;p&gt;This blog has been a one man show for the last 3 years and perhaps a bit longer than that. 
+I don’t feel som much joy in this anymore so I will do other things with my time than posting
+here. Perhaps some random tech notes will end up here but otherwise not so much. I am 
+playing a bit with &lt;a href="http://froderik.tumblr.com/"&gt;tumblr&lt;/a&gt; and I still hang around at 
+&lt;a href="https://twitter.com/froderik/"&gt;twitter&lt;/a&gt;. I still feel sad about the 
+corporateness of social interaction these days but I find it hard to do anyhting about it.&lt;/p&gt;
+
+&lt;p&gt;So some statistics. The blog has had some 100000 page views over these 10 years. That is pretty cool.
+One fifth of those views are from two popular articles that Hardy wrote a long time ago. 
+&lt;a href="/2008/10/using-macs-textedit-from-command-line.html"&gt;Using macs textedit from the command line&lt;/a&gt; and 
+&lt;a href="/2007/04/svn-over-ssh-prompts-for-wrong-username.html"&gt;SVN over SSH prompts for wrong user name&lt;/a&gt;. 
+Both these posts have been linked from stackoverflow and that is one big source of traffic. 31% of our 
+visita have been from the US while our home country Sweden stands for some 8% of visits. We have had visits
+from almost all countries in the world with the exception of quite a few in africa and Papua New Guinea. 42 %
+were using Windows, 39% on a Mac and 11% on Linux. To get all this statistics we have been using
+Google Analytics. Today I would have chosen another solution for tracking and I am sorry if Google 
+have taken advantage of this tracking in any way. (They probably have….)&lt;/p&gt;
+
+&lt;p&gt;So to sum up. Don’t expect much activity here for a while. I may come back to it or may not. Or my 
+co bloggre may return to the scene. I will probably keep the site up and running until I die. And
+if I do anything with it it will be to put it on SSL.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2016-09-14:/2016/09/parts-of-line-with-sed.html</id>
+    <title type="html">How to extract part of a line with sed</title>
+    <published>2016-09-13T22:00:00Z</published>
+    <updated>2016-09-13T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2016/09/parts-of-line-with-sed.html"/>
+    <content type="html">
+&lt;p&gt;Say you have a file with lots of data but you really just want to find a couple of lines that matches something and then 
+you want to extract another part of that line to a list. &lt;code&gt;grep&lt;/code&gt; and &lt;code&gt;sed&lt;/code&gt; can help you. So for example to match on
+&lt;code&gt;the new paris&lt;/code&gt; and extract the number 19 from &lt;code&gt;manif_id="19"&lt;/code&gt; on the same line you could do:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep 'the new paris' china_books.xml | sed -n 's/.*manif_if=\"\([0-9]*\).*/\1/p'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The parentheses - &lt;code&gt;\([0-9]\)&lt;/code&gt; - in the regexp part of the sed command captures what is inside and makes it available to the &lt;code&gt;\1&lt;/code&gt;
+parameter in the second part. Note that parentheses needs to be escaped!&lt;/p&gt;
+
+&lt;p&gt;Also about to finish a great book. 
+&lt;a href="https://www.goodreads.com/book/show/26042254-the-last-days-of-new-paris"&gt;The last day of new paris&lt;/a&gt; by China Mieville.
+All about paris and surrealist manifestations. Recommended!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2016-07-07:/2016/07/steam-problem.html</id>
+    <title type="html">Library problem with steam on arch linux (i965_dri.so)</title>
+    <published>2016-07-06T22:00:00Z</published>
+    <updated>2016-07-06T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2016/07/steam-problem.html"/>
+    <content type="html">
+&lt;p&gt;Using a rolling distribution like Arch is good in many ways but when things you really 
+need start to break it is not so fun. I have had some problems with steam - a thing
+I really need in order to play games! (Yes - priorities are rightly ordered!) Apparently
+steam comes with a couple of libraries that sooner or later will become older than the once
+installed in the OS. My error looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+Running Steam on arch rolling 64-bit
+STEAM_RUNTIME is enabled automatically
+Installing breakpad exception handler for appid(steam)/version(1467926999)
+libGL error: unable to load driver: i965_dri.so
+libGL error: driver pointer missing
+libGL error: failed to load driver: i965
+libGL error: unable to load driver: swrast_dri.so
+libGL error: failed to load driver: swrast
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;After googling for quite a while and trying a couple of things I stumbled upon 
+&lt;a href="http://wyldeplayground.net/steam-unable-to-load-driver-i965_dri-so-intel-graphics/"&gt;this problem solver&lt;/a&gt;.
+It made sense to me directly. The post is essentially one line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LD_PRELOAD='/usr/lib32/libstdc++.so.6 /usr/lib32/libgcc_s.so.1 /usr/lib32/libxcb.so.1 /usr/lib32/libgpg-error.so' steam
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LD_PRELOAD is a way to load some objects before others. In this case we tell steam to use these 4 libraries 
+instead of its own. Problem solved and I can move on to more important things currently as the King of Finland
+in the &lt;a href="http://www.crusaderkings.com/"&gt;Crusader Kings&lt;/a&gt; year 987. I am about to turn this tribe into a merchant republic!&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2016-06-22:/2016/06/synchronize-tmux-panes.html</id>
+    <title type="html">Synchronize tmux panes</title>
+    <published>2016-06-21T22:00:00Z</published>
+    <updated>2016-06-21T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2016/06/synchronize-tmux-panes.html"/>
+    <content type="html">
+&lt;p&gt;So we have clustered servers which is a pain when you want to look at some log files. &lt;a href="https://tmux.github.io/"&gt;tmux&lt;/a&gt; and 
+&lt;a href="https://stackoverflow.com/questions/16325449/how-to-send-a-command-to-all-panes-in-tmux"&gt;stackoverflow&lt;/a&gt; 
+to the rescue. I set up &lt;a href="https://github.com/tmuxinator/tmuxinator/"&gt;tmuxinator&lt;/a&gt; to open up panes on all the 
+servers and then once inside tmux I go:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C-B :
+setw synchronize-panes yes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;…and then I can tail and search all the logs at the same time. (This obviously only works when servers are set up
+in the same way…).&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <id>tag:www.highlevelbits.com,2016-06-17:/2016/06/joyofcoding.html</id>
+    <title type="html">Joy of Coding</title>
+    <published>2016-06-16T22:00:00Z</published>
+    <updated>2016-06-16T22:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2016/06/joyofcoding.html"/>
+    <content type="html">
+&lt;p&gt;&lt;img src="http://joyofcoding.org/img/blue-logo-with-white-text.svg" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Despite &lt;a href="http://lanyrd.com/profile/froderik/past/"&gt;attending quite a few conferences&lt;/a&gt; the last few years I didn’t write about
+any of them since I went to &lt;a href="http://highlevelbits.com/2014/09/decentralize.html"&gt;decentralize.js&lt;/a&gt; almost two years ago.&lt;/p&gt;
+
+&lt;p&gt;But now is a good time to return to this habit since &lt;a href="http://joyofcoding.org/"&gt;Joy of Coding&lt;/a&gt; was one of those conferences 
+that stands out from the crowd. This is for several reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Firstly the whole theme of the conference is so positive. Talking about joyfulness
+in something that you do for a living is really a good thing.&lt;/li&gt;
+  &lt;li&gt;Because of this positive stance it seems like the speaker lineup is better than usual. And this is despite this
+conference having several tracks. (I see a strong correlation between the number of tracks and the overall quality of a 
+conference. The best conferences are single track. Ok - maybe FOSDEM is the exception….)&lt;/li&gt;
+  &lt;li&gt;Lastly I really like that there are opportunities to do some coding. Just listening a full day is too boring for me.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So I went to the coding dojo and here I really knew what to expect since I have been to sessions lead by Emily Bache 
+before. I found a nice guy to pair up with and we had some fun refactoring bad tennis code into something neater.
+For me the most interesting thing from these sessions is not the code but the interaction with a stranger over code.
+The negotiation over language, IDE and keyboard initially and then the initial stumbling to establish the skill level
+involved. Also being expressive about code can be hard at times. To explain why you want it it in a certain way.&lt;/p&gt;
+
+&lt;p&gt;On to the talks. Philip Wadler talked enthusiastically and interestingly about category theory and why it is 
+important for programmers. I have to admit that all this is a bit over my head at the moment (after being a programmer
+for some 16 years….) but maybe I will get there eventually. I get sort of all of what he is saying but fail 
+miserably at making the connections to my everyday work situation. But the may be because my customers never wants me
+to code in a so called &lt;strong&gt;real programming language&lt;/strong&gt;. He ended the talk by morphing into a lambda super hero.
+And that was fun of course!&lt;/p&gt;
+
+&lt;p&gt;After the dojo Corey Haines talked about prolog and cats and it was fun and all good. Corey is a talented speaker
+that probably could talk about anything and make it interesting. In this case the topic is intersting in itself
+and I started to think about how to implement &lt;a href="https://github.com/froderik/roman_numeral_katas"&gt;roman numerals&lt;/a&gt; 
+with prolog.&lt;/p&gt;
+
+&lt;p&gt;Stefan Tilkov talked about micro services built with clojure. As always when I hear a talk about clojure I want
+to get home and learn it. I have the book….. Maybe it happens this time. But it has been 6 years now since I 
+heard Rich Hickey &lt;a href="http://highlevelbits.com/2009/10/1st-day-of-jaoo.html"&gt;talk about it at JAAO&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Hobby Oriented Programming was an interesting talk by Sonja Heinen about the contrast betwen doing things for fun
+as a hobby and doing it to pay the bills. I can certainly relate to this. Not every day at my customers site
+is joyful. And most of the time when I do something on the side it is really fun and fulfilling. This dilemma is hard
+to get by. For me it is realy important to get some leisure time for coding. Otherwise I get mad at the boringness
+ of &lt;em&gt;coporate coding&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then a fun talk about GIF - the image format that keeps giving. Igor Wiedler managed to give as a short history lesson
+about image formats and browsers, describe the GIF format in technical detail and also be really entertaining in some
+40 minutes.&lt;/p&gt;
+
+&lt;p&gt;Lastly the ending talk was about data analysis. Hilary Parker suggested that data analysts should become better at
+programming. I think this is a great idea. Not everyone is as keen to learn R as I am. Not everyone is keen to learn
+at all and by acquiring some coding skills a data analyst can do her job much more efficiently.&lt;/p&gt;
+
+&lt;p&gt;All in all a great conference that I may come back to another year. My first encounter with Rotterdam was also 
+much better than expected. A modern city with a nice vibe.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
+

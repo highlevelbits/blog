@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - simple backups</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  simple backups
+</h2>
+<div>
+  <span class="byline">2013-12-15 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+      
+        <a class="one-tag" href="../../tags/backup.html" rel="tag"><span class="icon-tag"></span>backup</a>
+      
+        <a class="one-tag" href="../../tags/dropbox.html" rel="tag"><span class="icon-tag"></span>dropbox</a>
+      
+        <a class="one-tag" href="../../tags/linux.html" rel="tag"><span class="icon-tag"></span>linux</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p><img src="http://farm7.staticflickr.com/6054/6261970884_ea884ea79f_b.jpg" alt="backups"></p>
+
+<p>(<a href="http://www.flickr.com/photos/40133358@N05/6261970884">Photo by gagam13</a>)</p>
+
+<p>I just finished moving a rails thing from <a href="https://heroku.com">heroku</a> to my own <a href="https://www.archlinux.org/">arch linux server</a> at <a href="https://www.digitalocean.com/">digital ocean</a>. This has involved learning lots about server management. Setting up the server with decent security (ufw - uncomplicated firewall to the rescue) and a nginx web service talking to the unicorn-powered rails application. All rather easy and with lots of resources available on the interwebz. I didn’t find much about backing up a postgres database though so I figured something out on my own. And here it is! My requirements:</p>
+
+<ul>
+  <li>nightly backups is enough (for now - users may lose latest updates)</li>
+  <li>backups must be stored on another server</li>
+  <li>backups on that other server should be encrypted</li>
+</ul>
+
+<p>This leaves me with 4 tasks:</p>
+
+<ul>
+  <li>create a backup file</li>
+  <li>encrypt the backup file</li>
+  <li>upload the encrypted file to another server</li>
+  <li>schedule a nightly task to initiate the backup</li>
+</ul>
+
+<h3 id="create-a-backup-file">Create a backup file</h3>
+
+<p>Postgres comes with the easy to use <code>pg_dump</code> command. Name your database and the file you want to export to:</p>
+
+<pre><code>pg_dump -f &lt;filename&gt; &lt;database&gt;
+</code></pre>
+
+<p>If you want to export all databases in your postgres server you can use the <code>pg_dumpall</code> command instead and omit the database name. I created a filename with a timestamp so that there will be no file name conflict:</p>
+
+<pre><code>date +%Y.%m.%d.%H.%M.%S
+</code></pre>
+
+<p>plus a suffix.</p>
+
+<h3 id="encrypt-the-backup-file">Encrypt the backup file</h3>
+
+<p><code>gnupg</code> provides with encryption. Easily installed with</p>
+
+<pre><code>pacman -S gnupg
+</code></pre>
+
+<p>I settled for symmetric encryption with a hard password.</p>
+
+<pre><code>gpg --symmetric --batch --passphrase &lt;password&gt; --force-mdc &lt;backupfile&gt;
+</code></pre>
+
+<p>The <code>--symmetric</code> flag says to encrypt symmetrically. This means that we can decrypt with the same password. <code>--batch</code> makes it possible to pass in the passphrase on the command line rather than getting a prompt to enter it. <code>--force-mdc</code> makes sure that a warning about mdc is avoided when decrypting. I am not sure what this means. The command creates a file in parallell to the backup file with the added <code>.gpg</code> extension.</p>
+
+<h3 id="upload-the-encrypted-file-to-another-server">Upload the encrypted file to another server</h3>
+
+<p>This can be done in many ways. I settled for dropbox mostly because it is free and rather easy to do. Even easier would be something like <code>sftp</code> if you have the luxury of having another server for backup storing. To communicate with dropbox I use the <a href="https://www.dropbox.com/developers/core">Core API</a> with Ruby.</p>
+
+<pre><code>gem install dropbox-sdk
+</code></pre>
+
+<p>To use it you need to register an app with dropbox. Then you will get the key and secret needed to initiate communication and get an access token. To get the access token you will need to run the following once:</p>
+
+<pre><code>require 'dropbox_sdk'
+
+flow = DropboxOAuth2FlowNoRedirect.new(APP_KEY, APP_SECRET)
+url = flow.start
+puts url
+</code></pre>
+
+<p>Go to the outputted url logged in as the user you want for dropbox and grab the code. Pass it in to the method below:</p>
+
+<pre><code>code = gets.strip
+access_token, user_id = flow.finish code 
+</code></pre>
+
+<p>This access token can then be reused for all subsequent calls.</p>
+
+<p>Then do the actual file transfer with:</p>
+
+<pre><code>client = DropboxClient.new access_token
+file = open gpgfilename
+response = client.put_file(gpgfilename, file)
+</code></pre>
+
+<p>and the file ends up in the <code>Apps/&lt;yourappname&gt;</code> folder.</p>
+
+<p>I use Ruby here but there are several other options depending on your setup.</p>
+
+<h3 id="schedule-a-nightly-task">Schedule a nightly task</h3>
+
+<p>Finally I put all the above in to one huge ruby file (that I won’t share because it is kinda messy). Then I added it to crontab with</p>
+
+<pre><code>export EDITOR=vim
+crontab -e
+</code></pre>
+
+<p>I always fail with vi…. The line to add for a nightly run at 01:37 is:</p>
+
+<pre><code>37 1 * * * /path/to/backup.sh
+</code></pre>
+
+<p>Keep in mind that cron executes with <code>/bin/sh</code> so make sure to test your command under those circumstances. Cron is supposed to send mails when it fails. That remains to set up. I will probably rather hook the job up with nagios once I get that up and running for monitoring.</p>
+
+<p>Thats it for now. I will come back with more server side tips further on.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

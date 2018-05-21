@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Making the locale stick</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Making the locale stick
+</h2>
+<div>
+  <span class="byline">2015-08-18 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+      
+        <a class="one-tag" href="../../tags/linux.html" rel="tag"><span class="icon-tag"></span>linux</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>Setting up a new machine with arch linux and again have problems making my swedish locale stick. Since I have made 
+several random changes I am not entirely sure anymore but it seems like a couple of things are needed.</p>
+
+<p>To make the system believe it is on a swedish keyboard the file <code>/etc/vconsole.conf</code> needs to have <code>KEYMAP=sv-latin1</code>.
+Note that this is not a locale - rather a keyboard mapping. I tried putting the locale <code>se-lat6</code> but it didn’t work
+(naturally). This can also be set with <code>localectl set-keymap --no-convert sv-latin1</code>.</p>
+
+<p>To make X believe that it is on a swedish keyboard the x11-keymap needs to be set. It stays in a file in
+<code>/etc/X11/xorg.conf.d/</code> called <code>00-keyboard.conf</code>. This can be set with the command <code>localectl set-x11-keymap se</code>.</p>
+
+<p>Also for the locale to behave correctly you need to have the <code>/etc/locale.conf</code> file set up correctly. I 
+investigated this due to some problem with my previous setup and don’t exactly remember the why’s here. What I have
+now is:</p>
+
+<pre><code>LANG="sv_SE.UTF-8"
+LC_COLLATE="C"
+LC_MESSAGES="C"
+LC_NUMERIC="C"
+LC_TIME="C"
+LC_MONETARY="C"
+LC_NAME="C"
+LC_IDENTIFICATION="C"
+</code></pre>
+
+<p>If I remember correctly this means that I want swedish locale for input and such but for conversions and
+localized messages I will rather stay with the default language. (Otherwise databases and whatnot tries 
+to find error messages in swedish and that can be really annoying.)</p>
+
+<p><img src="https://farm2.staticflickr.com/1053/1223880092_090cde5430_b.jpg" alt=""></p>
+
+<p><a href="https://www.flickr.com/photos/mdclxvi/1223880092">Photo</a> by Matus Kacmar</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

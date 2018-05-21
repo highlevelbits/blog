@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Using Mac's TextEdit from the command line</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Using Mac's TextEdit from the command line
+</h2>
+<div>
+  <span class="byline">2008-10-08 by hardy</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/bash.html" rel="tag"><span class="icon-tag"></span>bash</a>
+      
+        <a class="one-tag" href="../../tags/mac.html" rel="tag"><span class="icon-tag"></span>mac</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  Just a short little note. As I recently mentioned there are a few things which I actually do not like about my Mac. One is that the <i>Finder</i> per default does not display hidden files and the second related issue that <i>TextEdit</i> is not in the default path of the console.<br>Why is that important you ask? Well I would like to say for example say at the command line:<br><br>&gt; edit foo.txt <br><br>or <br><br>&gt; edit ~/.bashrc<br><br>For the former I could open <i>Finder</i>, locate the file and double click. For the former I am pretty much out of luck. Of course I also could just use <i>vi </i>and in fact that's what I am doing most of the time, but then there are the times where I just want to have another simple editor. To come to the point, here is what I did and what I would like to share with you. Just add this to your <i>~/.bashr</i>c (or <i>~/.bash_profile </i>as a matter of fact):<br><br>function edit()<br>{<br>    /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2&gt;/dev/null<br>}<br><br>Have fun,<br>--Hardy<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2009-06-29</span><span class="commenter-name">Vivek</span><div class="comment-body">Alternative way to do this.<br><br>add the following line to .bashrc:<br><br>alias edit='open -a textmate'</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2009-06-29</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">That's of course if you have Textmate installed. <br><br>The benefit of the simple <a href="http://www.highlevelbits.com/2009/03/open.html" rel="nofollow">open</a> command I discovered actually myself only a short while after I wrote this blog. Today I wold not like to miss it anymore ;-)</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2009-07-21</span><span class="commenter-name">Mark</span><div class="comment-body">On my Mac running Leopard<br><br>open -e .bash_profile<br><br>opens .bash_profile using TextEdit.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2009-09-04</span><span class="commenter-name">Alexander Orlov</span><div class="comment-body">Thx Mark!<br><br>Unbelivable but on my Mac it works also! :D However I think putting <br><br>alias edit='open -e'<br><br>into your ˜/.bash_profile is a better solution than the "function edit()" version.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2011-10-08</span><span class="commenter-name">Eric Muyser</span><div class="comment-body">It's just as well, the edit function doesn't seem to work on Lion, for me. The alias Mark/Alexander posted works great :)</div>
+</div>
+</div>
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

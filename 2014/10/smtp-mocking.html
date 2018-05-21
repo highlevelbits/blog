@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Mocking SMTP when testing a black box of software</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Mocking SMTP when testing a black box of software
+</h2>
+<div>
+  <span class="byline">2014-10-23 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/naming.html" rel="tag"><span class="icon-tag"></span>naming</a>
+      
+        <a class="one-tag" href="../../tags/software-development.html" rel="tag"><span class="icon-tag"></span>software development</a>
+      
+        <a class="one-tag" href="../../tags/testing.html" rel="tag"><span class="icon-tag"></span>testing</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>So I wrote a micro service that gets a REST call and sends a mail or a SMS and I wanted to have some nice black box tests in place.</p>
+
+<h3 id="the-test">The test</h3>
+
+<p>So my test would <code>POST</code> to a web service, then wait for a little while and then check if a mail was sent. The test runs remotely from a build server so everything it needs needs to be accesible over HTTP. So I decided to have a <em>real</em> SMTP server running on the server writing files to a directory that a web server can pick up and show to the test. And a static web server serving the mail files in that directory. Pseudo code:</p>
+
+<pre><code>random_id = UUID.generate()
+message = subject: random_id, message: 'long rant'
+server.post message
+wait 1000
+list_of_mails = staticServer.get
+assert list_of_mails =~ random_ud
+</code></pre>
+
+<h3 id="dummy-smtp-server">Dummy SMTP server</h3>
+
+<p>I looked around on the Internet for a while. I used a Java based graphical dummy server locally called <a href="https://nilhcem.github.io/FakeSMTP/">FakeSMTP</a>. It is really useful when doing stuff in a graphical environment. Now I needed something headless instead. My eyes fell on a <a href="https://github.com/maestrofjp/Dummy-SMTP">small Python script</a> that did almost exactly what I wanted. The only thing missing was the naming of the files. In order to trace a mail through the server onto the SMTP server I needed something unique. I decided to put a UUID as the subject. The Python script needed <a href="https://github.com/froderik/Dummy-SMTP">a little tweak</a> to get the subject (as well as the timestamp) onto the filename.</p>
+
+<p>The script only works with Python 2 so make sure you have it….. I am sure it is easy to change for Python 3 for a pythonista.</p>
+
+<h3 id="simple-file-serving-web-server">Simple file serving web server</h3>
+
+<p>Since the system <strong>under test</strong> lives in a tomcat I started out trying to make tomcat serve static files from the folder where the SMTP server stuffs mail files. It is supposed to work but I had some problems and gave up deciding to search for a simpler solution. And suddenly there it was. Look at <a href="https://docs.python.org/2/library/simplehttpserver.html">this</a> beauty:</p>
+
+<pre><code>python -m SimpleHTTPServer
+</code></pre>
+
+<p>Get yourself into a directory from where you want to serve static files - type the above into the terminal and you are up and running on port <code>8000</code>.</p>
+
+<h3 id="closing-rant-about-naming">Closing rant about naming</h3>
+
+<p>Integration tests can mean many things. There seem to be no common vocabulary within the testing discipline. In Grails - the framework used in the micro service here - integration testing means talking directly to a controller and stubbing away third party dependencies. So the meaning here is to test the different parts and of a system together. (As opposite to unit testing.) For me integration testing normally means testing a couple of systems together and accessing it from the outside (normally with HTTP in some form). This confusion about names led me to use <em>black box testing</em> in this article. Using another name for this does not really help but when talking about black boxes it is obvious that we are not testing or knows about any internals - a good thing.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

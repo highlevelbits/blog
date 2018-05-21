@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Sorting CSV on the command line</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Sorting CSV on the command line
+</h2>
+<div>
+  <span class="byline">2016-03-01 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/bash.html" rel="tag"><span class="icon-tag"></span>bash</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>If you know your spreadsheet tool you probably think this post is rather useless. I like doing things on the command
+line and so I felt it important to find out how a CSV file can be sorted thereon.(In my case I got a CSV file containing
+a memory report of a redis instance.)</p>
+
+<p>So - as expected - <code>sort</code> can help us with this. With no arguments it just sorts its input alphabetically. But it can also
+work on character-separated files. With the <code>--field-separator</code> flag you can tell sort what to separate on. I suspect tab is 
+the default here as I <a href="../../2015/08/bash.html">found out last year</a> for the <code>read</code> command. Also you often want to do 
+a numeric sort and for the you can use the <code>-n</code> flag. Finally you may want to sort on a column in the middle of things.
+The <code>--key</code> flag helps with that. It actually accepts a range so passing in a 3 sorts on everything from the third column to 
+the end of line. To limit it to a single column <code>3,3</code> is needed. Also note that columns start on <code>1</code> which probably is 
+good for nondeveloper users but left me puzzled for a while. An example call:</p>
+
+<pre><code>sort --field-separator=',' --key=2,2 -n some-file.csv | less
+</code></pre>
+
+<p>To get larger numbers first - add <code>-r</code> for reverse.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

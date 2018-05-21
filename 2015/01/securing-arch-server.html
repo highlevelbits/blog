@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Securing an arch linux server</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Securing an arch linux server
+</h2>
+<div>
+  <span class="byline">2015-01-11 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+      
+        <a class="one-tag" href="../../tags/linux.html" rel="tag"><span class="icon-tag"></span>linux</a>
+      
+        <a class="one-tag" href="../../tags/security.html" rel="tag"><span class="icon-tag"></span>security</a>
+      
+        <a class="one-tag" href="../../tags/server.html" rel="tag"><span class="icon-tag"></span>server</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>I am setting up my own server for the second time. One year ago I got myself a virtual server at digital ocean running arch linux. Unfortunately they dropped support for arch early in 2014 so I needed to move elsewhere and I turned my eyes on linode. So in order to remember how this is done when I do it a third time I will write down some notes about it here. In this first post I will walk you through getting your server up to date and securing it on a shell level.</p>
+
+<p>This guide will set up the server <code>gibson</code>  with a user called <code>william</code>.</p>
+
+<h3 id="getting-in-and-updating">Getting in and updating</h3>
+
+<p>From your provider you have gotten a root password. Log in with it.</p>
+
+<p>Set hostname:</p>
+
+<pre><code>hostnamectl set-hostname gibson
+</code></pre>
+
+<p>I also add it to my local <code>/etc/hosts</code> so I don’t have to remember the IP.</p>
+
+<p>I prefer running my server in the UTC time zone. If you want something else you can take care of it now. Use <a href="https://wiki.archlinux.org/index.php/Time"><code>timedatectl</code></a> for this.</p>
+
+<p>Before you can update the system, you need to <a href="https://wiki.archlinux.org/index.php/Pacman-key#Initializing_the_keyring">create entropy, initiate pacman-key and populate the keyring</a>.</p>
+
+<p>To get arch package manager up and running you need to initiate it:</p>
+
+<pre><code>haveged -w 1024
+pacman-key --init
+pkill haveged
+pacman-key --populate archlinux
+</code></pre>
+
+<p>Then run the update:</p>
+
+<pre><code>pacman -Syu
+</code></pre>
+
+<p>I also install some stuff I will need pretty soon:</p>
+
+<pre><code>pacman -S git zsh ufw
+</code></pre>
+
+<h3 id="add-sudo-enable-user">Add sudo enable user</h3>
+
+<p>Then it is time to secure the login. It is considered harmful to have a password protected root login. Start with <a href="https://wiki.archlinux.org/index.php/Users_and_Groups#Example_adding_a_user">adding a normal user</a>:</p>
+
+<pre><code>useradd -m william
+passwd william
+</code></pre>
+
+<p>Give the new user root access with <a href="https://wiki.archlinux.org/index.php/Sudo#Using_visudo">visudo</a>:</p>
+
+<pre><code>visudo
+</code></pre>
+
+<p>Here you have to know your way around <code>vi</code>. I can barely manage <code>vim</code> so….
+Add this line somewhere in the file:</p>
+
+<pre><code>william ALL=(ALL) ALL
+</code></pre>
+
+<p>Now log out from your root login and try your new user. You should be able to login with password.</p>
+
+<h3 id="secure-the-login">Secure the login</h3>
+
+<p>The next step is to use a public key for the ssh login instead of passwords. This will save you time when you need to get into your server and it is also more secure. The <a href="https://wiki.archlinux.org/index.php/Secure_Shell#Protecting_SSH">arch wiki has a good section</a> about this.</p>
+
+<p>If you don’t have a ssh key you have to generate it now. You can find out how with the help of google. Copy the public key file to the server:</p>
+
+<pre><code>ssh-copy-id william@gibson
+</code></pre>
+
+<p>Then login as <code>william</code> to <code>gibson</code>. The key file needs to be in <code>.ssh/authorized_keys</code>. If you are the only user on the machine you can move it like below. Otherwise append it to the file.</p>
+
+<pre><code>mkdir .ssh
+mv id_rsa.pub .ssh/authorized_keys
+chown -R .ssh
+chmod 700 .ssh
+chmod 400 .ssh/authorized_keys
+</code></pre>
+
+<p>Finally we need to make some changes to the sshd configuration file.</p>
+
+<pre><code>sudo vim /etc/ssh/sshd_config
+</code></pre>
+
+<p>In this file the following lines needs to be uncommented and altered.</p>
+
+<pre><code>Port 667
+PasswordAuthentication no          
+PermitRootLogin no
+</code></pre>
+
+<p>This changes the ssh port from the default 22 making it harder to start attacking the server. We also turn off password authentication and root login. Restart <code>sshd</code>.</p>
+
+<pre><code>sudo systemctl restart sshd
+</code></pre>
+
+<p>Now the only user that can login is <code>william</code> with the ssh key that we entered and on the new port.</p>
+
+<pre><code>ssh -p 667 william@gibson
+</code></pre>
+
+<p>and you are fine to go.</p>
+
+<p>Now you likely want to use the server to run some software that needs to be available. In the <a href="ufw-arch-server.html">next post</a> I will show you how to set up <code>ufw</code> - uncomplicated firewall.</p>
+
+<p>EDIT: <a href="https://www.reddit.com/r/archlinux/comments/2sbcce/how_to_secure_your_arch_server/">posted the link on reddit</a> and got some great feedback. I made these changes:</p>
+
+<ul>
+  <li>port number must be in the 1-65535 range - thanks maha.</li>
+  <li>port number should be below 1024 for increased security - thanks <a href="https://www.reddit.com/user/extra_">extra_</a>
+</li>
+  <li>
+<code>.ssh/authorized_keys</code> is better of as read-only - thanks <a href="https://www.reddit.com/user/Nebu_Retski">Nebu_Retski</a>.</li>
+  <li>there is a command for copying a ssh key <code>ssh-copy-id</code> so I replaced my <code>scp</code> with this - thanks <a href="https://www.reddit.com/user/MartiPanda">MartiPanda</a>
+</li>
+  <li>added reference links to the excellent <a href="https://wiki.archlinux.org/">arch wiki</a> -thanks Nebu_Retski again.</li>
+</ul>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

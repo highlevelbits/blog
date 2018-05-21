@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - New openssl version breaks ruby</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  New openssl version breaks ruby
+</h2>
+<div>
+  <span class="byline">2016-04-16 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+      
+        <a class="one-tag" href="../../tags/openssl.html" rel="tag"><span class="icon-tag"></span>openssl</a>
+      
+        <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>One of the finest things of arch linux is the package manager and the speed of updates whenever 
+there is a new version of an important library. However sometime is can be a pain when some other 
+things are moving a bit slower.</p>
+
+<p>Like now when the latest <code>openssl</code> version makes the ruby bundler go:</p>
+
+<blockquote>
+  <p>You must recompile Ruby with OpenSSL support or change the sources in your Gemfile 
+from ‘https’ to ‘http’. Instructions for compiling with OpenSSL using RVM are available
+at http://rvm.io/packages/openssl.</p>
+</blockquote>
+
+<p>Although I don’t use <code>rvm</code>. I use <code>rbenv</code> now - a more lightweight alternative.</p>
+
+<p>Anyway - the <strong>easy way out</strong> that I used first was to just downgrade openssl to the version that worked.
+First find it in <code>/var/cache/pacman/pkg</code>. 1.0.2.f is the last one to work with bundler and then downgrade:</p>
+
+<pre><code>sudo pacman -U /var/cache/pacman/pkg/openssl-1.0.2.f-1-x86_64.pkg.tar.xz
+</code></pre>
+
+<p>Then in the future I’ll have to ignore this package when updating all the others:</p>
+
+<pre><code>sudo pacman -Syu --ignore openssl
+</code></pre>
+
+<p>So far for the <strong>easiest way out</strong>. The <strong>harder way</strong> must surely be to install ruby built with these libraries.
+For me - an older ruby like <code>2.1.5</code> did not like to be reinstalled at all. There probably is a need for flags here.
+Instead I tried to install <code>2.2.4</code> and it worked fine. So until I have a client that insists on an old version 
+(like the one I did my last day for yesterday) I will be happy with this solution.</p>
+
+<p><strong>Update 17th of July</strong>: I haven’t been much on Ruby lately but today I upgraded a project to the latest 2.3.1 and now it seems to work fine with the latest OpenSSL.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

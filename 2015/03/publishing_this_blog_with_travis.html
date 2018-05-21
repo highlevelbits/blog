@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Publishing this blog with travis</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Publishing this blog with travis
+</h2>
+<div>
+  <span class="byline">2015-03-08 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/continuous-integration.html" rel="tag"><span class="icon-tag"></span>continuous integration</a>
+      
+        <a class="one-tag" href="../../tags/nanoc.html" rel="tag"><span class="icon-tag"></span>nanoc</a>
+      
+        <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p><img src="http://blog.travis-ci.com/images/travis-mascot-200px.png" alt=""></p>
+
+<p>So finally I got around setting up <a href="https://travis-ci.org/">travis</a> to automatically post this blog upon pushes to master.
+It was pretty straight forward. Travis picks up a file called <code>.travis.yml</code> where the build configuration is placed. 
+It ended up looking like this:</p>
+
+<pre><code>language: ruby
+
+install: bundle install
+script:  "./publish_from_travis.sh"
+
+# this is the encrypted api key from github setting 
+# the GH_AUTH env variable used in the install script
+env:
+  global:
+    secure: hrfBYK9YXs0rJJvr3zbIFFt7E11KdbtTzbSYgvULEhVgRwXscKRj.....
+
+# build only master - don't want to publish wip
+branches:
+  only:
+    - master
+</code></pre>
+
+<p>First the language of the build is stated.</p>
+
+<pre><code>language: ruby
+</code></pre>
+
+<p>Travis comes with two steps: <code>install</code> and <code>script</code> where the latter means 
+<em>test tour stuff</em>.</p>
+
+<pre><code>install: bundle install
+script:  "./publish_from_travis.sh"
+</code></pre>
+
+<p>The normal build process is more about automated testing than automated publishing. 
+Here I use the install stuff for the reasonable thing to do - installing them gems. Than in the script phase a
+bash script is called. This is circa the same script as we have been using to publish from our local machines
+but with some small changes about how the gh-pages branch is cloned and updated. Firstly https is used. Since this
+is a public repo cloning is trivial. For pushing there needs to be some credentials though. Here is the publish script:</p>
+
+<pre><code>#! /usr/bin/env bash
+
+git config --global user.email "highlevelbits@eldfluga.se"
+git config --global user.name "high level bits automator"
+
+git clone https://github.com/highlevelbits/blog.git --branch gh-pages output
+rm -rf output/*
+nanoc
+cd output
+echo highlevelbits.com &gt; CNAME
+git add .
+git commit -am "high level bits automatic deploy"
+git push --force --quiet "https://${GH_AUTH}@github.com/highlevelbits/blog.git" gh-pages&gt; /dev/null 2&gt;&amp;1
+</code></pre>
+
+<p>Note the environment variable use in the push command. This is a reference to an encrypted variable stored in the 
+end-&gt;global-&gt;secure key:</p>
+
+<pre><code># this is the encrypted api key from github setting 
+# the GH_AUTH env variable used in the install script
+env:
+  global:
+    secure: hrfBYK9YXs0rJJvr3zbIFFt7E11KdbtTzbSYgvULEhVgRwXscKRj....
+</code></pre>
+
+<p>This field is generated with the travis command line tool. Install it with:</p>
+
+<pre><code>&gt; gem install travis
+</code></pre>
+
+<p>and use it like so</p>
+
+<pre><code>&gt; echo GH_AUTH=&lt;github api key&gt; | travis encrypt --add
+</code></pre>
+
+<p>the -add flag adds it automatically to the <code>.travis.yml</code> in the current directory. Handy! 
+Now it is encrypted so that only travis can decrypt.</p>
+
+<p>Finally we tell travis to only build <code>master</code> so we can keep branches for work in progress without publishing them.</p>
+
+<pre><code># build only master - don't want to publish wip
+branches:
+  only:
+    - master
+</code></pre>
+
+<p>All the files used for publishing the blog are available for review in 
+<a href="https://github.com/highlevelbits/blog">the repository</a>.</p>
+
+<p>I had some excellent help from Gergely Nemeths post 
+<a href="https://medium.com/@nthgergo/publishing-gh-pages-with-travis-ci-53a8270e87db">about this</a> 
+(just translated the node stuff into ruby)
+and also from the excellent <a href="http://docs.travis-ci.com/">travis docs</a>.</p>
+
+<p>So what will this give us? Hopefully more shorter posts since it now will be possible to publish directly
+with a push inside github.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

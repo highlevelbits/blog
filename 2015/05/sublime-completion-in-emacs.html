@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Sublime completions in Emacs</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Sublime completions in Emacs
+</h2>
+<div>
+  <span class="byline">2015-05-24 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/coding.html" rel="tag"><span class="icon-tag"></span>coding</a>
+      
+        <a class="one-tag" href="../../tags/editor.html" rel="tag"><span class="icon-tag"></span>editor</a>
+      
+        <a class="one-tag" href="../../tags/emacs.html" rel="tag"><span class="icon-tag"></span>emacs</a>
+      
+        <a class="one-tag" href="../../tags/sublime.html" rel="tag"><span class="icon-tag"></span>sublime</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>I am on a serious quest to replace all my proprietary editors with emacs. So to start with I am using it instead of 
+Sublime when coding Ruby. I also have started some preliminary investigations into using it for java development also.
+More on that in later posts I hope.</p>
+
+<p>One thing I like in Sublime is how you easily get completions from you current file. 
+<a href="http://emacs.stackexchange.com/questions/12646/equivalent-of-sublimes-text-expansion">Turns out</a> there is a
+built in thing in emacs called <code>dabbrev</code> that does the same thing. It expands on <code>M-/</code> by default. <code>/</code> is not
+the nicest character on a swedish keyboard so I bound <code>M-RET</code> (or Alt-Enter as it is called in IntelliJ) to
+dabbrev by putting this line into my <code>.emacs</code> file.</p>
+
+<pre><code>(global-set-key (kbd "M-RET") 'dabbrev-expand)
+</code></pre>
+
+<p>In general I find that it may be hard to find emacs documentation for what you are looking for. On the other
+hand there is <a href="http://emacs.stackexchange.com">emacs.stackexchange.com</a> so anything is solvable with 
+the help of community.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Library problem with steam on arch linux (i965_dri.so)</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Library problem with steam on arch linux (i965_dri.so)
+</h2>
+<div>
+  <span class="byline">2016-07-07 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/arch.html" rel="tag"><span class="icon-tag"></span>arch</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>Using a rolling distribution like Arch is good in many ways but when things you really 
+need start to break it is not so fun. I have had some problems with steam - a thing
+I really need in order to play games! (Yes - priorities are rightly ordered!) Apparently
+steam comes with a couple of libraries that sooner or later will become older than the once
+installed in the OS. My error looks like this:</p>
+
+<p><code>
+Running Steam on arch rolling 64-bit
+STEAM_RUNTIME is enabled automatically
+Installing breakpad exception handler for appid(steam)/version(1467926999)
+libGL error: unable to load driver: i965_dri.so
+libGL error: driver pointer missing
+libGL error: failed to load driver: i965
+libGL error: unable to load driver: swrast_dri.so
+libGL error: failed to load driver: swrast
+</code></p>
+
+<p>After googling for quite a while and trying a couple of things I stumbled upon 
+<a href="http://wyldeplayground.net/steam-unable-to-load-driver-i965_dri-so-intel-graphics/">this problem solver</a>.
+It made sense to me directly. The post is essentially one line:</p>
+
+<pre><code>LD_PRELOAD='/usr/lib32/libstdc++.so.6 /usr/lib32/libgcc_s.so.1 /usr/lib32/libxcb.so.1 /usr/lib32/libgpg-error.so' steam
+</code></pre>
+
+<p>LD_PRELOAD is a way to load some objects before others. In this case we tell steam to use these 4 libraries 
+instead of its own. Problem solved and I can move on to more important things currently as the King of Finland
+in the <a href="http://www.crusaderkings.com/">Crusader Kings</a> year 987. I am about to turn this tribe into a merchant republic!</p>
+
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

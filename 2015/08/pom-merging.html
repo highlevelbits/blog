@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Merging those pom files</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Merging those pom files
+</h2>
+<div>
+  <span class="byline">2015-08-28 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/git.html" rel="tag"><span class="icon-tag"></span>git</a>
+      
+        <a class="one-tag" href="../../tags/maven.html" rel="tag"><span class="icon-tag"></span>maven</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>Having release branches with lots of <code>pom.xml</code> files is not so fun when it comes to merging. 
+A normal merge will detect conflicts in each and everyone of the pom files. (If you insist on 
+having the version number in each pom file. This can be avoided by parameterizing the version number
+in the parent pom.) Luckily git can help a bit to solve this. The default merge strategy (called <code>recursive</code>) 
+will mark any conflicts and leave it up to you to resolve them. However if you pass in the <code>-X</code> flag you can 
+configure the way a recursive merge works. One option is to decide to use ours or theirs changes when 
+detecting conflicts. In the pom file example you would likely want to keep ours when merging to master. 
+Call it with:</p>
+
+<pre><code>git merge -X ours release-branch
+</code></pre>
+
+<p>or if you want to be specific</p>
+
+<pre><code>git merge -s recursive -X ours release-branch
+</code></pre>
+
+<p>or even more specific</p>
+
+<pre><code>git merge --strategy=recursive --strategy-option=ours release-branch
+</code></pre>
+
+<p>The problem with this is that if you have conflicts in the actual code you will have to deal with it separately.
+In this case it is probably wise to set up a merge branch to do the merging on. First merge the code stuff and then
+move on with pom files.</p>
+
+<p>Other cool things I learned when playing with this:</p>
+
+<ul>
+  <li>while <code>recursive</code> is default when merging a single head <code>octopus</code> is the default strategy when merging several
+heads. I have a hard time coming up with a scenario where I would actually want to merge several heads into
+one merge commit. But it is a cool feature.</li>
+  <li>another strategy option for the <code>recursive</code> strategy is <code>patience</code> - this will give even better merge results
+in some cases and should probably be used when there has been many changes between the merge subjects. Patience
+is also an option to the <code>diff</code> command.</li>
+</ul>
+
+<p>Another option is of course to not use <code>maven</code> at all…. :-)</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

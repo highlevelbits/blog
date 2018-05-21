@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Capistrano deploy from any branch</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Capistrano deploy from any branch
+</h2>
+<div>
+  <span class="byline">2015-12-04 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/devops.html" rel="tag"><span class="icon-tag"></span>devops</a>
+      
+        <a class="one-tag" href="../../tags/git.html" rel="tag"><span class="icon-tag"></span>git</a>
+      
+        <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>When using <a href="http://capistranorb.com/">capistrano</a> for rails deployment you typically end up with a configuration file per 
+environement in the <code>config/deploy</code> folder. In this file you state what branch you want to deploy from:</p>
+
+<pre><code>set :branch, 'staging'
+</code></pre>
+
+<p>This may be a good thing if you always want to deploy from a certain branch to a certain environment. At my current gig
+we always deploy to production from a <code>production</code> branch. Another common approach is to keep <code>master</code> in sync with
+the production environment. However for test environemnts it may be convenient to be able to deploy from any branch.
+Luckily config files in Ruby are often written in Ruby (not in XML or something similar unprogammable). So making this
+little thing happen is as easy as:</p>
+
+<pre><code>set :branch, `git symbolic-ref -q HEAD`.split('/').last.strip
+</code></pre>
+
+<p>and the current branch will be used when running the deploy. One may think that <code>git branch</code> should have an option for
+just getting the current branch and nothing else but no luck there….. The <code>symbolic-ref</code> command give us the full name
+of the branch. E.g. <code>refs/heads/development</code> so we need to the stripping part ourselves.</p>
+
+<p>The way capistrano is normally setup it is possible to deploy the production branch from another branch. This makes it
+impossible to keep track of what deploy configuration that actually was used for a certain deploy. Dangerous stuff indeed.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

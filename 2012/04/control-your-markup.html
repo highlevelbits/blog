@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Control your markup</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Control your markup
+</h2>
+<div>
+  <span class="byline">2012-05-01 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/web.html" rel="tag"><span class="icon-tag"></span>web</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <p><a href="http://www.flickr.com/photos/f-l-e-x/3096005116"><img src="http://farm4.staticflickr.com/3070/3096005116_83a31d1fee.jpg" alt="HTML"></a></p>
+
+<p>I have had the questionable fortune to code a bit of web using <a href="http://www.java.com/">Java</a> technologies the last months. Not my choice of tech obviously but nevertheless interesting. Much has happened in the Java space since the days of <a href="http://struts.apache.org/">Struts</a> - I remember doing stuff on an early beta back in 2001. It was much better than coding servlets directly. We have gone a long way since then and these days Java or the microsoft techs are not the obvious choice anymore. People are being much more productive with Ruby, Python, Groovy, Scala and even Smalltalk these days. A much better world for us developers!</p>
+
+<p>Anyway - this new phase started with a bit of <a href="https://vaadin.com">Vaadin</a>. It is built using the same technology as in <a href="https://developers.google.com/web-toolkit/">GWT</a> but more backendish. You code in Java and markup, scripts and styling just appear magically in your browser. It works fine as long as you stick to the box. I was lucky to work with <a href="http://blog.crisp.se/author/magnusaxelqvist">Magnus Axelqvist</a> - also a proponent of test driving and we really tried hard to do black boxing of our app using Fitnesse (as well as the fair amount of “normal” unit tests). And now dark clouds started to appear. Everything in Vaadin becomes embedded in a multitude of div elements and only some of them get an appropriate css id. What is worse though is that it is hard if not impossible to set the id yourself. The default implementation of common form widgets keeps state somewhere in the javascript engine and not visible from the outside making it impossible to get the value of a drop. We had to use a “native” implementation to get around it. A positive on the other hand is that it is very easy to write unit tests for the Java code. Although it doesn’t test the Java-&gt;HTML transformation it gives you enough security when TDDing your application. Vaadin is probably a good choice when your developer group is skilled in Java but not in web but a lot of flexibility is given away to the framework. I would not consider it for end user apps but it may work well for in house administrative stuff where functionality is more important than looks.</p>
+
+<p>After the Vaadin experience it was nice to get introduced to <a href="http://wicket.apache.org/">Wicket</a> - a framework with a kind of templates (actually plain HTML files spiced up with wicket:id attributes) and most of the coding still done in Java. A bit of Ajax generated in the background but still possible to hook in your own javascripts when necessary. Although it is painful to write web applications in Java, Wicket is an option where you still have lots of control over your markup.</p>
+
+<p><a href="http://www.flickr.com/photos/wonderlane/2105227208"><img src="http://farm3.staticflickr.com/2121/2105227208_44e1536453.jpg" alt="markup"></a></p>
+
+<p>This trip made me realize that the core of the web is in the markup. HTML, Javascript and CSS is what matters in the browser. Please try to learn it instead of hiding behind a framework that takes away your markup ownership. If you are to build smashing applications for the web you need to control your markup.</p>
+
+<p>Photos by flickr users <a href="http://www.flickr.com/photos/f-l-e-x">f-l-e-x</a> and <a href="http://www.flickr.com/photos/wonderlane/">wonderlane</a>.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

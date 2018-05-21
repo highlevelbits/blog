@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Hiding and viewing dot files in Mac's Finder</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Hiding and viewing dot files in Mac's Finder
+</h2>
+<div>
+  <span class="byline">2009-02-27 by hardy</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/mac.html" rel="tag"><span class="icon-tag"></span>mac</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+  <p>Hi,<br><br>I was talking about the problem that Finder is per default hiding dot files before. In most cases you get away with the default, but sometimes it really sucks that you cannot drill down into your 'hidden' directories. Since I work a lot with bash I added the following function to my <span style="font-style: italic;">~./bashrc</span> :<br> </p>
+<blockquote>
+<pre>
+function switchFinderOptions()
+{
+   SHOW_DOT_FILES="defaults write com.apple.Finder AppleShowAllFiles YES"
+   HIDE_DOTFILES="defaults write com.apple.Finder AppleShowAllFiles NO"
+   echo "Choose finder mode:"
+   echo  $SHOW_DOT_FILES '[1] ' ;
+   echo  $HIDE_DOTFILES '[2] ' ;
+   read ans
+   case "$ans" in
+     1) `$SHOW_DOT_FILES`;;
+     2) `$HIDE_DOTFILES`;;
+   esac
+   killall Finder
+}
+</pre>
+</blockquote>
+<p>After adding this function it becomes very easy to switch the Finder mode and quickly drill down a hidden directory structure.<br><br>Hope it helps.<br><br>--Hardy</p>
+<div class="old-comments">
+<h2>Old comments</h2>
+<div class="one-old-comment">
+<span class="comment-date">2010-12-31</span><span class="commenter-name">Frank</span><div class="comment-body">Seems like too big a hammer. I wish I could just press Command-Shift-D or something to see the dot files.<br>I like the idea of a command line function if that's the best we can do; though I would prefer to pass in flags. I'd show you my code, but I can't find a way to allow formatting to be preserved here. Oh well.</div>
+</div>
+<div class="one-old-comment">
+<span class="comment-date">2010-12-31</span><span class="commenter-name">Hardy Ferentschik</span><div class="comment-body">If you want to share your code consider putting it onto <a rel="nofollow">forkcan</a> and posting the link here.<br>You could also consider using TotalFinder as described in <a href="http://www.highlevelbits.com/2010/10/mac-tips-visor-totalfinder.html" rel="nofollow">this</a> post. You'll get a whole lot of additional Finder goodies including the ability to toggle he display of system files.</div>
+</div>
+</div>
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

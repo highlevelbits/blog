@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - A pomodoro clock for the systray</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  A pomodoro clock for the systray
+</h2>
+<div>
+  <span class="byline">2016-03-20 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/productivity.html" rel="tag"><span class="icon-tag"></span>productivity</a>
+      
+        <a class="one-tag" href="../../tags/ruby.html" rel="tag"><span class="icon-tag"></span>ruby</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p><img src="https://raw.githubusercontent.com/froderik/pomotray/master/tomato.png" alt=""></p>
+
+<p>I have been using <a href="http://pomodorotechnique.com/">pomodoro</a> to and from for several years and it works really good for me.
+I haven’t found a simple tool for linux though (apart from the one <a href="https://productivity.stackexchange.com/questions/717/which-computer-based-pomodoro-timers-exist-and-what-are-their-features/1672#1672">outlined here</a>.)
+I’ll be perfectly happy with a system tray tomato that can tell me when the time is up. So this weekend I went ahead and built 
+one. I have done some fiddling with Qt before and decided to try it again. Since I know Ruby well I decided to use the
+<a href="https://github.com/ryanmelt/qtbindings/">ruby bindings</a> for Qt. Qt comes with a 
+<a href="https://doc.qt.io/qt-4.8/qsystemtrayicon.html">class for creating systray icons</a> that is really easy to use.</p>
+
+<p>The code and instructions about how to use it is <a href="https://github.com/froderik/pomotray">available at github</a>.</p>
+
+<p>My next challenge is to create an arch linux package out of this. I haven’t done it before but I suspect that it will
+not be that hard. The only thing I am curious about is the need to build ruby with the <code>--enable-shared</code> flag. How will
+this work with precompiled things? It would be nice to depend on archs standard ruby package.</p>
+
+<p><img src="https://raw.githubusercontent.com/froderik/pomotray/master/tomato.png" alt=""></p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

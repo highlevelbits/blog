@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - How to extract part of a line with sed</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  How to extract part of a line with sed
+</h2>
+<div>
+  <span class="byline">2016-09-14 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/bash.html" rel="tag"><span class="icon-tag"></span>bash</a>
+      
+        <a class="one-tag" href="../../tags/grep.html" rel="tag"><span class="icon-tag"></span>grep</a>
+      
+        <a class="one-tag" href="../../tags/sed.html" rel="tag"><span class="icon-tag"></span>sed</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p>Say you have a file with lots of data but you really just want to find a couple of lines that matches something and then 
+you want to extract another part of that line to a list. <code>grep</code> and <code>sed</code> can help you. So for example to match on
+<code>the new paris</code> and extract the number 19 from <code>manif_id="19"</code> on the same line you could do:</p>
+
+<pre><code>grep 'the new paris' china_books.xml | sed -n 's/.*manif_if=\"\([0-9]*\).*/\1/p'
+</code></pre>
+
+<p>The parentheses - <code>\([0-9]\)</code> - in the regexp part of the sed command captures what is inside and makes it available to the <code>\1</code>
+parameter in the second part. Note that parentheses needs to be escaped!</p>
+
+<p>Also about to finish a great book. 
+<a href="https://www.goodreads.com/book/show/26042254-the-last-days-of-new-paris">The last day of new paris</a> by China Mieville.
+All about paris and surrealist manifestations. Recommended!</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>

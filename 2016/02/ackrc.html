@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>high level bits - Configuring ack to ignore certain directories</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+
+    <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../forms.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/atom+xml" title="high level bits" href="../../atom.xml">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.1.1">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <a href="../../">
+          <h1>h1ghlevelb1ts</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <a href="../../">home</a>
+        ·
+        <a href="../../archive.html">archive</a>
+      </div>
+      <div class="content">
+        <h2 class="article-header">
+  Configuring ack to ignore certain directories
+</h2>
+<div>
+  <span class="byline">2016-02-27 by fredrik</span>
+  
+    <span class="tags">
+      
+        <a class="one-tag" href="../../tags/bash.html" rel="tag"><span class="icon-tag"></span>bash</a>
+      
+        <a class="one-tag" href="../../tags/grep.html" rel="tag"><span class="icon-tag"></span>grep</a>
+      
+    </span>
+  
+</div>
+<div class="inner-content">
+
+<p><code>grep</code> is a wonderful command line tool that can be used for many things. While many developers rely on their IDE for search 
+capabilities I have increasingly come to value the command line for finding stuff in source files. This tooling works regardless
+of what language you are currently using so it will probably be useful for the rest of my career.</p>
+
+<p>When <code>git</code> appeared I started using <code>git grep</code>. It is really handy since it only find files that are added to version control. 
+This is also a disadvantage at times.</p>
+
+<p>Then some years ago I worked with a guy that introduced a series of grep tools to me. The final one was <code>ack</code> and I have stucked 
+with it since then. It got good defaults for what you may want to ignore and also gives a nice colorized output. I haven’t 
+really tried to tweak it until the other day when I got disturbed by the appearance of content in the <code>coverage</code> folder of 
+a ruby side project I am working on. It is easy to add the <code>--ignore-directory</code> flag on the command line but not so convenient 
+the second time around. In comes the <code>.ackrc</code> file where you can put custom settings. You can have one in your home 
+folder but also in any folder you are working with. So I added one to my working directory with the content:</p>
+
+<pre><code># ignore the coverage directory
+--ignore-directory=coverage
+</code></pre>
+
+<p>Nice! I will explore this tool more future on. It seems to have some really good things for log file analysis also.</p>
+
+</div>
+
+      </div>
+      <div class="footer">
+        high level bits was brought to you by
+        <a href="http://about.me/hardyferentschik">hardy</a>
+        and
+        <a href="http://about.me/fredrik.rubensson">fredrik</a>
+      </div>
+    </div>
+  </body>
+</html>
