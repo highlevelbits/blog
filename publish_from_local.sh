@@ -4,7 +4,7 @@
 # for now publishing is done when pushing to master
 
 rm -rf output/*
-nanoc
+nanoc compile
 cd output
 echo highlevelbits.com > CNAME
 git add .
