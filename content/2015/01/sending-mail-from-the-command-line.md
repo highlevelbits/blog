@@ -27,3 +27,4 @@ Once you have this up and running you can send me an email like this:
 
 <small>
 [Photo](https://www.flickr.com/photos/gregoryjordan/6118863684/) by [Gregory Jordan](https://www.flickr.com/photos/gregoryjordan/).
+</small>
