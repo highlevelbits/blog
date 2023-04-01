@@ -60,12 +60,12 @@ journey into the inner workings of Sublime Text.</p>
 
 <p>In Sublime Text 3 language support (syntax highlighting, snippets, etc) is bundled in a file with the
 postfix <em>sublime-package</em>. Effectively it is just a zip file which you can expand to view its contents.
-The main file is <language>.tmLanguage. It contains a whole bunch of regular expressions which capture
+The main file is <em>&lt;Language&gt;.tmLanguage</em>. It contains a whole bunch of regular expressions which capture
 and name different parts of the syntax of the language in question. To make symbols work you also need
-a file called *Symbol List.tmPreferences* (the name is not relevant I think), which tells Sublime
+a file called <em>Symbol List.tmPreferences</em> (the name is not relevant I think), which tells Sublime
 which of the named syntax parts should be made available via symbols. Exactly this symbol list is missing
-in the AsciiDoc plugin (http://github.com/SublimeText/AsciiDoc). After looking at *AsciiDoc.tmLanguage*,
-I thought the following should work:</language></p>
+in the AsciiDoc plugin (http://github.com/SublimeText/AsciiDoc). After looking at <em>AsciiDoc.tmLanguage</em>,
+I thought the following should work:</p>
 
 <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
