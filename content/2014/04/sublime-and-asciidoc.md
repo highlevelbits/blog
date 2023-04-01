@@ -19,7 +19,7 @@ journey into the inner workings of Sublime Text.
 
 In Sublime Text 3 language support (syntax highlighting, snippets, etc) is bundled in a file with the
 postfix *sublime-package*. Effectively it is just a zip file which you can expand to view its contents.
-The main file is <Language>.tmLanguage. It contains a whole bunch of regular expressions which capture
+The main file is *&lt;Language&gt;.tmLanguage*. It contains a whole bunch of regular expressions which capture
 and name different parts of the syntax of the language in question. To make symbols work you also need
 a file called *Symbol List.tmPreferences* (the name is not relevant I think), which tells Sublime
 which of the named syntax parts should be made available via symbols. Exactly this symbol list is missing
