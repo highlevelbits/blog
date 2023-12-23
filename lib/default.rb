@@ -33,6 +33,6 @@ def short article
             = one_tag
 """
 
-  engine = Haml::Engine.new markup
+  engine = Haml::Template.new { markup }
   engine.render self, article: article 
 end

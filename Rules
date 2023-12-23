@@ -28,7 +28,7 @@ preprocess do
   end
 
   tags.each do |tag|
-    items.create("", { tag: tag, kind: 'tag' }, "/tags/#{tag.gsub(' ', '-')}/")
+    items.create("", { tag: tag, kind: 'tag' }, "/tags/#{tag.gsub(' ', '-')}")
   end    
 end
 
@@ -76,6 +76,10 @@ end
 
 route '/' do
   '/index.html'
+end
+
+route '/tags/*' do
+  "#{item.identifier}.html"
 end
 
 route '/*/' do
