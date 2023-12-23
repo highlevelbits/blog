@@ -12,7 +12,25 @@ author_name: low level mechanizer
     %h2.article-header
       Last 42 articles
     - sorted_articles[0..41].each do |article|
-      = short article
+      .row.article-entry
+        %span.description
+          %code
+            = article[:created_at].strftime '%F'
+          = '-'
+          %b
+            %a{ href: article.identifier.chop + '.html'}
+              =article[:title]
+          by
+          = article[:author]
+        .tags
+          - tags_for( article ).each do |one_tag|
+            - similarly_tagged = items_tagged_with( one_tag )
+            - similarly_tagged.delete(article)
+            - if similarly_tagged.any?
+              %a.one-tag{ href: link_to_tag( one_tag ), rel: 'tag' }
+                %span
+                  %i.icon-tag
+                  = one_tag
   %center="------"
   .outro
     %i

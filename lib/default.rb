@@ -33,6 +33,7 @@ def short article
             = one_tag
 """
 
-  engine = Haml::Template.new { markup }
-  engine.render self, article: article 
+  Haml::Template.options[:escape_html] = false
+  engine = Haml::Template.new() { markup }
+  engine.render self, article: article
 end

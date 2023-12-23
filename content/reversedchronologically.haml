@@ -2,6 +2,7 @@
 title:
 ---
 
-- sorted_articles.each do |one_article|
+- sorted_articles.each do |item|
   .one_article_item
-    = link_to one_article[:title], one_article
+    %a{ href: item.identifier.chop + '.html'}
+      =item[:title]

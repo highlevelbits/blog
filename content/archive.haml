@@ -46,5 +46,6 @@ authot: The Almight Bits Librarian
                       %ul
                         - month.items.each do |item|
                           .one_article_item
-                            = link_to item[:title], item
+                            %a{ href: item.identifier.chop + '.html'}
+                              =item[:title]
 
