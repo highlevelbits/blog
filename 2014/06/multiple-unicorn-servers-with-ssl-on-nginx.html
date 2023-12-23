@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - Multiple unicorn servers with SSL on nginx</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Iceland|Volkhov" rel="stylesheet" type="text/css">
 
     <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
     <link href="../../style.css" rel="stylesheet">
@@ -18,7 +18,7 @@
     <!-- / Fathom -->
     
     <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc 4.1.6">
+    <meta name="generator" content="nanoc 4.12.19">
       
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -56,7 +56,6 @@
   
 </div>
 <div class="inner-content">
-
 <p>A while ago I set up my own <a href="https://www.archlinux.org/">arch linux</a> server at <a href="https://www.digitalocean.com/">digital ocean</a>. It was some work and I learned a lot in the process. At the moment I have three <a href="http://unicorn.bogomips.org/">unicorn</a>-based ruby things running behind <a href="http://nginx.org/">nginx</a> on the server. One is built with <a href="http://rubyonrails.org/">rails</a> and the other two with <a href="http://www.sinatrarb.com/">sinatra</a>. The one with rails is SSL-only. The work of setting up nginx was pretty straightforward but still I had to understand things from several sources so here is a rundown of how I accomplished this.</p>
 
 <p>nginx is easy to configure. Compared with <a href="https://httpd.apache.org/">apache</a> it is a breeze. The configuration is typically placed in <code>/etc/nginx/nginx.conf</code>. The syntax is basically:</p>

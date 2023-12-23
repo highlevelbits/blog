@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - Cutting part of a large file with sed</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Iceland|Volkhov" rel="stylesheet" type="text/css">
 
     <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
     <link href="../../style.css" rel="stylesheet">
@@ -18,7 +18,7 @@
     <!-- / Fathom -->
     
     <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc 4.1.6">
+    <meta name="generator" content="nanoc 4.12.19">
       
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -50,7 +50,6 @@
   
 </div>
 <div class="inner-content">
-
 <p><code>sed</code> helped me again. I got this really large database backup file (14 GBs) and needed to extract the part involved in one 
 of the tables. After finding the table in question on line 22372205 and deciding that the part I needed ended
 on line 22708925 it was really easy to extract with sed:</p>

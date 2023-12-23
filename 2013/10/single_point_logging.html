@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - single point logging with go</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Iceland|Volkhov" rel="stylesheet" type="text/css">
 
     <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
     <link href="../../style.css" rel="stylesheet">
@@ -18,7 +18,7 @@
     <!-- / Fathom -->
     
     <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc 4.1.6">
+    <meta name="generator" content="nanoc 4.12.19">
       
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,7 +54,6 @@
   
 </div>
 <div class="inner-content">
-
 <p>I’ll continue to spam you with <a href="http://golang.org/">go</a> related posts. I am working on a rather small webapp built with go. Despite it being small we have still managed to code differently in different parts of the application. Logging is one such issue that we decided to do something about the other day. At the same time it was good to improve on the error handling which often goes hand in hand with logging. In the midst of this some external forces (operations….) tells us that we should use a <strong>logging server</strong> for logging. Not right away mayhaps but eventually. This led us to go for our own logging functions so that we can change the implementation in one place. So we needed to get some common things into the log. User name (or some way to keep track of one call to the system), a timestamp, the code line where the logging occurred and the message itself. A normal application log file more or less.</p>
 
 <p>To call our own logger we thought something like <code>LogInfo(user User, message string, args... interface{})</code> looked nice with corresponding functions for Error and Debug. The first implementation was easy enough:</p>

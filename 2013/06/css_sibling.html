@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>high level bits - css sibling operator (folding divs)</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Iceland%7CVolkhov" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Iceland|Volkhov" rel="stylesheet" type="text/css">
 
     <link href="../../awesome/font-awesome-min.css" rel="stylesheet">
     <link href="../../style.css" rel="stylesheet">
@@ -18,7 +18,7 @@
     <!-- / Fathom -->
     
     <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc 4.1.6">
+    <meta name="generator" content="nanoc 4.12.19">
       
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -48,7 +48,6 @@
   
 </div>
 <div class="inner-content">
-
 <p>I have been fiddling with CSS a lot in my current client project. I am no ninja yet but I am getting hold of the elementary stuff at least. Today I made one radio button show a div and another one hide it. To be able to do this you need to know about the sibling operator <code>~</code> that is used to find an element matching the selector that is <em>after</em> the main rule. Consider this markup snippet:</p>
 
 <pre><code>&lt;input checked="checked" class="fold_open" type="radio" value="open" /&gt;

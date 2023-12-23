@@ -1,11 +1,10 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="http://www.highlevelbits.com/">
   <id>http://www.highlevelbits.com/</id>
   <title>atom feed</title>
-  <updated>2017-04-29T22:00:00Z</updated>
-  <link rel="alternate" href="http://www.highlevelbits.com/"/>
-  <link rel="self" href="http://www.highlevelbits.com/atom.xml"/>
+  <updated>2017-04-30T00:00:00Z</updated>
+  <link rel="alternate" href="http://www.highlevelbits.com/" type="text/html"/>
+  <link rel="self" href="http://www.highlevelbits.com/atom.xml" type="application/atom+xml"/>
   <author>
     <name>Fredrik &amp; Hardy</name>
     <uri>http://www.highlevelbits.com</uri>
@@ -13,11 +12,10 @@
   <entry>
     <id>tag:www.highlevelbits.com,2017-04-30:/2017/04/ten-years-after.html</id>
     <title type="html">Ten years after</title>
-    <published>2017-04-29T22:00:00Z</published>
-    <updated>2017-04-29T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2017/04/ten-years-after.html"/>
-    <content type="html">
-&lt;p&gt;It is a bit more than ten years since me and Hardy decided to get this blog started. In 
+    <published>2017-04-30T00:00:00Z</published>
+    <updated>2017-04-30T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2017/04/ten-years-after.html" type="text/html"/>
+    <content type="html">&lt;p&gt;It is a bit more than ten years since me and Hardy decided to get this blog started. In 
 the &lt;a href="/2007/02/there-is-hope-despite-everything.html"&gt;first post&lt;/a&gt; I wrote from my 10 year
 perspective in the software development industry. Now 10 more years has gone by and my 
 experience is so much stronger than it was back then. I still do mostly development and I 
@@ -49,11 +47,10 @@ if I do anything with it it will be to put it on SSL.&lt;/p&gt;
   <entry>
     <id>tag:www.highlevelbits.com,2016-09-14:/2016/09/parts-of-line-with-sed.html</id>
     <title type="html">How to extract part of a line with sed</title>
-    <published>2016-09-13T22:00:00Z</published>
-    <updated>2016-09-13T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2016/09/parts-of-line-with-sed.html"/>
-    <content type="html">
-&lt;p&gt;Say you have a file with lots of data but you really just want to find a couple of lines that matches something and then 
+    <published>2016-09-14T00:00:00Z</published>
+    <updated>2016-09-14T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2016/09/parts-of-line-with-sed.html" type="text/html"/>
+    <content type="html">&lt;p&gt;Say you have a file with lots of data but you really just want to find a couple of lines that matches something and then 
 you want to extract another part of that line to a list. &lt;code&gt;grep&lt;/code&gt; and &lt;code&gt;sed&lt;/code&gt; can help you. So for example to match on
 &lt;code&gt;the new paris&lt;/code&gt; and extract the number 19 from &lt;code&gt;manif_id="19"&lt;/code&gt; on the same line you could do:&lt;/p&gt;
 
@@ -71,11 +68,10 @@ All about paris and surrealist manifestations. Recommended!&lt;/p&gt;
   <entry>
     <id>tag:www.highlevelbits.com,2016-07-07:/2016/07/steam-problem.html</id>
     <title type="html">Library problem with steam on arch linux (i965_dri.so)</title>
-    <published>2016-07-06T22:00:00Z</published>
-    <updated>2016-07-06T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2016/07/steam-problem.html"/>
-    <content type="html">
-&lt;p&gt;Using a rolling distribution like Arch is good in many ways but when things you really 
+    <published>2016-07-07T00:00:00Z</published>
+    <updated>2016-07-07T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2016/07/steam-problem.html" type="text/html"/>
+    <content type="html">&lt;p&gt;Using a rolling distribution like Arch is good in many ways but when things you really 
 need start to break it is not so fun. I have had some problems with steam - a thing
 I really need in order to play games! (Yes - priorities are rightly ordered!) Apparently
 steam comes with a couple of libraries that sooner or later will become older than the once
@@ -108,11 +104,10 @@ in the &lt;a href="http://www.crusaderkings.com/"&gt;Crusader Kings&lt;/a&gt; ye
   <entry>
     <id>tag:www.highlevelbits.com,2016-06-22:/2016/06/synchronize-tmux-panes.html</id>
     <title type="html">Synchronize tmux panes</title>
-    <published>2016-06-21T22:00:00Z</published>
-    <updated>2016-06-21T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2016/06/synchronize-tmux-panes.html"/>
-    <content type="html">
-&lt;p&gt;So we have clustered servers which is a pain when you want to look at some log files. &lt;a href="https://tmux.github.io/"&gt;tmux&lt;/a&gt; and 
+    <published>2016-06-22T00:00:00Z</published>
+    <updated>2016-06-22T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2016/06/synchronize-tmux-panes.html" type="text/html"/>
+    <content type="html">&lt;p&gt;So we have clustered servers which is a pain when you want to look at some log files. &lt;a href="https://tmux.github.io/"&gt;tmux&lt;/a&gt; and 
 &lt;a href="https://stackoverflow.com/questions/16325449/how-to-send-a-command-to-all-panes-in-tmux"&gt;stackoverflow&lt;/a&gt; 
 to the rescue. I set up &lt;a href="https://github.com/tmuxinator/tmuxinator/"&gt;tmuxinator&lt;/a&gt; to open up panes on all the 
 servers and then once inside tmux I go:&lt;/p&gt;
@@ -129,11 +124,10 @@ in the same way…).&lt;/p&gt;
   <entry>
     <id>tag:www.highlevelbits.com,2016-06-17:/2016/06/joyofcoding.html</id>
     <title type="html">Joy of Coding</title>
-    <published>2016-06-16T22:00:00Z</published>
-    <updated>2016-06-16T22:00:00Z</updated>
-    <link rel="alternate" href="http://www.highlevelbits.com/2016/06/joyofcoding.html"/>
-    <content type="html">
-&lt;p&gt;&lt;img src="http://joyofcoding.org/img/blue-logo-with-white-text.svg" alt="" /&gt;&lt;/p&gt;
+    <published>2016-06-17T00:00:00Z</published>
+    <updated>2016-06-17T00:00:00Z</updated>
+    <link rel="alternate" href="http://www.highlevelbits.com/2016/06/joyofcoding.html" type="text/html"/>
+    <content type="html">&lt;p&gt;&lt;img src="http://joyofcoding.org/img/blue-logo-with-white-text.svg" alt="" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Despite &lt;a href="http://lanyrd.com/profile/froderik/past/"&gt;attending quite a few conferences&lt;/a&gt; the last few years I didn’t write about
 any of them since I went to &lt;a href="http://highlevelbits.com/2014/09/decentralize.html"&gt;decentralize.js&lt;/a&gt; almost two years ago.&lt;/p&gt;
