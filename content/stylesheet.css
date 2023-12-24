@@ -255,3 +255,10 @@ img {
 .article-entry .tags a:visited {
   color: #b8cfce;
 }
+
+@media (max-width: 660px) {
+  .main {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
